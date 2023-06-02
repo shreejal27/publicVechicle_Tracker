@@ -1,0 +1,51 @@
+header {
+    /* Your header styles here */
+    background-color: aqua;
+    border: 1px solid black;
+}
+
+/* Styles for main content */
+aside {
+    /* Your main content styles here */
+    background-color: gold;
+    border: 1px solid black;
+}
+
+/* Styles for main content */
+main {
+    /* Your main content styles here */
+    background-color: blanchedalmond;
+    border: 1px solid black;
+}
+
+/* Styles for footer */
+footer {
+    /* Your footer styles here */
+    background-color: aqua;
+    border: 1px solid black;
+}
+
+main{
+    display: grid;
+    grid-template-areas:
+        "head head head"
+        "side content content"
+        "foot foot foot";
+    grid-template-columns: 30px auto 30px;
+}
+header{
+    grid-area: head;
+}
+article{
+    grid-area: content;
+  
+}
+aside{
+    grid-area: side;
+    width: fit-content;
+}
+
+
+footer{
+    grid-area: foot;
+}

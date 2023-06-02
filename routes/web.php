@@ -33,3 +33,7 @@ Route::get('/index', function () {
 Route::get('/aboutUs', function () {
     return view('aboutUs');
 });
+
+Route::get('/main', function () {
+    return view('necessary.main');
+});
