@@ -1,10 +1,10 @@
 <aside>
     <div>
 
-        This is side bar <br>
-        asdfasdfasdf<br>
-        asdfasdfasdfasdfas <br>
-        qqqqqqqqqqqqqqqq<br>
-        qqqqqqqdddddddddd aaaaaaaa<br>
+        Dashboard <br>
+        Track Public Vechicle<br>
+        Nearest Bus Stop <br>
+        Fare Calculator<br>
+        <br>
     </div>
 </aside>

@@ -16,8 +16,8 @@
         @include('necessary.sidebarUser')
         <article>
             <div>
-
-                this is main file
+                <p>This is the main file</p>
+                <p>Hello World !</p>
             </div>
         </article>
         @include('necessary.footer')

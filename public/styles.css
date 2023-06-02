@@ -4,40 +4,39 @@
 
 }
 header {
-    /* Your header styles here */
     background-color: aqua;
     border: 1px solid black;
+    height: 10vh;
 }
 
-/* Styles for main content */
 aside {
-    /* Your main content styles here */
     background-color: gold;
     border: 1px solid black;
+    height: 75vh;
 }
 
-/* Styles for main content */
-main {
-    /* Your main content styles here */
+article {
     background-color: blanchedalmond;
     border: 1px solid black;
+    height: 75vh;
+
 }
 
-/* Styles for footer */
 footer {
-    /* Your footer styles here */
     background-color: aqua;
     border: 1px solid black;
+    height: 15vh;
 }
 
 main{
     display: grid;
     grid-template-areas:
-        "head head head head head"
-        "side side content content content"
-        "foot foot foot foot foot ";
-    /* grid-template-columns: 30px auto 30px; */
+        "head head head"
+        "side content content "
+        "foot foot foot  ";
+    grid-template-columns: 150px auto 30px;
 }
+
 header{
     grid-area: head;
 }
@@ -47,9 +46,7 @@ article{
 }
 aside{
     grid-area: side;
-    width: fit-content;
 }
-
 
 footer{
     grid-area: foot;
