@@ -15,7 +15,10 @@
         @include('necessary.header')
         @include('necessary.sidebarUser')
         <article>
-            this is main file
+            <div>
+
+                this is main file
+            </div>
         </article>
         @include('necessary.footer')
     </main>

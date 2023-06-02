@@ -1,3 +1,8 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
 header {
     /* Your header styles here */
     background-color: aqua;
@@ -28,10 +33,10 @@ footer {
 main{
     display: grid;
     grid-template-areas:
-        "head head head"
-        "side content content"
-        "foot foot foot";
-    grid-template-columns: 30px auto 30px;
+        "head head head head head"
+        "side side content content content"
+        "foot foot foot foot foot ";
+    /* grid-template-columns: 30px auto 30px; */
 }
 header{
     grid-area: head;
