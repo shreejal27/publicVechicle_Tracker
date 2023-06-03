@@ -15,10 +15,15 @@
 </head>
 
 <body>
-    @include('necessary.header')
-    @include('necessary.sidebarUser')
-    <h1>This is Index File</h1>
-    @include('necessary.footer')
+    <main>
+        @include('necessary.header')
+        @include('necessary.sidebarUser')
+        <article>
+
+            <p>This is index file</p>
+        </article>
+        @include('necessary.footer')
+    </main>
 </body>
 
 </html>

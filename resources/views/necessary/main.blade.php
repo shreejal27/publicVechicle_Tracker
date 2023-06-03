@@ -14,12 +14,7 @@
     <main>
         @include('necessary.header')
         @include('necessary.sidebarUser')
-        <article>
-            <div>
-                <p>This is the main file</p>
-                <p>Hello World !</p>
-            </div>
-        </article>
+        @include('necessary.body')
         @include('necessary.footer')
     </main>
 </body>

@@ -5,26 +5,22 @@
 }
 header {
     background-color: aqua;
-    border: 1px solid black;
     height: 10vh;
 }
 
 aside {
     background-color: gold;
-    border: 1px solid black;
     height: 75vh;
 }
 
 article {
     background-color: blanchedalmond;
-    border: 1px solid black;
     height: 75vh;
 
 }
 
 footer {
     background-color: aqua;
-    border: 1px solid black;
     height: 15vh;
 }
 
