@@ -37,3 +37,7 @@ Route::get('/aboutUs', function () {
 Route::get('/main', function () {
     return view('necessary.main');
 });
+
+Route::get('/driverSignUp', function () {
+    return view('driver.driverSignUp');
+});

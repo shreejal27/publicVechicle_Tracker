@@ -146,8 +146,8 @@
 
 <body>
     <form class="form">
-        <p class="title">Register </p>
-        <p class="message">Signup now and get full access to our app. </p>
+        <p class="title">Register As a Driver </p>
+        <p class="message">Signup now. </p>
         <div class="flex">
             <label>
                 <input required="" placeholder="" type="text" class="input">
@@ -160,14 +160,20 @@
             </label>
         </div>
 
-        <label>
-            <input required="" placeholder="" type="email" class="input">
-            <span>Email</span>
-        </label>
 
         <label>
             <input required="" placeholder="" type="number" class="input">
             <span>Contact Number </span>
+        </label>
+
+        <label>
+            <input required="" placeholder="" type="text" class="input">
+            <span>License Number</span>
+        </label>
+
+        <label>
+            <input required="" placeholder="" type="text" class="input">
+            <span>Vechicle Number </span>
         </label>
 
         <label>
