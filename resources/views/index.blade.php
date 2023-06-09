@@ -3,7 +3,7 @@
 @section('content')
     <section>
         <!-- Additional content specific to the index file -->
-        <h2>Additional Content</h2>
-        <p>This content is specific to the index file and overrides the main file content.</p>
+        <h2>This is the Index File</h2>
+        <p>Any thing written on this file will be edited in the future</p>
     </section>
 @endsection

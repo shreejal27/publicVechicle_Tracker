@@ -111,3 +111,18 @@ footer{
     margin-bottom: 10px;
   }
   
+  /* to make aside tag 100%height with container tag */
+  .container {
+    display: flex;
+    height: 100vh; /* Set the container height to 100% viewport height */
+  }
+  
+  .sidebar {
+    background-color: gold;
+    flex-basis: 20%; /* Set the width of the sidebar */
+  }
+  
+  .content {
+    background-color: blanchedalmond;
+    flex-grow: 1; /* Let the content area grow to fill the remaining space */
+  }

@@ -13,16 +13,16 @@
     @include('necessary.header')
 
     <div class="container">
-        <aside>
+        <aside class="sidebar">
             <div>
-
-                Dashboard <br>
-                Track Public Vechicle<br>
-                Nearest Bus Stop <br>
-                Fare Calculator<br>
+                <a href="/dashboard">Dashboard</a><br>
+                <a href="/track-vehicle">Track Public Vehicle</a><br>
+                <a href="/nearest-bus-stop">Nearest Bus Stop</a><br>
+                <a href="/fare-calculator">Fare Calculator</a><br>
                 <br>
             </div>
         </aside>
+
 
         <main>
             @yield('content')
