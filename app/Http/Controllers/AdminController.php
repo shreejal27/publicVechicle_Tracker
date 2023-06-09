@@ -39,3 +39,4 @@ class AdminController extends Controller
 
     // // Add other methods for edit, update, delete, etc., as per your requirements
 }
+}

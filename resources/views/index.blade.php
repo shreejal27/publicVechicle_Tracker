@@ -1,29 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('necessary.common_template')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
-    <style>
-        .header {
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
-    <main>
-        @include('necessary.header')
-        @include('necessary.sidebarUser')
-        <article>
-
-            <p>This is index file</p>
-        </article>
-        @include('necessary.footer')
-    </main>
-</body>
-
-</html>
+@section('content')
+    <section>
+        <!-- Additional content specific to the index file -->
+        <h2>Additional Content</h2>
+        <p>This content is specific to the index file and overrides the main file content.</p>
+    </section>
+@endsection

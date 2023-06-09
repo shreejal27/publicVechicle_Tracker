@@ -1,4 +1,4 @@
-*{
+/* *{
     padding: 0;
     margin: 0;
 
@@ -46,4 +46,68 @@ aside{
 
 footer{
     grid-area: foot;
-}
+} */
+
+/* Global styles */
+* {
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: aqua;
+    height: 60px;
+    padding: 10px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  nav ul {
+    list-style: none;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  /* Sidebar styles */
+  aside {
+    background-color: lightgray;
+    width: 200px;
+    padding: 10px;
+  }
+  
+  /* Main content styles */
+  main {
+    flex-grow: 1;
+    padding: 10px;
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: aqua;
+    height: 40px;
+    padding: 10px;
+  }
+  
+  /* Example section styles */
+  .container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
