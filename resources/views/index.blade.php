@@ -1,9 +1,8 @@
-@extends('necessary.common_template')
-
-@section('content')
+@include('necessary.header')
     <section>
         <!-- Additional content specific to the index file -->
-        <h2>This is the Index File</h2>
-        <p>Any thing written on this file will be edited in the future</p>
+        <h2>This is the first file of the project</h2>
+        <p>Public Vechicle Tracker</p>
     </section>
-@endsection
+
+@include('necessary.footer')

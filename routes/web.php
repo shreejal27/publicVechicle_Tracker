@@ -25,9 +25,14 @@ Route::get('/login', function () {
 Route::get('/signUp', function () {
     return view('signUp');
 });
-
+//main index of the project
 Route::get('/index', function () {
     return view('index');
+});
+
+//first file after user login   
+Route::get('/userIndex', function () {
+    return view('userIndex');
 });
 
 Route::get('/aboutUs', function () {
