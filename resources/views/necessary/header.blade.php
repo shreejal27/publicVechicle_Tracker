@@ -3,10 +3,10 @@
     <nav>
         <!-- Navigation menu items -->
         <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Track Public Vechicle</a></li>
-            <li><a href="#">Nearest Bus Stop</a></li>
-            <li><a href="#">Fare Calculator</a></li>
+            <li><a href="#">Home Page</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
     </nav>
 </header>
 
