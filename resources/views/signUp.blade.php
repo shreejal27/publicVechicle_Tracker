@@ -145,6 +145,8 @@
 </head>
 
 <body>
+    @include('necessary.header')
+    <br>
     <form class="form">
         <p class="title">Register </p>
         <p class="message">Signup now and get full access to our app. </p>
@@ -186,6 +188,7 @@
         <button class="submit">Submit</button>
         <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
     </form>
+    @include('necessary.footer')
 </body>
 
 </html>

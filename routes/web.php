@@ -46,3 +46,7 @@ Route::get('/main', function () {
 Route::get('/driverSignUp', function () {
     return view('driver.driverSignUp');
 });
+
+Route::get('/signUp', function () {
+    return view('signUp');
+});

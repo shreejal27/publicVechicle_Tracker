@@ -3,10 +3,12 @@
     <nav>
         <!-- Navigation menu items -->
         <ul>
-            <li><a href="#">Home Page</a></li>
+            <li><a href="/index">Home Page</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Contact Us</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signUp">Sign Up</a></li>
     </nav>
 </header>
 

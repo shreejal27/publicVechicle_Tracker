@@ -69,6 +69,14 @@ footer{
     height: 60px;
     padding: 10px;
   }
+  /* header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: aqua;
+    border: 1px solid black;
+  } */
   
   nav {
     display: flex;
@@ -104,6 +112,14 @@ footer{
     height: 40px;
     padding: 10px;
   }
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: aqua;
+    border: 1px solid black;
+  }
   
   /* Example section styles */
   .container h1 {
@@ -126,3 +142,4 @@ footer{
     background-color: blanchedalmond;
     flex-grow: 1; /* Let the content area grow to fill the remaining space */
   }
+

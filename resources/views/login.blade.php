@@ -134,6 +134,7 @@
 </head>
 
 <body>
+    @include('necessary.header')
     <div class="form-container">
         <p class="title">Login</p>
         <form class="form">
@@ -182,6 +183,7 @@
             <a rel="noopener noreferrer" href="{{ url('/signUp') }}" class="">Sign up</a>
         </p>
     </div>
+    @include('necessary.footer')
 </body>
 
 </html>
