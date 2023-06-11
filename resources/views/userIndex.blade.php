@@ -1,4 +1,4 @@
-@extends('necessary.common_template')
+@extends('necessary.user_template')
 
 @section('content')
     <section>
