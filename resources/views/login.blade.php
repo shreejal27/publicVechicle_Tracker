@@ -137,7 +137,8 @@
     @include('necessary.header')
     <div class="form-container">
         <p class="title">Login</p>
-        <form class="form">
+        <form class="form" action="{{ route('loginCheck') }}" method="POST">
+            @csrf
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" placeholder="">

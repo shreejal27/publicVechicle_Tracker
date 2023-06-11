@@ -55,9 +55,7 @@ Route::get('/signUp', function () {
 });
 
 //to store the signup form data
-
 Route::post('/store', [UserController::class, 'store'])->name('store');
 
-
-//from singup form
-//  Route::post('/print', 'UserController@print')->name('print');
+//to check the login credentials
+Route::post('/loginCheck', [UserController::class, 'loginCheck'])->name('loginCheck');
