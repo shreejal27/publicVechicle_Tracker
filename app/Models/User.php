@@ -19,4 +19,5 @@ class User extends Model
         'username',
         'password',
     ];
+    public $timestamps = false;
 }

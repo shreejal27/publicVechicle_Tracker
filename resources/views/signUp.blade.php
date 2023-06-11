@@ -147,50 +147,57 @@
 <body>
     @include('necessary.header')
     <br>
-    {{-- <form class="form" action="{{ route('register.store') }}" method="POST"> --}}
-    <form class="form" action="{{ route('print') }}" method="POST">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    <form class="form" action="{{ route('store') }}" method="POST">
+
+        {{-- <form class="form" action="{{ route('print') }}" method="POST"> --}}
 
         @csrf
         <p class="title">Register </p>
         <p class="message">Signup now and get full access to our app. </p>
         <div class="flex">
             <label>
-                <input required="" placeholder="" type="text" class="input">
+                <input required="" placeholder="" type="text" class="input" name="firstname">
                 <span>Firstname</span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input">
+                <input required="" placeholder="" type="text" class="input" name="lastname">
                 <span>Lastname</span>
             </label>
         </div>
 
         <label>
-            <input required="" placeholder="" type="email" class="input">
+            <input required="" placeholder="" type="email" class="input" name="email">
             <span>Email</span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="number" class="input">
+            <input required="" placeholder="" type="number" class="input" name="contact_number">
             <span>Contact Number </span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="text" class="input">
+            <input required="" placeholder="" type="text" class="input" name="username">
             <span>UserName</span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="password" class="input">
+            <input required="" placeholder="" type="password" class="input" name="password">
             <span>Password</span>
         </label>
         <label>
-            <input required="" placeholder="" type="password" class="input">
+            <input required="" placeholder="" type="password" class="input" name="confirm_password">
             <span>Confirm password</span>
         </label>
         <button class="submit">Submit</button>
         <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
     </form>
+
     @include('necessary.footer')
 </body>
 

@@ -10,23 +10,33 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $validatedData = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email',
-            'contact_number' => 'required|numeric',
-            'username' => 'required',
-            'password' => 'required|confirmed',
-        ]); 
+        $user = new User;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        $user->contact_number = $request->contact_number;
+        $user->username = $request->username;
+        $user->password = $request->password;
+        $user->save();
+        return redirect()->back()->with('status', 'Blog Post Form Data Has Been inserted');
 
-        User::create($validatedData);
+        // $validatedData = $request->validate([
+        //     'firstname' => 'required',
+        //     'lastname' => 'required',
+        //     'email' => 'required|email',
+        //     'contact_number' => 'required|numeric',
+        //     'username' => 'required',
+        //     'password' => 'required|confirmed',
+        // ]); 
+
+        // User::create($validatedData);
 
         // return redirect()->back()->with('success', 'User created successfully');
     }
 
-    public function print(Request $request)
-    {
-        dd($request->all());
-    }
+    // public function print(Request $request)
+    // {
+    //     dd($request->all());
+    // }
     
 }

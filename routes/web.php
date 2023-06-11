@@ -55,7 +55,9 @@ Route::get('/signUp', function () {
 });
 
 //to store the signup form data
-// Route::post('/signUp', [UserController::class, 'store'])->name('register.store');
+
+Route::post('/store', [UserController::class, 'store'])->name('store');
+
 
 //from singup form
- Route::post('/print', 'UserController@print')->name('print');
+//  Route::post('/print', 'UserController@print')->name('print');
