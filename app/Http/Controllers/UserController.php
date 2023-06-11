@@ -9,6 +9,7 @@ class UserController extends Controller
 {
     public function store(Request $request)
     {
+        // dd($request);
         $validatedData = $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
@@ -22,4 +23,10 @@ class UserController extends Controller
 
         // return redirect()->back()->with('success', 'User created successfully');
     }
+
+    public function print(Request $request)
+    {
+        dd($request->all());
+    }
+    
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\UserController;
 
 /*
@@ -54,4 +55,7 @@ Route::get('/signUp', function () {
 });
 
 //to store the signup form data
-Route::post('/signUp', [UserController::class, 'store'])->name('register.store');
+// Route::post('/signUp', [UserController::class, 'store'])->name('register.store');
+
+//from singup form
+ Route::post('/print', 'UserController@print')->name('print');
