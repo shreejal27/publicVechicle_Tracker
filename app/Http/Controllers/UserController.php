@@ -18,7 +18,7 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->password = $request->password;
         $user->save();
-        return redirect()->back()->with('status', 'Blog Post Form Data Has Been inserted');
+        return redirect()->back()->with('message', 'User has been registered successfully');
 
         // $validatedData = $request->validate([
         //     'firstname' => 'required',
@@ -42,7 +42,7 @@ class UserController extends Controller
         // Example: Check if the username and password match a user in the database
         if ($username === 'shree' && $password === 'shree') {
             // Authentication successful
-            return redirect()->route('dashboard')->with('success', 'Login successful');
+            return redirect()->route('adminIndex')->with('success', 'Login successful');
         } else {
             // Authentication failed
             return redirect()->back()->with('error', 'Invalid username or password');

@@ -10,9 +10,18 @@
 </head>
 
 <body>
-    @include('necessary.header')
-
     <div class="container">
+        <aside class="sidebar">
+            <div>
+                <a href="/dashboard">Dashboard</a><br>
+                <a href="/track-vehicle">Track Public Vehicle</a><br>
+                <a href="/nearest-bus-stop">Nearest Bus Stop</a><br>
+                <a href="/fare-calculator">Fare Calculator</a><br>
+                <br>
+            </div>
+        </aside>
+
+
         <main>
             @yield('content')
         </main>

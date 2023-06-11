@@ -32,6 +32,11 @@ Route::get('/index', function () {
     return view('index');
 });
 
+//index file after admin login
+Route::get('/adminIndex', function () {
+    return view('admin.adminIndex');
+})->name('adminIndex');
+
 //first file after user login   
 Route::get('/userIndex', function () {
     return view('userIndex');

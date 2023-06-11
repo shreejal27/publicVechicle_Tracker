@@ -145,60 +145,60 @@
 </head>
 
 <body>
-    @include('necessary.header')
-    <br>
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-    <form class="form" action="{{ route('store') }}" method="POST">
+    @extends('necessary.common_template')
+    @section('content')
+        <br>
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+        <form class="form" action="{{ route('store') }}" method="POST">
 
-        {{-- <form class="form" action="{{ route('print') }}" method="POST"> --}}
+            {{-- <form class="form" action="{{ route('print') }}" method="POST"> --}}
 
-        @csrf
-        <p class="title">Register </p>
-        <p class="message">Signup now and get full access to our app. </p>
-        <div class="flex">
+            @csrf
+            <p class="title">Register </p>
+            <p class="message">Signup now and get full access to our app. </p>
+            <div class="flex">
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="firstname">
+                    <span>Firstname</span>
+                </label>
+
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="lastname">
+                    <span>Lastname</span>
+                </label>
+            </div>
+
             <label>
-                <input required="" placeholder="" type="text" class="input" name="firstname">
-                <span>Firstname</span>
+                <input required="" placeholder="" type="email" class="input" name="email">
+                <span>Email</span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input" name="lastname">
-                <span>Lastname</span>
+                <input required="" placeholder="" type="number" class="input" name="contact_number">
+                <span>Contact Number </span>
             </label>
-        </div>
 
-        <label>
-            <input required="" placeholder="" type="email" class="input" name="email">
-            <span>Email</span>
-        </label>
+            <label>
+                <input required="" placeholder="" type="text" class="input" name="username">
+                <span>UserName</span>
+            </label>
 
-        <label>
-            <input required="" placeholder="" type="number" class="input" name="contact_number">
-            <span>Contact Number </span>
-        </label>
-
-        <label>
-            <input required="" placeholder="" type="text" class="input" name="username">
-            <span>UserName</span>
-        </label>
-
-        <label>
-            <input required="" placeholder="" type="password" class="input" name="password">
-            <span>Password</span>
-        </label>
-        <label>
-            <input required="" placeholder="" type="password" class="input" name="confirm_password">
-            <span>Confirm password</span>
-        </label>
-        <button class="submit">Submit</button>
-        <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
-    </form>
-
-    @include('necessary.footer')
+            <label>
+                <input required="" placeholder="" type="password" class="input" name="password">
+                <span>Password</span>
+            </label>
+            <label>
+                <input required="" placeholder="" type="password" class="input" name="confirm_password">
+                <span>Confirm password</span>
+            </label>
+            <button class="submit">Submit</button>
+            <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>
+        </form>
+    @endsection
 </body>
 
 </html>
