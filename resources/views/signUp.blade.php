@@ -147,7 +147,8 @@
 <body>
     @include('necessary.header')
     <br>
-    <form class="form">
+    <form class="form" action="{{ route('register.store') }}" method="POST">
+        @csrf
         <p class="title">Register </p>
         <p class="message">Signup now and get full access to our app. </p>
         <div class="flex">

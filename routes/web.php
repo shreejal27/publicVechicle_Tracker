@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,10 @@ Route::get('/driverSignUp', function () {
     return view('driver.driverSignUp');
 });
 
+//to open signUp form
 Route::get('/signUp', function () {
     return view('signUp');
 });
+
+//to store the signup form data
+Route::post('/signUp', [UserController::class, 'store'])->name('register.store');
