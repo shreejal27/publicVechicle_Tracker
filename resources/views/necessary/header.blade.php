@@ -10,6 +10,7 @@
             <li><a href="/contactUs">Contact Us</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/signUp">Sign Up</a></li>
+            <li><a href="/driverSignUp">Public Driver?</a></li>
     </nav>
 </header>
 
