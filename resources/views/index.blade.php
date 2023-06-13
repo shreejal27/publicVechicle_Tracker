@@ -8,12 +8,12 @@
     <section class="sliderImages">
         <h1>hello this is slider</h1>
     </section>
-    <section class="information">
+    <section class="information ">
         <div style="border: 1px solid black;">
             <div class="img" style="width: 50%; float: left">
                 img
             </div>
-            <div class="info" style="width: 50%; float: left">
+            <div class="info " style="width: 50%; float: left">
                 <h2>Objective</h2>
                 <p>Public Vehicle Tracker is a web application that will help the user to track the public vehicle in the
                     Kathmandu Valley. The user can track the public vehicle by entering the vehicle number. The user can

@@ -3,6 +3,7 @@
     <nav>
         <!-- Navigation menu items -->
         <ul>
+            <li>Public Vechicle Tracker</li>
             <li><a href="/index">Home Page</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">About Us</a></li>
