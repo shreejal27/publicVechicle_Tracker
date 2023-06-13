@@ -46,6 +46,10 @@ Route::get('/aboutUs', function () {
     return view('aboutUs');
 });
 
+Route::get('/contactUs', function () {
+    return view('contactUs');
+});
+
 Route::get('/main', function () {
     return view('necessary.main');
 });
