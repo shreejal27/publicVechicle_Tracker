@@ -105,6 +105,11 @@ Route::get('/adminViewDriversReports', function () {
     return view('admin.viewDriversReports');
 });
 
+//admin logout
+Route::get('/adminLogout', function () {
+    return view('index');
+});
+
 //user dashboard
 Route::get('/userDashboard', function () {
     return view('user.userDashboard');
@@ -133,4 +138,9 @@ Route::get('/fareCalculator', function () {
 //user feedbackComplain
 Route::get('/feedbackComplain', function () {
     return view('user.feedbackComplain');
+});
+
+//user logout
+Route::get('/userLogout', function () {
+    return view('index');
 });
