@@ -17,8 +17,8 @@ class LoginController extends Controller
 
         // Example: Check if the username and password match a user in the database
         if ( $userType === 'admin') {
-            $user = Admin::where('username', $username)->where('password', $password)->first();
-            if ($user) {
+            $admin = Admin::where('username', $username)->where('password', $password)->first();
+            if ($admin) {
                 return redirect()->route('adminIndex')->with('success', 'Login successful');
             }
             else{

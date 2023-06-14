@@ -29,6 +29,7 @@ Route::get('/login', function () {
 Route::get('/signUp', function () {
     return view('signUp');
 });
+
 //main index of the project
 Route::get('/index', function () {
     return view('index');
@@ -78,3 +79,28 @@ Route::post('/storeDriver', [DriverController::class, 'store'])->name('storeDriv
 
 //to check the login credentials
 Route::post('/login', [LoginController::class, 'loginCheck'])->name('loginCheck');
+
+//admin dashboard
+Route::get('/adminDashboard', function () {
+    return view('admin.adminDashboard');
+});
+
+//admin active public vechicles
+Route::get('/adminActivePublicVechicle', function () {
+    return view('admin.activePublicVechicle');
+});
+
+//admin bus stops
+Route::get('/adminBusStops', function () {
+    return view('admin.busStops');
+});
+
+//admin fare price 
+Route::get('/adminFarePrice', function () {
+    return view('admin.farePrice');
+});
+
+//admin view drivers report
+Route::get('/adminViewDriversReports', function () {
+    return view('admin.viewDriversReports');
+});

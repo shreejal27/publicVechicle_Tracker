@@ -16,12 +16,12 @@
                 <p>Public Vechicle Tracker </p>
                 <p>Hello Admin!</p>
                 <br>
-                <a href="/dashboard">Dashboard</a><br>
-                <a href="/trackVehicle">Active Public Vechicle (Route)</a><br>
-                <a href="/busStop">Bus Stops / (Add vechicle)</a><br>
-                <a href="/fareCalculator">Fare Price</a><br>
-                <a href="/viewDrivers">View Drivers (Reports)</a><br>
-                <a href="/logout">Logout</a><br>
+                <a href="/adminDashboard">Dashboard</a><br>
+                <a href="/adminActivePublicVechicle">Active Public Vechicle (Route)</a><br>
+                <a href="/adminBusStops">Bus Stops / (Add vechicle)</a><br>
+                <a href="/adminFarePrice">Fare Price</a><br>
+                <a href="/adminViewDriversReports">View Drivers (Reports)</a><br>
+                <a href="/adminLogout">Logout</a><br>
                 <br>
             </div>
         </aside>
