@@ -104,3 +104,33 @@ Route::get('/adminFarePrice', function () {
 Route::get('/adminViewDriversReports', function () {
     return view('admin.viewDriversReports');
 });
+
+//user dashboard
+Route::get('/userDashboard', function () {
+    return view('user.userDashboard');
+});
+
+//user profile
+Route::get('/userProfile', function () {
+    return view('user.Profile');
+});
+
+//user track public vehicle
+Route::get('/userTrackPublicVehicle', function () {
+    return view('user.trackPublicVehicle');
+});
+
+//user nearest bus stop
+Route::get('/nearestBusStop', function () {
+    return view('user.nearestBusStop');
+});
+
+//user fare calculator
+Route::get('/fareCalculator', function () {
+    return view('user.fareCalculator');
+});
+
+//user feedbackComplain
+Route::get('/feedbackComplain', function () {
+    return view('user.feedbackComplain');
+});
