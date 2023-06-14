@@ -41,8 +41,13 @@ Route::get('/adminIndex', function () {
 
 //first file after user login   
 Route::get('/userIndex', function () {
-    return view('userIndex');
-});
+    return view('user.userIndex');
+})->name('userIndex');
+
+//first file after driver login   
+Route::get('/driverIndex', function () {
+    return view('driver.driverIndex');
+})->name('driverIndex');
 
 Route::get('/aboutUs', function () {
     return view('aboutUs');

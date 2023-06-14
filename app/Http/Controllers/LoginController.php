@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Admin;
+use App\Models\User;
+use App\Models\Driver;
 
 class LoginController extends Controller
 {
@@ -10,14 +13,36 @@ class LoginController extends Controller
     {
         $username = $request->username;
         $password = $request->password;
+        $userType = $request->userType;
 
         // Example: Check if the username and password match a user in the database
-        if ($username === 'shree' && $password === 'shree') {
-            // Authentication successful
-            return redirect()->route('adminIndex')->with('success', 'Login successful');
-        } else {
-            // Authentication failed
-            return redirect()->back()->with('error', 'Invalid username or password');
+        if ( $userType === 'admin') {
+            $user = Admin::where('username', $username)->where('password', $password)->first();
+            if ($user) {
+                return redirect()->route('adminIndex')->with('success', 'Login successful');
+            }
+            else{
+                return redirect()->back()->with('error', 'Invalid username or password');
+            }
+        } elseif ( $userType === 'user') {
+            $user = User::where('username', $username)->where('password', $password)->first();
+            if ($user) {
+                // Authentication successful for user
+                return redirect()->route('userIndex')->with('success', 'Login successful');
+            } else {
+                // Authentication failed for user
+                return redirect()->back()->with('error', 'Invalid username or password');
+            }
+        }
+        else{
+            $driver = Driver::where('username', $username)->where('password', $password)->first();
+            if ($driver) {
+                // Authentication successful for driver
+                return redirect()->route('driverIndex')->with('success', 'Login successful');
+            } else {
+                // Authentication failed for driver
+                return redirect()->back()->with('error', 'Invalid username or password');
+            }
         }
     }
 }

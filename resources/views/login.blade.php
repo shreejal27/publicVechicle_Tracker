@@ -52,6 +52,11 @@
             border-color: rgba(167, 139, 250);
         }
 
+        select {
+            width: 100%;
+            height: 35px;
+        }
+
         .forgot {
             display: flex;
             justify-content: flex-end;
@@ -156,6 +161,15 @@
                         <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
                     </div>
                 </div>
+                <div class="input-group">
+                    <label for="userType">Select User Type</label>
+                    <select name="userType">
+                        <option value="admin">-</option>
+                        <option value="user">User</option>
+                        <option value="driver">Driver</option>
+                    </select>
+                </div>
+                <br>
                 <button class="sign">Sign in</button>
             </form>
             <div class="social-message">
