@@ -19,19 +19,6 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->save();
         return redirect()->back()->with('message', 'User has been registered successfully');
-
-        // $validatedData = $request->validate([
-        //     'firstname' => 'required',
-        //     'lastname' => 'required',
-        //     'email' => 'required|email',
-        //     'contact_number' => 'required|numeric',
-        //     'username' => 'required',
-        //     'password' => 'required|confirmed',
-        // ]); 
-
-        // User::create($validatedData);
-
-        // return redirect()->back()->with('success', 'User created successfully');
     }
 
 }

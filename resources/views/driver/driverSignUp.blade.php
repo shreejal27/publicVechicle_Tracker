@@ -136,51 +136,57 @@
             }
         }
     </style>
+    <br>
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
 
-
-    <form class="form">
+    <form class="form" action="{{ route('storeDriver') }}" method="POST">
+        @csrf
         <p class="title">Register As a Driver </p>
         <p class="message">Signup now. </p>
         <div class="flex">
             <label>
-                <input required="" placeholder="" type="text" class="input">
+                <input required="" placeholder="" type="text" class="input" name="firstname">
                 <span>Firstname</span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input">
+                <input required="" placeholder="" type="text" class="input" name="lastname">
                 <span>Lastname</span>
             </label>
         </div>
 
 
         <label>
-            <input required="" placeholder="" type="number" class="input">
+            <input required="" placeholder="" type="number" class="input" name="contact_number">
             <span>Contact Number </span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="text" class="input">
+            <input required="" placeholder="" type="text" class="input" name="address">
             <span>Address </span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="text" class="input">
+            <input required="" placeholder="" type="text" class="input" name="license_number">
             <span>License Number</span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="text" class="input">
+            <input required="" placeholder="" type="text" class="input" name="vehicle_number">
             <span>Vechicle Number </span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="text" class="input">
+            <input required="" placeholder="" type="text" class="input" name="username">
             <span>UserName</span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="password" class="input">
+            <input required="" placeholder="" type="password" class="input" name="password">
             <span>Password</span>
         </label>
         <label>

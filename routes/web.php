@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -66,6 +67,9 @@ Route::get('/signUp', function () {
 
 //to store the signup form data
 Route::post('/store', [UserController::class, 'store'])->name('store');
+
+//to store the signup form data of driver
+Route::post('/storeDriver', [DriverController::class, 'store'])->name('storeDriver');
 
 //to check the login credentials
 Route::post('/login', [LoginController::class, 'loginCheck'])->name('loginCheck');
