@@ -34,18 +34,4 @@ class UserController extends Controller
         // return redirect()->back()->with('success', 'User created successfully');
     }
 
-    public function loginCheck(Request $request)
-    {
-        $username = $request->username;
-        $password = $request->password;
-
-        // Example: Check if the username and password match a user in the database
-        if ($username === 'shree' && $password === 'shree') {
-            // Authentication successful
-            return redirect()->route('adminIndex')->with('success', 'Login successful');
-        } else {
-            // Authentication failed
-            return redirect()->back()->with('error', 'Invalid username or password');
-        }
-    }
 }

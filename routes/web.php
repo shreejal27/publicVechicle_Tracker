@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,4 +68,4 @@ Route::get('/signUp', function () {
 Route::post('/store', [UserController::class, 'store'])->name('store');
 
 //to check the login credentials
-Route::post('/loginCheck', [UserController::class, 'loginCheck'])->name('loginCheck');
+Route::post('/login', [LoginController::class, 'loginCheck'])->name('loginCheck');
