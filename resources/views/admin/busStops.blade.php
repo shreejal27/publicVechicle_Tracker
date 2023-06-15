@@ -6,7 +6,7 @@
 
     label {
         display: inline-block;
-        width: 75px;
+        width: 9rem;
     }
 
     button,
@@ -41,12 +41,23 @@
     <section class="form">
         <h2>Add new Location for BusStops</h2>
         <form action="dustbinDatabase.php" method="POST">
+            <label> Info: </label>
+            <input type="text" name="info" required>
+            <br>
             <label> Latitude: </label>
-            <input type="text" name="lat" required></input>
+            <input type="text" name="lat" required>
             <br>
             <label> Longitude: </label>
-            <input type="text" name="lon" required></input>
-            <br> <br>
+            <input type="text" name="lon" required>
+            <br>
+            <label> Vehicle Stops: </label>
+            <select name="vechicleType">
+                <option value="">Select</option>
+                <option value="bus">Bus</option>
+                <option value="micro">Micro</option>
+                <option value="temp">Tempo</option>
+            </select>
+            <br>
             <br>
             <button type="submit"> Add </button>
             <input class="butt" type="button" value="Show Dustbins" onClick="window.location.reload(true)">
