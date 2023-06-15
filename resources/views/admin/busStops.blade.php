@@ -61,14 +61,33 @@
     <script>
         function initMap() {
             var options = {
-                zoom: 12,
+                zoom: 15,
                 center: {
-                    lat: 27.7172,
-                    lng: 85.324
+                    lat: 27.6942,
+                    lng: 85.2985
                 },
             };
             //new map
             var map = new google.maps.Map(document.getElementById("map"), options);
+
+            // Add marker
+            const marker = new google.maps.Marker({
+                position: {
+                    lat: 27.6942,
+                    lng: 85.2985
+                },
+                map,
+                title: "My House",
+                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            });
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: "Shree's House",
+            });
+
+            marker.addListener("click", () => {
+                infoWindow.open(map, marker);
+            });
         }
     </script>
     <script async
