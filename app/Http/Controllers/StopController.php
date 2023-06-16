@@ -11,6 +11,8 @@ class StopController extends Controller
     {
         $stops = Stop::all();
 
+        return view('admin.busStops', ['stops'=> $stops]);
+
         // You can return the stops to a view or perform any other logic
     }
 

@@ -92,9 +92,11 @@ Route::get('/adminActivePublicVechicle', function () {
 });
 
 //admin bus stops
-Route::get('/adminBusStops', function () {
-    return view('admin.busStops');
-});
+Route::get('/adminBusStops', [StopController::class, 'index'])->name('index');
+// Route::get('/adminBusStops', function () {
+//     return view('admin.busStops');
+// });
+
 
 //admin fare price 
 Route::get('/adminFarePrice', function () {
@@ -113,7 +115,6 @@ Route::get('/adminLogout', function () {
 
 //admin to store the busStops data
 Route::post('/storeStops', [StopController::class, 'store'])->name('storeStops');
-
 
 //user dashboard
 Route::get('/userDashboard', function () {

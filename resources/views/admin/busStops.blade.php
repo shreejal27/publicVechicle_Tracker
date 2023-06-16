@@ -87,26 +87,48 @@
             //new map
             var map = new google.maps.Map(document.getElementById("map"), options);
 
-            // Add marker
-            const marker = new google.maps.Marker({
-                position: {
-                    lat: 27.6942,
-                    lng: 85.2985
-                },
-                map,
-                title: "My House",
-                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-            });
+            // Add marker   
 
-            const infoWindow = new google.maps.InfoWindow({
-                content: "Shree's House",
-            });
+            @foreach ($stops as $stop)
+                {
+                    const marker = new google.maps.Marker({
+                        position: {
+                            lat: {{ $stop->latitude }},
+                            lng: {{ $stop->longitude }}
+                        },
+                        map,
+                        title: "{{ $stop->info }}",
+                        icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                    });
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: "{{ $stop->info }}",
+                    });
 
-            marker.addListener("click", () => {
-                infoWindow.open(map, marker);
-            });
+                    marker.addListener("click", () => {
+                        infoWindow.open(map, marker);
+                    });
+                }
+            @endforeach
         }
     </script>
     <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3U0k0wYHv6RGnT6_JYOMxMTJVfa8vL48&callback=initMap"></script>
 @endsection
+
+{{-- const marker = new google.maps.Marker({
+    position: {
+        lat: 27.6942,
+        lng: 85.2985
+    },
+    map,
+    title: "My House",
+    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+});
+
+const infoWindow = new google.maps.InfoWindow({
+    content: "Shree's House",
+});
+
+marker.addListener("click", () => {
+    infoWindow.open(map, marker);
+}); --}}
