@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,6 +110,10 @@ Route::get('/adminViewDriversReports', function () {
 Route::get('/adminLogout', function () {
     return view('index');
 });
+
+//admin to store the busStops data
+Route::post('/storeStops', [StopController::class, 'store'])->name('storeStops');
+
 
 //user dashboard
 Route::get('/userDashboard', function () {

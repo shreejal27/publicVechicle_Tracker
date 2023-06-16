@@ -37,21 +37,26 @@
     <section>
         <h1>This is busStops</h1>
     </section>
-
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     <section class="form">
         <h2>Add new Location for BusStops</h2>
-        <form action="dustbinDatabase.php" method="POST">
+        <form action="{{ route('storeStops') }}" method="POST">
+            @csrf
             <label> Info: </label>
             <input type="text" name="info" required>
             <br>
             <label> Latitude: </label>
-            <input type="text" name="lat" required>
+            <input type="text" name="latitude" required>
             <br>
             <label> Longitude: </label>
-            <input type="text" name="lon" required>
+            <input type="text" name="longitude" required>
             <br>
             <label> Vehicle Stops: </label>
-            <select name="vechicleType">
+            <select name="vehicle_type">
                 <option value="">Select</option>
                 <option value="bus">Bus</option>
                 <option value="micro">Micro</option>
@@ -74,8 +79,9 @@
             var options = {
                 zoom: 15,
                 center: {
-                    lat: 27.6942,
-                    lng: 85.2985
+                    lat: 27.694261,
+                    lng: 85.298516
+                    // 27.698260, 85.299375
                 },
             };
             //new map

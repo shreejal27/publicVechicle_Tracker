@@ -67,4 +67,3 @@
     </section>
 @endsection
 
-@include('necessary.footer')

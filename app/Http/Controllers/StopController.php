@@ -21,6 +21,7 @@ class StopController extends Controller
 
     public function store(Request $request)
     {
+ 
         $data = $request->validate([
             'info' => 'required',
             'latitude' => 'required',
@@ -29,7 +30,7 @@ class StopController extends Controller
         ]);
 
         $stop = Stop::create($data);
-
+        return redirect()->back()->with('message', 'Stop created successfully');
         // Perform any additional actions, such as redirecting or returning a response
     }
 
