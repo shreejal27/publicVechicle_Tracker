@@ -38,6 +38,7 @@
                         map,
                         title: "{{ $stop->info }}",
                         icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                        
                     });
                     const infoWindow = new google.maps.InfoWindow({
                         content: "{{ $stop->info }}",
