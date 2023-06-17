@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class StopController extends Controller
 {
-    public function index()
+    public function stopMarkerAdmin()
     {
         $stops = Stop::all();
 
         return view('admin.busStops', ['stops'=> $stops]);
-
+       // You can return the stops to a view or perform any other logic
+    }
+    public function stopMarkerUser()
+    {
+        $stops = Stop::all();
+        return view('user.nearestBusStop', ['stops'=> $stops]);
         // You can return the stops to a view or perform any other logic
     }
 

@@ -92,7 +92,7 @@ Route::get('/adminActivePublicVechicle', function () {
 });
 
 //admin bus stops
-Route::get('/adminBusStops', [StopController::class, 'index'])->name('index');
+Route::get('/adminBusStops', [StopController::class, 'stopMarkerAdmin'])->name('stopMarkerAdmin');
 // Route::get('/adminBusStops', function () {
 //     return view('admin.busStops');
 // });
@@ -132,9 +132,11 @@ Route::get('/userTrackPublicVehicle', function () {
 });
 
 //user nearest bus stop
-Route::get('/nearestBusStop', function () {
-    return view('user.nearestBusStop');
-});
+Route::get('/nearestBusStop', [StopController::class, 'stopMarkerUser'])->name('stopMarkerUser');
+// Route::get('/nearestBusStop', function () {
+//     return view('user.nearestBusStop');
+// });
+
 
 //user fare calculator
 Route::get('/fareCalculator', function () {
