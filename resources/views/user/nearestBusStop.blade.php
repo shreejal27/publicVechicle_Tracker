@@ -30,6 +30,16 @@
 
             @foreach ($stops as $stop)
                 {
+                    const icon = {
+                        @if ($stop->vehicle_type == 'bus')
+                            url: '{{ asset('images/markerIcons/B.png') }}',
+                        @elseif ($stop->vehicle_type == 'micro')
+                            url: '{{ asset('images/markerIcons/M.png') }}',
+                        @elseif ($stop->vehicle_type == 'tempo')
+                            url: '{{ asset('images/markerIcons/T.png') }}',
+                        @endif
+                        scaledSize: new google.maps.Size(32, 32) // Set the desired size of the icon
+                    };
                     const marker = new google.maps.Marker({
                         position: {
                             lat: {{ $stop->latitude }},
@@ -37,8 +47,9 @@
                         },
                         map,
                         title: "{{ $stop->info }}",
-                        icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-                        
+                        icon: icon
+                        // icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+
                     });
                     const infoWindow = new google.maps.InfoWindow({
                         content: "{{ $stop->info }}",
