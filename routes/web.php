@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StopController;
+use App\Http\Controllers\ComplainFeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,6 +148,9 @@ Route::get('/fareCalculator', function () {
 Route::get('/feedbackComplain', function () {
     return view('user.feedbackComplain');
 });
+
+//to store user feedbackComplain
+Route::post('/storeComplainFeedback', [ComplainFeedbackController::class, 'store'])->name('storeComplainFeedback');
 
 //user logout
 Route::get('/userLogout', function () {

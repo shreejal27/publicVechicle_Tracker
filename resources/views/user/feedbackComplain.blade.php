@@ -115,10 +115,15 @@
 </style>
 @extends('necessary.user_template')
 @section('content')
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="form">
         <div class="title">We are here to assist you</div>
         <div class="subtitle">Please complete the form below!</div>
-        <form>
+        <form action="{{ route('storeComplainFeedback') }}" method="POST">
             @csrf
             <div class="input-container ic1">
                 <input placeholder="" type="text" class="input" id="username" name="username">
