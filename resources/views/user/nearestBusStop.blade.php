@@ -11,9 +11,59 @@
         <h1 class="center"> Available Bus Stops</h1>
         <br>
         <div id="map"></div>
+        <br>
+        <p>Click the button to get your coordinates.</p>
+        <button onclick="getLocation()">Try It</button>
+        <p id="demo"></p>
     </section>
 
     <script>
+        var x = document.getElementById("demo");
+        var lat, lng;
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                    enableHighAccuracy: true
+                });
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude +
+                "<br>Accuracy: " + position.coords.accuracy + " meters";
+            lat = position.coords.latitude;
+            lng = position.coords.longitude;
+            doSomethingWithCoordinates(lat, lng);
+        }
+
+        function doSomethingWithCoordinates(lat, lng) {
+            console.log("Latitude:", lat);
+            console.log("Longitude:", lng);
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred.";
+                    break;
+            }
+        }
+
+
+
         function initMap() {
             var options = {
                 zoom: 15,
@@ -27,6 +77,15 @@
             var map = new google.maps.Map(document.getElementById("map"), options);
 
             // Add markers to the map
+            const marker = new google.maps.Marker({
+                position: {
+                    lat: 27.694261,
+                    lng: 85.298516
+                },
+                map,
+                title: "Hello World!",
+            });
+
 
             @foreach ($stops as $stop)
                 {
