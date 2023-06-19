@@ -21,49 +21,6 @@
         var x = document.getElementById("demo");
         var lat, lng;
 
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError, {
-                    enableHighAccuracy: true
-                });
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        function showPosition(position) {
-            x.innerHTML = "Latitude: " + position.coords.latitude +
-                "<br>Longitude: " + position.coords.longitude +
-                "<br>Accuracy: " + position.coords.accuracy + " meters";
-            lat = position.coords.latitude;
-            lng = position.coords.longitude;
-            doSomethingWithCoordinates(lat, lng);
-        }
-
-        function doSomethingWithCoordinates(lat, lng) {
-            console.log("Latitude:", lat);
-            console.log("Longitude:", lng);
-        }
-
-        function showError(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    x.innerHTML = "User denied the request for Geolocation.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    x.innerHTML = "Location information is unavailable.";
-                    break;
-                case error.TIMEOUT:
-                    x.innerHTML = "The request to get user location timed out.";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    x.innerHTML = "An unknown error occurred.";
-                    break;
-            }
-        }
-
-
-
         function initMap() {
             var options = {
                 zoom: 15,
@@ -77,16 +34,29 @@
             var map = new google.maps.Map(document.getElementById("map"), options);
 
             // Add markers to the map
-            const marker = new google.maps.Marker({
+            const userIcon = {
+                url: '{{ asset('images/markerIcons/userMarker.png') }}',
+                scaledSize: new google.maps.Size(32, 32) // Set the desired size of the icon
+            };
+            const userMarker = new google.maps.Marker({
                 position: {
-                    lat: 27.694261,
-                    lng: 85.298516
+                    lat: lat,
+                    lng: lng
                 },
                 map,
-                title: "Hello World!",
+                title: "You are here",
+                icon: userIcon
+
+            });
+            const userInfoWindow = new google.maps.InfoWindow({
+                content: "You are here"
             });
 
+            userMarker.addListener("click", () => {
+                userInfoWindow.open(map, userMarker);
+            });
 
+            // Add markers for bus stops
             @foreach ($stops as $stop)
                 {
                     const icon = {
@@ -107,8 +77,6 @@
                         map,
                         title: "{{ $stop->info }}",
                         icon: icon
-                        // icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-
                     });
                     const infoWindow = new google.maps.InfoWindow({
                         content: "{{ $stop->info }}",
@@ -119,6 +87,45 @@
                     });
                 }
             @endforeach
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                    enableHighAccuracy: true
+                });
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            // Update the latitude and longitude variables
+            lat = position.coords.latitude;
+            lng = position.coords.longitude;
+
+            console.log(lat, lng);
+
+
+            // Call the function to initialize the map
+            initMap();
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred.";
+                    break;
+            }
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3U0k0wYHv6RGnT6_JYOMxMTJVfa8vL48&callback=initMap" async
