@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        />
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjSVKmV2clpfy1wCZJj9OwYTnYS4YRuFQ&libraries=places"></script>
+    </head>
+    <body onload="initMap()">
+        <h1 class="text-center">Directions Route Finder</h1>
+        <br /><br />
+        <div class="container">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Source Location"
+                    id="source"
+                />
+            </div>
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Destination Location"
+                    id="destination"
+                />
+            </div>
+            <button class="btn btn-primary" onclick="calcRoute()">
+                Get Directions
+            </button>
+            <div id="map" style="height: 500px; width: 100%"></div>
+        </div>
+    </body>
+    <script>
+        let map;
+        let directionsService, directionsRenderer;
+        let sourceAutocomplete, destinationAutocomplete;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 27.694261, lng: 85.298516 },
+                zoom: 15,
+            });
+            google.maps.event.addListener(map, "click", function (event) {
+                this.setOptions({ scrollwheel: true });
+            });
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            sourceAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById("source")
+            );
+            destinationAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById("destination")
+            );
+        }
+
+        function calcRoute() {
+            var source = document.getElementById("source").value;
+            var destination = document.getElementById("destination").value;
+            var request = {
+                origin: source,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING,
+            };
+            directionsService.route(request, function (result, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(result);
+                }
+            });
+        }
+    </script>
+</html>
