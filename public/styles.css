@@ -61,13 +61,17 @@ footer{
   .container {
     display: flex;
     flex-direction: row;
-    min-height: 90vh;
+    min-height: 83vh;
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: 0;
+    padding-right: 0;
   }
   
   /* Header styles */
   header {
     background-color: aqua;
-    height: 60px;
+    height: 70px;
     padding: 10px;
   }
   /* header {
@@ -110,7 +114,7 @@ footer{
   /* Footer styles */
   footer {
     background-color: aqua;
-    height: 40px;
+    height: 60px;
     padding: 10px;
     width: 100%;
     border: 1px solid black;
@@ -126,6 +130,7 @@ footer{
   .container {
     display: flex;
     height: auto; /* Set the container height to 100% viewport height */
+    border: 1px solid black;
   }
   
   .sidebar {

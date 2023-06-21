@@ -1,8 +1,9 @@
 @extends('necessary.common_template')
+
 @section('content')
     <section>
         <!-- Additional content specific to the index file -->
-        <h2>This is the first file of the project</h2>
+        <h2 class="mt-1"> This is the first file of the project</h2>
         <p>Public Vechicle Tracker</p>
     </section>
     <section class="sliderImages">
@@ -66,4 +67,3 @@
         </div>
     </section>
 @endsection
-

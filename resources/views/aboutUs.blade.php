@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
-    <nav>
-        asdf
-    </nav>
-    <aside>
-        adsf
-    </aside>
-    <main>
-        adsf
-    </main>
-    <footer>
-        asdf
-    </footer>
-</body>
-
-</html>
+@extends('necessary.common_template')
+@section('content')
+    <h1>Hi This is about us page</h1>
+    <h1>Hi This is about us page</h1>
+    <h1>Hi This is about us page</h1>
+    <h1>Hi This is about us page</h1>
+    <h1>Hi This is about us page</h1>
+    <h1>Hi This is about us page</h1>
+    <h1>Hi This is about us page</h1>
+    <h1>Hi This is about us page</h1>
+@endsection
