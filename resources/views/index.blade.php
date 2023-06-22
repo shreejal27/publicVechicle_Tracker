@@ -9,11 +9,28 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
+
+<style>
+    li {
+        margin-bottom: 0.8rem;
+    }
+
+    .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .blogImages {
+        width: 250px;
+        margin-bottom: 1rem;
+    }
+</style>
 @section('content')
     <section>
         <p id="greetings" class="font-weight-bold"></p>
     </section>
-    <section class="sliderImages">
+    <section class="sliderImages ">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -41,23 +58,24 @@
             </a>
         </div>
     </section>
-    <section class="information ">
-        <div style="border: 1px solid black;">
-            <div class="img" style="width: 50%; float: left">
-                img
-            </div>
-            <div class="info " style="width: 50%; float: left">
-                <h2>Objective</h2>
-                <p>Public Vehicle Tracker is a web application that will help the user to track the public vehicle in the
-                    Kathmandu Valley. The user can track the public vehicle by entering the vehicle number. The user can
-                    also track the public vehicle by entering the source and destination. The user can also find the nearest
-                    bus stop from the current location. The user can also calculate the fare of the public vehicle by
-                    entering the source and destination.</p>
-            </div>
+    <section class="information mt-4 clearfix">
+        <div class="img" style="width: 50%; float: left">
+            img
+        </div>
+        <div class="info " style="width: 50%; float: left">
+            <p class="h3">Objective</p>
+            <p>Public Vehicle Tracker is a web application that will help the user to track the public vehicle in the
+                Kathmandu Valley. <br>
+                The user can track the public vehicle by entering the vehicle name. The user can
+                also track the public vehicle by entering the source and destination.
+                <br>The user can also find the nearest
+                bus stop from the current location. The user can also calculate the fare of the public vehicle by
+                entering the source and destination.
+            </p>
         </div>
     </section>
-    <section class="objectives">
-        <p> This one section is for objectives
+    <section class="objectives clearfix">
+        <p> Our Services
         <ul>
             <li>Track Public Vehicle</li>
             <li>Nearest Bus Stop</li>
@@ -65,41 +83,43 @@
         </ul>
         </p>
     </section>
-    <section class="notice">
-        <div style="border: 1px solid black;">
-            <div class="heading" style="width: 50%; float: left">
-                <h1>Notices and Publications</h1>
-            </div>
-            <div class="noticePoints" style="width: 50%; float: left">
-                <ul>
-                    <li>Notice 1</li>
-                    <li>Notice 2</li>
-                    <li>Notice 3</li>
-                    <li>Notice 4</li>
-                    <li>Notice 5</li>
-                </ul>
-            </div>
+    <section class="notice clearfix">
+        <br>
+        <div class="heading text-center" style="width: 50%; float: left">
+            <br><br>
+            <p class="h3">Notices and <br>
+                Publications</p>
+        </div>
+        <div class="noticePoints" style="width: 50%; float: left">
+            <ul style="list-style: none">
+                <li>New route added: Route A</li>
+                <li>Temporary service disruption on Route B</li>
+                <li>Schedule change for Route C</li>
+                <li>New bus stop added: Stop X</li>
+                <li>Temporary detour on Route Y for road construction. Alternative stops provided.</li>
+            </ul>
         </div>
     </section>
-    <section class="blogs">
-        <h1>Blogs</h1>
-        <div>
-            <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
-                <h2>Blog 1</h2>
-                <p>Blog 1 content</p>
-                <p>Blog 1 content</p>
-                <p>Blog 1 content</p>
-                <p>Blog 1 content</p>
-                <p>Blog 1 content</p>
-            </div>
-            <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
-                <h2>Blog 2</h2>
-                <p>Blog 2 content</p>
-            </div>
-            <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
-                <h2>Blog 3</h2>
-                <p>Blog 3 content</p>
-            </div>
+
+    <section class="blogs clearfix mt-4 text-center mb-3">
+        <p class=" h3 mb-4">Media & Blogs</p>
+        <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
+
+            <img class="blogImages" alt="Blog Image1" src="">
+            <p>Blog 1 content</p>
+            <p>Blog 1 content</p>
+        </div>
+        <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
+
+            <img class="blogImages" alt="Blog Image1" src="">
+            <p>Blog 1 content</p>
+            <p>Blog 1 content</p>
+
+        </div>
+        <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
+            <img class="blogImages" alt="Blog Image1" src="">
+            <p>Blog 1 content</p>
+            <p>Blog 1 content</p>
         </div>
     </section>
     <script type="text/javascript">
