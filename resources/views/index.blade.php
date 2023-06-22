@@ -1,10 +1,10 @@
 @extends('necessary.common_template')
+<style>
 
+</style>
 @section('content')
     <section>
-        <!-- Additional content specific to the index file -->
-        <h2 class="mt-1"> This is the first file of the project</h2>
-        <p>Public Vechicle Tracker</p>
+        <p id="greetings"></p>
     </section>
     <section class="sliderImages">
         <h1>hello this is slider</h1>
@@ -66,4 +66,16 @@
             </div>
         </div>
     </section>
+    <script type="text/javascript">
+        const currentHour = new Date().getHours();
+        const greeting = document.getElementById("greetings");
+
+        if (currentHour >= 5 && currentHour < 12) {
+            greeting.textContent = "Good Morning!";
+        } else if (currentHour >= 12 && currentHour < 18) {
+            greeting.textContent = "Good Afternoon!";
+        } else {
+            greeting.textContent = "Good Evening!";
+        }
+    </script>
 @endsection
