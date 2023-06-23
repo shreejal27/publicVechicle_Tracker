@@ -102,26 +102,34 @@
     </section>
 
     <section class="blogs clearfix mt-4 text-center mb-3">
-        <p class=" h3 mb-4">Media & Blogs</p>
-        <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
-
-            <img class="blogImages" alt="Blog Image1" src="">
-            <p>Blog 1 content</p>
-            <p>Blog 1 content</p>
+        <p class="h3 mb-4">Media & Blogs</p>
+        <div class="blog" style="border: 1px solid black; width: 33%; float: left;">
+            <img class="blogImages" alt="Blog Image1" src="path/to/blog-image1.jpg">
+            <p class="h4">The Importance of Public Vehicle Tracking</p>
+            <p>Public vehicle tracking plays a crucial role in modern transportation systems. It provides numerous benefits
+                such as improved passenger safety, reduced traffic congestion, and enhanced operational efficiency. This
+                article explores the significance of public vehicle tracking and highlights how it can revolutionize the way
+                we commute in cities.</p>
         </div>
-        <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
-
-            <img class="blogImages" alt="Blog Image1" src="">
-            <p>Blog 1 content</p>
-            <p>Blog 1 content</p>
-
+        <div class="blog" style="border: 1px solid black; width: 33%; float: left;">
+            <img class="blogImages" alt="Blog Image2" src="path/to/blog-image2.jpg">
+            <p class="h4">The Future of Public Transportation: Smart Tracking Solutions</p>
+            <p>As cities grow and transportation demands increase, the need for smarter and more efficient public
+                transportation systems becomes evident. This article delves into the future of public transportation and
+                explores how smart tracking solutions, coupled with advanced technologies like GPS and real-time data
+                analytics, can revolutionize the way we experience and interact with public transit.</p>
         </div>
-        <div class="blog" style="border: 1 px solid black; width:33%; float:left;">
-            <img class="blogImages" alt="Blog Image1" src="">
-            <p>Blog 1 content</p>
-            <p>Blog 1 content</p>
+        <div class="blog" style="border: 1px solid black; width: 33%; float: left;">
+            <img class="blogImages" alt="Blog Image3" src="path/to/blog-image3.jpg">
+            <p class="h4">Enhancing Public Transportation with Real-time Tracking and Fare Calculation</p>
+            <p>In this article, we discuss the benefits of real-time tracking and fare calculation systems in public
+                transportation. We explore how these technologies empower passengers to plan their journeys more
+                efficiently, make informed decisions, and ultimately improve their overall transit experience. Discover how
+                real-time tracking and fare calculation can transform public transportation into a seamless and convenient
+                mode of travel.</p>
         </div>
     </section>
+
     <script type="text/javascript">
         const currentHour = new Date().getHours();
         const greeting = document.getElementById("greetings");
