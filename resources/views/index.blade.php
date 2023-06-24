@@ -37,6 +37,11 @@
         float: left;
         text-align: left;
     }
+
+    .blogImages {
+        width: 100%;
+        height: 200px;
+    }
 </style>
 @section('content')
     <section>
@@ -116,7 +121,7 @@
     <section class="blogs clearfix mt-4 text-center mb-3">
         <p class="h3 mb-4">Media & Blogs</p>
         <div class="blog">
-            <img class="blogImages" alt="Blog Image1" src="path/to/blog-image1.jpg">
+            <img class="blogImages" alt="Blog Image1" src="{{ asset('images/blogs/blog1.jpg') }}">
             <p class="h4">The Importance of Public Vehicle Tracking</p>
             <p>Public vehicle tracking plays a crucial role in modern transportation systems. It provides numerous benefits
                 such as improved passenger safety, reduced traffic congestion, and enhanced operational efficiency. This
@@ -124,7 +129,7 @@
                 we commute in cities.</p>
         </div>
         <div class="blog">
-            <img class="blogImages" alt="Blog Image2" src="path/to/blog-image2.jpg">
+            <img class="blogImages" alt="Blog Image2" src="{{ asset('images/blogs/blog2.jpg') }}">
             <p class="h4">The Future of Public Transportation: Smart Tracking Solutions</p>
             <p>As cities grow and transportation demands increase, the need for smarter and more efficient public
                 transportation systems becomes evident. This article delves into the future of public transportation and
@@ -132,7 +137,7 @@
                 analytics, can revolutionize the way we experience and interact with public transit.</p>
         </div>
         <div class="blog">
-            <img class="blogImages" alt="Blog Image3" src="path/to/blog-image3.jpg">
+            <img class="blogImages" alt="Blog Image3" src="{{ asset('images/blogs/blog3.jpg') }}">
             <p class="h4">Enhancing Public Transportation with Real-time Tracking and Fare Calculation</p>
             <p>In this article, we discuss the benefits of real-time tracking and fare calculation systems in public
                 transportation. We explore how these technologies empower passengers to plan their journeys more
