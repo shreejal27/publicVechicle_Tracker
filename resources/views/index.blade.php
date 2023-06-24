@@ -25,6 +25,18 @@
         width: 250px;
         margin-bottom: 1rem;
     }
+
+    .blogs {
+        height: 700px;
+    }
+
+    .blog {
+        height: 100%;
+        padding: 1.5rem;
+        width: 33%;
+        float: left;
+        text-align: left;
+    }
 </style>
 @section('content')
     <section>
@@ -103,7 +115,7 @@
 
     <section class="blogs clearfix mt-4 text-center mb-3">
         <p class="h3 mb-4">Media & Blogs</p>
-        <div class="blog" style="border: 1px solid black; width: 33%; float: left;">
+        <div class="blog">
             <img class="blogImages" alt="Blog Image1" src="path/to/blog-image1.jpg">
             <p class="h4">The Importance of Public Vehicle Tracking</p>
             <p>Public vehicle tracking plays a crucial role in modern transportation systems. It provides numerous benefits
@@ -111,7 +123,7 @@
                 article explores the significance of public vehicle tracking and highlights how it can revolutionize the way
                 we commute in cities.</p>
         </div>
-        <div class="blog" style="border: 1px solid black; width: 33%; float: left;">
+        <div class="blog">
             <img class="blogImages" alt="Blog Image2" src="path/to/blog-image2.jpg">
             <p class="h4">The Future of Public Transportation: Smart Tracking Solutions</p>
             <p>As cities grow and transportation demands increase, the need for smarter and more efficient public
@@ -119,7 +131,7 @@
                 explores how smart tracking solutions, coupled with advanced technologies like GPS and real-time data
                 analytics, can revolutionize the way we experience and interact with public transit.</p>
         </div>
-        <div class="blog" style="border: 1px solid black; width: 33%; float: left;">
+        <div class="blog">
             <img class="blogImages" alt="Blog Image3" src="path/to/blog-image3.jpg">
             <p class="h4">Enhancing Public Transportation with Real-time Tracking and Fare Calculation</p>
             <p>In this article, we discuss the benefits of real-time tracking and fare calculation systems in public
