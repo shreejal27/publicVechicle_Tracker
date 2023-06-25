@@ -14,18 +14,15 @@
     li {
         margin-bottom: 0.8rem;
     }
-
     .clearfix::after {
         content: "";
         display: table;
         clear: both;
     }
-
     .sliderImage {
         height: 650px;
         width: 100%;
     }
-
     .blogImages {
         width: 250px;
         margin-bottom: 1rem;
