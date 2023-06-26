@@ -14,15 +14,18 @@
     li {
         margin-bottom: 0.8rem;
     }
+
     .clearfix::after {
         content: "";
         display: table;
         clear: both;
     }
+
     .sliderImage {
         height: 650px;
         width: 100%;
     }
+
     .blogImages {
         width: 250px;
         margin-bottom: 1rem;
@@ -43,6 +46,12 @@
     .blogImages {
         width: 100%;
         height: 200px;
+        filter: brightness(60%);
+    }
+
+    .blogImages:hover {
+        filter: brightness(100%);
+        transition: 0.5s ease;
     }
 </style>
 @section('content')
@@ -128,27 +137,33 @@
         <div class="blog">
             <img class="blogImages" alt="Blog Image1" src="{{ asset('images/blogs/blog1.jpg') }}">
             <p class="h4">The Importance of Public Vehicle Tracking</p>
-            <p>Public vehicle tracking plays a crucial role in modern transportation systems. It provides numerous benefits
-                such as improved passenger safety, reduced traffic congestion, and enhanced operational efficiency. This
+            <p>Public vehicle tracking plays a crucial role in modern transportation systems. It provides benefits
+                such as improved passenger safety, reduced traffic congestion, and enhanced operational efficiency. <br><br>
+                This
                 article explores the significance of public vehicle tracking and highlights how it can revolutionize the way
                 we commute in cities.</p>
         </div>
         <div class="blog">
             <img class="blogImages" alt="Blog Image2" src="{{ asset('images/blogs/blog2.jpg') }}">
-            <p class="h4">The Future of Public Transportation: Smart Tracking Solutions</p>
+            <p class="h4">The Future of Public Transportation</p>
             <p>As cities grow and transportation demands increase, the need for smarter and more efficient public
-                transportation systems becomes evident. This article delves into the future of public transportation and
+                transportation systems becomes evident.
+                <br> <br>
+                This article delves into the future of public transportation and
                 explores how smart tracking solutions, coupled with advanced technologies like GPS and real-time data
-                analytics, can revolutionize the way we experience and interact with public transit.</p>
+                analytics.
+            </p>
         </div>
         <div class="blog">
             <img class="blogImages" alt="Blog Image3" src="{{ asset('images/blogs/blog3.jpg') }}">
-            <p class="h4">Enhancing Public Transportation with Real-time Tracking and Fare Calculation</p>
-            <p>In this article, we discuss the benefits of real-time tracking and fare calculation systems in public
-                transportation. We explore how these technologies empower passengers to plan their journeys more
-                efficiently, make informed decisions, and ultimately improve their overall transit experience. Discover how
-                real-time tracking and fare calculation can transform public transportation into a seamless and convenient
-                mode of travel.</p>
+            <p class="h4"> Public Transportation with Real-time Tracking </p>
+            <p>In this article, we discuss the benefits of real-time tracking in public
+                transportation.
+                <br> <br>Discover how real-time tracking can transform public transportation into
+                seamless and convenient mode of travel. Discover how real-time tracking can transform public transportation
+                into
+                seamless and convenient mode of travel.
+            </p>
         </div>
     </section>
 
