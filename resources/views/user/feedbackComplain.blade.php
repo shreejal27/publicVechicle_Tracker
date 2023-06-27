@@ -5,7 +5,7 @@
         box-sizing: border-box;
         height: auto;
         padding: 20px;
-        width: 320px;
+        width: auto;
     }
 
     .title {
@@ -13,7 +13,7 @@
         font-family: sans-serif;
         font-size: 36px;
         font-weight: 600;
-        margin-top: 30px;
+
     }
 
     .subtitle {
@@ -112,6 +112,11 @@
     .submit:active {
         background-color: #06b;
     }
+
+    textarea {
+        height: 17rem;
+        width: 100%;
+    }
 </style>
 @extends('necessary.user_template')
 @section('content')
@@ -145,7 +150,7 @@
             </select>
             <br>
             <br>
-            <textarea name="formDescription" id="" cols="35" rows="10" placeholder="Write your message here"></textarea>
+            <textarea name="formDescription" placeholder="Write your message here"></textarea>
             {{-- <div class="input-container ic2">
                 <input placeholder="" type="text" class="input" id="email">
                 <div class="cut cut-short"></div>
