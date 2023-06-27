@@ -7,11 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+        }
+
         .form {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            max-width: 350px;
+            max-width: auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 20px;
@@ -153,51 +158,54 @@
                 {{ session('message') }}
             </div>
         @endif
-        <form class="form" action="{{ route('store') }}" method="POST">
+        <div class="center-container">
 
-            {{-- <form class="form" action="{{ route('print') }}" method="POST"> --}}
+            <form class="form" action="{{ route('store') }}" method="POST">
 
-            @csrf
-            <p class="title">Register </p>
-            <p class="message">Signup now and get full access to our app. </p>
-            <div class="flex">
+                {{-- <form class="form" action="{{ route('print') }}" method="POST"> --}}
+
+                @csrf
+                <p class="title">Register </p>
+                <p class="message">Signup now and get full access to our app. </p>
+                <div class="flex">
+                    <label>
+                        <input required="" placeholder="" type="text" class="input" name="firstname">
+                        <span>Firstname</span>
+                    </label>
+
+                    <label>
+                        <input required="" placeholder="" type="text" class="input" name="lastname">
+                        <span>Lastname</span>
+                    </label>
+                </div>
+
                 <label>
-                    <input required="" placeholder="" type="text" class="input" name="firstname">
-                    <span>Firstname</span>
+                    <input required="" placeholder="" type="email" class="input" name="email">
+                    <span>Email</span>
                 </label>
 
                 <label>
-                    <input required="" placeholder="" type="text" class="input" name="lastname">
-                    <span>Lastname</span>
+                    <input required="" placeholder="" type="number" class="input" name="contact_number">
+                    <span>Contact Number </span>
                 </label>
-            </div>
 
-            <label>
-                <input required="" placeholder="" type="email" class="input" name="email">
-                <span>Email</span>
-            </label>
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="username">
+                    <span>UserName</span>
+                </label>
 
-            <label>
-                <input required="" placeholder="" type="number" class="input" name="contact_number">
-                <span>Contact Number </span>
-            </label>
-
-            <label>
-                <input required="" placeholder="" type="text" class="input" name="username">
-                <span>UserName</span>
-            </label>
-
-            <label>
-                <input required="" placeholder="" type="password" class="input" name="password">
-                <span>Password</span>
-            </label>
-            <label>
-                <input required="" placeholder="" type="password" class="input" name="confirm_password">
-                <span>Confirm password</span>
-            </label>
-            <button class="submit">Submit</button>
-            <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>
-        </form>
+                <label>
+                    <input required="" placeholder="" type="password" class="input" name="password">
+                    <span>Password</span>
+                </label>
+                <label>
+                    <input required="" placeholder="" type="password" class="input" name="confirm_password">
+                    <span>Confirm password</span>
+                </label>
+                <button class="submit">Submit</button>
+                <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>
+            </form>
+        </div>
     @endsection
 </body>
 

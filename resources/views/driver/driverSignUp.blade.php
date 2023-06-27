@@ -1,11 +1,16 @@
 @extends('necessary.common_template')
 @section('content')
     <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+        }
+
         .form {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            max-width: 350px;
+            max-width: auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 20px;
@@ -143,57 +148,61 @@
         </div>
     @endif
 
-    <form class="form" action="{{ route('storeDriver') }}" method="POST">
-        @csrf
-        <p class="title">Register As a Driver </p>
-        <p class="message">Signup now. </p>
-        <div class="flex">
+    <div class="center-container">
+
+
+        <form class="form" action="{{ route('storeDriver') }}" method="POST">
+            @csrf
+            <p class="title">Register As a Driver </p>
+            <p class="message">Signup now. </p>
+            <div class="flex">
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="firstname">
+                    <span>Firstname</span>
+                </label>
+
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="lastname">
+                    <span>Lastname</span>
+                </label>
+            </div>
+
+
             <label>
-                <input required="" placeholder="" type="text" class="input" name="firstname">
-                <span>Firstname</span>
+                <input required="" placeholder="" type="number" class="input" name="contact_number">
+                <span>Contact Number </span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input" name="lastname">
-                <span>Lastname</span>
+                <input required="" placeholder="" type="text" class="input" name="address">
+                <span>Address </span>
             </label>
-        </div>
 
+            <label>
+                <input required="" placeholder="" type="text" class="input" name="license_number">
+                <span>License Number</span>
+            </label>
 
-        <label>
-            <input required="" placeholder="" type="number" class="input" name="contact_number">
-            <span>Contact Number </span>
-        </label>
+            <label>
+                <input required="" placeholder="" type="text" class="input" name="vehicle_number">
+                <span>Vechicle Number </span>
+            </label>
 
-        <label>
-            <input required="" placeholder="" type="text" class="input" name="address">
-            <span>Address </span>
-        </label>
+            <label>
+                <input required="" placeholder="" type="text" class="input" name="username">
+                <span>UserName</span>
+            </label>
 
-        <label>
-            <input required="" placeholder="" type="text" class="input" name="license_number">
-            <span>License Number</span>
-        </label>
-
-        <label>
-            <input required="" placeholder="" type="text" class="input" name="vehicle_number">
-            <span>Vechicle Number </span>
-        </label>
-
-        <label>
-            <input required="" placeholder="" type="text" class="input" name="username">
-            <span>UserName</span>
-        </label>
-
-        <label>
-            <input required="" placeholder="" type="password" class="input" name="password">
-            <span>Password</span>
-        </label>
-        <label>
-            <input required="" placeholder="" type="password" class="input">
-            <span>Confirm password</span>
-        </label>
-        <button class="submit">Submit</button>
-        <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
-    </form>
+            <label>
+                <input required="" placeholder="" type="password" class="input" name="password">
+                <span>Password</span>
+            </label>
+            <label>
+                <input required="" placeholder="" type="password" class="input">
+                <span>Confirm password</span>
+            </label>
+            <button class="submit">Submit</button>
+            <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
+        </form>
+    </div>
 @endsection
