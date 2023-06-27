@@ -30,14 +30,15 @@
                 info.publicvechicletracker@gmail.com
             </p>
         </div>
-        <div class="form" style="width: 47.5%; border: 1px solid red; padding:1rem; float:left;">
+        <div class="form ml-3" style="width: 47.5%; border: 1px solid red; padding:1rem; float:left;">
             <form action="">
                 @csrf
-                <input type="text" placeholder="Full Name" style="width: 47%">
-                <input type="email" placeholder="Email" style="width: 47%">
+                <input type="text" placeholder="Full Name" style="width: 48%">
+                <input type="email" placeholder="Email" style="width: 48%">
                 <br>
-                <input type="number" placeholder="Number" style="width: 47%">
-                <select name="" id="" style="width: 47%">
+                <br>
+                <input type="number" placeholder="Number" style="width: 48%;">
+                <select name="" id="" style="width: 48%; height:27px">
                     <option value="">Subject Type</option>
                     <option value="">Complain</option>
                     <option value="">Feedback</option>
@@ -45,9 +46,12 @@
                     <option value="">Request</option>
                 </select>
                 <br>
-                <input type="text" placeholder="Subject" style="width: 100%">
                 <br>
-                <textarea rows="10" cols="90"></textarea>
+                <input type="text" placeholder="Subject" style="width: 100%;">
+                <br>
+                <br>
+                <textarea style="width: 100%; height: 15rem;"></textarea>
+                <br>
                 <br>
                 <input type="submit" value="Send">
             </form>
