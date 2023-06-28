@@ -7,6 +7,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StopController;
 use App\Http\Controllers\ComplainFeedbackController;
+use App\Http\Controllers\FareController;
 
 /*
 |--------------------------------------------------------------------------
