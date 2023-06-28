@@ -202,7 +202,7 @@
                 <span>Confirm password</span>
             </label>
             <button class="submit">Submit</button>
-            <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
+            <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Signin</a> </p>
         </form>
     </div>
 @endsection
