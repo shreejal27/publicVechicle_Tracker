@@ -70,4 +70,9 @@ class StopController extends Controller
 
         // Perform any additional actions, such as redirecting or returning a response
     }
+
+    public function findRoute(Request $request)
+{
+    // Implement the Dijkstra algorithm here
+}
 }
