@@ -13,12 +13,12 @@
 <body>
     @include('necessary.header')
 
-    <div class="container">
+    <div class="container col-md-12" style="padding:0">
         <main>
             @yield('content')
         </main>
     </div>
-    
+
     @include('necessary.footer')
 </body>
 
