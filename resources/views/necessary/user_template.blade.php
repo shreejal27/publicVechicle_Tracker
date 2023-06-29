@@ -12,7 +12,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="container col-md-12" style="padding:0">
         <aside class="sidebar">
             <div>
                 <p>Public Vechicle Tracker </p>
