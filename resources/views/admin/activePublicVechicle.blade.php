@@ -1,3 +1,6 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
+</script>
+
 @extends('necessary.admin_template')
 @section('content')
     <h1>This is to track the live public vehicle</h1>
@@ -13,6 +16,8 @@
         <div id="map"></div>
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
+        </script>
         <script>
             var map = L.map('map').setView([0, 0], 13);
 
@@ -47,14 +52,14 @@
                         },
                         {
                             name: 'Place 3',
-                            latitude: 27.680864,
-                            longitude: 85.296528
+                            latitude: 27.694079,
+                            longitude: 85.297393
                         }
                     ];
 
                     // Create markers for the other places with custom icons
                     var placeIcon = L.icon({
-                        iconUrl: 'path/to/place-icon.png',
+                        iconUrl: '/images/markerIcons/B.png',
                         iconSize: [32, 32],
                         iconAnchor: [16, 32],
                         popupAnchor: [0, -32]
@@ -66,51 +71,38 @@
                             icon: placeIcon
                         }).addTo(map);
                         placeMarkers.push(marker);
-
-                        // Calculate the distance between the user's location and the place
-                        var distance = calculateDistance(latitude, longitude, place.latitude, place.longitude);
-
-                        // Add the distance as a property of the marker for later use
-                        marker.distance = distance;
                     }
 
-                    // Sort the place markers based on distance in ascending order
-                    placeMarkers.sort(function(a, b) {
-                        return a.distance - b.distance;
-                    });
+                    // Find the nearest place marker to the user's location
+                    var nearestMarker = findNearestMarker(userMarker, placeMarkers);
 
-                    // Get the marker with the shortest distance
-                    var shortestDistanceMarker = placeMarkers[0];
-
-                    // Highlight the shortest path on the map
-                    var pathCoordinates = [
-                        [latitude, longitude],
-                        [shortestDistanceMarker.getLatLng().lat, shortestDistanceMarker.getLatLng().lng]
-                    ];
-
-                    L.polyline(pathCoordinates, {
-                        color: 'blue'
+                    // Calculate the route using Leaflet Routing Machine
+                    L.Routing.control({
+                        waypoints: [
+                            L.latLng(latitude, longitude),
+                            nearestMarker.getLatLng()
+                        ],
+                        routeWhileDragging: false
                     }).addTo(map);
                 });
             }
 
-            // Function to calculate the distance between two sets of latitude and longitude coordinates
-            function calculateDistance(lat1, lon1, lat2, lon2) {
-                var R = 6371; // Radius of the earth in kilometers
-                var dLat = deg2rad(lat2 - lat1);
-                var dLon = deg2rad(lon2 - lon1);
-                var a =
-                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                var distance = R * c; // Distance in kilometers
-                return distance;
-            }
+            // Function to find the nearest marker using Dijkstra's algorithm
+            function findNearestMarker(userMarker, placeMarkers) {
+                var shortestDistance = Infinity;
+                var nearestMarker = null;
 
-            // Function to convert degrees to radians
-            function deg2rad(deg) {
-                return deg * (Math.PI / 180);
+                for (var i = 0; i < placeMarkers.length; i++) {
+                    var marker = placeMarkers[i];
+                    var distance = userMarker.getLatLng().distanceTo(marker.getLatLng());
+
+                    if (distance < shortestDistance) {
+                        shortestDistance = distance;
+                        nearestMarker = marker;
+                    }
+                }
+
+                return nearestMarker;
             }
         </script>
     </section>
