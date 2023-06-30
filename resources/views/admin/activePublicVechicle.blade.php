@@ -1,6 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
-</script>
-
 @extends('necessary.admin_template')
 @section('content')
     <h1>This is to track the live public vehicle</h1>
@@ -33,8 +30,18 @@
                     var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
 
-                    // Create a marker for the user's location
-                    userMarker = L.marker([latitude, longitude]).addTo(map);
+                    // Create a custom icon for the user's location
+                    var userIcon = L.icon({
+                        iconUrl: '/images/markerIcons/userMarker.png',
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 32],
+                        popupAnchor: [0, -32]
+                    });
+
+                    // Create a marker for the user's location with the custom icon
+                    userMarker = L.marker([latitude, longitude], {
+                        icon: userIcon
+                    }).addTo(map);
 
                     // Update the map view to the user's location
                     map.setView([latitude, longitude], 13);
@@ -76,18 +83,50 @@
                     // Find the nearest place marker to the user's location
                     var nearestMarker = findNearestMarker(userMarker, placeMarkers);
 
+                    // Create a custom icon for the shortest path
+                    var pathIcon = L.icon({
+                        iconUrl: '',
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 32],
+                        popupAnchor: [0, -32]
+                    });
+
                     // Calculate the route using Leaflet Routing Machine
                     L.Routing.control({
                         waypoints: [
                             L.latLng(latitude, longitude),
                             nearestMarker.getLatLng()
                         ],
-                        routeWhileDragging: false
+                        routeWhileDragging: false,
+                        lineOptions: {
+                            styles: [{
+                                color: 'blue',
+                                opacity: 0.5,
+                                weight: 3,
+                                className: 'leaflet-custom-icon'
+                            }]
+                        },
+                        createMarker: function(i, waypoint, n) {
+                            if (i === 0) {
+                                // Use the custom user icon for the starting marker
+                                return L.marker(waypoint.latLng, {
+                                    icon: userIcon
+                                });
+                            } else if (i === n - 1) {
+                                // Use the custom icon for the ending marker
+                                return L.marker(waypoint.latLng, {
+                                    icon: pathIcon
+                                });
+                            } else {
+                                // Use the default marker for intermediate waypoints
+                                return L.marker(waypoint.latLng);
+                            }
+                        }
                     }).addTo(map);
                 });
             }
 
-            // Function to find the nearest marker using Dijkstra's algorithm
+            //  find the nearest marker using Dijkstra's algorithm
             function findNearestMarker(userMarker, placeMarkers) {
                 var shortestDistance = Infinity;
                 var nearestMarker = null;
