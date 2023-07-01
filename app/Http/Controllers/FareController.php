@@ -18,4 +18,10 @@ class FareController extends Controller
 
         return redirect()->back()->with('message', 'Fare added successfully');
     }
+
+    public function index()
+{
+    $fares = Fare::all();
+    return view('/admin/farePrice', compact('fares'));
+}
 }

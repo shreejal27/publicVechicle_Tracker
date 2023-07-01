@@ -21,4 +21,30 @@
             <input type="submit" value="Add">
         </form>
     </section>
+    <section>
+        <h2>Fare List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Distance (in kms)</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($fares as $fare)
+                    <tr>
+                        <td>{{ $loop->index + 1 }}</td>
+                        <td>{{ $fare->distance }}</td>
+                        <td>{{ $fare->price }}</td>
+                        <td>
+                            <a href="{{ route('edit', $fare->id) }}">Edit</a>
+                            <a href="{{ route('delete', $fare->id) }}">Delete</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </section>
 @endsection

@@ -101,9 +101,7 @@ Route::get('/adminBusStops', [StopController::class, 'stopMarkerAdmin'])->name('
 
 
 //admin fare price 
-Route::get('/adminFarePrice', function () {
-    return view('admin.farePrice');
-});
+Route::get('/adminFarePrice', [FareController::class, 'index'])->name('fares.index');
 
 Route::post('/adminFarePrice', [FareController::class, 'store'])->name('store');
 
