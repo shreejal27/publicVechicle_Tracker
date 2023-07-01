@@ -20,5 +20,19 @@
                 @endforeach
             </tbody>
         </table>
+        <br>
+        <p>Note: Passengers can carry goods up to 15 kg for free and Rs5 per kg will be charged for more than 10 kg.
+        </p>
+
+        Fare Calculator
+        <form action="">
+            <label>From: </label>
+            <input type="text"> <br>
+            <label>To: </label>
+            <input type="text"> <br>
+            <label>Total Weight: </label>
+            <input type="text"><br>
+            <button type="submit">Calculate</button>
+        </form>
     </section>
 @endsection
