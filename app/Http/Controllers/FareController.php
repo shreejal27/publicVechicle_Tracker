@@ -26,8 +26,8 @@ class FareController extends Controller
 }
 public function edit($id)
 {
-    $fare = Fare::find($id);
-    return view('editFare', compact('fare'));
+    $fare = Fare::where('id', $id)->first();
+    return view('/admin/fareEdit', compact('fare'));
 }
 
 public function delete($id)
@@ -39,4 +39,20 @@ public function delete($id)
     }
     return redirect()->route('fares.index')->with('message', 'Fare not found.');
 }
+
+public function update(Request $request, $id)
+{
+    $data = $request->validate([
+        'distance' => 'required',
+        'price' => 'required',
+    ]);
+
+    $fare = Fare::findOrFail($id);
+    $fare->distance = $data['distance'];
+    $fare->price = $data['price'];
+    $fare->save();
+
+    return redirect()->route('fares.index')->with('message', 'Fare updated successfully.');
+}
+
 }
