@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fare;
 use Illuminate\Http\Request;
 
 class FareController extends Controller
@@ -15,6 +16,6 @@ class FareController extends Controller
 
         $fare = Fare::create($data);
 
-       
+        return redirect()->back()->with('message', 'Fare added successfully');
     }
 }

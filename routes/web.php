@@ -105,6 +105,9 @@ Route::get('/adminFarePrice', function () {
     return view('admin.farePrice');
 });
 
+Route::post('/adminFarePrice', [FareController::class, 'store'])->name('store');
+
+
 //admin view drivers report
 Route::get('/adminViewDriversReports', function () {
     return view('admin.viewDriversReports');
