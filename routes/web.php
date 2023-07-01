@@ -147,9 +147,7 @@ Route::get('/nearestBusStop', [StopController::class, 'stopMarkerUser'])->name('
 
 
 //user fare calculator
-Route::get('/fareCalculator', function () {
-    return view('user.fareCalculator');
-});
+Route::get('/fareCalculator', [FareController::class, 'getFare']);
 
 //user feedbackComplain
 Route::get('/feedbackComplain', function () {

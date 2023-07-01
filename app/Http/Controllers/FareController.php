@@ -24,6 +24,13 @@ class FareController extends Controller
     $fares = Fare::all();
     return view('/admin/farePrice', compact('fares'));
 }
+
+public function getFare()
+{
+    $fares = Fare::all();
+    return view('/user/fareCalculator', compact('fares'));
+} 
+
 public function edit($id)
 {
     $fare = Fare::where('id', $id)->first();
