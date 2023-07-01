@@ -24,4 +24,19 @@ class FareController extends Controller
     $fares = Fare::all();
     return view('/admin/farePrice', compact('fares'));
 }
+public function edit($id)
+{
+    $fare = Fare::find($id);
+    return view('editFare', compact('fare'));
+}
+
+public function delete($id)
+{
+    $fare = Fare::find($id);
+    if ($fare) {
+        $fare->delete();
+        return redirect()->route('fares.index')->with('message', 'Fare deleted successfully.');
+    }
+    return redirect()->route('fares.index')->with('message', 'Fare not found.');
+}
 }

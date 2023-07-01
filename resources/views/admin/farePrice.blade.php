@@ -40,7 +40,8 @@
                         <td>{{ $fare->price }}</td>
                         <td>
                             <a href="{{ route('edit', $fare->id) }}">Edit</a>
-                            <a href="{{ route('delete', $fare->id) }}">Delete</a>
+                            <a href="/fareDelete/{{ $fare->id }}"
+                                onclick="return confirm('Are you sure you want to delete this fare?')">Delete</a>
                         </td>
                     </tr>
                 @endforeach

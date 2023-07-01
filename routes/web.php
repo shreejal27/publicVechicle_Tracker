@@ -105,6 +105,10 @@ Route::get('/adminFarePrice', [FareController::class, 'index'])->name('fares.ind
 
 Route::post('/adminFarePrice', [FareController::class, 'store'])->name('store');
 
+Route::get('/fares/{id}/edit', [FareController::class, 'edit'])->name('edit');
+Route::get('/fareDelete/{id}', [FareController::class, 'delete'])->name('delete');
+
+
 
 //admin view drivers report
 Route::get('/adminViewDriversReports', function () {
