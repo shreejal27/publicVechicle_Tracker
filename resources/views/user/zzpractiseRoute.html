@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Predefined Route</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    </head>
+    <body>
+        <div id="map" style="height: 400px"></div>
+        <button id="highlightBtn">Highlight Route</button>
+
+        <script>
+            // Initialize the map
+            var map = L.map("map").setView([51.505, -0.09], 13);
+
+            // Add the OpenStreetMap tile layer
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution:
+                    'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                maxZoom: 18,
+            }).addTo(map);
+
+            // Define the coordinates of the places along the route
+            var routeCoordinates = [
+                [51.505, -0.09], // Place 1 coordinates
+                [51.51, -0.1], // Place 2 coordinates
+                [51.52, -0.12], // Place 3 coordinates
+                // Add more places...
+            ];
+
+            // Create an empty GeoJSON feature collection for the route
+            var routeGeoJson = {
+                type: "FeatureCollection",
+                features: [],
+            };
+
+            // Create a polyline layer for the route
+            var routeLayer = L.geoJSON(routeGeoJson).addTo(map);
+
+            // Event listener for the button click
+            var highlightBtn = document.getElementById("highlightBtn");
+            highlightBtn.addEventListener("click", function () {
+                // Use the Mapbox Directions API to get the route
+                var accessToken = "YOUR_MAPBOX_ACCESS_TOKEN";
+                var directionsUrl =
+                    "https://api.mapbox.com/directions/v5/mapbox/driving/";
+                var waypoints = routeCoordinates
+                    .map(function (coord) {
+                        return "waypoints=" + coord[0] + "," + coord[1];
+                    })
+                    .join("&");
+                var requestUrl =
+                    directionsUrl + waypoints + "?access_token=" + accessToken;
+
+                fetch(requestUrl)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        // Extract the route geometry from the response
+                        var routeGeometry = data.routes[0].geometry;
+
+                        // Convert the route geometry to GeoJSON
+                        var routeFeature = {
+                            type: "Feature",
+                            geometry: routeGeometry,
+                        };
+
+                        // Update the route layer with the new geometry
+                        routeLayer.clearLayers();
+                        routeLayer.addData(routeFeature);
+
+                        // Fit the map to the bounds of the route layer
+                        map.fitBounds(routeLayer.getBounds());
+                    });
+            });
+        </script>
+    </body>
+</html>
