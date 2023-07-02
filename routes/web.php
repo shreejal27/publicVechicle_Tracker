@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StopController;
 use App\Http\Controllers\ComplainFeedbackController;
 use App\Http\Controllers\FareController;
+use App\Http\Controllers\VehicleRouteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,8 @@ Route::get('/adminDashboard', function () {
 Route::get('/adminActivePublicVechicle', function () {
     return view('admin.activePublicVechicle');
 });
+//store vehicle routes
+Route::post('/storeVehicleRoute', [VehicleRouteController::class, 'store'])->name('storeVehicleRoute');
 
 //admin bus stops
 Route::get('/adminBusStops', [StopController::class, 'stopMarkerAdmin'])->name('stopMarkerAdmin');

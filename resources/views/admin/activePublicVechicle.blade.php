@@ -8,6 +8,23 @@
         }
     </style>
     <section>
+        <h2>Add Vechicle Route</h2>
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+        <form action="{{ route('storeVehicleRoute') }}" method="POST">
+            @csrf
+            <label for="vechicle">Vechicle Name: </label>
+            <input type="text" name="vehicle_name" required>
+            <br>
+            <label for="route">Route: </label>
+            <input type="text" name="vehicle_routes" required>
+            <br>
+            <button type="submit">Add</button>
+    </section>
+    <section>
         <h1>Bus Stop Finder</h1>
 
         <div id="map"></div>
