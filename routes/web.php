@@ -93,6 +93,9 @@ Route::get('/adminDashboard', function () {
 Route::get('/adminActivePublicVechicle', function () {
     return view('admin.activePublicVechicle');
 });
+
+//get vehicle routes
+Route::get('/adminActivePublicVechicle', [VehicleRouteController::class, 'index']);
 //store vehicle routes
 Route::post('/storeVehicleRoute', [VehicleRouteController::class, 'store'])->name('storeVehicleRoute');
 

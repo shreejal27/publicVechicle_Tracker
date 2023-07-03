@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class VehicleRouteController extends Controller
 {
+    public function index()
+    {
+        $vehicles = VehicleRoute::all();
+        return view('/admin/activePublicVechicle', compact('vehicles'));
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
