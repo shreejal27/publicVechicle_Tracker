@@ -95,9 +95,19 @@ Route::get('/adminActivePublicVechicle', function () {
 });
 
 //get vehicle routes
-Route::get('/adminActivePublicVechicle', [VehicleRouteController::class, 'index']);
+Route::get('/adminActivePublicVechicle', [VehicleRouteController::class, 'index'])->name('vehicleRoute.index');
+
 //store vehicle routes
 Route::post('/storeVehicleRoute', [VehicleRouteController::class, 'store'])->name('storeVehicleRoute');
+
+//edit vehicle routes
+Route::get('/vehicleRouteEdit/{id}', [VehicleRouteController::class, 'edit'])->name('editVehicleRoute');
+
+//delete vehicle routes
+Route::get('/vehicleRouteDelete/{id}', [VehicleRouteController::class, 'delete'])->name('delete');
+
+//update vehicle routes
+Route::post('/vehicleRouteUpdate/{id}', [VehicleRouteController::class, 'update'])->name('updateVehicleRoute');
 
 //admin bus stops
 Route::get('/adminBusStops', [StopController::class, 'stopMarkerAdmin'])->name('stopMarkerAdmin');
@@ -112,6 +122,7 @@ Route::get('/adminFarePrice', [FareController::class, 'index'])->name('fares.ind
 Route::post('/adminFarePrice', [FareController::class, 'store'])->name('store');
 
 Route::get('/fareEdit/{id}', [FareController::class, 'edit'])->name('edit');
+
 Route::get('/fareDelete/{id}', [FareController::class, 'delete'])->name('delete');
 
 Route::post('/fareUpdate/{id}', [FareController::class, 'update'])->name('update');
