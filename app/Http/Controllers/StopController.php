@@ -17,7 +17,7 @@ class StopController extends Controller
     public function stopMarkerUser()
     {
         $stops = Stop::all();
-        return view('user.nearestBusStop', ['stops'=> $stops]);
+        return view('/user/nearestBusStop', compact('stops'));
         // You can return the stops to a view or perform any other logic
     }
 

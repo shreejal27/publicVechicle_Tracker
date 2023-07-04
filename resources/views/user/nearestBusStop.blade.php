@@ -8,6 +8,27 @@
 @extends('necessary.user_template')
 
 @section('content')
+    <section class="vehicleRoutes">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Vehicle Name</th>
+                    <th>Vehicle Routes</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach ($vehicles as $vehicle)
+                    <tr>
+                        <td>{{ $loop->index + 1 }}</td>
+                        <td>{{ $vehicle->vehicle_name }}</td>
+                        <td>{{ $vehicle->vehicle_routes }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </section>
     <h1>This is the nearest bus stop</h1>
     <section class="maps">
         <h1 class="center">Available Bus Stops</h1>

@@ -12,6 +12,13 @@ class VehicleRouteController extends Controller
         return view('/admin/activePublicVechicle', compact('vehicles'));
     }
 
+    
+    public function getVehicle()
+    {
+        $vehicles = VehicleRoute::all();
+        return view('/user/nearestBusStop', compact('vehicles'));
+    } 
+
     public function store(Request $request)
     {
         $data = $request->validate([

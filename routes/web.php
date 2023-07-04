@@ -158,9 +158,9 @@ Route::get('/userTrackPublicVehicle', function () {
 
 //user nearest bus stop
 Route::get('/nearestBusStop', [StopController::class, 'stopMarkerUser'])->name('stopMarkerUser');
-// Route::get('/nearestBusStop', function () {
-//     return view('user.nearestBusStop');
-// });
+
+//user vehicle Route 
+Route::get('/vehicleRoutes', [VehicleRouteController::class, 'getVehicle'])->name('vehicleRoutes');
 
 
 //user fare calculator
