@@ -66,23 +66,32 @@
                         };
 
                         places.push(place);
-                    @endforeach
 
-                    // Create markers for the other places with custom icons
-                    var placeIcon = L.icon({
-                        iconUrl: '/images/markerIcons/B.png',
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 32],
-                        popupAnchor: [0, -32]
-                    });
+                        // Set the icon URL based on the vehicle type
+                        var iconUrl = '';
+                        @if ($stop->vehicle_type == 'bus')
+                            iconUrl = '{{ asset('images/markerIcons/B.png') }}';
+                        @elseif ($stop->vehicle_type == 'micro')
+                            iconUrl = '{{ asset('images/markerIcons/M.png') }}';
+                        @elseif ($stop->vehicle_type == 'tempo')
+                            iconUrl = '{{ asset('images/markerIcons/T.png') }}';
+                        @endif
 
-                    for (var i = 0; i < places.length; i++) {
-                        var place = places[i];
+                        var placeIcon = L.icon({
+                            iconUrl: iconUrl,
+                            iconSize: [32, 32],
+                            iconAnchor: [16, 32],
+                            popupAnchor: [0, -32]
+                        });
+
                         var marker = L.marker([place.latitude, place.longitude], {
                             icon: placeIcon
                         }).addTo(map);
                         placeMarkers.push(marker);
-                    }
+                    @endforeach
+
+
+
 
                     // Find the nearest place marker to the user's location
                     var nearestMarker = findNearestMarker(userMarker, placeMarkers);
