@@ -8,16 +8,6 @@
         }
     </style>
     <section>
-        @foreach ($stops as $stop)
-            <div>
-                {{ $stop->latitude }}
-                {{ $stop->longitude }}
-                {{ $stop->info }}
-                {{ $stop->vehicle_type }}
-            </div>
-        @endforeach
-    </section>
-    <section>
         <h1>Bus Stop Finder</h1>
 
         <div id="map"></div>
@@ -87,11 +77,11 @@
                         var marker = L.marker([place.latitude, place.longitude], {
                             icon: placeIcon
                         }).addTo(map);
+
+                        marker.bindPopup('{{ $stop->info }}');
+
                         placeMarkers.push(marker);
                     @endforeach
-
-
-
 
                     // Find the nearest place marker to the user's location
                     var nearestMarker = findNearestMarker(userMarker, placeMarkers);
