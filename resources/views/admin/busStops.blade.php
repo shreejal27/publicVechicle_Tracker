@@ -1,6 +1,6 @@
 <style>
     #map {
-        height: 400px;
+        height: 500px;
         width: 100%;
     }
 
@@ -123,7 +123,8 @@
         }
     </script>
     <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3U0k0wYHv6RGnT6_JYOMxMTJVfa8vL48&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3U0k0wYHv6RGnT6_JYOMxMTJVfa8vL48&callback=initMap">
+    </script>
 @endsection
 
 {{-- const marker = new google.maps.Marker({

@@ -4,31 +4,32 @@
         width: 100%;
     }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
 @extends('necessary.user_template')
+{{-- <section class="vehicleRoutes">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>SN</th>
+                <th>Vehicle Name</th>
+                <th>Vehicle Routes</th>
+            </tr>
+        </thead>
+        <tbody>
 
-@section('content')
-    <section class="vehicleRoutes">
-        <table class="table">
-            <thead>
+            @foreach ($vehicles as $vehicle)
                 <tr>
-                    <th>SN</th>
-                    <th>Vehicle Name</th>
-                    <th>Vehicle Routes</th>
+                    <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ $vehicle->vehicle_name }}</td>
+                    <td>{{ $vehicle->vehicle_routes }}</td>
                 </tr>
-            </thead>
-            <tbody>
-
-                @foreach ($vehicles as $vehicle)
-                    <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $vehicle->vehicle_name }}</td>
-                        <td>{{ $vehicle->vehicle_routes }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </section>
+            @endforeach
+        </tbody>
+    </table>
+</section> --}}
+@section('content')
     <h1>This is the nearest bus stop</h1>
     <section class="maps">
         <h1 class="center">Available Bus Stops</h1>
@@ -39,123 +40,142 @@
     </section>
 
     <script>
-        var x = document.getElementById("demo");
-        var lat, lng;
-        var map;
+        // Initialize the map
+        var map = L.map('map').setView([27.694261, 85.298516], 15);
 
-        function initMap() {
-            var options = {
-                zoom: 15,
-                center: {
-                    lat: 27.694261,
-                    lng: 85.298516
-                }
-            };
+        // Create and add the OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
 
-            // Create a new map instance
-            map = new google.maps.Map(document.getElementById("map"), options);
 
-            // Add markers to the map
-            const userIcon = {
-                url: '{{ asset('images/markerIcons/userMarker.png') }}',
-                scaledSize: new google.maps.Size(32, 32) // Set the desired size of the icon
-            };
+        var userMarker, placeMarkers = [];
 
-            // Get the user's current location
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError, {
-                    enableHighAccuracy: true
+        // Get the user's current location
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                // Create a custom icon for the user's location
+                var userIcon = L.icon({
+                    iconUrl: '/images/markerIcons/userMarker.png',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
                 });
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
 
-            function showPosition(position) {
-                // Update the latitude and longitude variables
-                lat = position.coords.latitude;
-                lng = position.coords.longitude;
-
-                // Create a marker for the user's location
-                const userMarker = new google.maps.Marker({
-                    position: {
-                        lat: lat,
-                        lng: lng
-                    },
-                    map,
-                    title: "You are here",
+                // Create a marker for the user's location with the custom icon
+                userMarker = L.marker([latitude, longitude], {
                     icon: userIcon
-                });
+                }).addTo(map);
 
-                const userInfoWindow = new google.maps.InfoWindow({
-                    content: "You are here"
-                });
+                // Update the map view to the user's location
+                map.setView([latitude, longitude], 13);
 
-                userMarker.addListener("click", () => {
-                    userInfoWindow.open(map, userMarker);
-                });
-
-                // Call the function to add markers for bus stops
-                addBusStopMarkers();
-            }
-
-            function showError(error) {
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        x.innerHTML = "User denied the request for Geolocation.";
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        x.innerHTML = "Location information is unavailable.";
-                        break;
-                    case error.TIMEOUT:
-                        x.innerHTML = "The request to get user location timed out.";
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        x.innerHTML = "An unknown error occurred.";
-                        break;
-                }
-            }
-
-            function addBusStopMarkers() {
-                // Add markers for bus stops
-                @foreach ($stops as $stop)
+                // Define the coordinates for the other places
+                var places = [{
+                        name: 'Place 1',
+                        latitude: 27.6982600,
+                        longitude: 85.2993750
+                    },
                     {
-                        const icon = {
-                            @if ($stop->vehicle_type == 'bus')
-                                url: '{{ asset('images/markerIcons/B.png') }}',
-                            @elseif ($stop->vehicle_type == 'micro')
-                                url: '{{ asset('images/markerIcons/M.png') }}',
-                            @elseif ($stop->vehicle_type == 'tempo')
-                                url: '{{ asset('images/markerIcons/T.png') }}',
-                            @endif
-                            scaledSize: new google.maps.Size(32, 32) // Set the desired size of the icon
-                        };
-                        const marker = new google.maps.Marker({
-                            position: {
-                                lat: {{ $stop->latitude }},
-                                lng: {{ $stop->longitude }}
-                            },
-                            map,
-                            title: "{{ $stop->info }}",
-                            icon: icon
-                        });
-                        const infoWindow = new google.maps.InfoWindow({
-                            content: "{{ $stop->info }}",
-                        });
-
-                        marker.addListener("click", () => {
-                            infoWindow.open(map, marker);
-                        });
+                        name: 'Place 2',
+                        latitude: 27.6847670,
+                        longitude: 85.2993170
+                    },
+                    {
+                        name: 'Place 3',
+                        latitude: 27.694079,
+                        longitude: 85.297393
                     }
-                @endforeach
-            }
+                ];
+
+                // Create markers for the other places with custom icons
+                var placeIcon = L.icon({
+                    iconUrl: '/images/markerIcons/B.png',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
+                });
+
+                for (var i = 0; i < places.length; i++) {
+                    var place = places[i];
+                    var marker = L.marker([place.latitude, place.longitude], {
+                        icon: placeIcon
+                    }).addTo(map);
+                    placeMarkers.push(marker);
+                }
+
+                // Find the nearest place marker to the user's location
+                var nearestMarker = findNearestMarker(userMarker, placeMarkers);
+
+                // Create a custom icon for the shortest path
+                var pathIcon = L.icon({
+                    iconUrl: '',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
+                });
+
+                // Calculate the route using Leaflet Routing Machine
+                L.Routing.control({
+                    waypoints: [
+                        L.latLng(latitude, longitude),
+                        nearestMarker.getLatLng()
+                    ],
+                    routeWhileDragging: false,
+                    lineOptions: {
+                        styles: [{
+                            color: 'blue',
+                            opacity: 0.5,
+                            weight: 3,
+                            className: 'leaflet-custom-icon'
+                        }]
+                    },
+                    createMarker: function(i, waypoint, n) {
+                        if (i === 0) {
+                            // Use the custom user icon for the starting marker
+                            return L.marker(waypoint.latLng, {
+                                icon: userIcon
+                            });
+                        } else if (i === n - 1) {
+                            // Use the custom icon for the ending marker
+                            return L.marker(waypoint.latLng, {
+                                icon: pathIcon
+                            });
+                        } else {
+                            // Use the default marker for intermediate waypoints
+                            return L.marker(waypoint.latLng);
+                        }
+                    }
+                }).addTo(map);
+            });
         }
+        // Add markers for other stops
+        @foreach ($stops as $stop)
+            {
+                var iconUrl = '';
+                @if ($stop->vehicle_type == 'bus')
+                    iconUrl = '{{ asset('images/markerIcons/B.png') }}';
+                @elseif ($stop->vehicle_type == 'micro')
+                    iconUrl = '{{ asset('images/markerIcons/M.png') }}';
+                @elseif ($stop->vehicle_type == 'tempo')
+                    iconUrl = '{{ asset('images/markerIcons/T.png') }}';
+                @endif
 
-        // Call the function to initialize the map
-        initMap();
+                var icon = L.icon({
+                    iconUrl: iconUrl,
+                    iconSize: [32, 32],
+                });
+
+                L.marker([{{ $stop->latitude }}, {{ $stop->longitude }}], {
+                        icon: icon
+                    })
+                    .bindPopup("{{ $stop->info }}")
+                    .addTo(map);
+            }
+        @endforeach
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3U0k0wYHv6RGnT6_JYOMxMTJVfa8vL48&callback=initMap" async
-        defer></script>
 @endsection
-
-
-{{-- AIzaSyD3U0k0wYHv6RGnT6_JYOMxMTJVfa8vL48 --}}
