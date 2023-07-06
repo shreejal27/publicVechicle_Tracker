@@ -33,24 +33,24 @@
         <div class="form ml-3" style="width: 47.5%; border: 1px solid red; padding:1rem; float:left;">
             <form action="">
                 @csrf
-                <input type="text" placeholder="Full Name" style="width: 48%">
-                <input type="email" placeholder="Email" style="width: 48%">
+                <input type="text" placeholder="Full Name" style="width: 48%" required>
+                <input type="email" placeholder="Email" style="width: 48%" required>
                 <br>
                 <br>
-                <input type="number" placeholder="Number" style="width: 48%;">
-                <select name="" id="" style="width: 48%; height:27px">
+                <input type="number" placeholder="Number" style="width: 48%;" required>
+                <select name="" id="" style="width: 48%; height:27px" required>
                     <option value="">Subject Type</option>
-                    <option value="">Complain</option>
-                    <option value="">Feedback</option>
-                    <option value="">Query</option>
-                    <option value="">Request</option>
+                    <option value="complain">Complain</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="query">Query</option>
+                    <option value="request">Request</option>
                 </select>
                 <br>
                 <br>
-                <input type="text" placeholder="Subject" style="width: 100%;">
+                <input type="text" placeholder="Subject" style="width: 100%;" required>
                 <br>
                 <br>
-                <textarea style="width: 100%; height: 15rem;"></textarea>
+                <textarea style="width: 100%; height: 15rem;" required></textarea>
                 <br>
                 <br>
                 <input type="submit" value="Send">
