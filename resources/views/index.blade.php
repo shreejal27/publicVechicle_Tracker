@@ -26,9 +26,8 @@
         width: 100%;
     }
 
-    .blogImages {
-        width: 250px;
-        margin-bottom: 1rem;
+    .objectives {
+        text-align: center;
     }
 
     .blogs {
@@ -44,8 +43,9 @@
     }
 
     .blogImages {
+        margin-bottom: 1rem;
         width: 100%;
-        height: 200px;
+        height: 300px;
         filter: brightness(60%);
     }
 
@@ -89,32 +89,33 @@
             </a>
         </div>
     </section>
-    <section class="information mt-4 clearfix">
+    <section class="information mt-5 clearfix">
         <div class="img" style="width: 50%; float: left">
             img
         </div>
-        <div class="info " style="width: 50%; float: left">
+        <div class="info" style="width: 50%; float: left">
             <p class="h3">Objective</p>
             <p>Public Vehicle Tracker is a web application that will help the user to track the public vehicle in the
-                Kathmandu Valley. <br>
+                Kathmandu Valley. <br> <br>
                 The user can track the public vehicle by entering the vehicle name. The user can
                 also track the public vehicle by entering the source and destination.
-                <br>The user can also find the nearest
+                <br> <br>The user can also find the nearest
                 bus stop from the current location. The user can also calculate the fare of the public vehicle by
                 entering the source and destination.
             </p>
         </div>
     </section>
-    <section class="objectives clearfix">
-        <p> Our Services
-        <ul>
-            <li>Track Public Vehicle</li>
-            <li>Nearest Bus Stop</li>
-            <li>Fare Calculator</li>
-        </ul>
+    <section class="objectives clearfix mt-5">
+        <h2>Our Services</h2>
+        <br>
+        <p>Track Public Vehicle
+            <br> <br>
+            Nearest Bus Stop
+            <br><br>
+            Fare Calculator
         </p>
     </section>
-    <section class="notice clearfix">
+    <section class="notice clearfix mt-5">
         <br>
         <div class="heading text-center" style="width: 50%; float: left">
             <br><br>
@@ -132,7 +133,7 @@
         </div>
     </section>
 
-    <section class="blogs clearfix mt-4 text-center mb-3">
+    <section class="blogs clearfix mt-5 text-center mb-3">
         <p class="h3 mb-4">Media & Blogs</p>
         <div class="blog">
             <img class="blogImages" alt="Blog Image1" src="{{ asset('images/blogs/blog1.jpg') }}">
@@ -145,7 +146,7 @@
         </div>
         <div class="blog">
             <img class="blogImages" alt="Blog Image2" src="{{ asset('images/blogs/blog2.jpg') }}">
-            <p class="h4">The Future of Public Transportation</p>
+            <p class="h4">The Future of Public Transportation and Tracking</p>
             <p>As cities grow and transportation demands increase, the need for smarter and more efficient public
                 transportation systems becomes evident.
                 <br> <br>

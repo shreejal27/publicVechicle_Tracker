@@ -2,8 +2,8 @@
     <!-- Header content here -->
     <nav>
         <!-- Navigation menu items -->
-        <ul>
-            <li>Public Vechicle Tracker</li>
+        <ul class="mt-2">
+            <li class="title">Public Vechicle Tracker</li>
             <li><a href="/index">Home Page</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="/aboutUs">About Us</a></li>
