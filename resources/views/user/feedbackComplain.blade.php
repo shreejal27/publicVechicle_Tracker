@@ -1,11 +1,13 @@
 <style>
-    .form {
+    .formBox {
         background-color: #15172b;
         border-radius: 20px;
         box-sizing: border-box;
         height: auto;
         padding: 20px;
-        width: auto;
+        width: 50%;
+        text-align: center;
+        margin-left: 25%;
     }
 
     .title {
@@ -117,6 +119,12 @@
         height: 17rem;
         width: 100%;
     }
+
+    select {
+        height: 30px;
+        float: left;
+        width: 25%;
+    }
 </style>
 @extends('necessary.user_template')
 @section('content')
@@ -125,13 +133,13 @@
             {{ session('message') }}
         </div>
     @endif
-    <div class="form">
+    <div class="formBox">
         <div class="title">We are here to assist you</div>
         <div class="subtitle">Please complete the form below!</div>
         <form action="{{ route('storeComplainFeedback') }}" method="POST">
             @csrf
             <div class="input-container ic1">
-                <input placeholder="" type="text" class="input" id="username" name="username">
+                <input placeholder="" type="text" class="input" id="username" name="username" required>
                 <div class="cut"></div>
                 <label class="iLabel" for="username">UserName</label>
             </div>
@@ -142,21 +150,21 @@
                 <label class="iLabel" for="phone">Phone</label>
             </div> --}}
             <br>
-            <select name="formType">
-                <option value="feedback">Feedback</option>
+            <select name="formType" required>
                 <option value="complain">Complain</option>
+                <option value="feedback">Feedback</option>
                 <option value="query">Query</option>
                 <option value="request">Request</option>
             </select>
             <br>
             <br>
-            <textarea name="formDescription" placeholder="Write your message here"></textarea>
+            <textarea name="formDescription" placeholder="Write your message here" required></textarea>
             {{-- <div class="input-container ic2">
                 <input placeholder="" type="text" class="input" id="email">
                 <div class="cut cut-short"></div>
                 <label class="iLabel" for="email">Email</label>
             </div> --}}
-            <input type="submit" value="submit" class="submit">
+            <input type="submit" value="submit" class="Submit">
         </form>
     </div>
 @endsection

@@ -3,7 +3,9 @@
     <nav>
         <!-- Navigation menu items -->
         <ul class="mt-2">
-            <li class="title">Public Vechicle Tracker</li>
+            <li>
+                <h5>Public Vechicle Tracker </h5>
+            </li>
             <li><a href="/index">Home Page</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="/aboutUs">About Us</a></li>
