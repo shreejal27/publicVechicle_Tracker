@@ -17,19 +17,26 @@
     <div class="container col-md-12" style="padding:0">
         <aside class="sidebar">
             <div>
-                <p class="font-weight-bold">Public Vechicle Tracker </p>
-                <section>
-                    <p id="greetings"> </p>
+                <section class="text-center">
+                    <h3>
+
+                        <p class="font-weight-bold">Public Vehicle Tracker </p>
+                    </h3>
+                    <h5>
+
+                        <p id="greetings"> </p>
+                        <p>Admin</p>
+                    </h5>
                 </section>
 
                 <br>
-                <a href="/adminDashboard">Dashboard</a><br>
-                <a href="/adminActivePublicVechicle">Active Public Vechicle (Route)</a><br>
-                <a href="/adminBusStops">Bus Stops / (Add vechicle)</a><br>
-                <a href="/adminFarePrice">Fare Price</a><br>
-                <a href="/viewFeedbackComplain"> FeedBack/Complain(Reports) </a><br>
-                <a href="/adminViewDriversReports"> Drivers (Status/Ratings) </a><br>
-                <a href="/adminLogout">Logout</a><br>
+                <a href="/adminDashboard">Dashboard</a><br><br>
+                <a href="/adminActivePublicVechicle">Active Public Vechicle (Route)</a><br><br>
+                <a href="/adminBusStops">Bus Stops / (Add vechicle)</a><br><br>
+                <a href="/adminFarePrice">Fare Price</a><br><br>
+                <a href="/viewFeedbackComplain"> FeedBack/Complain/Query </a><br><br>
+                <a href="/adminViewDriversReports"> Drivers (Status/Ratings) </a><br><br>
+                <a href="/adminLogout">Logout</a><br><br>
                 <br>
             </div>
         </aside>
@@ -46,11 +53,11 @@
         const greeting = document.getElementById("greetings");
 
         if (currentHour >= 5 && currentHour < 12) {
-            greeting.textContent = "Good Morning! Admin";
+            greeting.textContent = "Good Morning! ";
         } else if (currentHour >= 12 && currentHour < 18) {
-            greeting.textContent = "Good Afternoon! Admin";
+            greeting.textContent = "Good Afternoon! ";
         } else {
-            greeting.textContent = "Good Evening! Admin";
+            greeting.textContent = "Good Evening! ";
         }
     </script>
 </body>

@@ -147,6 +147,17 @@ footer{
     color: #F3DEBA;
     flex-basis: 15%; /* Set the width of the sidebar */
   }
+
+  .sidebar div a{
+    /* color: #F3DEBA; */
+    color: white;
+    text-decoration: none; 
+  }
+  
+  .sidebar div a:hover{
+    /* color: #ABC4AA; */
+    color:black;
+  }
   
   .content {
     background-color: blanchedalmond;

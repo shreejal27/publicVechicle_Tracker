@@ -18,16 +18,23 @@
     <div class="container col-md-12" style="padding:0">
         <aside class="sidebar">
             <div>
-                <p>Public Vechicle Tracker </p>
-                <p>Hello User!</p>
+                <section class="text-center">
+                    <h3>
+                        <p class="font-weight-bold">Public Vehicle Tracker</p>
+                    </h3>
+                    <h5>
+                        <p id="greetings"> </p>
+                        <p>User</p>
+                    </h5>
+                </section>
                 <br>
-                <a href="/userDashboard">Dashboard</a><br>
-                <a href="/userProfile">Profile</a><br>
-                <a href="/userTrackPublicVehicle">Track Public Vehicle</a><br>
-                <a href="/nearestBusStop">Nearest Bus Stop</a><br>
-                <a href="/fareCalculator">Fare Calculator</a><br>
-                <a href="/feedbackComplain">Feedback/Complain</a><br>
-                <a href="/userLogout">Logout</a><br>
+                <a href="/userDashboard">Dashboard</a><br><br>
+                <a href="/userProfile">Profile</a><br><br>
+                <a href="/userTrackPublicVehicle">Track Public Vehicle </a><br><br>
+                <a href="/nearestBusStop">Nearest Bus Stop</a><br><br>
+                <a href="/fareCalculator">Fare Calculator</a><br><br>
+                <a href="/feedbackComplain">Feedback/Complain/Query</a><br><br>
+                <a href="/userLogout">Logout</a><br><br>
                 <br>
             </div>
         </aside>
@@ -39,6 +46,18 @@
     </div>
 
     @include('necessary.footer')
+    <script type="text/javascript">
+        const currentHour = new Date().getHours();
+        const greeting = document.getElementById("greetings");
+
+        if (currentHour >= 5 && currentHour < 12) {
+            greeting.textContent = "Good Morning!";
+        } else if (currentHour >= 12 && currentHour < 18) {
+            greeting.textContent = "Good Afternoon!";
+        } else {
+            greeting.textContent = "Good Evening!";
+        }
+    </script>
 </body>
 
 </html>
