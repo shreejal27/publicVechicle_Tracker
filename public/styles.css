@@ -51,11 +51,13 @@ footer{
 /* Global styles */
 * {
     padding: 0;
-    margin: 0;;
+    margin: 0;
   }
   
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #F3DEBA;
+    
   }
   
   .container {
@@ -67,7 +69,7 @@ footer{
   
   /* Header styles */
   header {
-    background-color: aqua;
+    background-color: #675D50;
     height: 70px;
     padding: 10px;
   }
@@ -93,6 +95,16 @@ footer{
   nav ul li {
     display: inline-block;
     margin-right: 10px;
+    color: #F3DEBA;
+  }
+
+  ul li a{
+    color: #F3DEBA;
+  }
+
+  ul li a:hover{
+    color: #ABC4AA;
+    text-decoration: none;
   }
   
   /* Sidebar styles */

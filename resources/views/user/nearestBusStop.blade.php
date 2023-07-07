@@ -129,7 +129,7 @@
                 });
             }
 
-            //  find the nearest marker using Dijkstra's algorithm
+            //  find the nearest marker using shortest path algorithm
             function findNearestMarker(userMarker, placeMarkers) {
                 var shortestDistance = Infinity;
                 var nearestMarker = null;
@@ -143,7 +143,6 @@
                         nearestMarker = marker;
                     }
                 }
-
                 return nearestMarker;
             }
         </script>
