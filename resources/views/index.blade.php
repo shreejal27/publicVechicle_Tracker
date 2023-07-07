@@ -22,16 +22,48 @@
     }
 
     .sliderImage {
-        height: 650px;
+        height: 800px;
         width: 100%;
+        /* border: 4px solid #675D50;
+        padding: 10px; */
+    }
+
+    .img {
+        height: 20%;
+        width: 45%;
+        /* border: 4px solid #675D50; */
+        float: left;
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .info {
+        height: 20%;
+        width: 55%;
+        /* border: 4px solid #675D50; */
+        padding: 40px;
+        background-color: #675D50;
+        color: white;
+        float: left;
     }
 
     .objectives {
         text-align: center;
     }
 
+    .notice {
+        height: 400px;
+        width: 100%;
+        background-color: #A9907E;
+    }
+
     .blogs {
         height: 700px;
+        width: 100%;
+        background-color: #F3DEBA;
     }
 
     .blog {
@@ -40,13 +72,15 @@
         width: 33%;
         float: left;
         text-align: left;
+        border-left: 3px solid #675D50;
+        margin-bottom: 5rem;
     }
 
     .blogImages {
         margin-bottom: 1rem;
         width: 100%;
         height: 300px;
-        filter: brightness(60%);
+        filter: brightness(75%);
     }
 
     .blogImages:hover {
@@ -55,9 +89,6 @@
     }
 </style>
 @section('content')
-    <section>
-        <p id="greetings" class="font-weight-bold"></p>
-    </section>
     <section class="sliderImages ">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -89,12 +120,12 @@
             </a>
         </div>
     </section>
-    <section class="information mt-5 clearfix">
-        <div class="img" style="width: 50%; float: left">
-            img
+    <section class="information mt-5 mb-5 clearfix">
+        <div class="img">
+            <img src="images/blogs/blog2.jpg" alt="objectiveImage">
         </div>
-        <div class="info" style="width: 50%; float: left">
-            <p class="h3">Objective</p>
+        <div class="info">
+            <p class="h3 mb-4">Objective</p>
             <p>Public Vehicle Tracker is a web application that will help the user to track the public vehicle in the
                 Kathmandu Valley. <br> <br>
                 The user can track the public vehicle by entering the vehicle name. The user can
@@ -102,10 +133,14 @@
                 <br> <br>The user can also find the nearest
                 bus stop from the current location. The user can also calculate the fare of the public vehicle by
                 entering the source and destination.
+                <br> <br>The user can also find the nearest
+                bus stop from the current location. The user can also calculate the fare of the public vehicle by
+                entering the source and destination.
+
             </p>
         </div>
     </section>
-    <section class="objectives clearfix mt-5">
+    {{-- <section class="objectives clearfix mt-5">
         <h2>Our Services</h2>
         <br>
         <p>Track Public Vehicle
@@ -114,9 +149,9 @@
             <br><br>
             Fare Calculator
         </p>
-    </section>
-    <section class="notice clearfix mt-5">
-        <br>
+    </section> --}}
+    <section class="notice clearfix">
+        <br><br><br><br>
         <div class="heading text-center" style="width: 50%; float: left">
             <br><br>
             <p class="h3">Notices and <br>
@@ -133,11 +168,11 @@
         </div>
     </section>
 
-    <section class="blogs clearfix mt-5 text-center mb-3">
-        <p class="h3 mb-4">Media & Blogs</p>
-        <div class="blog">
+    <section class="blogs clearfix mt-5 text-center ">
+        <p class="h3 mb-5">Media & Blogs</p>
+        <div class="blog" style="border-left: none;">
             <img class="blogImages" alt="Blog Image1" src="{{ asset('images/blogs/blog1.jpg') }}">
-            <p class="h4">The Importance of Public Vehicle Tracking</p>
+            <p class="h4">The Importance of Public Vehicle Tracking</p><br>
             <p>Public vehicle tracking plays a crucial role in modern transportation systems. It provides benefits
                 such as improved passenger safety, reduced traffic congestion, and enhanced operational efficiency. <br><br>
                 This
@@ -146,7 +181,7 @@
         </div>
         <div class="blog">
             <img class="blogImages" alt="Blog Image2" src="{{ asset('images/blogs/blog2.jpg') }}">
-            <p class="h4">The Future of Public Transportation and Tracking</p>
+            <p class="h4">The Future of Public Transportation and Tracking</p><br>
             <p>As cities grow and transportation demands increase, the need for smarter and more efficient public
                 transportation systems becomes evident.
                 <br> <br>
@@ -157,7 +192,7 @@
         </div>
         <div class="blog">
             <img class="blogImages" alt="Blog Image3" src="{{ asset('images/blogs/blog3.jpg') }}">
-            <p class="h4"> Public Transportation with Real-time Tracking </p>
+            <p class="h4"> Public Transportation with Real-time Tracking </p><br>
             <p>In this article, we discuss the benefits of real-time tracking in public
                 transportation.
                 <br> <br>Discover how real-time tracking can transform public transportation into
@@ -167,17 +202,4 @@
             </p>
         </div>
     </section>
-
-    <script type="text/javascript">
-        const currentHour = new Date().getHours();
-        const greeting = document.getElementById("greetings");
-
-        if (currentHour >= 5 && currentHour < 12) {
-            greeting.textContent = "Good Morning!";
-        } else if (currentHour >= 12 && currentHour < 18) {
-            greeting.textContent = "Good Afternoon!";
-        } else {
-            greeting.textContent = "Good Evening!";
-        }
-    </script>
 @endsection

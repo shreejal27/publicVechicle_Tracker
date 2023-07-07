@@ -17,8 +17,11 @@
     <div class="container col-md-12" style="padding:0">
         <aside class="sidebar">
             <div>
-                <p>Public Vechicle Tracker </p>
-                <p>Hello Admin!</p>
+                <p class="font-weight-bold">Public Vechicle Tracker </p>
+                <section>
+                    <p id="greetings"> </p>
+                </section>
+
                 <br>
                 <a href="/adminDashboard">Dashboard</a><br>
                 <a href="/adminActivePublicVechicle">Active Public Vechicle (Route)</a><br>
@@ -38,6 +41,18 @@
     </div>
 
     @include('necessary.footer')
+    <script type="text/javascript">
+        const currentHour = new Date().getHours();
+        const greeting = document.getElementById("greetings");
+
+        if (currentHour >= 5 && currentHour < 12) {
+            greeting.textContent = "Good Morning! Admin";
+        } else if (currentHour >= 12 && currentHour < 18) {
+            greeting.textContent = "Good Afternoon! Admin";
+        } else {
+            greeting.textContent = "Good Evening! Admin";
+        }
+    </script>
 </body>
 
 </html>
