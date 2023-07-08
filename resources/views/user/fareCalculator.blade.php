@@ -35,5 +35,14 @@
             <input type="text" name="weight"><br>
             <button type="submit">Calculate</button>
         </form>
+        @if ($matchingVehicleNames)
+            <p>{{ $distanceValue }}</p>
+            @foreach ($matchingVehicleNames as $vehicleName)
+                <p>Suggested Vehicle: {{ $vehicleName }}</p>
+                <br>
+            @endforeach
+        @else
+            <p>No matching vehicle found</p>
+        @endif
     </section>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Fare;
 use App\Models\VehicleRoute;
 use Illuminate\Http\Request;
 
+
 class FareController extends Controller
 {
     public function store(Request $request)
@@ -29,7 +30,8 @@ class FareController extends Controller
     public function getFare()
     {
         $fares = Fare::all();
-        return view('/user/fareCalculator', compact('fares'));
+        $matchingVehicleNames = [];
+        return view('/user/fareCalculator', compact('fares', 'matchingVehicleNames'));
     }
 
     public function edit($id)
@@ -69,16 +71,41 @@ class FareController extends Controller
         $to = $request->input('to');
         $weight = $request->input('weight');
 
+        $distances = [
+            'kuleshwor|kalimati' => 100,
+            'kritipur|kalimati' => 200,
+            // Add more entries as per your dataset
+        ];
+
+
         $vehicleRoutes = VehicleRoute::all();
         $matchingVehicleNames = [];
-
+        $distanceValue = 0;
         foreach ($vehicleRoutes as $vehicleRoute) {
             $routes = explode(', ', $vehicleRoute->vehicle_routes);
 
             if (in_array($from, $routes) && in_array($to, $routes)) {
                 $matchingVehicleNames[] = $vehicleRoute->vehicle_name;
+
+                $key1 = "$from|$to";
+                $key2 = "$to|$from";
+
+                if (isset($distances[$key1])) {
+                    $distanceValue = $distances[$key1];
+                } elseif (isset($distances[$key2])) {
+                    $distanceValue = $distances[$key2];
+                } else {
+                    $distanceValue = 0;
+                }
             }
         }
-        dd($matchingVehicleNames);
+        // if (count($matchingVehicleNames) == 0) {
+        //     $matchingVehicleNames[] = "no vehicle found";
+        // }
+        // dd($matchingVehicleNames);
+
+        $fares = Fare::all(); // Retrieve all fares
+
+        return view('/user/fareCalculator', compact('matchingVehicleNames', 'fares', 'distanceValue'));
     }
 }
