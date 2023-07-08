@@ -71,11 +71,22 @@ class FareController extends Controller
         $to = $request->input('to');
         $weight = $request->input('weight');
 
-        $distances = [
-            'kuleshwor|kalimati' => 100,
-            'kritipur|kalimati' => 200,
-            // Add more entries as per your dataset
-        ];
+        if ($weight == null) {
+            $weight = 0;
+        }
+
+        if ($weight <= 15) {
+            // Free allowance of up to 15 kg
+            $weightPrice = 0;
+        } else {
+            // Charge Rs 5 per 10 kg for weight exceeding 15 kg
+            $extraWeight = $weight - 15;
+            $extraWeightCalculation = ceil($extraWeight / 10); // Round up to the nearest multiple of 10
+            $weightPrice = $extraWeightCalculation * 5;
+        }
+
+
+        $distances = include '../data/distancesBetweenPlaces.php';
 
 
         $vehicleRoutes = VehicleRoute::all();
@@ -91,21 +102,28 @@ class FareController extends Controller
                 $key2 = "$to|$from";
 
                 if (isset($distances[$key1])) {
-                    $distanceValue = $distances[$key1];
+                    $distance = $distances[$key1];
                 } elseif (isset($distances[$key2])) {
-                    $distanceValue = $distances[$key2];
+                    $distance = $distances[$key2];
                 } else {
-                    $distanceValue = 0;
+                    $distance = 0;
                 }
+
+                $fares = Fare::all();
+                foreach ($fares as $fare) {
+                    if ($distance <= $fare->distance) {
+                        // $distanceValue = $fare->distance;
+                        $price = $fare->price;
+                        break;
+                    }
+                }
+                // dd($distanceValue, $weight, $price);
+                $totalFare =  $weightPrice + $price;
             }
         }
-        // if (count($matchingVehicleNames) == 0) {
-        //     $matchingVehicleNames[] = "no vehicle found";
-        // }
-        // dd($matchingVehicleNames);
 
-        $fares = Fare::all(); // Retrieve all fares
+        // Retrieve all fares
 
-        return view('/user/fareCalculator', compact('matchingVehicleNames', 'fares', 'distanceValue'));
+        return view('/user/fareCalculator', compact('matchingVehicleNames', 'fares', 'distance', 'totalFare'));
     }
 }

@@ -36,7 +36,7 @@
             <button type="submit">Calculate</button>
         </form>
         @if ($matchingVehicleNames)
-            <p>{{ $distanceValue }}</p>
+            <p> Total Cost: {{ $totalFare }}</p>
             @foreach ($matchingVehicleNames as $vehicleName)
                 <p>Suggested Vehicle: {{ $vehicleName }}</p>
                 <br>
