@@ -25,13 +25,14 @@
         </p>
 
         Fare Calculator
-        <form action="">
+        <form action="{{ route('calculateFare') }}" method="POST">
+            @csrf
             <label>From: </label>
-            <input type="text"> <br>
+            <input type="text" name="from"> <br>
             <label>To: </label>
-            <input type="text"> <br>
+            <input type="text" name="to"> <br>
             <label>Total Weight: </label>
-            <input type="text"><br>
+            <input type="text" name="weight"><br>
             <button type="submit">Calculate</button>
         </form>
     </section>

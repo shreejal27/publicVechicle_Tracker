@@ -163,8 +163,11 @@ Route::get('/nearestBusStop', [StopController::class, 'stopMarkerUser'])->name('
 Route::get('/vehicleRoutes', [VehicleRouteController::class, 'getVehicle'])->name('vehicleRoutes');
 
 
-//user fare calculator
+//user fare calculator page
 Route::get('/fareCalculator', [FareController::class, 'getFare']);
+
+//to calculate the fare for travel
+Route::post('/calculateFare', [FareController::class, 'fareCalculator'])->name('calculateFare');
 
 //user feedbackComplain
 Route::get('/feedbackComplain', function () {
