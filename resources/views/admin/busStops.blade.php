@@ -109,38 +109,57 @@
                     map.setView([latitude, longitude], 13);
 
                     // Define the coordinates for the other places
-                    var places = [{
-                            name: 'Place 1',
-                            latitude: 27.6982600,
-                            longitude: 85.2993750
-                        },
-                        {
-                            name: 'Place 2',
-                            latitude: 27.6847670,
-                            longitude: 85.2993170
-                        },
-                        {
-                            name: 'Place 3',
-                            latitude: 27.694079,
-                            longitude: 85.297393
-                        }
-                    ];
+                    // var places = [{
+                    //         name: 'Place 1',
+                    //         latitude: 27.6982600,
+                    //         longitude: 85.2993750
+                    //     },
+                    //     {
+                    //         name: 'Place 2',
+                    //         latitude: 27.6847670,
+                    //         longitude: 85.2993170
+                    //     },
+                    //     {
+                    //         name: 'Place 3',
+                    //         latitude: 27.694079,
+                    //         longitude: 85.297393
+                    //     }
+                    // ];
+                    var places = [];
+                    @foreach ($stops as $stop)
+                        var place = {
+                            name: '{{ $stop->info }}',
+                            latitude: {{ $stop->latitude }},
+                            longitude: {{ $stop->longitude }}
+                        };
 
-                    // Create markers for the other places with custom icons
-                    var placeIcon = L.icon({
-                        iconUrl: '/images/markerIcons/B.png',
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 32],
-                        popupAnchor: [0, -32]
-                    });
+                        places.push(place);
 
-                    for (var i = 0; i < places.length; i++) {
-                        var place = places[i];
+                        // Set the icon URL based on the vehicle type
+                        var iconUrl = '';
+                        @if ($stop->vehicle_type == 'bus')
+                            iconUrl = '{{ asset('images/markerIcons/B.png') }}';
+                        @elseif ($stop->vehicle_type == 'micro')
+                            iconUrl = '{{ asset('images/markerIcons/M.png') }}';
+                        @elseif ($stop->vehicle_type == 'tempo')
+                            iconUrl = '{{ asset('images/markerIcons/T.png') }}';
+                        @endif
+
+                        var placeIcon = L.icon({
+                            iconUrl: iconUrl,
+                            iconSize: [32, 32],
+                            iconAnchor: [16, 32],
+                            popupAnchor: [0, -32]
+                        });
+
                         var marker = L.marker([place.latitude, place.longitude], {
                             icon: placeIcon
                         }).addTo(map);
+
+                        marker.bindPopup('{{ $stop->info }}');
+
                         placeMarkers.push(marker);
-                    }
+                    @endforeach
 
                     // Find the nearest place marker to the user's location
                     var nearestMarker = findNearestMarker(userMarker, placeMarkers);
