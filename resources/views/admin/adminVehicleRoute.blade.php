@@ -1,11 +1,6 @@
 @extends('necessary.admin_template')
 @section('content')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 600px;
-        }
-    </style>
+
     <section>
         <h2>Add Vechicle Route</h2>
         @if (session('message'))

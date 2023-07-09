@@ -89,6 +89,11 @@ Route::get('/adminDashboard', function () {
     return view('admin.adminDashboard');
 });
 
+//admin active public vehicle
+Route::get('/adminActivePublicVehicle', function () {
+    return view('admin.adminActivePublicVehicle');
+});
+
 //admin active public vechicles
 Route::get('/adminVehicleRoute', function () {
     return view('admin.adminVehicleRoute');

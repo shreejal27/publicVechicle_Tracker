@@ -31,6 +31,7 @@
 
                 <br>
                 <a href="/adminDashboard">Dashboard</a><br><br>
+                <a href="/adminActivePublicVehicle">Active Public Vehicle</a><br><br>
                 <a href="/adminVehicleRoute">Vehicle Route</a><br><br>
                 <a href="/adminBusStops">Bus Stops / (Add vechicle)</a><br><br>
                 <a href="/adminFarePrice">Fare Price</a><br><br>
