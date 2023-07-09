@@ -16,9 +16,9 @@
             width: auto;
             height: auto;
             border-radius: 0.75rem;
-            background-color: rgba(17, 24, 39, 1);
+            background-color: #675D50;
             padding: 2rem;
-            color: rgba(243, 244, 246, 1);
+            color: #F3DEBA;
         }
 
         .title {
@@ -40,22 +40,22 @@
 
         .input-group label {
             display: block;
-            color: rgba(156, 163, 175, 1);
+            color: #F3DEBA;
             margin-bottom: 4px;
         }
 
         .input-group input {
             width: 100%;
             border-radius: 0.375rem;
-            border: 1px solid rgba(55, 65, 81, 1);
+            border: 2px solid #ABC4AA;
             outline: 0;
-            background-color: rgba(17, 24, 39, 1);
+            background-color: #A9907E;
             padding: 0.75rem 1rem;
-            color: rgba(243, 244, 246, 1);
+            color: white;
         }
 
         .input-group input:focus {
-            border-color: rgba(167, 139, 250);
+            border-color: #F3DEBA;
         }
 
         select {
@@ -87,7 +87,7 @@
         .sign {
             display: block;
             width: 100%;
-            background-color: rgba(167, 139, 250, 1);
+            background-color: #F3DEBA;
             padding: 0.75rem;
             text-align: center;
             color: rgba(17, 24, 39, 1);
@@ -113,7 +113,12 @@
             padding-right: 0.75rem;
             font-size: 0.875rem;
             line-height: 1.25rem;
-            color: rgba(156, 163, 175, 1);
+            color: whitesmoke;
+        }
+
+        .forgot a:hover {
+            text-decoration: none;
+            color: #F3DEBA;
         }
 
         .social-icons {
@@ -132,14 +137,28 @@
         .social-icons .icon svg {
             height: 1.25rem;
             width: 1.25rem;
-            fill: #fff;
+            fill: #F3DEBA;
         }
 
         .signup {
             text-align: center;
             font-size: 0.75rem;
             line-height: 1rem;
-            color: rgba(156, 163, 175, 1);
+            color: #ABC4AA;
+        }
+
+        .signup a {
+            color: whitesmoke;
+            text-decoration: none;
+        }
+
+        .signup a:hover {
+            text-decoration: none;
+            color: #F3DEBA;
+        }
+
+        select {
+            background-color: #A9907E
         }
     </style>
 </head>
@@ -153,7 +172,7 @@
             </div>
         @endif
         <div class="center-container">
-            <div class="form-container ">
+            <div class="form-container mt-5">
                 <p class="title">Login</p>
                 <form class="form" action="{{ route('loginCheck') }}" method="POST">
                     @csrf
