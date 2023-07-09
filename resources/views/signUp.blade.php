@@ -17,7 +17,7 @@
             flex-direction: column;
             gap: 10px;
             max-width: auto;
-            background-color: #fff;
+            background-color: #675D50;
             padding: 20px;
             border-radius: 20px;
             position: relative;
@@ -160,7 +160,7 @@
         @endif
         <div class="center-container">
 
-            <form class="form" action="{{ route('store') }}" method="POST">
+            <form class="form mt-4 mb-5" action="{{ route('store') }}" method="POST">
 
                 {{-- <form class="form" action="{{ route('print') }}" method="POST"> --}}
 

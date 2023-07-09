@@ -90,12 +90,12 @@ Route::get('/adminDashboard', function () {
 });
 
 //admin active public vechicles
-Route::get('/adminActivePublicVechicle', function () {
-    return view('admin.activePublicVechicle');
+Route::get('/adminVehicleRoute', function () {
+    return view('admin.adminVehicleRoute');
 });
 
 //get vehicle routes
-Route::get('/adminActivePublicVechicle', [VehicleRouteController::class, 'index'])->name('vehicleRoute.index');
+Route::get('/adminVehicleRoute', [VehicleRouteController::class, 'index'])->name('vehicleRoute.index');
 
 //store vehicle routes
 Route::post('/storeVehicleRoute', [VehicleRouteController::class, 'store'])->name('storeVehicleRoute');

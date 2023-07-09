@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\VehicleRoute;
@@ -9,15 +10,15 @@ class VehicleRouteController extends Controller
     public function index()
     {
         $vehicles = VehicleRoute::all();
-        return view('/admin/activePublicVechicle', compact('vehicles'));
+        return view('/admin/adminVehicleRoute', compact('vehicles'));
     }
 
-    
+
     public function getVehicle()
     {
         $vehicles = VehicleRoute::all();
         return view('/user/nearestBusStop', compact('vehicles'));
-    } 
+    }
 
     public function store(Request $request)
     {
@@ -62,6 +63,4 @@ class VehicleRouteController extends Controller
 
         return redirect()->route('vehicleRoute.index')->with('message', 'Fare updated successfully.');
     }
-
 }
-
