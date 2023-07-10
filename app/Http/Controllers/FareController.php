@@ -31,7 +31,8 @@ class FareController extends Controller
     {
         $fares = Fare::all();
         $matchingVehicleNames = [];
-        return view('/user/fareCalculator', compact('fares', 'matchingVehicleNames'));
+        $sessionValue = 0;
+        return view('/user/fareCalculator', compact('fares', 'matchingVehicleNames', 'sessionValue'));
     }
 
     public function edit($id)
@@ -67,6 +68,8 @@ class FareController extends Controller
 
     public function fareCalculator(Request $request)
     {
+        $sessionValue = 1;
+
         $from = $request->input('from');
         $to = $request->input('to');
         $weight = $request->input('weight');
@@ -128,6 +131,6 @@ class FareController extends Controller
 
         // Retrieve all fares
 
-        return view('/user/fareCalculator', compact('matchingVehicleNames', 'fares', 'distance', 'totalFare'));
+        return view('/user/fareCalculator', compact('matchingVehicleNames', 'fares', 'distance', 'totalFare', 'sessionValue'));
     }
 }

@@ -35,14 +35,16 @@
             <input type="text" name="weight"><br>
             <button type="submit">Calculate</button>
         </form>
-        @if ($matchingVehicleNames)
-            <p> Total Cost: {{ $totalFare }}</p>
-            @foreach ($matchingVehicleNames as $vehicleName)
-                <p>Suggested Vehicle: {{ $vehicleName }}</p>
-                <br>
-            @endforeach
-        @else
-            <p>No matching vehicle found</p>
+        @if ($sessionValue != 0)
+            @if ($matchingVehicleNames)
+                <p> Total Cost: {{ $totalFare }}</p>
+                @foreach ($matchingVehicleNames as $vehicleName)
+                    <p>Suggested Vehicle: {{ $vehicleName }}</p>
+                    <br>
+                @endforeach
+            @else
+                <p>No matching vehicle found</p>
+            @endif
         @endif
     </section>
 @endsection
