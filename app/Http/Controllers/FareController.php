@@ -92,6 +92,10 @@ class FareController extends Controller
         $vehicleRoutes = VehicleRoute::all();
         $matchingVehicleNames = [];
         $distanceValue = 0;
+
+        $fares = Fare::all();
+        $totalFare = 0;
+        $distance = 0;
         foreach ($vehicleRoutes as $vehicleRoute) {
             $routes = explode(', ', $vehicleRoute->vehicle_routes);
 

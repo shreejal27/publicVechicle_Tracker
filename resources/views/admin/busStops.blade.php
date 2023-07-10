@@ -35,16 +35,14 @@
 @extends('necessary.admin_template')
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-    <section>
-        <h1>This is busStops</h1>
-    </section>
+
     @if (session('message'))
         <div class="alert alert-success">
             {{ session('message') }}
         </div>
     @endif
     <section class="form">
-        <h2>Add new Location for BusStops</h2>
+        <h2>Add new Location for Vehicle Stop</h2>
         <form action="{{ route('storeStops') }}" method="POST">
             @csrf
             <label> Info: </label>
