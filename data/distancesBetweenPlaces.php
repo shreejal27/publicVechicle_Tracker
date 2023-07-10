@@ -6,5 +6,11 @@ return [
     'kuleshwor|kirtipur' => 3.2,
     'kuleshwor|balkhu' => 1.7,
     'kuleshwor|chabahil' => 4.5,
+
+    'kalimati|teku' => 1.1,
+    'kalimati|kirtipur' => 3.1,
+    'kalimati|balkhu' => 1.5,
+    'kalimati|chabahil' => 4.3,
+    
     // Add more entries as per your dataset
 ];
