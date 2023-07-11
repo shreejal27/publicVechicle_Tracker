@@ -31,8 +31,8 @@
                 <a href="/driverDashboard">Dashboard</a><br><br>
                 <a href="/driverProfile">Profile </a><br><br>
                 <a href="/driverLiveLocation">Share Live Location</a><br><br>
-                <a href="/nearestBusStop">Nearest Bus Stop</a><br><br>
-                <a href="/fareCalculator">Fare Calculator</a><br><br>
+                <a href="#">Nearest Bus Stop</a><br><br>
+                <a href="#">Fare Calculator</a><br><br>
                 <a href="#">FeedBack/Complain/Ratings</a><br><br>
 
 
