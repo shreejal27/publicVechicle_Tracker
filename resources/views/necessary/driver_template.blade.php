@@ -28,12 +28,12 @@
                     </h5>
                 </section>
                 <br>
-                <a href="/userDashboard">Dashboard</a><br><br>
-                <a href="/userProfile">Profile </a><br><br>
-                <a href="/userTrackPublicVehicle">Share Live Location</a><br><br>
+                <a href="/driverDashboard">Dashboard</a><br><br>
+                <a href="/driverProfile">Profile </a><br><br>
+                <a href="/driverLiveLocation">Share Live Location</a><br><br>
                 <a href="/nearestBusStop">Nearest Bus Stop</a><br><br>
                 <a href="/fareCalculator">Fare Calculator</a><br><br>
-                <a href="/fareCalculator">FeedBack/Complain/Ratings</a><br><br>
+                <a href="#">FeedBack/Complain/Ratings</a><br><br>
 
 
                 <a href="/userLogout">Logout</a><br><br>

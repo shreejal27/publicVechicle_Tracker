@@ -186,3 +186,19 @@ Route::post('/storeComplainFeedback', [ComplainFeedbackController::class, 'store
 Route::get('/userLogout', function () {
     return view('index');
 });
+
+
+//driver dashboard
+Route::get('/driverDashboard', function () {
+    return view('driver.driverDashboard');
+});
+
+//driver profile
+Route::get('/driverProfile', function () {
+    return view('driver.driverProfile');
+});
+
+//driver live location
+Route::get('/driverLiveLocation', function () {
+    return view('driver.driverLiveLocation');
+});
