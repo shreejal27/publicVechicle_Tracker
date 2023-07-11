@@ -1,1 +1,3 @@
-<h1>this is from driver Index file</h1>
+@extends('necessary.driver_template')
+@section('content')
+@endsection
