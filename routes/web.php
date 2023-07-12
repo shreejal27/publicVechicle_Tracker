@@ -202,3 +202,9 @@ Route::get('/driverProfile', function () {
 Route::get('/driverLiveLocation', function () {
     return view('driver.driverLiveLocation');
 });
+
+//driver fare calculator
+Route::get('/driverFareCalculator', [FareController::class, 'getDriverFare']);
+
+//driver calculate fare
+Route::post('/calculateDriverFare', [FareController::class, 'driverFareCalculator'])->name('calculateDriverFare');

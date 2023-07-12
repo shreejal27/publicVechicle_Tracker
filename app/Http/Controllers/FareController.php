@@ -35,6 +35,14 @@ class FareController extends Controller
         return view('/user/fareCalculator', compact('fares', 'matchingVehicleNames', 'sessionValue'));
     }
 
+    public function getDriverFare()
+    {
+        $fares = Fare::all();
+        $matchingVehicleNames = [];
+        $sessionValue = 0;
+        return view('/driver/driverFareCalculator', compact('fares', 'sessionValue'));
+    }
+
     public function edit($id)
     {
         $fare = Fare::where('id', $id)->first();
@@ -132,5 +140,74 @@ class FareController extends Controller
         // Retrieve all fares
 
         return view('/user/fareCalculator', compact('matchingVehicleNames', 'fares', 'distance', 'totalFare', 'sessionValue'));
+    }
+
+
+    public function driverFareCalculator(Request $request)
+    {
+        $sessionValue = 1;
+
+        $from = $request->input('from');
+        $to = $request->input('to');
+        $weight = $request->input('weight');
+
+        if ($weight == null) {
+            $weight = 0;
+        }
+
+        if ($weight <= 15) {
+            // Free allowance of up to 15 kg
+            $weightPrice = 0;
+        } else {
+            // Charge Rs 5 per 10 kg for weight exceeding 15 kg
+            $extraWeight = $weight - 15;
+            $extraWeightCalculation = ceil($extraWeight / 10); // Round up to the nearest multiple of 10
+            $weightPrice = $extraWeightCalculation * 5;
+        }
+
+
+        $distances = include '../data/distancesBetweenPlaces.php';
+
+
+        $vehicleRoutes = VehicleRoute::all();
+        // $matchingVehicleNames = [];
+        $distanceValue = 0;
+
+        $fares = Fare::all();
+        $totalFare = 0;
+        $distance = 0;
+        foreach ($vehicleRoutes as $vehicleRoute) {
+            $routes = explode(', ', $vehicleRoute->vehicle_routes);
+
+            if (in_array($from, $routes) && in_array($to, $routes)) {
+                // $matchingVehicleNames[] = $vehicleRoute->vehicle_name;
+
+                $key1 = "$from|$to";
+                $key2 = "$to|$from";
+
+                if (isset($distances[$key1])) {
+                    $distance = $distances[$key1];
+                } elseif (isset($distances[$key2])) {
+                    $distance = $distances[$key2];
+                } else {
+                    $distance = 0;
+                }
+
+                $fares = Fare::all();
+                foreach ($fares as $fare) {
+                    if ($distance <= $fare->distance) {
+                        // $distanceValue = $fare->distance;
+                        $price = $fare->price;
+                        break;
+                    }
+                }
+                // dd($distanceValue, $weight, $price);
+                $totalFare =  $weightPrice + $price;
+            }
+        }
+
+        // Retrieve all fares
+
+        return view('/driver/driverFareCalculator', compact('fares', 'distance', 'totalFare', 'sessionValue'));
     }
 }

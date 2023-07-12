@@ -1,4 +1,4 @@
-@extends('necessary.user_template')
+@extends('necessary.driver_template')
 @section('content')
     <h1>This is to track the live public vehicle</h1>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
