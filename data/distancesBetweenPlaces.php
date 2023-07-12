@@ -1,5 +1,6 @@
 <?php
 // distances are in km 
+// doesn't work as one place can be reached via multiple routes
 return [
     'kuleshwor|kalimati' => 0.45,
     'kuleshwor|teku' => 1.3,
