@@ -87,7 +87,7 @@ Route::post('/login', [LoginController::class, 'loginCheck'])->name('loginCheck'
 //admin dashboard
 Route::get('/adminDashboard', function () {
     return view('admin.adminDashboard');
-});
+})->name('adminDashboard');
 
 //admin active public vehicle
 Route::get('/adminActivePublicVehicle', function () {
@@ -149,7 +149,8 @@ Route::post('/storeStops', [StopController::class, 'store'])->name('storeStops')
 //user dashboard
 Route::get('/userDashboard', function () {
     return view('user.userDashboard');
-});
+})->name('userDashboard');
+
 
 //user profile
 Route::get('/userProfile', function () {
@@ -191,7 +192,7 @@ Route::get('/userLogout', function () {
 //driver dashboard
 Route::get('/driverDashboard', function () {
     return view('driver.driverDashboard');
-});
+})->name('driverDashboard');
 
 //driver profile
 Route::get('/driverProfile', function () {

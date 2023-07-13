@@ -16,29 +16,27 @@ class LoginController extends Controller
         $userType = $request->userType;
 
         // Example: Check if the username and password match a user in the database
-        if ( $userType === 'admin') {
+        if ($userType === 'admin') {
             $admin = Admin::where('username', $username)->where('password', $password)->first();
             if ($admin) {
-                return redirect()->route('adminIndex')->with('success', 'Login successful');
-            }
-            else{
+                return redirect()->route('adminDashboard')->with('success', 'Login successful');
+            } else {
                 return redirect()->back()->with('error', 'Invalid username or password');
             }
-        } elseif ( $userType === 'user') {
+        } elseif ($userType === 'user') {
             $user = User::where('username', $username)->where('password', $password)->first();
             if ($user) {
                 // Authentication successful for user
-                return redirect()->route('userIndex')->with('success', 'Login successful');
+                return redirect()->route('userDashboard')->with('success', 'Login successful');
             } else {
                 // Authentication failed for user
                 return redirect()->back()->with('error', 'Invalid username or password');
             }
-        }
-        else{
+        } else {
             $driver = Driver::where('username', $username)->where('password', $password)->first();
             if ($driver) {
                 // Authentication successful for driver
-                return redirect()->route('driverIndex')->with('success', 'Login successful');
+                return redirect()->route('driverDashboard')->with('success', 'Login successful');
             } else {
                 // Authentication failed for driver
                 return redirect()->back()->with('error', 'Invalid username or password');
