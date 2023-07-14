@@ -209,3 +209,9 @@ Route::get('/driverFareCalculator', [FareController::class, 'getDriverFare']);
 
 //driver calculate fare
 Route::post('/calculateDriverFare', [FareController::class, 'driverFareCalculator'])->name('calculateDriverFare');
+
+//driver store live location
+Route::post('/storeDriverLocation', 'DriverLocationController@store')->name('storeDriverLocation');
+
+//get driver location into user
+Route::get('/getDriverLocation', 'DriverLocationController@getDriverLocation');

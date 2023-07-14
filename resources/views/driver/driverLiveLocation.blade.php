@@ -51,8 +51,35 @@
 
                         // Update the map view to the user's location
                         map.setView([latitude, longitude], 13);
+
+                        // Send location data to the server every second
+                        setInterval(function() {
+                            sendLocationToServer(latitude, longitude,
+                                true); // Assuming the driver's status is initially true
+                        }, 1000);
                     });
                 }
+            }
+
+            function sendLocationToServer(latitude, longitude, status) {
+                var data = {
+                    latitude: latitude,
+                    longitude: longitude,
+                    status: status
+                };
+
+                // Send the location data to the server using AJAX
+                $.ajax({
+                    url: '/storeDriverLocation',
+                    method: 'POST',
+                    data: data,
+                    success: function(response) {
+                        // Handle the success response if needed
+                    },
+                    error: function(error) {
+                        // Handle the error if needed
+                    }
+                });
             }
 
             // Function to hide the driver's location
