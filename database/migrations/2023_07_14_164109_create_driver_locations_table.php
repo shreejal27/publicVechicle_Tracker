@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('driver_locations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('driver_id');
+            $table->foreign('driver_id')->references('id')->on('drivers');
+            $table->decimal('latitude', 10, 7);
+            $table->decimal('longitude', 10, 7);
             $table->timestamps();
+
+            // Add foreign key constraint for driver_id referencing drivers table
+            $table->foreign('driver_id')->references('id')->on('drivers');
         });
     }
 
