@@ -8,10 +8,15 @@
         }
     </style>
     <section>
+        <?php
+        $driver_id = session()->get('driver_id');
+        echo $driver_id;
+        ?>
         <h1>Live Location Finder</h1>
         <button onclick="showDriverLocation()"> Show My Location</button>
         <button onclick="hideDriverLocation()"> Hide My Location</button>
         <div id="map"></div>
+
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
@@ -65,10 +70,14 @@
 
                 console.log('Sending Location Data:', data);
 
+
                 $.ajax({
                     url: '/storeDriverLocation',
                     method: 'POST',
                     data: data,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     success: function(response) {
                         console.log('Location Data Sent Successfully');
                     },

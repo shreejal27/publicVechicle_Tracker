@@ -2,6 +2,10 @@
 @section('content')
     <section>
         <!-- Additional content specific to the index file -->
+        <?php
+        $admin_id = session()->get('admin_id');
+        echo $admin_id;
+        ?>
         <h2>This is the Admin Index File</h2>
         <p>I am the Admin
             I have all the powers bitch

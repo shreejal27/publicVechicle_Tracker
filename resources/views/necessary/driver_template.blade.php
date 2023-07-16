@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Public Vehicle Tracker</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,9 +34,7 @@
                 <a href="/driverLiveLocation">Share Live Location</a><br><br>
                 <a href="/driverFareCalculator">Fare Calculator</a><br><br>
                 <a href="#">FeedBack/Complain/Ratings</a><br><br>
-
-
-                <a href="/userLogout">Logout</a><br><br>
+                <a href="/driverLogout">Logout</a><br><br>
                 <br>
             </div>
         </aside>

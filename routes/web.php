@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StopController;
 use App\Http\Controllers\ComplainFeedbackController;
+use App\Http\Controllers\DriverLocationController;
 use App\Http\Controllers\FareController;
 use App\Http\Controllers\VehicleRouteController;
 
@@ -84,6 +86,10 @@ Route::post('/storeDriver', [DriverController::class, 'store'])->name('storeDriv
 //to check the login credentials
 Route::post('/login', [LoginController::class, 'loginCheck'])->name('loginCheck');
 
+//login from controller after being logged out
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+
 //admin dashboard
 Route::get('/adminDashboard', function () {
     return view('admin.adminDashboard');
@@ -139,9 +145,8 @@ Route::get('/adminViewDriversReports', function () {
 });
 
 //admin logout
-Route::get('/adminLogout', function () {
-    return view('index');
-});
+Route::get('/adminLogout',[AdminController::class, 'logout'])->name('logout');
+
 
 //admin to store the busStops data
 Route::post('/storeStops', [StopController::class, 'store'])->name('storeStops');
@@ -184,10 +189,7 @@ Route::get('/feedbackComplain', function () {
 Route::post('/storeComplainFeedback', [ComplainFeedbackController::class, 'store'])->name('storeComplainFeedback');
 
 //user logout
-Route::get('/userLogout', function () {
-    return view('index');
-});
-
+Route::get('/userLogout',[UserController::class, 'logout'])->name('logout');
 
 //driver dashboard
 Route::get('/driverDashboard', function () {
@@ -211,7 +213,10 @@ Route::get('/driverFareCalculator', [FareController::class, 'getDriverFare']);
 Route::post('/calculateDriverFare', [FareController::class, 'driverFareCalculator'])->name('calculateDriverFare');
 
 //driver store live location
-Route::post('/storeDriverLocation', 'DriverLocationController@store')->name('storeDriverLocation');
+Route::post('/storeDriverLocation', [DriverLocationController::class, 'store'])->name('storeDriverLocation');
 
 //get driver location into user
 Route::get('/getDriverLocation', 'DriverLocationController@getDriverLocation');
+
+//driver logout
+Route::get('/driverLogout', [DriverController::class, 'logout'])->name('logout');

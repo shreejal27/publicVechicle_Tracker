@@ -19,6 +19,7 @@ class LoginController extends Controller
         if ($userType === 'admin') {
             $admin = Admin::where('username', $username)->where('password', $password)->first();
             if ($admin) {
+                session(['admin_id' => $admin->id]);
                 return redirect()->route('adminDashboard')->with('success', 'Login successful');
             } else {
                 return redirect()->back()->with('error', 'Invalid username or password');
@@ -27,6 +28,7 @@ class LoginController extends Controller
             $user = User::where('username', $username)->where('password', $password)->first();
             if ($user) {
                 // Authentication successful for user
+                session(['user_id' => $user->id]);
                 return redirect()->route('userDashboard')->with('success', 'Login successful');
             } else {
                 // Authentication failed for user
@@ -36,11 +38,17 @@ class LoginController extends Controller
             $driver = Driver::where('username', $username)->where('password', $password)->first();
             if ($driver) {
                 // Authentication successful for driver
+                session(['driver_id' => $driver->id]);
                 return redirect()->route('driverDashboard')->with('success', 'Login successful');
             } else {
                 // Authentication failed for driver
                 return redirect()->back()->with('error', 'Invalid username or password');
             }
         }
+    }
+
+    public function showLoginForm()
+    {
+        return view('login');
     }
 }

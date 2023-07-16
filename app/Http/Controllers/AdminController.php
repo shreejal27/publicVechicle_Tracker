@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -29,14 +30,12 @@ class AdminController extends Controller
             'username' => 'required',
             'password' => 'required',
         ]);
+    }
 
-    //     // Create a new admin record with the validated data
-    //     $admin = Admin::create($validatedData);
-
-    //     // Redirect to the admin index page with a success message
-    //     return redirect()->route('admin.index')->with('success', 'Admin created successfully');
-    // }
-
-    // // Add other methods for edit, update, delete, etc., as per your requirements
-}
+    public function logout()
+    {
+        Auth::logout();
+        session()->forget('admin_id');
+        return redirect()->route('login')->with('success', 'Admin Logout successful');
+    }
 }

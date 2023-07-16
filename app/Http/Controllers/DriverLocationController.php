@@ -13,10 +13,12 @@ class DriverLocationController extends Controller
         $longitude = $request->input('longitude');
         $status = $request->input('status');
 
-        $driverId = auth()->user()->id;
+        // $driverId = auth()->user()->id;
+
+        dd($latitude, $longitude, $status);
 
         $driverLocation = DriverLocation::updateOrCreate(
-            ['driver_id' => $driverId],
+            // ['driver_id' => $driverId],
             ['latitude' => $latitude, 'longitude' => $longitude, 'status' => $status]
         );
 
