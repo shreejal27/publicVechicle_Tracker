@@ -16,8 +16,11 @@
         <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
         </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             var map = L.map('map').setView([0, 0], 13);
+            var driverMarker; // Declare the driver marker variable outside the function
+            var locationInterval; // Declare the interval variable
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
@@ -25,18 +28,12 @@
 
             map.setView([27.694367, 85.298619], 13);
 
-            // Function to show the driver's location
-            var driverMarker; // Declare the driver marker variable outside the function
-
-            // Function to show the driver's location
             function showDriverLocation() {
-                // Get the user's current location
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var latitude = position.coords.latitude;
                         var longitude = position.coords.longitude;
 
-                        // Create a custom icon for the user's location
                         var userIcon = L.icon({
                             iconUrl: '/images/markerIcons/userMarker.png',
                             iconSize: [32, 32],
@@ -44,18 +41,16 @@
                             popupAnchor: [0, -32]
                         });
 
-                        // Create a marker for the user's location with the custom icon
                         driverMarker = L.marker([latitude, longitude], {
                             icon: userIcon
                         }).addTo(map);
 
-                        // Update the map view to the user's location
                         map.setView([latitude, longitude], 13);
 
-                        // Send location data to the server every second
-                        setInterval(function() {
-                            sendLocationToServer(latitude, longitude,
-                                true); // Assuming the driver's status is initially true
+                        console.log('User Location:', latitude, longitude);
+
+                        locationInterval = setInterval(function() {
+                            sendLocationToServer(latitude, longitude, true);
                         }, 1000);
                     });
                 }
@@ -68,25 +63,28 @@
                     status: status
                 };
 
-                // Send the location data to the server using AJAX
+                console.log('Sending Location Data:', data);
+
                 $.ajax({
                     url: '/storeDriverLocation',
                     method: 'POST',
                     data: data,
                     success: function(response) {
-                        // Handle the success response if needed
+                        console.log('Location Data Sent Successfully');
                     },
                     error: function(error) {
-                        // Handle the error if needed
+                        console.error('Error Sending Location Data:', error);
                     }
                 });
             }
 
-            // Function to hide the driver's location
             function hideDriverLocation() {
                 if (driverMarker) {
-                    map.removeLayer(driverMarker); // Remove the driver marker from the map
+                    map.removeLayer(driverMarker);
                 }
+
+                // Clear the locationInterval to stop sending location data
+                clearInterval(locationInterval);
             }
         </script>
     </section>
