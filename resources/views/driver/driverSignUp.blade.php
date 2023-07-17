@@ -120,6 +120,16 @@
             color: white;
         }
 
+        select {
+            width: 100%;
+            padding: 15px 10px 15px 10px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.397);
+            border-radius: 10px;
+            background-color: #A9907E;
+            color: #F3DEBA;
+        }
+
         .submit {
             border: none;
             outline: none;
@@ -163,48 +173,55 @@
             <p class="message">Signup now. </p>
             <div class="flex">
                 <label>
-                    <input required="" placeholder="" type="text" class="input" name="firstname">
+                    <input required type="text" class="input" name="firstname">
                     <span>Firstname</span>
                 </label>
 
                 <label>
-                    <input required="" placeholder="" type="text" class="input" name="lastname">
+                    <input required type="text" class="input" name="lastname">
                     <span>Lastname</span>
                 </label>
             </div>
 
 
             <label>
-                <input required="" placeholder="" type="number" class="input" name="contact_number">
+                <input required type="number" class="input" name="contact_number">
                 <span>Contact Number </span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input" name="address">
+                <input required type="text" class="input" name="address">
                 <span>Address </span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input" name="license_number">
+                <input required type="text" class="input" name="license_number">
                 <span>License Number</span>
             </label>
 
+            <select name="vehicle_type" class="mb-1" required>
+                <option value="">--Select Your Vehicle--</option>
+                <option value="bus">Bus</option>
+                <option value="micro">Micro</option>
+                <option value="tempo">Tempo</option>
+            </select>
+
             <label>
-                <input required="" placeholder="" type="text" class="input" name="vehicle_number">
+                <input required type="text" class="input" name="vehicle_number">
                 <span>Vechicle Number </span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input" name="username">
+                <input required type="text" class="input" name="username">
                 <span>UserName</span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="password" class="input" name="password">
+                <input required type="password" class="input" name="password">
                 <span>Password</span>
             </label>
             <label>
-                <input required="" placeholder="" type="password" class="input">
+                <input required type="password" class="input">
                 <span>Confirm password</span>
             </label>
             <button class="submit">Submit</button>

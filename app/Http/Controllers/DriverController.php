@@ -22,9 +22,10 @@ class DriverController extends Controller
         $driver = new Driver;
         $driver->firstname = $request->firstname;
         $driver->lastname = $request->lastname;
+        $driver->contact_number = $request->contact_number;
         $driver->address = $request->address;
         $driver->license_number = $request->license_number;
-        $driver->contact_number = $request->contact_number;
+        $driver->vehicle_type = $request->vehicle_type;
         $driver->vehicle_number = $request->vehicle_number;
         $driver->username = $request->username;
         $driver->password = $request->password;

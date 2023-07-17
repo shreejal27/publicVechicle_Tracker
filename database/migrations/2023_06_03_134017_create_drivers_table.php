@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');  
-            $table->string('license_number')->unique();
             $table->string('contact_number', 10);       
+            $table->string('license_number')->unique();
+            $table->string('vehicle_type');
             $table->string('vehicle_number')->unique();
             $table->string('username');    
             $table->string('password'); 
