@@ -39,6 +39,7 @@ class LoginController extends Controller
             if ($driver) {
                 // Authentication successful for driver
                 session(['driver_id' => $driver->id]);
+                session(['vehicleType' => $driver->vehicle_type]);
                 return redirect()->route('driverDashboard')->with('success', 'Login successful');
             } else {
                 // Authentication failed for driver

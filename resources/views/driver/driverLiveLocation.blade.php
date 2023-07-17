@@ -10,7 +10,8 @@
     <section>
         <?php
         $driver_id = session()->get('driver_id');
-        echo $driver_id;
+        $vehicleType = session()->get('vehicleType');
+        
         ?>
         <h1>Live Location Finder</h1>
         <button onclick="showDriverLocation()"> Show My Location</button>
@@ -25,6 +26,8 @@
         <script>
             var map = L.map('map').setView([0, 0], 13);
             var driverMarker; // Declare the driver marker variable outside the function
+
+
             var locationInterval; // Declare the interval variable
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -33,21 +36,33 @@
 
             map.setView([27.694367, 85.298619], 13);
 
+
             function showDriverLocation() {
+
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var latitude = position.coords.latitude;
                         var longitude = position.coords.longitude;
+                        var vehicleType = "<?php echo $vehicleType; ?>";
+                        console.log(vehicleType);
+                        var iconUrl = '';
 
-                        var userIcon = L.icon({
-                            iconUrl: '/images/markerIcons/userMarker.png',
+                        if (vehicleType == 'bus')
+                            iconUrl = '{{ asset('images/markerIcons/bus.png') }}';
+                        else if (vehicleType == 'micro')
+                            iconUrl = '{{ asset('images/markerIcons/micro.png') }}';
+                        else if (vehicleType == 'tempo')
+                            iconUrl = '{{ asset('images/markerIcons/tempo.png') }}';
+
+                        var vehicleIcon = L.icon({
+                            iconUrl: iconUrl,
                             iconSize: [32, 32],
                             iconAnchor: [16, 32],
                             popupAnchor: [0, -32]
                         });
 
                         driverMarker = L.marker([latitude, longitude], {
-                            icon: userIcon
+                            icon: vehicleIcon
                         }).addTo(map);
 
                         map.setView([latitude, longitude], 13);
