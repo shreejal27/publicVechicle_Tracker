@@ -67,9 +67,37 @@
 
                         map.setView([latitude, longitude], 13);
 
+                        sendLocationToServer(latitude, longitude);
+
                         console.log('User Location:', latitude, longitude);
+
+
                     });
                 }
+            }
+
+            function sendLocationToServer(latitude, longitude) {
+                var data = {
+                    latitude: latitude,
+                    longitude: longitude
+                };
+
+                console.log('Sending Location Data:', data);
+
+                $.ajax({
+                    url: "/storeDriverLocation",
+                    method: 'POST',
+                    data: data,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        console.log('Location Data Sent Successfully');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error Sending Location Data:', error);
+                    }
+                });
             }
 
 
