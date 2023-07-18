@@ -68,39 +68,10 @@
                         map.setView([latitude, longitude], 13);
 
                         console.log('User Location:', latitude, longitude);
-
-                        locationInterval = setInterval(function() {
-                            sendLocationToServer(latitude, longitude, true);
-                        }, 1000);
                     });
                 }
             }
 
-            function sendLocationToServer(latitude, longitude, status) {
-                var data = {
-                    latitude: latitude,
-                    longitude: longitude,
-                    status: status
-                };
-
-                console.log('Sending Location Data:', data);
-
-
-                $.ajax({
-                    url: '/storeDriverLocation',
-                    method: 'POST',
-                    data: data,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        console.log('Location Data Sent Successfully');
-                    },
-                    error: function(error) {
-                        console.error('Error Sending Location Data:', error);
-                    }
-                });
-            }
 
             function hideDriverLocation() {
                 if (driverMarker) {
