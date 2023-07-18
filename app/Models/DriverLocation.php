@@ -12,6 +12,7 @@ class DriverLocation extends Model
         'driver_id',
         'latitude',
         'longitude',
+        'status',
     ];
 
     public function driver()

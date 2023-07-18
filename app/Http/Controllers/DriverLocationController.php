@@ -16,6 +16,7 @@ class DriverLocationController extends Controller
        
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
+        $status = $request->input('status');
         
         $driverId = session('driver_id');
         
@@ -24,13 +25,15 @@ class DriverLocationController extends Controller
         if ($driverLocation) {
             $driverLocation->update([
                 'latitude' => $latitude,
-                'longitude' => $longitude
+                'longitude' => $longitude,
+                'status' => $status
             ]);
         } else {
             DriverLocation::create([
                 'driver_id' => $driverId,
                 'latitude' => $latitude,
-                'longitude' => $longitude
+                'longitude' => $longitude,
+                'status' => $status
             ]);
         }
     

@@ -41,6 +41,7 @@
 
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(function(position) {
+                        var status = 'on';
                         var latitude = position.coords.latitude;
                         var longitude = position.coords.longitude;
                         var vehicleType = "<?php echo $vehicleType; ?>";
@@ -67,19 +68,20 @@
 
                         map.setView([latitude, longitude], 13);
 
-                        sendLocationToServer(latitude, longitude);
+                        sendLocationToServer(latitude, longitude, status);
 
-                        console.log('User Location:', latitude, longitude);
+                        console.log('User Location:', latitude, longitude, status);
 
 
                     });
                 }
             }
 
-            function sendLocationToServer(latitude, longitude) {
+            function sendLocationToServer(latitude, longitude, status) {
                 var data = {
                     latitude: latitude,
-                    longitude: longitude
+                    longitude: longitude,
+                    status: status
                 };
 
                 console.log('Sending Location Data:', data);
