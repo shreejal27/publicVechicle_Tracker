@@ -108,6 +108,10 @@
                     map.removeLayer(driverMarker);
                 }
 
+                // Send the status "off" to the server
+                sendLocationToServer(0, 0, 'off');
+                console.log('User Location: off');
+
                 // Clear the locationInterval to stop sending location data
                 clearInterval(locationInterval);
             }
