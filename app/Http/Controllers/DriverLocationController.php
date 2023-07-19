@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DriverLocation;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 
 class DriverLocationController extends Controller
@@ -53,8 +54,22 @@ class DriverLocationController extends Controller
     public function getDriverLocationAdmin()
     {
         $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
-        dd("Hello");
-        return view('/admin/adminActivePublicVehicle', compact('driverLocations'));
-    }
 
+        $driverId = $driverLocations->pluck('driver_id');
+
+        $driverDetails = [];
+        foreach ($driverLocations as $location) {
+
+            $driverName = $location->driver->firstname; // Access driver's firstname through the 'driver' relationship
+            $vehicleType = $location->driver->vehicle_type; // Access driver's vehicle_type through the 'driver' relationship
+            $driverDetails[] = [
+         
+                'driver_name' => $driverName,
+                'vehicle_type' => $vehicleType,
+            ];
+        
+    }
+    return view('/admin/adminActivePublicVehicle', compact('driverLocations'));
+
+}
 }
