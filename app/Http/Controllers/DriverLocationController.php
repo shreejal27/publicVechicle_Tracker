@@ -49,4 +49,12 @@ class DriverLocationController extends Controller
 
         return response()->json($driverLocation);
     }
+
+    public function getDriverLocationAdmin()
+    {
+        $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
+        dd("Hello");
+        return view('/admin/adminActivePublicVehicle', compact('driverLocations'));
+    }
+
 }

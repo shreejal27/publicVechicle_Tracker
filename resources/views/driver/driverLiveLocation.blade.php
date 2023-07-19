@@ -12,6 +12,8 @@
         $driver_id = session()->get('driver_id');
         $vehicleType = session()->get('vehicleType');
         
+        echo $driver_id;
+        
         ?>
         <h1>Live Location Finder</h1>
         <button onclick="showDriverLocation()"> Show My Location</button>

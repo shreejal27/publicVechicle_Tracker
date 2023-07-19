@@ -96,14 +96,17 @@ Route::get('/adminDashboard', function () {
 })->name('adminDashboard');
 
 //admin active public vehicle
-Route::get('/adminActivePublicVehicle', function () {
-    return view('admin.adminActivePublicVehicle');
-});
+// Route::get('/adminActivePublicVehicle', function () {
+//     return view('admin.adminActivePublicVehicle');
+// });
 
-//admin active public vechicles
-Route::get('/adminVehicleRoute', function () {
-    return view('admin.adminVehicleRoute');
-});
+// //admin active public vechicles
+// Route::get('/adminVehicleRoute', function () {
+//     return view('admin.adminVehicleRoute');
+// });
+
+//admin active public vehicle working
+Route::get('/adminActivePublicVehicle', [DriverLocationController::class, 'getDriverLocationAdmin'])->name('getDriverLocationAdmin');
 
 //get vehicle routes
 Route::get('/adminVehicleRoute', [VehicleRouteController::class, 'index'])->name('vehicleRoute.index');
