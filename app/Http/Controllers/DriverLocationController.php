@@ -55,21 +55,20 @@ class DriverLocationController extends Controller
     {
         $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
 
-        $driverId = $driverLocations->pluck('driver_id');
+        // $driverId = $driverLocations->pluck('driver_id');
 
         $driverDetails = [];
         foreach ($driverLocations as $location) {
-
             $driverName = $location->driver->firstname; // Access driver's firstname through the 'driver' relationship
             $vehicleType = $location->driver->vehicle_type; // Access driver's vehicle_type through the 'driver' relationship
+    
             $driverDetails[] = [
-         
                 'driver_name' => $driverName,
                 'vehicle_type' => $vehicleType,
             ];
-        
-    }
-    return view('/admin/adminActivePublicVehicle', compact('driverLocations'));
+        }
+    
+    return view('/admin/adminActivePublicVehicle', compact('driverLocations', 'driverDetails'));
 
 }
 }
