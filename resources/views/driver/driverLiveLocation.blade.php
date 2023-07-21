@@ -16,8 +16,7 @@
         
         ?>
         <h1>Live Location Finder</h1>
-        <button onclick="showDriverLocation()"> Show My Location</button>
-        <button onclick="hideDriverLocation()"> Hide My Location</button>
+        <button onclick="toggleDriverLocation()" id="showLocationBtn"> Show My Location</button>
         <div id="map"></div>
 
 
@@ -28,6 +27,7 @@
         <script>
             var map = L.map('map').setView([0, 0], 13);
             var driverMarker = null; // Declare the driver marker variable outside the function
+            var isLocationVisible = false;
 
             var locationInterval; // Declare the interval variable
 
@@ -38,8 +38,17 @@
             map.setView([27.694367, 85.298619], 13);
 
 
+            function toggleDriverLocation() {
+                if (isLocationVisible) {
+                    hideDriverLocation();
+                    document.getElementById("showLocationBtn").textContent = "Show My Location";
+                } else {
+                    showDriverLocation();
+                    document.getElementById("showLocationBtn").textContent = "Hide My Location";
+                }
+            }
+
             function showDriverLocation() {
-                var showLocation = true;
 
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -64,6 +73,11 @@
                             popupAnchor: [0, -32]
                         });
 
+                        // If marker already exists, remove it before adding a new one
+                        if (driverMarker) {
+                            map.removeLayer(driverMarker);
+                        }
+
                         driverMarker = L.marker([latitude, longitude], {
                             icon: vehicleIcon
                         }).addTo(map);
@@ -74,11 +88,10 @@
 
                         console.log('User Location:', latitude, longitude, status);
 
-                        if (showLocation) {
-                            // Set a timeout to call the function again after a certain interval (e.g., 1000ms)
-                            locationInterval = setTimeout(showDriverLocation, 1000);
-                        }
+                        isLocationVisible = true;
 
+                        // Set a timeout to call the function again after a certain interval (e.g., 1000ms)
+                        locationInterval = setTimeout(showDriverLocation, 1000);
                     });
                 }
             }
@@ -110,9 +123,10 @@
 
 
             function hideDriverLocation() {
-
-
-                console.log('Driver marker removed from the map.');
+                if (driverMarker) {
+                    map.removeLayer(driverMarker);
+                    driverMarker = null; // Reset the marker variable
+                }
 
                 // Send the status "off" to the server
                 sendLocationToServer(0, 0, 'off');
@@ -121,9 +135,7 @@
                 // Clear the locationInterval to stop sending location data
                 clearInterval(locationInterval);
 
-                // Set showLocation to false to stop showing the location
-                showLocation = false;
-                console.log('showLocation set to false.');
+                isLocationVisible = false;
             }
         </script>
     </section>
