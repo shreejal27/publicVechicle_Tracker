@@ -27,8 +27,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             var map = L.map('map').setView([0, 0], 13);
-            var driverMarker; // Declare the driver marker variable outside the function
-
+            var driverMarker = null; // Declare the driver marker variable outside the function
 
             var locationInterval; // Declare the interval variable
 
@@ -40,6 +39,7 @@
 
 
             function showDriverLocation() {
+                var showLocation = true;
 
                 if ("geolocation" in navigator) {
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -74,6 +74,10 @@
 
                         console.log('User Location:', latitude, longitude, status);
 
+                        if (showLocation) {
+                            // Set a timeout to call the function again after a certain interval (e.g., 1000ms)
+                            locationInterval = setTimeout(showDriverLocation, 1000);
+                        }
 
                     });
                 }
@@ -106,9 +110,9 @@
 
 
             function hideDriverLocation() {
-                if (driverMarker) {
-                    map.removeLayer(driverMarker);
-                }
+
+
+                console.log('Driver marker removed from the map.');
 
                 // Send the status "off" to the server
                 sendLocationToServer(0, 0, 'off');
@@ -116,6 +120,10 @@
 
                 // Clear the locationInterval to stop sending location data
                 clearInterval(locationInterval);
+
+                // Set showLocation to false to stop showing the location
+                showLocation = false;
+                console.log('showLocation set to false.');
             }
         </script>
     </section>
