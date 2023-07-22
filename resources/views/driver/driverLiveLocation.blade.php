@@ -116,6 +116,10 @@
 
                         currentIndex++;
 
+                        if (currentIndex >= coordinates.length) {
+                            currentIndex = 0;
+                        }
+
                         map.setView([latitude, longitude], 13);
 
                         sendLocationToServer(latitude, longitude, status);

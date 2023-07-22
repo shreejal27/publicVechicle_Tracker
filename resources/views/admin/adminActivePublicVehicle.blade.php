@@ -46,36 +46,57 @@
                     // Update the map view to the user's location
                     map.setView([latitude, longitude], 13);
 
-
                     var places = [];
 
-                    @foreach ($driverLocations as $driverLocation)
-                        var place = {
+                    function updateDriverLocation() {
+                        // Clear existing markers from the map
+                        for (var i = 0; i < placeMarkers.length; i++) {
+                            map.removeLayer(placeMarkers[i]);
+                        }
 
-                            latitude: {{ $driverLocation->latitude }},
-                            longitude: {{ $driverLocation->longitude }}
-                        };
+                        // Clear the placeMarkers array
+                        placeMarkers = [];
 
-                        places.push(place);
-                        iconUrl = '{{ asset('images/markerIcons/B.png') }}';
+                        // Assuming you have the updated driverLocations array in the controller,
+                        // you can pass it to JavaScript in the following way:
+                        var driverLocations = {!! json_encode($driverLocations) !!};
 
+                        // Add new markers for each driver location
+                        for (var i = 0; i < driverLocations.length; i++) {
+                            var driverLocation = driverLocations[i];
+                            var place = {
+                                latitude: driverLocation.latitude,
+                                longitude: driverLocation.longitude
+                            };
 
-                        var placeIcon = L.icon({
-                            iconUrl: iconUrl,
-                            iconSize: [32, 32],
-                            iconAnchor: [16, 32],
-                            popupAnchor: [0, -32]
-                        });
+                            places.push(place);
+                            iconUrl = '{{ asset('images/markerIcons/B.png') }}';
 
-                        var marker = L.marker([place.latitude, place.longitude], {
-                            icon: placeIcon
-                        }).addTo(map);
+                            var placeIcon = L.icon({
+                                iconUrl: iconUrl,
+                                iconSize: [32, 32],
+                                iconAnchor: [16, 32],
+                                popupAnchor: [0, -32]
+                            });
 
+                            var marker = L.marker([place.latitude, place.longitude], {
+                                icon: placeIcon
+                            }).addTo(map);
 
+                            placeMarkers.push(marker);
+                        }
+                    }
 
-                        placeMarkers.push(marker);
-                    @endforeach
+                    // Call the updateDriverLocation function initially to display the initial locations
+                    updateDriverLocation();
 
+                    // Call the updateDriverLocation function every 1000 milliseconds (1 second)
+                    var locationInterval = setInterval(updateDriverLocation, 1000);
+
+                    // Clear the interval when the user leaves the page
+                    window.addEventListener('beforeunload', function() {
+                        clearInterval(locationInterval);
+                    });
 
                 });
             }
