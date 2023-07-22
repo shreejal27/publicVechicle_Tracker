@@ -1,7 +1,6 @@
 <style>
     .addVehicleRoute {
         margin: 10px;
-        width: 50%;
         padding: 20px;
         background-color: #675d50;
         color: #F3DEBA;
@@ -17,9 +16,17 @@
         background-color: #A9907E;
         padding: 0.75rem 1rem;
         color: white;
+        margin-bottom: 10px !important;
+    }
+
+    input:focus {
+        border-color: #F3DEBA;
+        background-color: #F3DEBA;
+        color: black;
     }
 
     label {
+        font-size: 1.2rem !important;
         margin-bottom: 0px !important;
     }
 
@@ -27,17 +34,40 @@
         height: 40px;
         width: 100%;
         border: 2px solid #ABC4AA;
-        border-radius: 0.375rem;
+        border-radius: 0.375rem !important;
         outline: 0;
         background-color: #F3DEBA;
         padding: 0.75rem 1rem;
         color: black;
     }
+
+    button:hover {
+        background-color: #ABC4AA;
+
+    }
+
+    table {
+
+        background-color: #675d50;
+
+    }
+
+    tr,
+    td,
+    th {
+        color: #F3DEBA;
+        border: 1px solid black !important;
+    }
+
+    a {
+        color: #F3DEBA !important;
+        text-decoration: none !important;
+    }
 </style>
 @extends('necessary.admin_template')
 @section('content')
-    <section class="addVehicleRoute">
-        <h2>Add Vechicle Route</h2>
+    <section class="addVehicleRoute col-md-5 col-sm-5 col-lg-5 col-xl-5">
+        <h3>Add Vechicle Route</h3>
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
@@ -53,9 +83,9 @@
             <br>
             <button type="submit" class="mt-3">Add</button>
     </section>
-    <section>
+    <section class="m-3 mt-4">
         <h2>Vechicle Routes</h2>
-        <table class="table">
+        <table class="table  table-hover col-md-12 col-sm-12 col-lg-12 col-xl-12">
             <thead>
                 <tr>
                     <th>SN</th>
