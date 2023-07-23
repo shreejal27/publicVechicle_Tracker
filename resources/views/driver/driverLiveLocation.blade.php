@@ -25,7 +25,7 @@
         </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            var map = L.map('map').setView([0, 0], 13);
+            var map = L.map('map').setView([0, 0], 16);
             var driverMarker = null; // Declare the driver marker variable outside the function
             var isLocationVisible = false;
 
@@ -65,7 +65,7 @@
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
 
-            map.setView([27.694367, 85.298619], 13);
+            map.setView([27.694367, 85.298619], 16);
 
 
             function toggleDriverLocation() {
@@ -120,7 +120,7 @@
                             currentIndex = 0;
                         }
 
-                        map.setView([latitude, longitude], 13);
+                        map.setView([latitude, longitude], 16);
 
                         sendLocationToServer(latitude, longitude, status);
 
