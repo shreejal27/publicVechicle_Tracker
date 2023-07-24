@@ -166,9 +166,10 @@ Route::get('/userProfile', function () {
 });
 
 //user track public vehicle
-Route::get('/userTrackPublicVehicle', function () {
-    return view('user.trackPublicVehicle');
-});
+// Route::get('/userTrackPublicVehicle', function () {
+//     return view('user.trackPublicVehicle');
+// });
+Route::get('/userActivePublicVehicle', [DriverLocationController::class, 'getDriverLocationUser'])->name('getDriverLocationUser');
 
 //user nearest bus stop
 Route::get('/nearestBusStop', [StopController::class, 'stopMarkerUser'])->name('stopMarkerUser');

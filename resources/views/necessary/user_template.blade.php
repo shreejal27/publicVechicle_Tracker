@@ -30,7 +30,7 @@
                 <br>
                 <a href="/userDashboard">Dashboard</a><br><br>
                 <a href="/userProfile">Profile</a><br><br>
-                <a href="/userTrackPublicVehicle">Track Public Vehicle </a><br><br>
+                <a href="/userActivePublicVehicle">Track Public Vehicle </a><br><br>
                 <a href="/nearestBusStop">Nearest Bus Stop</a><br><br>
                 <a href="/fareCalculator">Fare Calculator</a><br><br>
                 <a href="/feedbackComplain">Feedback/Complain/Query</a><br><br>

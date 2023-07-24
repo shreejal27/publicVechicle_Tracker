@@ -70,5 +70,10 @@ class DriverLocationController extends Controller
     
     return view('/admin/adminActivePublicVehicle', compact('driverLocations', 'driverDetails'));
 
-}
+    }
+
+    public function getDriverLocationUser(){
+        $driverLocations = DriverLocation::all();
+        return response()->json($driverLocations);
+    }
 }
