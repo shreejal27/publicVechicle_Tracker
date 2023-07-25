@@ -74,6 +74,24 @@ class DriverLocationController extends Controller
 
     public function getDriverLocationUser(){
         $driverLocations = DriverLocation::all();
-        return response()->json($driverLocations);
+        
+        $driverDetails = [];
+        $i=0;
+        foreach($driverLocations as $driverData){
+            $driverDetails[$i]['driverId'] = $driverData->driver_id;
+
+            //get driver name
+            $driver = Driver::where('id', $driverData->driver_id)->first();
+
+            
+            $driverDetails[$i]['driverName'] = $driver->firstname;
+            $driverDetails[$i]['vehicleType'] = $driver->vehicle_type;
+
+            $driverDetails[$i]['latitude'] = $driverData->latitude;
+            $driverDetails[$i]['longitude'] = $driverData->longitude;
+            $driverDetails[$i]['status'] = $driverData->status;
+            $i++;
+        }
+        return view('/user/trackPublicVehicle', compact('driverDetails'));
     }
 }

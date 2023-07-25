@@ -12,6 +12,14 @@
 
         <div id="map"></div>
 
+        @foreach ($driverDetails as $driver)
+            {{ $driver['latitude'] }}
+            {{ $driver['longitude'] }}
+            {{ $driver['driverName'] }}
+            {{ $driver['vehicleType'] }}
+            {{ $driver['status'] }}
+        @endforeach
+
         <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
         </script>
@@ -59,7 +67,7 @@
 
                         // Assuming you have the updated driverLocations array in the controller,
                         // you can pass it to JavaScript in the following way:
-                        var driverLocations = {!! json_encode($driverLocations) !!};
+                        var driverLocations = @json($driverDetails);
 
                         // Add new markers for each driver location
                         for (var i = 0; i < driverLocations.length; i++) {
