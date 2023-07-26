@@ -7,25 +7,23 @@
         echo $admin_id;
         ?>
         <h2>This is the Admin Index File</h2>
-        <p>I am the Admin
-            I have all the powers bitch
 
-        </p>
+        <section class="d-flex">
+            <div class="row ml-3">
+                <div>
+                    <p> registered Users:
+                        <br>
+                        11
+                    </p>
 
-
-        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus autem iste eveniet quibusdam, nesciunt
-            deserunt accusamus quia quod velit sequi consequuntur unde provident earum eligendi eum exercitationem tempore
-            sint ipsa?</h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. A, itaque? Cupiditate autem pariatur rem dolorem. Et,
-            consectetur provident aspernatur beatae eaque delectus reiciendis expedita magni, reprehenderit ipsum error quae
-            natus.
-        </p>
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore laudantium adipisci error rerum quisquam,
-            cupiditate rem distinctio doloremque. Amet in tempore nihil fuga quibusdam tempora quaerat eaque ea! Eaque,
-            ipsam?</h1>
-
-
-
+                </div>
+                <div>
+                    <p>registered Drivers:
+                        <br>
+                        20
+                    </p>
+                </div>
+            </div>
+        </section>
     </section>
 @endsection

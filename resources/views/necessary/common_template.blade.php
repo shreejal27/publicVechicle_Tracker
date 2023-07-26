@@ -19,7 +19,7 @@
         </main>
     </div>
 
-    @include('necessary.footer')
+    @include('necessary.outerFooter')
 </body>
 
 </html>
