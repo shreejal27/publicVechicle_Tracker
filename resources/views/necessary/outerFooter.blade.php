@@ -1,10 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <style>
     li {
         list-style: none;
     }
 
     .firstRow {
-        height: 2rem;
+        min-height: 2.5rem;
         border-bottom: 1px solid #F3DEBA;
     }
 
@@ -20,11 +21,11 @@
 </style>
 <footer>
     <div class="box pl-5 pr-5">
-        <div class="firstRow mb-3">
-            <span class="float-right ml-2">asdfkasdf</span>
-            <span class="float-right ml-2">assssssf</span>
-            <span class="float-right ml-2">sdaaaaafe</span>
-            <span class="float-right ml-2">sdaawwaafe</span>
+        <div class="firstRow mb-3 pt-2">
+            <span class="float-right ml-2"><i class="fab fa-linkedin-in fa-lg ml-3 mr-4"></i></span>
+            <span class="float-right ml-2"><i class="fab fa-twitter fa-lg ml-3"></i></span>
+            <span class="float-right ml-2"><i class="fab fa-instagram fa-lg ml-3"></i></span>
+            <span class="float-right ml-2"><i class="fab fa-facebook-f fa-lg ml-3"></i></span>
         </div>
         <div class="row mb-5">
             <div class="col-md-3 footer-box">
