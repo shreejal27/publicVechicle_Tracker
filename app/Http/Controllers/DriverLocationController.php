@@ -73,7 +73,7 @@ class DriverLocationController extends Controller
     }
 
     public function getDriverLocationUser(){
-        $driverLocations = DriverLocation::all();
+        $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
         
         $driverDetails = [];
         $i=0;

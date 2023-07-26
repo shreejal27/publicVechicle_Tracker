@@ -17,7 +17,6 @@
             {{ $driver['longitude'] }}
             {{ $driver['driverName'] }}
             {{ $driver['vehicleType'] }}
-            {{ $driver['status'] }}
         @endforeach
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
