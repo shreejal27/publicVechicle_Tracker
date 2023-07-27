@@ -16,7 +16,7 @@
 
 <body>
 
-    <div class="container col-md-12" style="padding:0">
+    <div class="container col-md-12 col-sm-12 col-xs-12" style="padding:0">
         <aside class="sidebar">
             <div>
                 <section class="text-center">
@@ -40,7 +40,7 @@
         </aside>
 
 
-        <main>
+        <main  class="">
             @yield('content')
         </main>
     </div>

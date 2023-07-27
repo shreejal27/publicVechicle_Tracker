@@ -9,6 +9,7 @@
         }
     </style>
     <section>
+        <h1>All the available public vehicle are seen in the map</h1>
         <div id="map"></div>
 
     </section>
@@ -19,7 +20,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        var map = L.map('map').setView([0, 0], 13);
+        var map = L.map('map').setView([0, 0], 16);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
@@ -47,7 +48,7 @@
                 }).addTo(map);
 
                 // Update the map view to the user's location
-                map.setView([latitude, longitude], 13);
+                map.setView([latitude, longitude], 16);
 
                 var places = [];
 
