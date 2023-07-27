@@ -55,7 +55,9 @@ class DriverLocationController extends Controller
     {
         $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
 
-        // $driverId = $driverLocations->pluck('driver_id');
+    
+
+        $driverId = $driverLocations->pluck('driver_id');
 
         $driverDetails = [];
         foreach ($driverLocations as $location) {
@@ -70,6 +72,12 @@ class DriverLocationController extends Controller
     
     return view('/admin/adminActivePublicVehicle', compact('driverLocations', 'driverDetails'));
 
+    }
+
+    public function getDriverLocationAjax(){
+        $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
+
+        return response()->json($driverLocations);
     }
 
     public function getDriverLocationUser(){

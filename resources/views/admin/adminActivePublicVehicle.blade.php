@@ -9,96 +9,105 @@
         }
     </style>
     <section>
-
         <div id="map"></div>
 
-        <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
-        </script>
-        <script>
-            var map = L.map('map').setView([0, 0], 13);
+    </section>
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-            var userMarker, placeMarkers = [];
+    <script>
+        var map = L.map('map').setView([0, 0], 13);
 
-            // Get the user's current location
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
 
-                    // Create a custom icon for the user's location
-                    var userIcon = L.icon({
-                        iconUrl: '/images/markerIcons/userMarker.png',
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 32],
-                        popupAnchor: [0, -32]
-                    });
+        var userMarker, placeMarkers = [];
 
-                    // Create a marker for the user's location with the custom icon
-                    userMarker = L.marker([latitude, longitude], {
-                        icon: userIcon
-                    }).addTo(map);
+        // Get the user's current location
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
 
-                    // Update the map view to the user's location
-                    map.setView([latitude, longitude], 13);
-
-                    var places = [];
-
-                    function updateDriverLocation() {
-                        // Clear existing markers from the map
-                        for (var i = 0; i < placeMarkers.length; i++) {
-                            map.removeLayer(placeMarkers[i]);
-                        }
-
-                        // Clear the placeMarkers array
-                        placeMarkers = [];
-
-                        // Assuming you have the updated driverLocations array in the controller,
-                        // you can pass it to JavaScript in the following way:
-                        var driverLocations = {!! json_encode($driverLocations) !!};
-
-                        // Add new markers for each driver location
-                        for (var i = 0; i < driverLocations.length; i++) {
-                            var driverLocation = driverLocations[i];
-                            var place = {
-                                latitude: driverLocation.latitude,
-                                longitude: driverLocation.longitude
-                            };
-
-                            places.push(place);
-                            iconUrl = '{{ asset('images/markerIcons/B.png') }}';
-
-                            var placeIcon = L.icon({
-                                iconUrl: iconUrl,
-                                iconSize: [32, 32],
-                                iconAnchor: [16, 32],
-                                popupAnchor: [0, -32]
-                            });
-
-                            var marker = L.marker([place.latitude, place.longitude], {
-                                icon: placeIcon
-                            }).addTo(map);
-
-                            placeMarkers.push(marker);
-                        }
-                    }
-
-                    // Call the updateDriverLocation function initially to display the initial locations
-                    updateDriverLocation();
-
-                    // Call the updateDriverLocation function every 1000 milliseconds (1 second)
-                    var locationInterval = setInterval(updateDriverLocation, 1000);
-
-                    // Clear the interval when the user leaves the page
-                    window.addEventListener('beforeunload', function() {
-                        clearInterval(locationInterval);
-                    });
-
+                // Create a custom icon for the user's location
+                var userIcon = L.icon({
+                    iconUrl: '/images/markerIcons/userMarker.png',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
                 });
-            }
-        </script>
-    @endsection
+
+                // Create a marker for the user's location with the custom icon
+                userMarker = L.marker([latitude, longitude], {
+                    icon: userIcon
+                }).addTo(map);
+
+                // Update the map view to the user's location
+                map.setView([latitude, longitude], 13);
+
+
+                function updateDriverLocation() {
+                    // Fetch the updated driver locations from the server
+                    $.ajax({
+                        url: "/adminAjax",
+                        method: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            // Clear existing markers from the map
+                            console.log("Response Data:", response);
+                            for (var i = 0; i < placeMarkers.length; i++) {
+                                map.removeLayer(placeMarkers[i]);
+                            }
+
+                            // Clear the placeMarkers array
+                            placeMarkers = [];
+
+                            // Add new markers for each driver location
+                            response.forEach(function(driverLocation) {
+                                var place = {
+                                    latitude: driverLocation.latitude,
+                                    longitude: driverLocation.longitude
+                                };
+
+                                places.push(place);
+                                iconUrl = '{{ asset('images/markerIcons/B.png') }}';
+
+                                var placeIcon = L.icon({
+                                    iconUrl: iconUrl,
+                                    iconSize: [32, 32],
+                                    iconAnchor: [16, 32],
+                                    popupAnchor: [0, -32]
+                                });
+
+                                var marker = L.marker([place.latitude, place.longitude], {
+                                    icon: placeIcon
+                                }).addTo(map);
+
+                                placeMarkers.push(marker);
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching driver locations:', error);
+                        }
+                    });
+                }
+
+                // Call the updateDriverLocation function initially to display the initial locations
+                updateDriverLocation();
+
+                // Call the updateDriverLocation function every 1000 milliseconds (1 second)
+                var locationInterval = setInterval(updateDriverLocation, 1000);
+
+                // Clear the interval when the user leaves the page
+                window.addEventListener('beforeunload', function() {
+                    clearInterval(locationInterval);
+                });
+
+            });
+        }
+    </script>
+@endsection

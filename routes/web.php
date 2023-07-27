@@ -108,6 +108,10 @@ Route::get('/adminDashboard', function () {
 //admin active public vehicle working
 Route::get('/adminActivePublicVehicle', [DriverLocationController::class, 'getDriverLocationAdmin'])->name('getDriverLocationAdmin');
 
+//admin active public vehicle data fetch from controller to ajax
+Route::get('/adminAjax', [DriverLocationController::class, 'getDriverLocationAjax'])->name('getDriverLocationAjax');
+
+
 //get vehicle routes
 Route::get('/adminVehicleRoute', [VehicleRouteController::class, 'index'])->name('vehicleRoute.index');
 
