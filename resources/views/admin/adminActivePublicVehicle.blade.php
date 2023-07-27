@@ -49,11 +49,12 @@
                 // Update the map view to the user's location
                 map.setView([latitude, longitude], 13);
 
+                var places = [];
 
                 function updateDriverLocation() {
                     // Fetch the updated driver locations from the server
                     $.ajax({
-                        url: "/adminAjax",
+                        url: "/adminAjax?_=" + Date.now(),
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
@@ -106,6 +107,13 @@
                 window.addEventListener('beforeunload', function() {
                     clearInterval(locationInterval);
                 });
+
+                // function reloadPage() {
+                //     location.reload();
+                // }
+
+                // Call the reloadPage function every 1000 milliseconds (1 second)
+                // setInterval(reloadPage, 1000);
 
             });
         }
