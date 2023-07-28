@@ -55,8 +55,6 @@ class DriverLocationController extends Controller
     {
         $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
 
-    
-
         $driverId = $driverLocations->pluck('driver_id');
 
         $driverDetails = [];
@@ -75,7 +73,7 @@ class DriverLocationController extends Controller
     }
 
     public function getDriverLocationAjax(){
-        $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
+        $driverLocations = DriverLocation::where('status', 'on')->with('driver')->latest()->get();
 
         return response()->json($driverLocations);
     }

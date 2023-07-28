@@ -76,9 +76,19 @@
                                 };
 
                                 places.push(place);
-                                iconUrl = '{{ asset('images/markerIcons/B.png') }}';
 
-                                var placeIcon = L.icon({
+                                var vehicleType = driverLocation.driver.vehicle_type;
+                                var iconUrl = '';
+
+                                if (vehicleType == 'bus')
+                                    iconUrl = '{{ asset('images/markerIcons/bus.png') }}';
+                                else if (vehicleType == 'micro')
+                                    iconUrl = '{{ asset('images/markerIcons/micro.png') }}';
+                                else if (vehicleType == 'tempo')
+                                    iconUrl = '{{ asset('images/markerIcons/tempo.png') }}';
+
+
+                                var vehicleIcon = L.icon({
                                     iconUrl: iconUrl,
                                     iconSize: [32, 32],
                                     iconAnchor: [16, 32],
@@ -86,7 +96,7 @@
                                 });
 
                                 var marker = L.marker([place.latitude, place.longitude], {
-                                    icon: placeIcon
+                                    icon: vehicleIcon
                                 }).addTo(map);
 
                                 placeMarkers.push(marker);

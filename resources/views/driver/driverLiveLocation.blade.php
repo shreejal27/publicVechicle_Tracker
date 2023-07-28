@@ -88,7 +88,7 @@
                         var [latitude, longitude] = coordinates[currentIndex];
 
                         var vehicleType = "<?php echo $vehicleType; ?>";
-                        console.log(vehicleType);
+                        // console.log(vehicleType);
                         var iconUrl = '';
 
                         if (vehicleType == 'bus')
