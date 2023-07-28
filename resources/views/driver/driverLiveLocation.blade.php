@@ -85,7 +85,20 @@
                         var status = 'on';
                         // var latitude = position.coords.latitude;
                         // var longitude = position.coords.longitude;
-                        var [latitude, longitude] = coordinates[currentIndex];
+
+                        //latitude and longitude for a specific driver only
+                        var driverId = "<?php echo $driver_id; ?>";
+                        if (driverId == 1) {
+                            var [latitude, longitude] = coordinates[currentIndex];
+
+                        } else if (driverId == 3) {
+                            var latitude = 27.698270;
+                            var longitude = 85.301370;
+
+                        } else {
+                            var latitude = position.coords.latitude;
+                            var longitude = position.coords.longitude;
+                        }
 
                         var vehicleType = "<?php echo $vehicleType; ?>";
                         // console.log(vehicleType);
