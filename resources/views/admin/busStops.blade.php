@@ -4,32 +4,53 @@
         width: 100%;
     }
 
-    label {
-        display: inline-block;
-        width: 9rem;
+    .form {
+        margin: 10px;
+        padding: 20px;
+        background-color: #675d50;
+        color: #F3DEBA;
+        border-radius: 10px;
     }
 
-    button,
-    .butt {
-        transition-duration: 0.5s;
-        background-color: green;
+    label {
+        font-size: 1rem !important;
+        margin-bottom: 0px !important;
+    }
+
+    input,
+    select {
+        height: 30px;
+        width: 100%;
+        border-radius: 0.375rem;
+        border: 2px solid #ABC4AA;
+        outline: 0;
+        background-color: #A9907E;
+        padding: 0 0.75rem;
+        color: white;
+        margin-bottom: 5px !important;
+    }
+
+    input:focus {
+        border-color: #F3DEBA;
+        background-color: #F3DEBA;
         color: black;
-        border: none;
-        padding: 10px 25px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
+    }
+
+
+    button {
+        height: 30px;
+        width: 100%;
+        border: 2px solid #ABC4AA;
+        border-radius: 0.375rem !important;
+        outline: 0;
+        background-color: #F3DEBA;
+        /* padding: 0.75rem 1rem;s */
+        color: black;
     }
 
     button:hover {
-        background-color: #00b300;
-        color: white;
-    }
+        background-color: #ABC4AA;
 
-    .butt:hover {
-        background-color: #00b300;
-        color: white;
     }
 </style>
 @extends('necessary.admin_template')
@@ -41,8 +62,8 @@
             {{ session('message') }}
         </div>
     @endif
-    <section class="form">
-        <h2>Add new Location for Vehicle Stop</h2>
+    <section class="form col-md-4 col-sm-12 col-lg-4 col-xl-4">
+        <h2>Add New Vehicle Stop</h2>
         <form action="{{ route('storeStops') }}" method="POST">
             @csrf
             <label> Info: </label>
@@ -55,18 +76,18 @@
             <input type="text" name="longitude" required>
             <br>
             <label> Vehicle Stops: </label>
+            <br>
             <select name="vehicle_type">
                 <option value="">Select</option>
                 <option value="bus">Bus</option>
                 <option value="micro">Micro</option>
                 <option value="tempo">Tempo</option>
             </select>
-            <br>
-            <br>
-            <button type="submit"> Add </button>
-            <input class="butt" type="button" value="Show Dustbins" onClick="window.location.reload(true)">
+            <button type="submit" class="mt-2"> Add </button>
+            {{-- <input class="butt" type="button" value="Show Dustbins" onClick="window.location.reload(true)"> --}}
         </form>
     </section>
+
     <section>
         <h1>Nearest Bus Stop</h1>
 

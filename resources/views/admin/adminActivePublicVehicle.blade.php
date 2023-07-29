@@ -50,7 +50,6 @@
                 // Update the map view to the user's location
                 map.setView([latitude, longitude], 16);
 
-                var places = [];
 
                 function updateDriverLocation() {
                     // Fetch the updated driver locations from the server
@@ -61,6 +60,7 @@
                         success: function(response) {
                             // Clear existing markers from the map
                             console.log("Response Data:", response);
+
                             for (var i = 0; i < placeMarkers.length; i++) {
                                 map.removeLayer(placeMarkers[i]);
                             }
@@ -75,7 +75,6 @@
                                     longitude: driverLocation.longitude
                                 };
 
-                                places.push(place);
 
                                 var vehicleType = driverLocation.driver.vehicle_type;
                                 var iconUrl = '';
