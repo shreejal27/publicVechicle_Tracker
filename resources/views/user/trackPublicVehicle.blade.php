@@ -2,21 +2,54 @@
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
 
+
+
     <style>
         #map {
             height: 600px;
         }
+
+        /* Customize the color of the toggle switches when they are turned on */
+        .custom-control-input:checked+.custom-control-label::before {
+            background-color: #A9907E;
+
+        }
+
+        /* Customize the color of the toggle switches when they are turned off */
+        .custom-control-label::before {
+            background-color: #675D50;
+
+        }
+
+        .custom-control-input:focus:not(:checked)+.custom-control-label::before {
+            box-shadow: none;
+
+        }
     </style>
     <section>
-        <h1>This is to track active vehicles on route</h1>
+        <h2>This is to track active vehicles on route</h2>
         <div>
-            <label>Filter by Vehicle Type:</label>
-            <input type="checkbox" id="busCheckbox" value="bus" checked>
-            <label for="busCheckbox">Bus</label>
-            <input type="checkbox" id="microCheckbox" value="micro" checked>
-            <label for="microCheckbox">Micro</label>
-            <input type="checkbox" id="tempoCheckbox" value="tempo" checked>
-            <label for="tempoCheckbox">Tempo</label>
+            <label>Filter by Vehicle Type:</label> <br>
+            <div class="row mb-2">
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="busCheckbox" value="bus" checked>
+                        <label class="custom-control-label" for="busCheckbox">Bus</label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="microCheckbox" value="micro" checked>
+                        <label class="custom-control-label" for="microCheckbox">Micro</label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="tempoCheckbox" value="tempo" checked>
+                        <label class="custom-control-label" for="tempoCheckbox">Tempo</label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="map"></div>
     </section>
@@ -57,13 +90,13 @@
                 map.setView([latitude, longitude], 16);
 
                 // Add event listeners to the vehicle type checkboxes
-                document.getElementById('busCheckbox').addEventListener('change', function() {
+                $('#busCheckbox').change(function() {
                     updateDriverLocation();
                 });
-                document.getElementById('microCheckbox').addEventListener('change', function() {
+                $('#microCheckbox').change(function() {
                     updateDriverLocation();
                 });
-                document.getElementById('tempoCheckbox').addEventListener('change', function() {
+                $('#tempoCheckbox').change(function() {
                     updateDriverLocation();
                 });
 
