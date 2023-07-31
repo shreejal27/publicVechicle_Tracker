@@ -9,6 +9,15 @@
     </style>
     <section>
         <h1>This is to track active vehicles on route</h1>
+        <div>
+            <label>Filter by Vehicle Type:</label>
+            <input type="checkbox" id="busCheckbox" value="bus" checked>
+            <label for="busCheckbox">Bus</label>
+            <input type="checkbox" id="microCheckbox" value="micro" checked>
+            <label for="microCheckbox">Micro</label>
+            <input type="checkbox" id="tempoCheckbox" value="tempo" checked>
+            <label for="tempoCheckbox">Tempo</label>
+        </div>
         <div id="map"></div>
     </section>
 
@@ -47,6 +56,17 @@
                 // Update the map view to the user's location
                 map.setView([latitude, longitude], 16);
 
+                // Add event listeners to the vehicle type checkboxes
+                document.getElementById('busCheckbox').addEventListener('change', function() {
+                    updateDriverLocation();
+                });
+                document.getElementById('microCheckbox').addEventListener('change', function() {
+                    updateDriverLocation();
+                });
+                document.getElementById('tempoCheckbox').addEventListener('change', function() {
+                    updateDriverLocation();
+                });
+
 
                 function updateDriverLocation() {
                     // Fetch the updated driver locations from the server
@@ -65,37 +85,45 @@
                             // Clear the placeMarkers array
                             placeMarkers = [];
 
-                            // Add new markers for each driver location
+                            // Get the selected vehicle types from the checkboxes
+                            var busCheckbox = document.getElementById('busCheckbox').checked;
+                            var microCheckbox = document.getElementById('microCheckbox').checked;
+                            var tempoCheckbox = document.getElementById('tempoCheckbox').checked;
+
+                            // Add new markers for each driver location based on the selected vehicle types
                             response.forEach(function(driverLocation) {
-                                var place = {
-                                    latitude: driverLocation.latitude,
-                                    longitude: driverLocation.longitude
-                                };
-
-
                                 var vehicleType = driverLocation.driver.vehicle_type;
-                                var iconUrl = '';
 
-                                if (vehicleType == 'bus')
-                                    iconUrl = '{{ asset('images/markerIcons/bus.png') }}';
-                                else if (vehicleType == 'micro')
-                                    iconUrl = '{{ asset('images/markerIcons/micro.png') }}';
-                                else if (vehicleType == 'tempo')
-                                    iconUrl = '{{ asset('images/markerIcons/tempo.png') }}';
+                                // Check if the driver's vehicle type matches any of the selected vehicle types
+                                if ((busCheckbox && vehicleType === 'bus') ||
+                                    (microCheckbox && vehicleType === 'micro') ||
+                                    (tempoCheckbox && vehicleType === 'tempo')) {
+                                    var place = {
+                                        latitude: driverLocation.latitude,
+                                        longitude: driverLocation.longitude
+                                    };
 
+                                    var iconUrl = '';
+                                    if (vehicleType == 'bus')
+                                        iconUrl = '{{ asset('images/markerIcons/bus.png') }}';
+                                    else if (vehicleType == 'micro')
+                                        iconUrl = '{{ asset('images/markerIcons/micro.png') }}';
+                                    else if (vehicleType == 'tempo')
+                                        iconUrl = '{{ asset('images/markerIcons/tempo.png') }}';
 
-                                var vehicleIcon = L.icon({
-                                    iconUrl: iconUrl,
-                                    iconSize: [32, 32],
-                                    iconAnchor: [16, 32],
-                                    popupAnchor: [0, -32]
-                                });
+                                    var vehicleIcon = L.icon({
+                                        iconUrl: iconUrl,
+                                        iconSize: [32, 32],
+                                        iconAnchor: [16, 32],
+                                        popupAnchor: [0, -32]
+                                    });
 
-                                var marker = L.marker([place.latitude, place.longitude], {
-                                    icon: vehicleIcon
-                                }).addTo(map);
+                                    var marker = L.marker([place.latitude, place.longitude], {
+                                        icon: vehicleIcon
+                                    }).addTo(map);
 
-                                placeMarkers.push(marker);
+                                    placeMarkers.push(marker);
+                                }
                             });
                         },
                         error: function(xhr, status, error) {
