@@ -175,6 +175,9 @@ Route::get('/userProfile', function () {
 // });
 Route::get('/userActivePublicVehicle', [DriverLocationController::class, 'getDriverLocationUser'])->name('getDriverLocationUser');
 
+//admin active public vehicle data fetch from controller to ajax
+Route::get('/userAjax', [DriverLocationController::class, 'getDriverLocationAjax'])->name('getDriverLocationAjax');
+
 //user nearest bus stop
 Route::get('/nearestBusStop', [StopController::class, 'stopMarkerUser'])->name('stopMarkerUser');
 
