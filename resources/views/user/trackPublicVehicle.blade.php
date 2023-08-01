@@ -8,14 +8,11 @@
         #map {
             height: 600px;
         }
-
-        /* Customize the color of the toggle switches when they are turned on */
         .custom-control-input:checked+.custom-control-label::before {
             background-color: #A9907E;
 
         }
-
-        /* Customize the color of the toggle switches when they are turned off */
+        
         .custom-control-label::before {
             background-color: #675D50;
 

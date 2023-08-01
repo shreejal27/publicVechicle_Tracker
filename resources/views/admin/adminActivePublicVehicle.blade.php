@@ -1,15 +1,52 @@
 @extends('necessary.admin_template')
 @section('content')
-    <h1>This is to track active vehicles on route</h1>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
 
     <style>
         #map {
             height: 600px;
         }
+
+        .custom-control-input:checked+.custom-control-label::before {
+            background-color: #A9907E;
+
+        }
+
+        .custom-control-label::before {
+            background-color: #675D50;
+
+        }
+
+        .custom-control-input:focus:not(:checked)+.custom-control-label::before {
+            box-shadow: none;
+
+        }
     </style>
     <section>
-        <h1>All the available public vehicle are seen in the map</h1>
+        <h1>All the active public vehicle are seen in the map</h1>
+        <div>
+            <label>Filter by Vehicle Type:</label> <br>
+            <div class="row mb-2">
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="busCheckbox" value="bus" checked>
+                        <label class="custom-control-label" for="busCheckbox">Bus</label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="microCheckbox" value="micro" checked>
+                        <label class="custom-control-label" for="microCheckbox">Micro</label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="tempoCheckbox" value="tempo" checked>
+                        <label class="custom-control-label" for="tempoCheckbox">Tempo</label>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="map"></div>
 
     </section>
@@ -50,11 +87,23 @@
                 // Update the map view to the user's location
                 map.setView([latitude, longitude], 16);
 
+                // Add event listeners to the vehicle type checkboxes
+                $('#busCheckbox').change(function() {
+                    updateDriverLocation();
+                });
+                $('#microCheckbox').change(function() {
+                    updateDriverLocation();
+                });
+                $('#tempoCheckbox').change(function() {
+                    updateDriverLocation();
+                });
+
 
                 function updateDriverLocation() {
                     // Fetch the updated driver locations from the server
                     $.ajax({
                         url: "/adminAjax?_=" + Date.now(),
+
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
@@ -68,37 +117,45 @@
                             // Clear the placeMarkers array
                             placeMarkers = [];
 
-                            // Add new markers for each driver location
+                            // Get the selected vehicle types from the checkboxes
+                            var busCheckbox = document.getElementById('busCheckbox').checked;
+                            var microCheckbox = document.getElementById('microCheckbox').checked;
+                            var tempoCheckbox = document.getElementById('tempoCheckbox').checked;
+
+                            // Add new markers for each driver location based on the selected vehicle types
                             response.forEach(function(driverLocation) {
-                                var place = {
-                                    latitude: driverLocation.latitude,
-                                    longitude: driverLocation.longitude
-                                };
-
-
                                 var vehicleType = driverLocation.driver.vehicle_type;
-                                var iconUrl = '';
 
-                                if (vehicleType == 'bus')
-                                    iconUrl = '{{ asset('images/markerIcons/bus.png') }}';
-                                else if (vehicleType == 'micro')
-                                    iconUrl = '{{ asset('images/markerIcons/micro.png') }}';
-                                else if (vehicleType == 'tempo')
-                                    iconUrl = '{{ asset('images/markerIcons/tempo.png') }}';
+                                // Check if the driver's vehicle type matches any of the selected vehicle types
+                                if ((busCheckbox && vehicleType === 'bus') ||
+                                    (microCheckbox && vehicleType === 'micro') ||
+                                    (tempoCheckbox && vehicleType === 'tempo')) {
+                                    var place = {
+                                        latitude: driverLocation.latitude,
+                                        longitude: driverLocation.longitude
+                                    };
 
+                                    var iconUrl = '';
+                                    if (vehicleType == 'bus')
+                                        iconUrl = '{{ asset('images/markerIcons/bus.png') }}';
+                                    else if (vehicleType == 'micro')
+                                        iconUrl = '{{ asset('images/markerIcons/micro.png') }}';
+                                    else if (vehicleType == 'tempo')
+                                        iconUrl = '{{ asset('images/markerIcons/tempo.png') }}';
 
-                                var vehicleIcon = L.icon({
-                                    iconUrl: iconUrl,
-                                    iconSize: [32, 32],
-                                    iconAnchor: [16, 32],
-                                    popupAnchor: [0, -32]
-                                });
+                                    var vehicleIcon = L.icon({
+                                        iconUrl: iconUrl,
+                                        iconSize: [32, 32],
+                                        iconAnchor: [16, 32],
+                                        popupAnchor: [0, -32]
+                                    });
 
-                                var marker = L.marker([place.latitude, place.longitude], {
-                                    icon: vehicleIcon
-                                }).addTo(map);
+                                    var marker = L.marker([place.latitude, place.longitude], {
+                                        icon: vehicleIcon
+                                    }).addTo(map);
 
-                                placeMarkers.push(marker);
+                                    placeMarkers.push(marker);
+                                }
                             });
                         },
                         error: function(xhr, status, error) {
@@ -106,7 +163,6 @@
                         }
                     });
                 }
-
                 // Call the updateDriverLocation function initially to display the initial locations
                 updateDriverLocation();
 
