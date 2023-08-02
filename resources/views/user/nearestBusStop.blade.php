@@ -27,8 +27,11 @@
             // Get the user's current location
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
+                    // var latitude = position.coords.latitude;
+                    // var longitude = position.coords.longitude;
+                    var latitude = 27.688468;
+                    var longitude = 85.300193;
+
 
                     // Create a custom icon for the user's location
                     var userIcon = L.icon({
@@ -136,7 +139,7 @@
 
                 for (var i = 0; i < placeMarkers.length; i++) {
                     var marker = placeMarkers[i];
-                    var distance = userMarker.getLatLng().distanceTo(marker.getLatLng());
+                    var distance = haversineDistance(userMarker.getLatLng(), marker.getLatLng());
 
                     if (distance < shortestDistance) {
                         shortestDistance = distance;
@@ -144,6 +147,32 @@
                     }
                 }
                 return nearestMarker;
+            }
+
+            // Haversine formula to calculate the distance between two points (latitude and longitude) in meters
+            function haversineDistance(coords1, coords2) {
+                function toRad(x) {
+                    return x * Math.PI / 180;
+                }
+
+                var lat1 = coords1.lat;
+                var lon1 = coords1.lng;
+                var lat2 = coords2.lat;
+                var lon2 = coords2.lng;
+
+                var R = 6371e3; // Earth's radius in meters
+                var φ1 = toRad(lat1);
+                var φ2 = toRad(lat2);
+                var Δφ = toRad(lat2 - lat1);
+                var Δλ = toRad(lon2 - lon1);
+
+                var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                    Math.cos(φ1) * Math.cos(φ2) *
+                    Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+                var distance = R * c;
+                return distance;
             }
         </script>
     </section>
