@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 @extends('necessary.user_template')
 @section('content')
     <style>
@@ -51,14 +52,27 @@
                 <input type="number">
         </div>
         <div class="tab-pane fade" id="changeCredentials" role="tabpanel" data-path="changeCredentials">
-            <h1>Change Credentials</h1>
-            <form action="">
-                <label>UserName</label>
-                <input type="text">
-                <label> Password</label>
-                <input type="text">
-                <label> New Password</label>
-                <input type="text">
+            <div class="center-container">
+                <div class="form-container mt-5">
+                    <p class="title">Change Credentials</p>
+                    <form class="form" action="" method="POST">
+                        @csrf
+                        <div class="input-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" placeholder="">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Current Password</label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">New Password</label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <button class="sign mt-3">Sign in</button>
+                    </form>
+                </div>
+            </div>
 
         </div>
     </div>
