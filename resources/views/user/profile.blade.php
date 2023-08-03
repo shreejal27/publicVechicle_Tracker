@@ -18,17 +18,48 @@
             <li class="nav-item" data-path="updateProfile">
                 <a class="nav-link" data-toggle="tab" href="#updateProfile" aria-selected="false">Update Profile</a>
             </li>
+            <li class="nav-item" data-path="changeCredentials">
+                <a class="nav-link" data-toggle="tab" href="#changeCredentials" aria-selected="false">Change Credentials</a>
+            </li>
         </ul>
     </div>
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" data-path="profile">
             <h1>View Profile</h1>
-            <p>This is the content of the Home tab.</p>
+            <form action="">
+                <label>FirstName</label>
+                <input type="text">
+                <label> LastName</label>
+                <input type="text">
+                <label>Email</label>
+                <input type="email">
+                <label>Contact Number</label>
+                <input type="number">
+            </form>
         </div>
         <div class="tab-pane fade" id="updateProfile" role="tabpanel" data-path="updateProfile">
             <h1>Update Profile</h1>
-            <p>This is the content of Update Profile</p>
+            <form action="">
+                <label>FirstName</label>
+                <input type="text">
+                <label> LastName</label>
+                <input type="text">
+                <label>Email</label>
+                <input type="email">
+                <label>Contact Number</label>
+                <input type="number">
+        </div>
+        <div class="tab-pane fade" id="changeCredentials" role="tabpanel" data-path="changeCredentials">
+            <h1>Change Credentials</h1>
+            <form action="">
+                <label>UserName</label>
+                <input type="text">
+                <label> Password</label>
+                <input type="text">
+                <label> New Password</label>
+                <input type="text">
+
         </div>
     </div>
 

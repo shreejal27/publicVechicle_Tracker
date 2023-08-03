@@ -111,6 +111,8 @@
                     var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
 
+
+
                     // Create a custom icon for the user's location
                     var userIcon = L.icon({
                         iconUrl: '/images/markerIcons/userMarker.png',

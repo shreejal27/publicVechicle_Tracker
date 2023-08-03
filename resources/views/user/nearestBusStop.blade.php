@@ -29,8 +29,8 @@
                 navigator.geolocation.getCurrentPosition(function(position) {
                     // var latitude = position.coords.latitude;
                     // var longitude = position.coords.longitude;
-                    var latitude = 27.688468;
-                    var longitude = 85.300193;
+                    var latitude = 27.7018580;
+                    var longitude = 85.2830400;
 
 
                     // Create a custom icon for the user's location
