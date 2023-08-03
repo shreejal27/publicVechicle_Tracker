@@ -12,7 +12,7 @@
         }
     </style>
     <div>
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills mt-2 ml-2">
             <li class="nav-item" data-path="profile">
                 <a class="nav-link active" data-toggle="tab" href="#profile" aria-selected="true">Profile</a>
             </li>
@@ -27,29 +27,56 @@
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" data-path="profile">
-            <h1>View Profile</h1>
-            <form action="">
-                <label>FirstName</label>
-                <input type="text">
-                <label> LastName</label>
-                <input type="text">
-                <label>Email</label>
-                <input type="email">
-                <label>Contact Number</label>
-                <input type="number">
-            </form>
+            <div class="center-container">
+                <div class="form-container mt-5">
+                    <p class="title">Profile</p>
+                    <form class="form" action="" method="POST">
+                        @csrf
+                        <div class="input-group">
+                            <label for="username">First Name</label>
+                            <input type="text" name="username" id="username" placeholder="">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Last Name </label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Email</label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Contact Number</label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="tab-pane fade" id="updateProfile" role="tabpanel" data-path="updateProfile">
-            <h1>Update Profile</h1>
-            <form action="">
-                <label>FirstName</label>
-                <input type="text">
-                <label> LastName</label>
-                <input type="text">
-                <label>Email</label>
-                <input type="email">
-                <label>Contact Number</label>
-                <input type="number">
+            <div class="center-container">
+                <div class="form-container mt-5">
+                    <p class="title">Update Profile</p>
+                    <form class="form" action="" method="POST">
+                        @csrf
+                        <div class="input-group">
+                            <label for="username">First Name</label>
+                            <input type="text" name="username" id="username" placeholder="">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Last Name </label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Email</label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Contact Number</label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="tab-pane fade" id="changeCredentials" role="tabpanel" data-path="changeCredentials">
             <div class="center-container">
