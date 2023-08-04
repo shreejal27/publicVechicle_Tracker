@@ -33,7 +33,17 @@ class UserController extends Controller
     {
         $userId = session('user_id');
         $user = User::find($userId);
-        
         return view('user.profile', compact('user'));
+    }
+
+    public function update(Request $request){
+        $userId = session('user_id');
+        $user = User::find($userId);
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        $user->contact_number = $request->contact_number;
+        $user->save();
+        return redirect()->route('profile')->with('success', 'Your profile record has been updated successfully.');
     }
 }

@@ -25,6 +25,16 @@
             </li>
         </ul>
     </div>
+    @if (session('error'))
+        <div class="alert alert-success">
+            {{ session('error') }}
+        </div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" data-path="profile">
@@ -35,7 +45,7 @@
                         @csrf
                         <div class="input-group">
                             <label>First Name</label>
-                            <input type="text" value="{{ $user['firstname'] }} " disabled>
+                            <input type="text" value="{{ $user['firstname'] }}" disabled>
                         </div>
                         <div class="input-group">
                             <label>Last Name </label>
@@ -57,24 +67,25 @@
             <div class="center-container">
                 <div class="form-container mt-5">
                     <p class="title">Update Profile</p>
-                    <form class="form" action="" method="POST">
+                    <form class="form" action="{{ route('updateUserProfile') }}" method="POST">
                         @csrf
                         <div class="input-group">
                             <label>First Name</label>
-                            <input type="text" name="username" id="username" placeholder="">
+                            <input type="text" name="firstname" value="{{ $user['firstname'] }}">
                         </div>
                         <div class="input-group">
                             <label>Last Name </label>
-                            <input type="password" name="password" id="password" placeholder="">
+                            <input type="text" name="lastname" value="{{ $user['lastname'] }}">
                         </div>
                         <div class="input-group">
                             <label>Email</label>
-                            <input type="password" name="password" id="password" placeholder="">
+                            <input type="text" name="email" value="{{ $user['email'] }}">
                         </div>
                         <div class="input-group">
                             <label>Contact Number</label>
-                            <input type="password" name="password" id="password" placeholder="">
+                            <input type="text" name="contact_number" value="{{ $user['contact_number'] }}">
                         </div>
+                        <button class="sign mt-3">Update</button>
                     </form>
                 </div>
             </div>
