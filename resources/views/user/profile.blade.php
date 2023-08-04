@@ -71,19 +71,19 @@
                         @csrf
                         <div class="input-group">
                             <label>First Name</label>
-                            <input type="text" name="firstname" value="{{ $user['firstname'] }}">
+                            <input type="text" name="firstname" value="{{ $user['firstname'] }}" required>
                         </div>
                         <div class="input-group">
                             <label>Last Name </label>
-                            <input type="text" name="lastname" value="{{ $user['lastname'] }}">
+                            <input type="text" name="lastname" value="{{ $user['lastname'] }}" required>
                         </div>
                         <div class="input-group">
                             <label>Email</label>
-                            <input type="text" name="email" value="{{ $user['email'] }}">
+                            <input type="text" name="email" value="{{ $user['email'] }}" required>
                         </div>
                         <div class="input-group">
                             <label>Contact Number</label>
-                            <input type="text" name="contact_number" value="{{ $user['contact_number'] }}">
+                            <input type="text" name="contact_number" value="{{ $user['contact_number'] }}" required>
                         </div>
                         <button class="sign mt-3">Update</button>
                     </form>
@@ -93,22 +93,29 @@
         <div class="tab-pane fade" id="changeCredentials" role="tabpanel" data-path="changeCredentials">
             <div class="center-container">
                 <div class="form-container mt-5">
-                    <p class="title">Change Credentials</p>
-                    <form class="form" action="" method="POST">
+                    <p class="title">Update Credentials</p>
+                    <form class="form" id="userCredentialForm" action="{{ route('updateUserCredentials') }}"
+                        method="POST">
                         @csrf
                         <div class="input-group">
                             <label>Username</label>
-                            <input type="text" name="username" id="username" placeholder="">
+                            <input type="text" name="username" id="username" value="{{ $user['username'] }}" required
+                                disabled>
                         </div>
                         <div class="input-group">
                             <label>Current Password</label>
-                            <input type="password" name="password" id="password" placeholder="">
+                            <input type="text" name="password" id="Cpassword" value="{{ $user['password'] }}"required
+                                disabled>
                         </div>
                         <div class="input-group">
                             <label>New Password</label>
-                            <input type="password" name="password" id="password" placeholder="">
+                            <input type="text" name="password" id="Npassword" required>
                         </div>
-                        <button class="sign mt-3">Sign in</button>
+                        <div class="input-group">
+                            <label>Rewrite New Password</label>
+                            <input type="password" name="password" id="Rpassword" required>
+                        </div>
+                        <button class="sign mt-3" type="submit">Update</button>
                     </form>
                 </div>
             </div>
@@ -132,5 +139,31 @@
                 $('.tab-content').find('[data-path="' + path + '"]').addClass('show active');
             });
         });
+    </script>
+
+    <script>
+        document.getElementById("userCredentialForm").addEventListener("submit", formCheck);
+
+        if (!formCheck()) {
+            event.preventDefault(); // Prevent form submission
+        }
+
+        function formCheck() {
+            var Cpassword = document.getElementById("Cpassword").value;
+            var Npassword = document.getElementById("Npassword").value;
+            var Rpassword = document.getElementById("Rpassword").value;
+            if (Cpassword != Npassword) {
+                if (Npassword != Rpassword) {
+                    alert("New Password and Rewrite  Password does not match");
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                alert("Current Password and New Password cannot be same");
+                return false;
+            }
+
+        }
     </script>
 @endsection

@@ -46,4 +46,8 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('profile')->with('success', 'Your profile record has been updated successfully.');
     }
+
+    public function updateUserCredentials(Request $request){
+        dd($request);
+    }
 }
