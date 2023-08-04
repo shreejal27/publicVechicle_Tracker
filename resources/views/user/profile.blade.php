@@ -12,6 +12,7 @@
         }
     </style>
     <div>
+
         <ul class="nav nav-pills mt-2 ml-2">
             <li class="nav-item" data-path="profile">
                 <a class="nav-link active" data-toggle="tab" href="#profile" aria-selected="true">Profile</a>
@@ -30,23 +31,23 @@
             <div class="center-container">
                 <div class="form-container mt-5">
                     <p class="title">Profile</p>
-                    <form class="form" action="" method="POST">
+                    <form class="form" action="#">
                         @csrf
                         <div class="input-group">
-                            <label for="username">First Name</label>
-                            <input type="text" name="username" id="username" placeholder="">
+                            <label>First Name</label>
+                            <input type="text" value="{{ $user['firstname'] }} " disabled>
                         </div>
                         <div class="input-group">
-                            <label for="password">Last Name </label>
-                            <input type="password" name="password" id="password" placeholder="">
+                            <label>Last Name </label>
+                            <input type="text" value="{{ $user['lastname'] }}" disabled>
                         </div>
                         <div class="input-group">
-                            <label for="password">Email</label>
-                            <input type="password" name="password" id="password" placeholder="">
+                            <label>Email</label>
+                            <input type="text" value="{{ $user['email'] }}" disabled>
                         </div>
                         <div class="input-group">
-                            <label for="password">Contact Number</label>
-                            <input type="password" name="password" id="password" placeholder="">
+                            <label>Contact Number</label>
+                            <input type="text" value="{{ $user['contact_number'] }}" disabled>
                         </div>
                     </form>
                 </div>
@@ -59,19 +60,19 @@
                     <form class="form" action="" method="POST">
                         @csrf
                         <div class="input-group">
-                            <label for="username">First Name</label>
+                            <label>First Name</label>
                             <input type="text" name="username" id="username" placeholder="">
                         </div>
                         <div class="input-group">
-                            <label for="password">Last Name </label>
+                            <label>Last Name </label>
                             <input type="password" name="password" id="password" placeholder="">
                         </div>
                         <div class="input-group">
-                            <label for="password">Email</label>
+                            <label>Email</label>
                             <input type="password" name="password" id="password" placeholder="">
                         </div>
                         <div class="input-group">
-                            <label for="password">Contact Number</label>
+                            <label>Contact Number</label>
                             <input type="password" name="password" id="password" placeholder="">
                         </div>
                     </form>
@@ -85,15 +86,15 @@
                     <form class="form" action="" method="POST">
                         @csrf
                         <div class="input-group">
-                            <label for="username">Username</label>
+                            <label>Username</label>
                             <input type="text" name="username" id="username" placeholder="">
                         </div>
                         <div class="input-group">
-                            <label for="password">Current Password</label>
+                            <label>Current Password</label>
                             <input type="password" name="password" id="password" placeholder="">
                         </div>
                         <div class="input-group">
-                            <label for="password">New Password</label>
+                            <label>New Password</label>
                             <input type="password" name="password" id="password" placeholder="">
                         </div>
                         <button class="sign mt-3">Sign in</button>

@@ -28,4 +28,12 @@ class UserController extends Controller
         session()->forget('user_id');
         return redirect()->route('login')->with('success', 'User Logout successful');
     }
+
+    public function profile()
+    {
+        $userId = session('user_id');
+        $user = User::find($userId);
+        
+        return view('user.profile', compact('user'));
+    }
 }

@@ -165,9 +165,7 @@ Route::get('/userDashboard', function () {
 
 
 //user profile
-Route::get('/userProfile', function () {
-    return view('user.Profile');
-});
+Route::get('/userProfile', [UserController::class, 'profile'])->name('profile');
 
 //user track public vehicle
 // Route::get('/userTrackPublicVehicle', function () {
