@@ -171,7 +171,7 @@ Route::get('/userProfile', [UserController::class, 'profile'])->name('profile');
 Route::post('/updateUserProfile', [UserController::class, 'update'])->name('updateUserProfile');
 
 //user credentials update
-Route::post('/updateUserCredentials', [UserController::class, 'updateCredentials'])->name('updateUserCredentials');
+Route::post('/updateUserCredentials', [UserController::class, 'updateUserCredentials'])->name('updateUserCredentials');
 
 //user track public vehicle
 // Route::get('/userTrackPublicVehicle', function () {

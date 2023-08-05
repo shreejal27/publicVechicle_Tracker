@@ -104,16 +104,16 @@
                         </div>
                         <div class="input-group">
                             <label>Current Password</label>
-                            <input type="text" name="password" id="Cpassword" value="{{ $user['password'] }}"required
+                            <input type="text" name="cpassword" id="Cpassword" value="{{ $user['password'] }}"required
                                 disabled>
                         </div>
                         <div class="input-group">
                             <label>New Password</label>
-                            <input type="text" name="password" id="Npassword" required>
+                            <input type="text" name="npassword" id="Npassword" required>
                         </div>
                         <div class="input-group">
                             <label>Rewrite New Password</label>
-                            <input type="password" name="password" id="Rpassword" required>
+                            <input type="password" name="rpassword" id="Rpassword" required>
                         </div>
                         <button class="sign mt-3" type="submit">Update</button>
                     </form>
@@ -142,11 +142,12 @@
     </script>
 
     <script>
-        document.getElementById("userCredentialForm").addEventListener("submit", formCheck);
+        document.getElementById("userCredentialForm").addEventListener("submit", function(event) {
 
-        if (!formCheck()) {
-            event.preventDefault(); // Prevent form submission
-        }
+            if (!formCheck()) {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
 
         function formCheck() {
             var Cpassword = document.getElementById("Cpassword").value;
@@ -154,16 +155,15 @@
             var Rpassword = document.getElementById("Rpassword").value;
             if (Cpassword != Npassword) {
                 if (Npassword != Rpassword) {
-                    alert("New Password and Rewrite  Password does not match");
+                    alert("New Password and Rewrite Password does not match");
                     return false;
                 } else {
                     return true;
                 }
             } else {
-                alert("Current Password and New Password cannot be same");
+                alert("Current Password and New Password cannot be the same");
                 return false;
             }
-
         }
     </script>
 @endsection

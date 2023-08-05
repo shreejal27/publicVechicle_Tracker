@@ -48,6 +48,10 @@ class UserController extends Controller
     }
 
     public function updateUserCredentials(Request $request){
-        dd($request);
+        $userId = session('user_id');
+        $user = User::find($userId);
+        $user->password = $request->rpassword;
+        $user->save();
+        return redirect()->route('profile')->with('success', 'Your credentials have been updated.');
     }
 }
