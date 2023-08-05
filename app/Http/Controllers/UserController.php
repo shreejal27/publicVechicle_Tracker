@@ -44,7 +44,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->contact_number = $request->contact_number;
         $user->save();
-        return redirect()->route('profile')->with('success', 'Your profile record has been updated successfully.');
+        return redirect()->route('profile')->with('success', 'Profile Record Updated');
     }
 
     public function updateUserCredentials(Request $request){
@@ -52,6 +52,6 @@ class UserController extends Controller
         $user = User::find($userId);
         $user->password = $request->rpassword;
         $user->save();
-        return redirect()->route('profile')->with('success', 'Your credentials have been updated.');
+        return redirect()->route('profile')->with('success', 'Credentials Updated');
     }
 }

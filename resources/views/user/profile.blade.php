@@ -10,6 +10,7 @@
             background-color: #A9907E !important;
             color: #F3DEBA !important;
         }
+        
     </style>
     <div>
 
@@ -31,9 +32,15 @@
         </div>
     @endif
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        </script>
     @endif
 
     <div class="tab-content">
@@ -155,13 +162,25 @@
             var Rpassword = document.getElementById("Rpassword").value;
             if (Cpassword != Npassword) {
                 if (Npassword != Rpassword) {
-                    alert("New Password and Rewrite Password does not match");
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'New Password and Rewrite New Password does not match',
+                        showConfirmButton: false,
+                        timer: 2500
+                    })
                     return false;
                 } else {
                     return true;
                 }
             } else {
-                alert("Current Password and New Password cannot be the same");
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Current Password and New Password cannot be the same',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
                 return false;
             }
         }
