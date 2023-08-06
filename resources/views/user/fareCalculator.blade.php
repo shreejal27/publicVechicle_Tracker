@@ -1,10 +1,41 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
+<style>
+    table {
+        margin: auto;
+        width: 50% !important;
+        background-color: #675d50;
+        margin-top: 2rem;
+    }
+
+    tr,
+    td,
+    th {
+        text-align: center;
+        color: #F3DEBA;
+        border: 2px solid #F3DEBA !important;
+    }
+
+    hr {
+        border-top: 2px solid white !important;
+        width: 80%;
+        margin: 20px auto;
+    }
+</style>
 @extends('necessary.user_template')
 @section('content')
     <section>
-        <h2>Fare List</h2>
-        <table>
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                title: 'Passengers can carry goods up to 15 kg for free <br> <br> Rs 5 per kg will be charged for more than 10 kg. ',
+                showCloseButton: true,
+            })
+        </script>
+        <table class="table table-hover col-md-5 col-sm-12 col-lg-5 col-xl-5">
             <thead>
+                <tr>
+                    <th class="text-center" colspan="3">Fare List</th>
+                </tr>
                 <tr>
                     <th>SN</th>
                     <th>Distance (in kms)</th>
@@ -22,10 +53,11 @@
             </tbody>
         </table>
         <br>
-        <p>Note: Passengers can carry goods up to 15 kg for free and Rs5 per kg will be charged for more than 10 kg.
-        </p>
+
+        <hr>
+        <br>
         <div class="center-container">
-            <div class="form-container mt-5">
+            <div class="form-container  mb-3">
                 <p class="title">Fare Calculator</p>
                 <form class="form" id="userCredentialForm" action="{{ route('calculateFare') }}" method="POST">
                     @csrf
