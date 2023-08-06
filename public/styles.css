@@ -164,6 +164,10 @@ footer{
     flex-grow: 1; /* Let the content area grow to fill the remaining space */
   }
      /* sweet alert notification */
-     .swal2-title {
+     .swal2-popup {
+      font-size: 0.7rem !important;
+      }
+
+     /* .swal2-title {
       font-size: 1.3rem !important;
-  }
+  } */
