@@ -167,14 +167,26 @@
     @extends('necessary.common_template')
     @section('content')
         @if (session('error'))
-            <div class="alert alert-success">
-                {{ session('error') }}
-            </div>
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: '{{ session('error') }}',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            </script>
         @endif
         @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            </script>
         @endif
         <div class="center-container">
             <div class="form-container mt-5">
