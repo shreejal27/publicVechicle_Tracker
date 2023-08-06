@@ -27,10 +27,12 @@
             // Get the user's current location
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    // var latitude = position.coords.latitude;
-                    // var longitude = position.coords.longitude;
-                    var latitude = 27.7018580;
-                    var longitude = 85.2830400;
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    //bernhardt college coordinates
+                    // var latitude = 27.7018580;
+                    // var longitude = 85.2830400;
 
 
                     // Create a custom icon for the user's location

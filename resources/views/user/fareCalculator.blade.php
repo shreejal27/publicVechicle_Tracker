@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 @extends('necessary.user_template')
 @section('content')
     <section>
@@ -23,18 +24,27 @@
         <br>
         <p>Note: Passengers can carry goods up to 15 kg for free and Rs5 per kg will be charged for more than 10 kg.
         </p>
-
-        Fare Calculator
-        <form action="{{ route('calculateFare') }}" method="POST">
-            @csrf
-            <label>From: </label>
-            <input type="text" name="from"> <br>
-            <label>To: </label>
-            <input type="text" name="to"> <br>
-            <label>Total Weight: </label>
-            <input type="text" name="weight"><br>
-            <button type="submit">Calculate</button>
-        </form>
+        <div class="center-container">
+            <div class="form-container mt-5">
+                <p class="title">Fare Calculator</p>
+                <form class="form" id="userCredentialForm" action="{{ route('calculateFare') }}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <label>From:</label>
+                        <input type="text" name="from" required>
+                    </div>
+                    <div class="input-group">
+                        <label>To</label>
+                        <input type="text" name="to" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Total Weight:</label>
+                        <input type="text" name="weight">
+                    </div>
+                    <button class="sign mt-3" type="submit">Calculate</button>
+                </form>
+            </div>
+        </div>
         @if ($sessionValue != 0)
             @if ($matchingVehicleNames)
                 <p> Total Cost: {{ $totalFare }}</p>
