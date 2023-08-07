@@ -68,9 +68,6 @@ Route::get('/main', function () {
     return view('necessary.main');
 });
 
-Route::get('/driverSignUp', function () {
-    return view('driver.driverSignUp');
-});
 
 //to open signUp form
 Route::get('/signUp', function () {
@@ -78,7 +75,7 @@ Route::get('/signUp', function () {
 });
 
 //to store the signup form data
-Route::post('/store', [UserController::class, 'store'])->name('store');
+Route::post('/storeUser', [UserController::class, 'store'])->name('storeUser');
 
 //to store the signup form data of driver
 Route::post('/storeDriver', [DriverController::class, 'store'])->name('storeDriver');

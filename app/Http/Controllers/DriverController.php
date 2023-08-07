@@ -31,7 +31,7 @@ class DriverController extends Controller
         $driver->password = $request->password;
         $driver->save();
 
-        return redirect()->back()->with('message', 'Driver has been registered successfully');
+        return redirect()->back()->with('success', 'Driver has been registered successfully');
 
         // Redirect back or return a response as needed
     }

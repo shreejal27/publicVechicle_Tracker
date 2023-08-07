@@ -25,22 +25,7 @@
             </li>
         </ul>
     </div>
-    @if (session('error'))
-        <div class="alert alert-success">
-            {{ session('error') }}
-        </div>
-    @endif
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 2500
-            })
-        </script>
-    @endif
+ 
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" data-path="profile">

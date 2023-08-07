@@ -11,7 +11,6 @@
             <li><a href="/contactUs">Contact Us</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/signUp">Sign Up</a></li>
-            <li><a href="/driverSignUp">Public Driver?</a></li>
     </nav>
 </header>
 
@@ -25,6 +24,4 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
-
-
 </head>

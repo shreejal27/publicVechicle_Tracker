@@ -19,7 +19,7 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->password = $request->password;
         $user->save();
-        return redirect()->back()->with('message', 'User has been registered successfully');
+        return redirect()->back()->with('success', 'User has been registered successfully');
     }
 
     public function logout()

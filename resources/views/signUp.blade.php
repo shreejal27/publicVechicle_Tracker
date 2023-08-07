@@ -177,13 +177,6 @@
 <body>
     @extends('necessary.common_template')
     @section('content')
-        <br>
-        @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
-
         <ul class="nav nav-pills mt-2 ml-2">
             <li class="nav-item" data-path="userSignUp">
                 <a class="nav-link active" data-toggle="tab" href="#userSignUp" aria-selected="true">Sign Up As User</a>
@@ -194,10 +187,27 @@
             </li>
         </ul>
 
+        @if (session('error'))
+            <div class="alert alert-success">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            </script>
+        @endif
+
         <div class="tab-content">
             <div class="tab-pane fade show active" id="userSignUp" role="tabpanel" data-path="userSignUp">
                 <div class="center-container">
-                    <form class="form mt-4 mb-5" action="{{ route('store') }}" method="POST">
+                    <form class="form mt-4 mb-5" action="{{ route('storeUser') }}" method="POST">
                         @csrf
                         <p class="title">Register </p>
                         <p class="message">Signup now and get full access to our features. </p>
