@@ -1,8 +1,20 @@
+<style>
+    .logo img {
+        margin-top: -13px;
+        width: 90px;
+    }
+</style>
 <header>
     <nav>
         <!-- Navigation menu items -->
-        <div class="left float-left w-50 mt-2">
-            <p style="font-size: 1.7rem; color: #F3DEBA;">Public Vehicle Tracker</p>
+        <div class="left float-left w-50">
+            <div class="logo float-left">
+
+                <img src="{{ asset('images/logo/trackerLogo.png') }}" alt="logo" class="logo">
+            </div>
+            <div class="float-left mt-2">
+                <p style="font-size: 1.7rem; color: #F3DEBA;">Public Vehicle Tracker</p>
+            </div>
         </div>
         <div class="right float-left  w-50 mt-2">
             <ul class=" float-right">
