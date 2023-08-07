@@ -1,16 +1,18 @@
 <header>
-    <!-- Header content here -->
     <nav>
         <!-- Navigation menu items -->
-        <ul class="mt-2">
-            <li>
-                <h5>Public Vechicle Tracker </h5>
-            </li>
-            <li><a href="/index">Home Page</a></li>
-            <li><a href="/aboutUs">About Us</a></li>
-            <li><a href="/contactUs">Contact Us</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signUp">Sign Up</a></li>
+        <div class="left float-left w-50 mt-2">
+            <p style="font-size: 1.7rem; color: #F3DEBA;">Public Vehicle Tracker</p>
+        </div>
+        <div class="right float-left  w-50 mt-2">
+            <ul class=" float-right">
+                <li><a href="/index">Home Page</a></li>
+                <li><a href="/aboutUs">About Us</a></li>
+                <li><a href="/contactUs">Contact Us</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signUp">Sign Up</a></li>
+            </ul>
+        </div>
     </nav>
 </header>
 
@@ -24,4 +26,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+
+
 </head>

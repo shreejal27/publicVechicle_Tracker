@@ -85,17 +85,19 @@ footer{
   nav {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+
   }
   
   nav ul {
     list-style: none;
+
   }
   
   nav ul li {
     display: inline-block;
     margin-right: 10px;
     color: #F3DEBA;
+    font-size: 1.2rem;
   }
 
   ul li a{
