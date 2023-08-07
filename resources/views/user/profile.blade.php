@@ -10,11 +10,10 @@
             background-color: #A9907E !important;
             color: #F3DEBA !important;
         }
-        
     </style>
     <div>
 
-        <ul class="nav nav-pills mt-2 ml-2">
+        <ul class="nav nav-pills mt-2 ml-2 ">
             <li class="nav-item" data-path="profile">
                 <a class="nav-link active" data-toggle="tab" href="#profile" aria-selected="true">Profile</a>
             </li>

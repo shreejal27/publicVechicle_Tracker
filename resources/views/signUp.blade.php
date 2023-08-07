@@ -152,6 +152,25 @@
                 opacity: 0;
             }
         }
+
+        .nav-item a {
+            color: black !important;
+        }
+
+        .nav-item .active {
+            background-color: #A9907E !important;
+            color: #F3DEBA !important;
+        }
+
+        select {
+            width: 100%;
+            padding: 15px 10px 15px 10px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.397);
+            border-radius: 10px;
+            background-color: #A9907E;
+            color: #F3DEBA;
+        }
     </style>
 </head>
 
@@ -164,55 +183,148 @@
                 {{ session('message') }}
             </div>
         @endif
-        <div class="center-container">
 
-            <form class="form mt-4 mb-5" action="{{ route('store') }}" method="POST">
+        <ul class="nav nav-pills mt-2 ml-2">
+            <li class="nav-item" data-path="userSignUp">
+                <a class="nav-link active" data-toggle="tab" href="#userSignUp" aria-selected="true">Sign Up As User</a>
+            </li>
+            <li class="nav-item" data-path="driverSignUp">
+                <a class="nav-link" data-toggle="tab" href="#driverSignUp" aria-selected="false">Sign Up As Public
+                    Driver</a>
+            </li>
+        </ul>
 
-                {{-- <form class="form" action="{{ route('print') }}" method="POST"> --}}
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="userSignUp" role="tabpanel" data-path="userSignUp">
+                <div class="center-container">
+                    <form class="form mt-4 mb-5" action="{{ route('store') }}" method="POST">
+                        @csrf
+                        <p class="title">Register </p>
+                        <p class="message">Signup now and get full access to our features. </p>
+                        <div class="flex">
+                            <label>
+                                <input required="" placeholder="" type="text" class="input" name="firstname">
+                                <span>Firstname</span>
+                            </label>
 
-                @csrf
-                <p class="title">Register </p>
-                <p class="message">Signup now and get full access to our app. </p>
-                <div class="flex">
-                    <label>
-                        <input required="" placeholder="" type="text" class="input" name="firstname">
-                        <span>Firstname</span>
-                    </label>
+                            <label>
+                                <input required="" placeholder="" type="text" class="input" name="lastname">
+                                <span>Lastname</span>
+                            </label>
+                        </div>
 
-                    <label>
-                        <input required="" placeholder="" type="text" class="input" name="lastname">
-                        <span>Lastname</span>
-                    </label>
+                        <label>
+                            <input required="" placeholder="" type="email" class="input" name="email">
+                            <span>Email</span>
+                        </label>
+
+                        <label>
+                            <input required="" placeholder="" type="number" class="input" name="contact_number">
+                            <span>Contact Number </span>
+                        </label>
+
+                        <label>
+                            <input required="" placeholder="" type="text" class="input" name="username">
+                            <span>UserName</span>
+                        </label>
+
+                        <label>
+                            <input required="" placeholder="" type="password" class="input" name="password">
+                            <span>Password</span>
+                        </label>
+                        <label>
+                            <input required="" placeholder="" type="password" class="input" name="confirm_password">
+                            <span>Confirm password</span>
+                        </label>
+                        <button class="submit">Submit</button>
+                        <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>
+                    </form>
                 </div>
+            </div>
+            <div class="tab-pane fade show" id="driverSignUp" role="tabpanel" data-path="driverSignUp">
+                <div class="center-container">
+                    <form class="form mt-4 mb-5" action="{{ route('storeDriver') }}" method="POST">
+                        @csrf
+                        <p class="title">Register As a Driver </p>
+                        <p class="message">Signup now </p>
+                        <div class="flex">
+                            <label>
+                                <input required type="text" class="input" name="firstname">
+                                <span>Firstname</span>
+                            </label>
 
-                <label>
-                    <input required="" placeholder="" type="email" class="input" name="email">
-                    <span>Email</span>
-                </label>
+                            <label>
+                                <input required type="text" class="input" name="lastname">
+                                <span>Lastname</span>
+                            </label>
+                        </div>
 
-                <label>
-                    <input required="" placeholder="" type="number" class="input" name="contact_number">
-                    <span>Contact Number </span>
-                </label>
 
-                <label>
-                    <input required="" placeholder="" type="text" class="input" name="username">
-                    <span>UserName</span>
-                </label>
+                        <label>
+                            <input required type="number" class="input" name="contact_number">
+                            <span>Contact Number </span>
+                        </label>
 
-                <label>
-                    <input required="" placeholder="" type="password" class="input" name="password">
-                    <span>Password</span>
-                </label>
-                <label>
-                    <input required="" placeholder="" type="password" class="input" name="confirm_password">
-                    <span>Confirm password</span>
-                </label>
-                <button class="submit">Submit</button>
-                <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>
-            </form>
+                        <label>
+                            <input required type="text" class="input" name="address">
+                            <span>Address </span>
+                        </label>
+
+                        <label>
+                            <input required type="text" class="input" name="license_number">
+                            <span>License Number</span>
+                        </label>
+
+                        <select name="vehicle_type" class="mb-1" required>
+                            <option value="">--Select Your Vehicle--</option>
+                            <option value="bus">Bus</option>
+                            <option value="micro">Micro</option>
+                            <option value="tempo">Tempo</option>
+                        </select>
+
+                        <label>
+                            <input required type="text" class="input" name="vehicle_number">
+                            <span>Vechicle Number </span>
+                        </label>
+
+                        <label>
+                            <input required type="text" class="input" name="username">
+                            <span>UserName</span>
+                        </label>
+
+                        <label>
+                            <input required type="password" class="input" name="password">
+                            <span>Password</span>
+                        </label>
+                        <label>
+                            <input required type="password" class="input">
+                            <span>Confirm password</span>
+                        </label>
+                        <button class="submit">Submit</button>
+                        <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Signin</a> </p>
+                    </form>
+                </div>
+            </div>
         </div>
     @endsection
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Show the active tab content on page load
+            $('.nav-pills .active a').tab('show');
+
+            // Update the active tab content when a new tab is clicked
+            $('.nav-pills a').on('click', function(event) {
+                event.preventDefault();
+                var path = $(this).data('path');
+                $('.tab-content .tab-pane').removeClass('show active');
+                $('.tab-content').find('[data-path="' + path + '"]').addClass('show active');
+            });
+        });
+    </script>
 </body>
 
 </html>
