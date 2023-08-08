@@ -1,5 +1,7 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
+
 <style>
     td a {
         text-decoration: none;
@@ -56,6 +58,8 @@
                         <td>{{ $vehicle->vehicle_name }}</td>
                         <td>{{ $vehicle->vehicle_routes }}</td>
                         <td>
+                            <i class=" fa fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-pen" style="color: #f3deba;"></i>
                             <a href="/vehicleRouteEdit/{{ $vehicle->id }}">Edit</a>
                             <a href="/vehicleRouteDelete/{{ $vehicle->id }}"
                                 onclick="return confirm('Are you sure you want to delete this fare?')">Delete</a>
