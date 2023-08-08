@@ -1,26 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
-<style>
-    table {
-        margin: auto;
-        width: 50% !important;
-        background-color: #675d50;
-        margin-top: 2rem;
-    }
+<link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 
-    tr,
-    td,
-    th {
-        text-align: center;
-        color: #F3DEBA;
-        border: 2px solid #F3DEBA !important;
-    }
-
-    hr {
-        border-top: 2px solid white !important;
-        width: 80%;
-        margin: 20px auto;
-    }
-</style>
 @extends('necessary.user_template')
 @section('content')
     <section>
