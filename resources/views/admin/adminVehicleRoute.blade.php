@@ -1,96 +1,51 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 <style>
-    .addVehicleRoute {
-        margin: 10px;
-        padding: 20px;
-        background-color: #675d50;
-        color: #F3DEBA;
-        border-radius: 10px;
-    }
-
-    input {
-        height: 40px;
-        width: 100%;
-        border-radius: 0.375rem;
-        border: 2px solid #ABC4AA;
-        outline: 0;
-        background-color: #A9907E;
-        padding: 0.75rem 1rem;
-        color: white;
-        margin-bottom: 10px !important;
-    }
-
-    input:focus {
-        border-color: #F3DEBA;
-        background-color: #F3DEBA;
+    td a {
+        text-decoration: none;
         color: black;
     }
 
-    label {
-        font-size: 1.2rem !important;
-        margin-bottom: 0px !important;
-    }
-
-    button {
-        height: 40px;
-        width: 100%;
-        border: 2px solid #ABC4AA;
-        border-radius: 0.375rem !important;
-        outline: 0;
-        background-color: #F3DEBA;
-        padding: 0.75rem 1rem;
-        color: black;
-    }
-
-    button:hover {
-        background-color: #ABC4AA;
-
-    }
-
-    table {
-
-        background-color: #675d50;
-
-    }
-
-    tr,
-    td,
-    th {
-        color: #F3DEBA;
-        border: 1px solid black !important;
-    }
-
-    a {
-        color: #F3DEBA !important;
-        text-decoration: none !important;
+    td a:hover {
+        text-decoration: none;
+        color: red;
     }
 </style>
 @extends('necessary.admin_template')
 @section('content')
-    <section class="addVehicleRoute col-md-5 col-sm-5 col-lg-5 col-xl-5">
-        <h3>Add Vechicle Route</h3>
+    <section class="mt-4">
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
             </div>
         @endif
-        <form action="{{ route('storeVehicleRoute') }}" method="POST">
-            @csrf
-            <label for="vechicle">Vechicle Name: </label>
-            <input type="text" name="vehicle_name" required>
-            <br>
-            <label for="route">Route: </label>
-            <input type="text" name="vehicle_routes" required>
-            <br>
-            <button type="submit" class="mt-3">Add</button>
+        <div class="center-container">
+            <div class="form-container  mb-3">
+                <p class="title">Add Vechicle Route</p>
+                <form class="form" action="{{ route('storeVehicleRoute') }}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <label>Vechicle Name:</label>
+                        <input type="text" name="vehicle_name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Route:</label>
+                        <input type="text" name="vehicle_routes" required>
+                    </div>
+                    <button class="sign mt-3" type="submit">Add</button>
+                </form>
+            </div>
+        </div>
     </section>
     <section class="m-3 mt-4">
-        <h2>Vechicle Routes</h2>
-        <table class="table  table-hover col-md-12 col-sm-12 col-lg-12 col-xl-12">
+
+        <table class="table table-hover col-md-10 col-sm-10 col-lg-10 col-xl-10">
             <thead>
+                <th colspan="4"> Vechicle Routes</th>
                 <tr>
                     <th>SN</th>
                     <th>Vehicle Name</th>
-                    <th>Vehicle Routes</th>
+                    <th> Routes</th>
                     <th>Action</th>
                 </tr>
             </thead>
