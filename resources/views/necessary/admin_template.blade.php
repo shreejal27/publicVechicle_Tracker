@@ -19,8 +19,9 @@
         <aside class="sidebar ">
             <div>
                 <section class="text-center">
+                    <img src="{{ asset('images/logo/trackerLogo.png') }}" alt="logo" class="logo" width="80px"
+                        style="margin-top: -20px;">
                     <h3>
-
                         <p class="font-weight-bold">Public Vehicle Tracker </p>
                     </h3>
                     <h5>

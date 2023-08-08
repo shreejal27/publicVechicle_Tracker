@@ -1,7 +1,7 @@
 <style>
     .logo img {
-        margin-top: -13px;
-        width: 90px;
+        margin-top: -15px;
+        height: 5rem;
     }
 </style>
 <header>
