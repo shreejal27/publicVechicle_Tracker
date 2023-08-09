@@ -207,46 +207,46 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="userSignUp" role="tabpanel" data-path="userSignUp">
                 <div class="center-container">
-                    <form class="form mt-4 mb-5" action="{{ route('storeUser') }}" method="POST">
+                    <form class="form mt-4 mb-5" id="userRegister" action="{{ route('storeUser') }}" method="POST">
                         @csrf
                         <p class="title">Register </p>
                         <p class="message">Signup now and get full access to our features. </p>
                         <div class="flex">
                             <label>
-                                <input required="" placeholder="" type="text" class="input" name="firstname">
+                                <input required id="firstname" type="text" class="input" name="firstname">
                                 <span>Firstname</span>
                             </label>
 
                             <label>
-                                <input required="" placeholder="" type="text" class="input" name="lastname">
+                                <input required id="lastname" type="text" class="input" name="lastname">
                                 <span>Lastname</span>
                             </label>
                         </div>
 
                         <label>
-                            <input required="" placeholder="" type="email" class="input" name="email">
+                            <input required id="email" type="email" class="input" name="email">
                             <span>Email</span>
                         </label>
 
                         <label>
-                            <input required="" placeholder="" type="number" class="input" name="contact_number">
+                            <input required id="number" type="number" class="input" name="contact_number">
                             <span>Contact Number </span>
                         </label>
 
                         <label>
-                            <input required="" placeholder="" type="text" class="input" name="username">
+                            <input required id="username" type="text" class="input" name="username">
                             <span>UserName</span>
                         </label>
 
                         <label>
-                            <input required="" placeholder="" type="password" class="input" name="password">
+                            <input required id="password" type="text" class="input" name="password">
                             <span>Password</span>
                         </label>
                         <label>
-                            <input required="" placeholder="" type="password" class="input" name="confirm_password">
+                            <input required id="cpassword" type="password" class="input" name="confirm_password">
                             <span>Confirm password</span>
                         </label>
-                        <button class="submit">Submit</button>
+                        <button class="submit" type="submit">Submit</button>
                         <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>
                     </form>
                 </div>
@@ -334,6 +334,94 @@
                 $('.tab-content').find('[data-path="' + path + '"]').addClass('show active');
             });
         });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("userRegister").addEventListener("submit", function(event) {
+
+                if (!formCheck()) {
+                    event.preventDefault(); // Prevent form submission
+                }
+            });
+        });
+
+        function formCheck() {
+            var firstname = document.getElementById("firstname").value;
+            var lastname = document.getElementById("lastname").value;
+            var email = document.getElementById("email").value;
+            var number = document.getElementById("number").value;
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var cpassword = document.getElementById("cpassword").value;
+
+            if (firstname.length > 15) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Please enter a valid first name (up to 15 characters).',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+                return false;
+            }
+
+            if (lastname.length > 15) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Please enter a valid last name (up to 15 characters).',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+                return false;
+            }
+
+            if (!email.includes("@") || !email.includes(".com")) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Please enter a valid email address.',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+                return false;
+            }
+
+            if (!number.startsWith("98") || number.length !== 10) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Please enter a valid phone number (starting with 98 and 10 characters).',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+                return false;
+            }
+
+            if (username.length > 10) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Please enter a valid username (up to 10 characters).',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+                return false;
+            }
+
+            if (password !== cpassword) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Passwords do not match.',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+                return false;
+            }
+
+            return true;
+        }
     </script>
 </body>
 
