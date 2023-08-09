@@ -345,6 +345,16 @@
             });
         });
 
+        function showErrorAlert(message) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: message,
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+
         function formCheck() {
             var firstname = document.getElementById("firstname").value;
             var lastname = document.getElementById("lastname").value;
@@ -355,68 +365,37 @@
             var cpassword = document.getElementById("cpassword").value;
 
             if (firstname.length > 15) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please enter a valid first name (up to 15 characters).',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
+                showErrorAlert("Please enter a valid first name (up to 15 characters).");
                 return false;
             }
 
             if (lastname.length > 15) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please enter a valid last name (up to 15 characters).',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
+                showErrorAlert("Please enter a valid last name (up to 15 characters).");
+                return false;
+            }
+
+            if ((firstname.match(/\d/)) || (lastname.match(/\d/))) {
+                showErrorAlert("Your Name should not contain numbers.");
                 return false;
             }
 
             if (!email.includes("@") || !email.includes(".com")) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please enter a valid email address.',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
+                showErrorAlert("Please enter a valid email address.");
                 return false;
             }
 
             if (!number.startsWith("98") || number.length !== 10) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please enter a valid phone number (starting with 98 and 10 characters).',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
+                showErrorAlert("Please enter a valid phone number (starting with 98 and 10 characters).");
                 return false;
             }
 
             if (username.length > 10) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please enter a valid username (up to 10 characters).',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
+                showErrorAlert("Please enter a valid username (up to 10 characters).");
                 return false;
             }
 
             if (password !== cpassword) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Passwords do not match.',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
+                showErrorAlert("Passwords do not match.");
                 return false;
             }
 
