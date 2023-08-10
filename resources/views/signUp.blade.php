@@ -253,35 +253,35 @@
             </div>
             <div class="tab-pane fade show" id="driverSignUp" role="tabpanel" data-path="driverSignUp">
                 <div class="center-container">
-                    <form class="form mt-4 mb-5" action="{{ route('storeDriver') }}" method="POST">
+                    <form class="form mt-4 mb-5" id="driverRegister" action="{{ route('storeDriver') }}" method="POST">
                         @csrf
                         <p class="title">Register As a Driver </p>
                         <p class="message">Signup now </p>
                         <div class="flex">
                             <label>
-                                <input required type="text" class="input" name="firstname">
+                                <input required id="firstname" type="text" class="input" name="firstname">
                                 <span>Firstname</span>
                             </label>
 
                             <label>
-                                <input required type="text" class="input" name="lastname">
+                                <input required id="lastname" type="text" class="input" name="lastname">
                                 <span>Lastname</span>
                             </label>
                         </div>
 
 
                         <label>
-                            <input required type="number" class="input" name="contact_number">
+                            <input required type="number" id="number" class="input" name="contact_number">
                             <span>Contact Number </span>
                         </label>
 
                         <label>
-                            <input required type="text" class="input" name="address">
+                            <input required type="text" id="address" class="input" name="address">
                             <span>Address </span>
                         </label>
 
                         <label>
-                            <input required type="text" class="input" name="license_number">
+                            <input required type="text" id="lnumber" class="input" name="license_number">
                             <span>License Number</span>
                         </label>
 
@@ -293,21 +293,21 @@
                         </select>
 
                         <label>
-                            <input required type="text" class="input" name="vehicle_number">
+                            <input required type="text" id="vnumber" class="input" name="vehicle_number">
                             <span>Vechicle Number </span>
                         </label>
 
                         <label>
-                            <input required type="text" class="input" name="username">
+                            <input required type="text" id="username" class="input" name="username">
                             <span>UserName</span>
                         </label>
 
                         <label>
-                            <input required type="password" class="input" name="password">
+                            <input required type="password" id="password" class="input" name="password">
                             <span>Password</span>
                         </label>
                         <label>
-                            <input required type="password" class="input">
+                            <input required type="password" id="cpassword" class="input">
                             <span>Confirm password</span>
                         </label>
                         <button class="submit">Submit</button>
@@ -396,6 +396,76 @@
 
             if (password !== cpassword) {
                 showErrorAlert("Passwords do not match.");
+
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("driverRegister").addEventListener("submit", function(event) {
+
+                if (!formCheck()) {
+                    event.preventDefault(); // Prevent form submission
+                }
+            });
+        });
+
+        function showErrorAlert(message) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: message,
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+
+        function formCheck() {
+            var firstname = document.getElementById("firstname").value;
+            var lastname = document.getElementById("lastname").value;
+            var address = document.getElementById("address").value;
+            var licensenumber = document.getElementById("lnumber").value;
+            var licensenumber = document.getElementById("vnumber").value;
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var cpassword = document.getElementById("cpassword").value;
+
+            if (firstname.length > 15) {
+                showErrorAlert("Please enter a valid first name (up to 15 characters).");
+                return false;
+            }
+
+            if (lastname.length > 15) {
+                showErrorAlert("Please enter a valid last name (up to 15 characters).");
+                return false;
+            }
+
+            if ((firstname.match(/\d/)) || (lastname.match(/\d/))) {
+                showErrorAlert("Your Name should not contain numbers.");
+                return false;
+            }
+
+            if (!email.includes("@") || !email.includes(".com")) {
+                showErrorAlert("Please enter a valid email address.");
+                return false;
+            }
+
+            if (!number.startsWith("98") || number.length !== 10) {
+                showErrorAlert("Please enter a valid phone number (starting with 98 and 10 characters).");
+                return false;
+            }
+
+            if (username.length > 10) {
+                showErrorAlert("Please enter a valid username (up to 10 characters).");
+                return false;
+            }
+
+            if (password !== cpassword) {
+                showErrorAlert("Passwords do not match.");
+
                 return false;
             }
 
