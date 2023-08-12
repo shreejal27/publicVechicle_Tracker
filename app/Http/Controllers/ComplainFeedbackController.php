@@ -15,6 +15,6 @@ class ComplainFeedbackController extends Controller
         $complainFeedback->description = $request->formDescription;
         $complainFeedback->save();
  
-       return redirect()->back()->with('message', 'Your form has been submitted successfully');
+       return redirect()->back()->with('success', 'Your request has been submitted successfully.');
     }
 }

@@ -1,11 +1,18 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 @extends('necessary.user_template')
 @section('content')
-    @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        </script>
     @endif
+
     <div class="center-container mt-5">
         <div class="form-container col-md-4 mb-3">
             <p class="title">We are here to assist you</p>
