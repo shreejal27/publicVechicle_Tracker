@@ -1,25 +1,32 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 @extends('necessary.admin_template')
 @section('content')
-    <section class="title">
-        <h1>This is farePrice</h1>
-    </section>
-    <section>
-        <p>Add new Fare and Distance</p>
-    </section>
+  
     <section>
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
             </div>
         @endif
-        <form action="{{ route('store') }}" method="post">
-            @csrf
-            <label>Distance (in kms): </label>
-            <input type="text" name="distance" id="distance"> <br>
-            <label>Price: </label>
-            <input type="text" name="price" id="price"> <br>
-            <input type="submit" value="Add">
-        </form>
+
+        <div class="center-container mt-5">
+            <div class="form-container col-md-3 mb-3">
+                <p class="title">This is farePrice</p>
+                <p class="subtitle">Add new Fare and Distance</p>
+                <form class="form" id="userCredentialForm" action="{{ route('store') }}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <label>Distance (in kms):</label>
+                        <input type="text" name="distance" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Price:</label>
+                        <input type="text" name="price" required>
+                    </div>
+                    <button class="sign mt-3" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
     </section>
     <section>
         <h2>Fare List</h2>
