@@ -1,7 +1,18 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
+<style>
+    td a {
+        text-decoration: none;
+        color: black;
+    }
+
+    td a:hover {
+        text-decoration: none;
+        color: red;
+    }
+</style>
 @extends('necessary.admin_template')
 @section('content')
-  
     <section>
         @if (session('message'))
             <div class="alert alert-success">
@@ -28,10 +39,12 @@
             </div>
         </div>
     </section>
-    <section>
-        <h2>Fare List</h2>
-        <table>
+
+    <section class="m-3 mt-4">
+
+        <table class="table table-hover col-md-6 col-sm-6 col-lg-6 col-xl-6">
             <thead>
+                <th colspan="4"> Fare List</th>
                 <tr>
                     <th>SN</th>
                     <th>Distance (in kms)</th>
