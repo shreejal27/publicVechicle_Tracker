@@ -14,12 +14,28 @@
 @extends('necessary.admin_template')
 @section('content')
     <section>
-        @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
+        @if (session('error'))
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: '{{ session('error') }}',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            </script>
         @endif
-
+        @if (session('message'))
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '{{ session('message') }}',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            </script>
+        @endif
         <div class="center-container mt-5">
             <div class="form-container col-md-3 mb-3">
                 <p class="title">This is farePrice</p>
@@ -60,12 +76,32 @@
                         <td>{{ $fare->price }}</td>
                         <td>
                             <a href="/fareEdit/{{ $fare->id }}">Edit</a>
-                            <a href="/fareDelete/{{ $fare->id }}"
-                                onclick="return confirm('Are you sure you want to delete this fare?')">Delete</a>
+                            <a href="/fareDelete/{{ $fare->id }}" onclick="return confirmDelete(event)">Delete</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </section>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            Swal.fire({
+                position: 'top-end',
+                title: 'Are you sure you want to delete?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = event.target.getAttribute('href');
+                }
+            });
+
+            return false;
+        }
+    </script>
 @endsection
