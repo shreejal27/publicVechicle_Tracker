@@ -22,13 +22,13 @@
             <div>
                 <section class="text-center">
                     <img src="{{ asset('images/logo/trackerLogo.png') }}" alt="logo" class="logo" width="80px"
-                    style="margin-top: -20px;">
+                        style="margin-top: -20px;">
                     <h3>
                         <p class="font-weight-bold">Public Vehicle Tracker</p>
                     </h3>
                     <h5>
                         <p id="greetings"> </p>
-                        <p>Driver</p>
+                        <p>{{ ucfirst(session('driverName')) }} </p>
                     </h5>
                 </section>
                 <br>
@@ -43,7 +43,7 @@
         </aside>
 
 
-        <main  class="">
+        <main class="">
             @yield('content')
         </main>
     </div>

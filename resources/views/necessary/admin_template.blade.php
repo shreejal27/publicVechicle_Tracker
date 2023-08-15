@@ -27,7 +27,7 @@
                     <h5>
 
                         <p id="greetings"> </p>
-                        <p>Admin</p>
+                        <p>{{ ucfirst(session('adminName')) }}</p>
                     </h5>
                 </section>
 
