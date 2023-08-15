@@ -1,9 +1,20 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 @extends('necessary.driver_template')
 @section('content')
     <section>
-        <h2>Fare List</h2>
-        <table>
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                title: 'Passengers can carry goods up to 15 kg for free <br> <br> Rs 5 per kg will be charged for more than 10 kg. ',
+                showCloseButton: true,
+            })
+        </script>
+        <table class="table table-hover col-md-5 col-sm-12 col-lg-5 col-xl-5">
             <thead>
+                <tr>
+                    <th class="text-center" colspan="3">Fare List</th>
+                </tr>
                 <tr>
                     <th>SN</th>
                     <th>Distance (in kms)</th>
@@ -21,27 +32,35 @@
             </tbody>
         </table>
         <br>
-        <p>Note: Passengers can carry goods up to 15 kg for free and Rs5 per kg will be charged for more than 10 kg.
-        </p>
 
-        Fare Calculator
-        <form action="{{ route('calculateDriverFare') }}" method="POST">
-            @csrf
-            <label>From: </label>
-            <input type="text" name="from" required> <br>
-            <label>To: </label>
-            <input type="text" name="to" required> <br>
-            <label>Additional Weight: </label>
-            <input type="text" name="weight"><br>
-            <button type="submit">Calculate</button>
-        </form>
+        <hr>
+        <br>
+        <div class="center-container">
+            <div class="form-container  mb-3">
+                <p class="title">Fare Calculator</p>
+                <form class="form" id="userCredentialForm" action="{{ route('calculateDriverFare') }}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <label>From:</label>
+                        <input type="text" name="from" required>
+                    </div>
+                    <div class="input-group">
+                        <label>To</label>
+                        <input type="text" name="to" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Total Weight:</label>
+                        <input type="text" name="weight">
+                    </div>
+                    <button class="sign mt-3" type="submit">Calculate</button>
+                </form>
+            </div>
+        </div>
         @if ($sessionValue != 0)
-            @if ($totalFare == 0)
-                <p> No vehicle with input route found </p>
-            @else
-                <p> Total Distance: {{ $distance }} km</p>
-                <p> Total Cost: {{ $totalFare }}</p>
-            @endif
+            <p> Total Cost: {{ $totalFare }}</p>
+        @else
+            <p>Please enter valid route</p>
         @endif
+
     </section>
 @endsection
