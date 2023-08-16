@@ -36,6 +36,6 @@ class AdminController extends Controller
     {
         Auth::logout();
         session()->forget('admin_id');
-        return redirect()->route('login')->with('success', 'Admin Logout successful');
+        return redirect()->route('login')->with('success', ' Logout successful');
     }
 }

@@ -87,15 +87,9 @@ Route::post('/login', [LoginController::class, 'loginCheck'])->name('loginCheck'
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 
-//admin dashboard
-Route::get('/adminDashboard', function () {
-    return view('admin.adminDashboard');
-})->name('adminDashboard');
-
 //admin active public vehicle
-// Route::get('/adminActivePublicVehicle', function () {
-//     return view('admin.adminActivePublicVehicle');
-// });
+Route::get('/adminDashboard', [LoginController::class, 'adminDashboard'])->name('adminDashboard');
+
 
 // //admin active public vechicles
 // Route::get('/adminVehicleRoute', function () {

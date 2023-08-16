@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Driver;
+use App\Models\Stop;
 
 class LoginController extends Controller
 {
@@ -18,16 +19,19 @@ class LoginController extends Controller
         // Example: Check if the username and password match a user in the database
         if ($userType === 'admin') {
             $admin = Admin::where('username', $username)->where('password', $password)->first();
+
             if ($admin) {
                 session(['admin_id' => $admin->id]);
                     //store admin name in session
                     session(['adminName' => $admin->username]);
-                return redirect()->route('adminDashboard')->with('success', 'Login successful');
+                    return view('admin.adminDashboard')->with($this->getCountsForAdmin());
             } else {
                 return redirect()->back()->with('error', 'Invalid username or password');
             }
+
         } elseif ($userType === 'user') {
             $user = User::where('username', $username)->where('password', $password)->first();
+
             if ($user) {
                 // Authentication successful for user
                 session(['user_id' => $user->id]);
@@ -38,6 +42,7 @@ class LoginController extends Controller
                 // Authentication failed for user
                 return redirect()->back()->with('error', 'Invalid username or password');
             }
+
         } else {
             $driver = Driver::where('username', $username)->where('password', $password)->first();
             if ($driver) {
@@ -52,6 +57,21 @@ class LoginController extends Controller
                 return redirect()->back()->with('error', 'Invalid username or password');
             }
         }
+    }
+    private function getCountsForAdmin()
+     {
+        $userCount = User::count();
+        $driverCount = Driver::count();
+        $stopCount = Stop::count();
+
+        return compact('userCount', 'driverCount', 'stopCount');
+     }
+
+    //this is for admin dashboard from navbar
+    public function adminDashboard()
+    {
+     return view('admin.adminDashboard')
+        ->with($this->getCountsForAdmin());
     }
 
     public function showLoginForm()
