@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
+use App\Models\Stop;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -38,4 +41,22 @@ class AdminController extends Controller
         session()->forget('admin_id');
         return redirect()->route('login')->with('success', ' Logout successful');
     }
+
+    
+   //this is for admin dashboard from navbar
+   public function adminDashboard()
+   {
+    return view('admin.adminDashboard')
+       ->with($this->getCountsForAdmin());
+   }
+
+    private function getCountsForAdmin()
+    {
+       $userCount = User::count();
+       $driverCount = Driver::count();
+       $stopCount = Stop::count();
+
+       return compact('userCount', 'driverCount', 'stopCount');
+    }
+
 }

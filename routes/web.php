@@ -88,8 +88,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 
 //admin active public vehicle
-Route::get('/adminDashboard', [LoginController::class, 'adminDashboard'])->name('adminDashboard');
-
+Route::get('/adminDashboard', [AdminController::class, 'adminDashboard'])->name('adminDashboard');
 
 // //admin active public vechicles
 // Route::get('/adminVehicleRoute', function () {

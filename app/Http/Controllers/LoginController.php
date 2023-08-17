@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Driver;
 use App\Models\Stop;
 
+use App\Http\Controllers\AdminController;
+
+
 class LoginController extends Controller
 {
     public function loginCheck(Request $request)
@@ -24,7 +27,8 @@ class LoginController extends Controller
                 session(['admin_id' => $admin->id]);
                     //store admin name in session
                     session(['adminName' => $admin->username]);
-                    return view('admin.adminDashboard')->with($this->getCountsForAdmin());
+                    $adminController = app()->make(AdminController::class);
+                    return $adminController->adminDashboard();
             } else {
                 return redirect()->back()->with('error', 'Invalid username or password');
             }
@@ -58,21 +62,7 @@ class LoginController extends Controller
             }
         }
     }
-    private function getCountsForAdmin()
-     {
-        $userCount = User::count();
-        $driverCount = Driver::count();
-        $stopCount = Stop::count();
-
-        return compact('userCount', 'driverCount', 'stopCount');
-     }
-
-    //this is for admin dashboard from navbar
-    public function adminDashboard()
-    {
-     return view('admin.adminDashboard')
-        ->with($this->getCountsForAdmin());
-    }
+  
 
     public function showLoginForm()
     {
