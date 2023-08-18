@@ -10,9 +10,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
     <section class="mt-4">
         @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '{{ session('message') }}',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            </script>
         @endif
         <div class="center-container">
             <div class="form-container col-md-4 mb-3">
