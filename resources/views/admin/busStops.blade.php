@@ -1,93 +1,50 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <style>
     #map {
         height: 500px;
         width: 100%;
     }
-
-    .form {
-        margin: 10px;
-        padding: 20px;
-        background-color: #675d50;
-        color: #F3DEBA;
-        border-radius: 10px;
-    }
-
-    label {
-        font-size: 1rem !important;
-        margin-bottom: 0px !important;
-    }
-
-    input,
-    select {
-        height: 30px;
-        width: 100%;
-        border-radius: 0.375rem;
-        border: 2px solid #ABC4AA;
-        outline: 0;
-        background-color: #A9907E;
-        padding: 0 0.75rem;
-        color: white;
-        margin-bottom: 5px !important;
-    }
-
-    input:focus {
-        border-color: #F3DEBA;
-        background-color: #F3DEBA;
-        color: black;
-    }
-
-
-    button {
-        height: 30px;
-        width: 100%;
-        border: 2px solid #ABC4AA;
-        border-radius: 0.375rem !important;
-        outline: 0;
-        background-color: #F3DEBA;
-        /* padding: 0.75rem 1rem;s */
-        color: black;
-    }
-
-    button:hover {
-        background-color: #ABC4AA;
-
-    }
 </style>
 @extends('necessary.admin_template')
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-
-    @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
+    <section class="mt-4">
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+        <div class="center-container">
+            <div class="form-container col-md-4 mb-3">
+                <p class="title">Add New Vehicle Stop</p>
+                <form class="form" action="{{ route('storeStops') }}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <label>Info:</label>
+                        <input type="text" name="info" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Latitude:</label>
+                        <input type="text" name="latitude" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Longitude:</label>
+                        <input type="text" name="longitude" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Vehicle Stops:</label>
+                        <select name="vehicle_type">
+                            <option value="">Select</option>
+                            <option value="bus">Bus</option>
+                            <option value="micro">Micro</option>
+                            <option value="tempo">Tempo</option>
+                        </select>
+                    </div>
+                    <button class="sign mt-3" type="submit">Add</button>
+                </form>
+            </div>
         </div>
-    @endif
-    <section class="form col-md-4 col-sm-12 col-lg-4 col-xl-4">
-        <h2>Add New Vehicle Stop</h2>
-        <form action="{{ route('storeStops') }}" method="POST">
-            @csrf
-            <label> Info: </label>
-            <input type="text" name="info" required>
-            <br>
-            <label> Latitude: </label>
-            <input type="text" name="latitude" required>
-            <br>
-            <label> Longitude: </label>
-            <input type="text" name="longitude" required>
-            <br>
-            <label> Vehicle Stops: </label>
-            <br>
-            <select name="vehicle_type">
-                <option value="">Select</option>
-                <option value="bus">Bus</option>
-                <option value="micro">Micro</option>
-                <option value="tempo">Tempo</option>
-            </select>
-            <button type="submit" class="mt-2"> Add </button>
-            {{-- <input class="butt" type="button" value="Show Dustbins" onClick="window.location.reload(true)"> --}}
-        </form>
     </section>
-
     <section>
         <h1>Nearest Bus Stop</h1>
 
