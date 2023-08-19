@@ -112,7 +112,7 @@ Route::post('/storeVehicleRoute', [VehicleRouteController::class, 'store'])->nam
 Route::get('/vehicleRouteEdit/{id}', [VehicleRouteController::class, 'edit'])->name('editVehicleRoute');
 
 //delete vehicle routes
-Route::get('/vehicleRouteDelete/{id}', [VehicleRouteController::class, 'delete'])->name('delete');
+Route::get('/vehicleRouteDelete/{id}', [VehicleRouteController::class, 'delete'])->name('deleteVehicleRoute');
 
 //update vehicle routes
 Route::post('/vehicleRouteUpdate/{id}', [VehicleRouteController::class, 'update'])->name('updateVehicleRoute');

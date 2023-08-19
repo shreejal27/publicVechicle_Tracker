@@ -47,6 +47,17 @@
 
         <main>
             @yield('content')
+            @if (session('message'))
+                <script>
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '{{ session('message') }}',
+                        showConfirmButton: false,
+                        timer: 2500
+                    })
+                </script>
+            @endif
         </main>
     </div>
 

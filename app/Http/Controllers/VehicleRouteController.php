@@ -38,9 +38,9 @@ class VehicleRouteController extends Controller
         $vehicle = VehicleRoute::find($id);
         if ($vehicle) {
             $vehicle->delete();
-            return redirect()->route('vehicleRoute.index')->with('message', 'Vehicle Data deleted successfully.');
+            return redirect()->back()->with('message', 'Vehicle Route deleted successfully.');
         }
-        return redirect()->route('vehicleRoute.index')->with('message', 'Vehicle Data not found.');
+        return redirect()->back()->with('message', 'Vehicle Route not found.');
     }
 
     public function edit($id)

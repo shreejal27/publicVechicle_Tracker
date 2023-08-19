@@ -10,11 +10,6 @@
 @extends('necessary.admin_template')
 @section('content')
     <section class="mt-4">
-        @if (session('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
         <div class="center-container">
             <div class="form-container  mb-3">
                 <p class="title">Add Vechicle Route</p>
@@ -56,8 +51,10 @@
                                     style="color: #f3deba;"></i> </a>
 
                             <a href="/vehicleRouteDelete/{{ $vehicle->id }}"
-                                onclick="return confirm('Are you sure you want to delete this fare?')">
-                                <i class="fa-solid fa-trash fa-lg" style="color: #f3deba;"></i></a>
+                                data-route="{{ route('deleteVehicleRoute', ['id' => $vehicle->id]) }}"
+                                onclick="return confirmDelete(event)">
+                                <i class="fa-solid fa-trash fa-lg" style="color: #f3deba;"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
@@ -67,7 +64,7 @@
     <script>
         function confirmDelete(event) {
             event.preventDefault(); // Prevent the default link behavior
-
+            const route = event.currentTarget.getAttribute('data-route');
             Swal.fire({
                 position: 'top-end',
                 title: 'Are you sure you want to delete?',
@@ -78,7 +75,8 @@
                 confirmButtonText: 'Yes'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = event.target.getAttribute('href');
+                    console.log(route);
+                    window.location.href = route;
                 }
             });
 
