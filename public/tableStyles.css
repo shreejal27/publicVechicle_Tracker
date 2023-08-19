@@ -17,3 +17,7 @@ hr {
     width: 80%;
     margin: 20px auto;
 }
+
+td a {
+    margin: 0 0.4rem;
+}

@@ -1,12 +1,6 @@
-<script src="https://kit.fontawesome.com/74ddeb49ef.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 
-<style>
-    td a {
-        margin: 0 0.4rem;
-    }
-</style>
 @extends('necessary.admin_template')
 @section('content')
     <section class="mt-4">
@@ -75,7 +69,6 @@
                 confirmButtonText: 'Yes'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log(route);
                     window.location.href = route;
                 }
             });

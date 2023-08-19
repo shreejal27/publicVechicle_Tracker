@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/74ddeb49ef.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 </head>
 
@@ -47,6 +48,17 @@
 
         <main>
             @yield('content')
+            @if (session('error'))
+                <script>
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: '{{ session('error') }}',
+                        showConfirmButton: false,
+                        timer: 2500
+                    })
+                </script>
+            @endif
             @if (session('message'))
                 <script>
                     Swal.fire({

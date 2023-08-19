@@ -1,41 +1,9 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
-<style>
-    td a {
-        text-decoration: none;
-        color: black;
-    }
 
-    td a:hover {
-        text-decoration: none;
-        color: red;
-    }
-</style>
 @extends('necessary.admin_template')
 @section('content')
     <section>
-        @if (session('error'))
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: '{{ session('error') }}',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
-            </script>
-        @endif
-        @if (session('message'))
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '{{ session('message') }}',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
-            </script>
-        @endif
         <div class="center-container mt-5">
             <div class="form-container col-md-3 mb-3">
                 <p class="title">This is farePrice</p>
@@ -75,8 +43,11 @@
                         <td>{{ $fare->distance }}</td>
                         <td>{{ $fare->price }}</td>
                         <td>
-                            <a href="/fareEdit/{{ $fare->id }}">Edit</a>
-                            <a href="/fareDelete/{{ $fare->id }}" onclick="return confirmDelete(event)">Delete</a>
+                            <a href="/fareEdit/{{ $fare->id }}"><i class=" fa fa-solid fa-pen-to-square fa-lg"
+                                    style="color: #f3deba;"></i></a>
+                            <a href="" data-route="/fareDelete/{{ $fare->id }}"
+                                onclick="return confirmDelete(event)"><i class="fa-solid fa-trash fa-lg"
+                                    style="color: #f3deba;"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -86,7 +57,7 @@
     <script>
         function confirmDelete(event) {
             event.preventDefault(); // Prevent the default link behavior
-
+            const route = event.currentTarget.getAttribute('data-route');
             Swal.fire({
                 position: 'top-end',
                 title: 'Are you sure you want to delete?',
@@ -97,7 +68,7 @@
                 confirmButtonText: 'Yes'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = event.target.getAttribute('href');
+                    window.location.href = route;
                 }
             });
 
