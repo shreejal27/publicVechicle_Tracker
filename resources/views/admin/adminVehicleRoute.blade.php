@@ -1,16 +1,10 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/74ddeb49ef.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 
 <style>
     td a {
-        text-decoration: none;
-        color: black;
-    }
-
-    td a:hover {
-        text-decoration: none;
-        color: red;
+        margin: 0 0.4rem;
     }
 </style>
 @extends('necessary.admin_template')
@@ -58,15 +52,37 @@
                         <td>{{ $vehicle->vehicle_name }}</td>
                         <td>{{ $vehicle->vehicle_routes }}</td>
                         <td>
-                            <i class=" fa fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-pen" style="color: #f3deba;"></i>
-                            <a href="/vehicleRouteEdit/{{ $vehicle->id }}">Edit</a>
+                            <a href="/vehicleRouteEdit/{{ $vehicle->id }}"><i class=" fa fa-solid fa-pen-to-square fa-lg"
+                                    style="color: #f3deba;"></i> </a>
+
                             <a href="/vehicleRouteDelete/{{ $vehicle->id }}"
-                                onclick="return confirm('Are you sure you want to delete this fare?')">Delete</a>
+                                onclick="return confirm('Are you sure you want to delete this fare?')">
+                                <i class="fa-solid fa-trash fa-lg" style="color: #f3deba;"></i></a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </section>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            Swal.fire({
+                position: 'top-end',
+                title: 'Are you sure you want to delete?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = event.target.getAttribute('href');
+                }
+            });
+
+            return false;
+        }
+    </script>
 @endsection
