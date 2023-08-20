@@ -1,19 +1,9 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
-<style>
-    .nav-item a {
-        color: black !important;
-    }
-
-    .nav-item .active {
-        background-color: #A9907E !important;
-        color: #F3DEBA !important;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="{{ asset('pillStyles.css') }}">
 @extends('necessary.admin_template')
 @section('content')
     <div>
-
         <ul class="nav nav-pills mt-2 ml-2">
             <li class="nav-item" data-path="vehicleRouteList">
                 <a class="nav-link active" data-toggle="tab" href="#vehicleRouteList" aria-selected="true">Vehicle Route
@@ -72,7 +62,6 @@
                                     <a href="/vehicleRouteEdit/{{ $vehicle->id }}"><i
                                             class=" fa fa-solid fa-pen-to-square fa-lg" style="color: #f3deba;"></i>
                                     </a>
-
                                     <a href="/vehicleRouteDelete/{{ $vehicle->id }}"
                                         data-route="{{ route('deleteVehicleRoute', ['id' => $vehicle->id]) }}"
                                         onclick="return confirmDelete(event)">
@@ -121,7 +110,6 @@
                     window.location.href = route;
                 }
             });
-
             return false;
         }
     </script>

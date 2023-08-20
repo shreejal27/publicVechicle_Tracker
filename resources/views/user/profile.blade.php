@@ -1,16 +1,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('pillStyles.css') }}">
 @extends('necessary.user_template')
 @section('content')
-    <style>
-        li a {
-            color: black !important;
-        }
-
-        li .active {
-            background-color: #A9907E !important;
-            color: #F3DEBA !important;
-        }
-    </style>
     <div>
 
         <ul class="nav nav-pills mt-2 ml-2 ">
@@ -25,7 +16,7 @@
             </li>
         </ul>
     </div>
- 
+
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" data-path="profile">
