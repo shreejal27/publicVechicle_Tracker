@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 <style>
     #map {
         height: 500px;
@@ -50,6 +51,39 @@
                 </form>
             </div>
         </div>
+    </section>
+    <section class="m-3 mt-4">
+        <table class="table table-hover col-md-9 col-sm-9 col-lg-9 col-xl-9">
+            <thead>
+                <th colspan="6"> Stop List</th>
+                <tr>
+                    <th>SN</th>
+                    <th>Location </th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Vehicle Stop</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($stops as $stop)
+                    <tr>
+                        <td>{{ $loop->index + 1 }}</td>
+                        <td style="text-align: left">{{ ucfirst($stop->info) }}</td>
+                        <td>{{ $stop->latitude }}</td>
+                        <td>{{ $stop->longitude }}</td>
+                        <td>{{ ucfirst($stop->vehicle_type) }}</td>
+                        <td>
+                            {{-- <a href="/fareEdit/{{ $fare->id }}"><i class=" fa fa-solid fa-pen-to-square fa-lg"
+                                    style="color: #f3deba;"></i></a>
+                            <a href="" data-route="/fareDelete/{{ $fare->id }}"
+                                onclick="return confirmDelete(event)"><i class="fa-solid fa-trash fa-lg"
+                                    style="color: #f3deba;"></i></a> --}}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </section>
     <section>
         <h1>Nearest Bus Stop</h1>
