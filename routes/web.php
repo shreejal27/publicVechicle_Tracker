@@ -119,10 +119,12 @@ Route::post('/vehicleRouteUpdate/{id}', [VehicleRouteController::class, 'update'
 
 //admin bus stops
 Route::get('/adminBusStops', [StopController::class, 'stopMarkerAdmin'])->name('stopMarkerAdmin');
-// Route::get('/adminBusStops', function () {
-//     return view('admin.busStops');
-// });
 
+Route::post('/storeStops', [StopController::class, 'store'])->name('storeStops');
+
+Route::get('/stopEdit/{id}', [StopController::class, 'edit'])->name('edit');
+
+Route::post('/fareUpdate/{id}', [StopController::class, 'update'])->name('update');
 
 //admin fare price 
 Route::get('/adminFarePrice', [FareController::class, 'index'])->name('fares.index');
@@ -144,9 +146,6 @@ Route::get('/adminViewDriversReports', function () {
 //admin logout
 Route::get('/adminLogout',[AdminController::class, 'logout'])->name('logout');
 
-
-//admin to store the busStops data
-Route::post('/storeStops', [StopController::class, 'store'])->name('storeStops');
 
 //user dashboard
 Route::get('/userDashboard', function () {

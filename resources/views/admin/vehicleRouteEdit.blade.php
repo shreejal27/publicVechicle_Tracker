@@ -6,7 +6,7 @@
             <div class="form-container col-md-4 mb-3">
                 <p class="title">Edit Vehicle Route</p>
                 {{-- <p class="subtitle">Add new Fare and Distance</p> --}}
-                <form class="form" id="userCredentialForm" action="{{ route('updateVehicleRoute', $vehicleDetails->id) }}"
+                <form class="form" action="{{ route('updateVehicleRoute', $vehicleDetails->id) }}"
                     method="POST">
                     @csrf
                     <div class="input-group">

@@ -24,7 +24,7 @@
                     <div class="form-container col-md-3 mb-3">
                         <p class="title">This is farePrice</p>
                         <p class="subtitle">Add new Fare and Distance</p>
-                        <form class="form" id="userCredentialForm" action="{{ route('store') }}" method="POST">
+                        <form class="form" action="{{ route('store') }}" method="POST">
                             @csrf
                             <div class="input-group">
                                 <label>Distance (in kms):</label>

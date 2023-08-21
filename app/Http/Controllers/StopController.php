@@ -43,9 +43,8 @@ class StopController extends Controller
 
     public function edit($id)
     {
-        $stop = Stop::findOrFail($id);
-
-        // Return a view to edit the stop
+        $stop = Stop::where('id', $id)->first();
+        return view('/admin/busStopsEdit', compact('stop'));
     }
 
     public function update(Request $request, $id)

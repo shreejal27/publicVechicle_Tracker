@@ -74,11 +74,11 @@
                         <td>{{ $stop->longitude }}</td>
                         <td>{{ ucfirst($stop->vehicle_type) }}</td>
                         <td>
-                            {{-- <a href="/fareEdit/{{ $fare->id }}"><i class=" fa fa-solid fa-pen-to-square fa-lg"
+                            <a href="/stopEdit/{{ $stop->id }}"><i class=" fa fa-solid fa-pen-to-square fa-lg"
                                     style="color: #f3deba;"></i></a>
-                            <a href="" data-route="/fareDelete/{{ $fare->id }}"
+                            <a href="" data-route="/stopDelete/{{ $stop->id }}"
                                 onclick="return confirmDelete(event)"><i class="fa-solid fa-trash fa-lg"
-                                    style="color: #f3deba;"></i></a> --}}
+                                    style="color: #f3deba;"></i></a>
                         </td>
                     </tr>
                 @endforeach
