@@ -273,4 +273,25 @@
             });
         });
     </script>
+       <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            const route = event.currentTarget.getAttribute('data-route');
+            Swal.fire({
+                position: 'top-end',
+                title: 'Are you sure you want to delete?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = route;
+                }
+            });
+
+            return false;
+        }
+    </script>
 @endsection

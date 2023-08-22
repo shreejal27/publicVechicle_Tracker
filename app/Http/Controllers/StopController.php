@@ -62,12 +62,14 @@ class StopController extends Controller
         return redirect()->route('stopMarkerAdmin')->with('message', 'Stop updated successfully.');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        $stop = Stop::findOrFail($id);
-        $stop->delete();
-
-        // Perform any additional actions, such as redirecting or returning a response
+        $stop = Stop::find($id);
+        if ($stop) {
+            $stop->delete();
+            return redirect()->route('stopMarkerAdmin')->with('message', 'Stop Data deleted successfully.');
+        }
+        return redirect()->route('stopMarkerAdmin')->with('message', 'Stop Details not found.');
     }
 
     public function findRoute(Request $request)
