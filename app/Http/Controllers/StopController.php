@@ -59,7 +59,7 @@ class StopController extends Controller
         $stop = Stop::findOrFail($id);
         $stop->update($data);
 
-        // Perform any additional actions, such as redirecting or returning a response
+        return redirect()->route('stopMarkerAdmin')->with('message', 'Stop updated successfully.');
     }
 
     public function destroy($id)

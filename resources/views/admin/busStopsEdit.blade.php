@@ -4,8 +4,8 @@
     <section>
         <div class="center-container mt-5">
             <div class="form-container col-md-3 mb-3">
-                <p class="title">Edit Bus Stop</p>
-                <form class="form" action="{{ route('update', $stop->id) }}" method="POST">
+                <p class="title">Edit Stop Details</p>
+                <form class="form" action="{{ route('stopUpdate', $stop->id) }}" method="POST">
                     @csrf
                     <div class="input-group">
                         <label>Info:</label>
@@ -22,13 +22,13 @@
                     <div class="input-group">
                         <label>Vehicle Stops:</label>
                         <select name="vehicle_type">
-                            <option value="{{ $stop->vehicle_type }}">{{ $stop->vehicle_type }}</option>
+                            <option value="{{ $stop->vehicle_type }}">{{ ucfirst($stop->vehicle_type) }}</option>
                             <option value="bus">Bus</option>
                             <option value="micro">Micro</option>
                             <option value="tempo">Tempo</option>
                         </select>
                     </div>
-                    <button class="sign mt-3" type="submit">Add</button>
+                    <button class="sign mt-3" type="submit">Update</button>
 
                 </form>
             </div>

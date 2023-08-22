@@ -124,7 +124,7 @@ Route::post('/storeStops', [StopController::class, 'store'])->name('storeStops')
 
 Route::get('/stopEdit/{id}', [StopController::class, 'edit'])->name('edit');
 
-Route::post('/fareUpdate/{id}', [StopController::class, 'update'])->name('update');
+Route::post('/stopUpdate/{id}', [StopController::class, 'update'])->name('stopUpdate');
 
 //admin fare price 
 Route::get('/adminFarePrice', [FareController::class, 'index'])->name('fares.index');
