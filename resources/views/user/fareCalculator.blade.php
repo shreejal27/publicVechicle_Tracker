@@ -4,13 +4,7 @@
 
 @extends('necessary.user_template')
 @section('content')
-    <script>
-        Swal.fire({
-            position: 'top-end',
-            title: 'Passengers can carry goods up to 15 kg for free <br> <br> Rs 5 per kg will be charged for more than 10 kg. ',
-            showCloseButton: true,
-        })
-    </script>
+
     <div>
         <ul class="nav nav-pills mt-2 ml-2">
             <li class="nav-item" data-path="fareCalculator">
@@ -19,7 +13,10 @@
             <li class="nav-item" data-path="fareTable">
                 <a class="nav-link " data-toggle="tab" href="#fareTable" aria-selected="false">Fare Table</a>
             </li>
-
+            <li class="ml-auto mt-2 mr-3">
+                <i class="fa-solid fa-circle-info fa-2xl" style="color: #A9907E; cursor:pointer;"
+                    onclick="information()"></i>
+            </li>
         </ul>
     </div>
     <div class="tab-content">
@@ -102,5 +99,15 @@
                 $('.tab-content').find('[data-path="' + path + '"]').addClass('show active');
             });
         });
+    </script>
+    <script>
+        function information() {
+            Swal.fire({
+                position: 'top-end',
+                title: 'Passengers can carry goods up to 15 kg for free <br> <br> Rs 5 per kg will be charged for more than 10 kg. ',
+                showConfirmButton: false,
+                timer: 7000
+            })
+        }
     </script>
 @endsection
