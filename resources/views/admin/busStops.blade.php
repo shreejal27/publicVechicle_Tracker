@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('pillStyles.css') }}">
 <style>
     #map {
         height: 500px;
@@ -9,82 +10,93 @@
 @extends('necessary.admin_template')
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-    <section class="mt-4">
-        @if (session('message'))
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '{{ session('message') }}',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
-            </script>
-        @endif
-        <div class="center-container">
-            <div class="form-container col-md-4 mb-3">
-                <p class="title">Add New Vehicle Stop</p>
-                <form class="form" action="{{ route('storeStops') }}" method="POST">
-                    @csrf
-                    <div class="input-group">
-                        <label>Info:</label>
-                        <input type="text" name="info" required>
+    <div>
+        <ul class="nav nav-pills mt-2 ml-2">
+            <li class="nav-item" data-path="stopList">
+                <a class="nav-link active" data-toggle="tab" href="#stopList" aria-selected="true">Vehicle Route
+                    List</a>
+            </li>
+            <li class="nav-item" data-path="addStop">
+                <a class="nav-link " data-toggle="tab" href="#addStop" aria-selected="false">Add Vehicle
+                    Route</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane fade" id="addStop" role="tabpanel" data-path="addStop">
+            <section class="mt-4">
+                <div class="center-container">
+                    <div class="form-container col-md-4 mb-3">
+                        <p class="title">Add New Vehicle Stop</p>
+                        <form class="form" action="{{ route('storeStops') }}" method="POST">
+                            @csrf
+                            <div class="input-group">
+                                <label>Info:</label>
+                                <input type="text" name="info" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Latitude:</label>
+                                <input type="text" name="latitude" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Longitude:</label>
+                                <input type="text" name="longitude" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Vehicle Stops:</label>
+                                <select name="vehicle_type">
+                                    <option value="">Select</option>
+                                    <option value="bus">Bus</option>
+                                    <option value="micro">Micro</option>
+                                    <option value="tempo">Tempo</option>
+                                </select>
+                            </div>
+                            <button class="sign mt-3" type="submit">Add</button>
+                        </form>
                     </div>
-                    <div class="input-group">
-                        <label>Latitude:</label>
-                        <input type="text" name="latitude" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Longitude:</label>
-                        <input type="text" name="longitude" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Vehicle Stops:</label>
-                        <select name="vehicle_type">
-                            <option value="">Select</option>
-                            <option value="bus">Bus</option>
-                            <option value="micro">Micro</option>
-                            <option value="tempo">Tempo</option>
-                        </select>
-                    </div>
-                    <button class="sign mt-3" type="submit">Add</button>
-                </form>
-            </div>
+                </div>
+            </section>
         </div>
-    </section>
-    <section class="m-3 mt-4">
-        <table class="table table-hover col-md-9 col-sm-9 col-lg-9 col-xl-9">
-            <thead>
-                <th colspan="6"> Stop List</th>
-                <tr>
-                    <th>SN</th>
-                    <th>Location </th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Vehicle Stop</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($stops as $stop)
-                    <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td style="text-align: left">{{ ucfirst($stop->info) }}</td>
-                        <td>{{ $stop->latitude }}</td>
-                        <td>{{ $stop->longitude }}</td>
-                        <td>{{ ucfirst($stop->vehicle_type) }}</td>
-                        <td>
-                            <a href="/stopEdit/{{ $stop->id }}"><i class=" fa fa-solid fa-pen-to-square fa-lg"
-                                    style="color: #f3deba;"></i></a>
-                            <a href="" data-route="/stopDelete/{{ $stop->id }}"
-                                onclick="return confirmDelete(event)"><i class="fa-solid fa-trash fa-lg"
-                                    style="color: #f3deba;"></i></a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </section>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="stopList" role="tabpanel" data-path="stopList">
+            <section class="m-3 mt-4">
+                <table class="table table-hover col-md-9 col-sm-9 col-lg-9 col-xl-9">
+                    <thead>
+                        <th colspan="6"> Stop List</th>
+                        <tr>
+                            <th>SN</th>
+                            <th>Location </th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Vehicle Stop</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($stops as $stop)
+                            <tr>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td style="text-align: left">{{ ucfirst($stop->info) }}</td>
+                                <td>{{ $stop->latitude }}</td>
+                                <td>{{ $stop->longitude }}</td>
+                                <td>{{ ucfirst($stop->vehicle_type) }}</td>
+                                <td>
+                                    <a href="/stopEdit/{{ $stop->id }}"><i class=" fa fa-solid fa-pen-to-square fa-lg"
+                                            style="color: #f3deba;"></i></a>
+                                    <a href="" data-route="/stopDelete/{{ $stop->id }}"
+                                        onclick="return confirmDelete(event)"><i class="fa-solid fa-trash fa-lg"
+                                            style="color: #f3deba;"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
     <section>
         <h1>Nearest Bus Stop</h1>
 
@@ -244,4 +256,21 @@
             }
         </script>
     </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Show the active tab content on page load
+            $('.nav-pills .active a').tab('show');
+
+            // Update the active tab content when a new tab is clicked
+            $('.nav-pills a').on('click', function(event) {
+                event.preventDefault();
+                var path = $(this).data('path');
+                $('.tab-content .tab-pane').removeClass('show active');
+                $('.tab-content').find('[data-path="' + path + '"]').addClass('show active');
+            });
+        });
+    </script>
 @endsection

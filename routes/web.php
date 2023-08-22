@@ -126,6 +126,8 @@ Route::get('/stopEdit/{id}', [StopController::class, 'edit'])->name('edit');
 
 Route::post('/stopUpdate/{id}', [StopController::class, 'update'])->name('stopUpdate');
 
+Route::get('/stopDelete/{id}', [StopController::class, 'delete'])->name('stopDelete');
+
 //admin fare price 
 Route::get('/adminFarePrice', [FareController::class, 'index'])->name('fares.index');
 
