@@ -13,12 +13,11 @@
     <div>
         <ul class="nav nav-pills mt-2 ml-2">
             <li class="nav-item" data-path="stopList">
-                <a class="nav-link active" data-toggle="tab" href="#stopList" aria-selected="true">Vehicle Route
+                <a class="nav-link active" data-toggle="tab" href="#stopList" aria-selected="true">Stop
                     List</a>
             </li>
             <li class="nav-item" data-path="addStop">
-                <a class="nav-link " data-toggle="tab" href="#addStop" aria-selected="false">Add Vehicle
-                    Route</a>
+                <a class="nav-link " data-toggle="tab" href="#addStop" aria-selected="false">Add Stops</a>
             </li>
 
         </ul>
@@ -273,7 +272,7 @@
             });
         });
     </script>
-       <script>
+    <script>
         function confirmDelete(event) {
             event.preventDefault(); // Prevent the default link behavior
             const route = event.currentTarget.getAttribute('data-route');
