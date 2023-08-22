@@ -72,13 +72,34 @@
                 </div>
                 @if ($sessionValue != 0)
                     @if ($matchingVehicleNames)
-                        <p> Total Cost: {{ $totalFare }}</p>
-                        @foreach ($matchingVehicleNames as $vehicleName)
-                            <p>Suggested Vehicle: {{ $vehicleName }}</p>
-                            <br>
-                        @endforeach
+                        @php
+                            $vehicleNames = '';
+                            $i = 1;
+                            foreach ($matchingVehicleNames as $vehicleName) {
+                                $vehicleNames .= $i . ') ' . $vehicleName . '\n';
+                                $i++;
+                            }
+                        @endphp
+                        <script>
+                            var vehicleNames = `{!! $vehicleNames !!}`;
+                            Swal.fire({
+                                position: 'top-end',
+                                title: "Total Cost: Rs " + {{ $totalFare }} + "\n\n Suggested Vehicle: \n\n " + vehicleNames,
+                                showCloseButton: true,
+                                showConfirmButton: false,
+                                timer: 7000
+                            })
+                        </script>
                     @else
-                        <p>No matching vehicle found</p>
+                        <script>
+                            Swal.fire({
+                                position: 'top-end',
+                                title: 'No vehicle found for this route.',
+                                showConfirmButton: false,
+                                showCloseButton: true,
+                                timer: 7000
+                            })
+                        </script>
                     @endif
                 @endif
             </section>

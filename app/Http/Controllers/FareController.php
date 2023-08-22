@@ -77,7 +77,6 @@ class FareController extends Controller
     public function fareCalculator(Request $request)
     {
         $sessionValue = 1;
-
         $from = $request->input('from');
         $to = $request->input('to');
         $weight = $request->input('weight');
@@ -136,9 +135,7 @@ class FareController extends Controller
                 $totalFare =  $weightPrice + $price;
             }
         }
-
         // Retrieve all fares
-
         return view('/user/fareCalculator', compact('matchingVehicleNames', 'fares', 'distance', 'totalFare', 'sessionValue'));
     }
 
