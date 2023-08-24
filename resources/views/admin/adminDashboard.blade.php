@@ -1,4 +1,5 @@
 <script src="https://kit.fontawesome.com/74ddeb49ef.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 <style>
     .small-box {
         border-radius: 10px;
@@ -30,7 +31,7 @@
 </style>
 @extends('necessary.admin_template')
 @section('content')
-    <section>
+    <section class="infoPills">
         <div class="row m-3">
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="small-box">
@@ -105,12 +106,40 @@
                                 <i class="fa-solid fa-toggle-on fa-2x"></i>
                             </div>
                             <div class="text mt-2">
-                                <h4>{{ $stopCount }}</h4>
+                                <h4>{{ $driverOnlineCount }}</h4>
                                 <p> Driver Online</p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section class="infoTables">
+        <div class="row m-3">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <table class="table table-hover ">
+                    <thead>
+                        <th colspan="5"> Driver Online</th>
+                        <tr>
+                            <th>SN</th>
+                            <th>Name</th>
+                            <th>Vehicle</th>
+                            <th>Contact </th>
+                            <th>Vehicle No</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>asdf</td>
+                            <td>asdf</td>
+                            <td>asdf</td>
+                            <td>asdf</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>

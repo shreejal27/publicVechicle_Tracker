@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Driver;
 use App\Models\Stop;
 use App\Models\User;
+use App\Models\DriverLocation;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,15 @@ class AdminController extends Controller
        $driverCount = Driver::count();
        $stopCount = Stop::count();
 
-       return compact('userCount', 'driverCount', 'stopCount');
+       //get driver whose status is on
+        $driverOnlineCount = DriverLocation::where('status', 'on')->count();
+
+        //get all the details of driver from driver_id whose status is on 
+        $driverOnline = DriverLocation::where('status', 'on')->get();
+        
+
+
+       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount');
     }
 
 }
