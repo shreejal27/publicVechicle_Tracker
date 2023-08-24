@@ -130,14 +130,15 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td>asdf</td>
-                            <td>asdf</td>
-                            <td>asdf</td>
-                            <td>asdf</td>
-                        </tr>
+                        @foreach ($driverDetails as $driverData)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $driverData['driverName'] }}</td>
+                                <td>{{ $driverData['vehicleType'] }}</td>
+                                <td>{{ $driverData['contactNumber'] }}</td>
+                                <td>{{ $driverData['vehicleNumber'] }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

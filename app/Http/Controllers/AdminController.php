@@ -61,11 +61,24 @@ class AdminController extends Controller
         $driverOnlineCount = DriverLocation::where('status', 'on')->count();
 
         //get all the details of driver from driver_id whose status is on 
-        $driverOnline = DriverLocation::where('status', 'on')->get();
+        $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
+        
+        $driverDetails = [];
+        $i=0;
+        foreach($driverLocations as $driverData){
+            //get driver name
+            $driver = Driver::where('id', $driverData->driver_id)->first();
+
+            $driverDetails[$i]['driverName'] = $driver->firstname;
+            $driverDetails[$i]['vehicleType'] = $driver->vehicle_type;
+            $driverDetails[$i]['contactNumber'] = $driver->contact_number;
+            $driverDetails[$i]['vehicleNumber'] = $driver->vehicle_number;
+            $i++;
+        }
         
 
 
-       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount');
+       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails');
     }
 
 }
