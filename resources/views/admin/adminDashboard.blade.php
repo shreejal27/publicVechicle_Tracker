@@ -84,7 +84,7 @@
                     <div class="inner">
                         <div class="icon-and-text">
                             <div class="icon">
-                                <i class="fa-solid fa-map-location-dot fa-2x"></i>
+                                <i class="fa-solid fa-route fa-2x"></i>
                             </div>
                             <div class="text mt-2">
                                 <h4>{{ $stopCount }}</h4>
@@ -95,7 +95,23 @@
                 </div>
             </div>
 
-
+        </div>
+        <div class="row m-3">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="small-box">
+                    <div class="inner">
+                        <div class="icon-and-text">
+                            <div class="icon">
+                                <i class="fa-solid fa-toggle-on fa-2x"></i>
+                            </div>
+                            <div class="text mt-2">
+                                <h4>{{ $stopCount }}</h4>
+                                <p> Driver Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 @endsection

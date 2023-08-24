@@ -61,6 +61,6 @@ class VehicleRouteController extends Controller
         $vehicleDetails->vehicle_routes = $data['vehicle_routes'];
         $vehicleDetails->save();
 
-        return redirect()->route('vehicleRoute.index')->with('message', 'Fare updated successfully.');
+        return redirect()->route('vehicleRoute.index')->with('message', 'Vehicle Route updated successfully.');
     }
 }

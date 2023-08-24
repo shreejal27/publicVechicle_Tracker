@@ -14,7 +14,7 @@
                         <input type="text" name="vehicle_name" value="{{ $vehicleDetails->vehicle_name }}">
                     </div>
                     <div class="input-group">
-                        <label>Price:</label>
+                        <label>Routes:</label>
                         <input type="text" name="vehicle_routes" value="{{ $vehicleDetails->vehicle_routes }}">
                     </div>
                     <button class="sign mt-3" type="submit">Update</button>

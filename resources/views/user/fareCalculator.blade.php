@@ -125,9 +125,9 @@
         function information() {
             Swal.fire({
                 position: 'top-end',
-                title: 'Passengers can carry goods up to 15 kg for free <br> <br> Rs 5 per kg will be charged for more than 10 kg. ',
+                title: 'Passengers can carry goods up to 15 kg for free. <br> <br> Rs 5 per kg will be charged for more than 10 kg. ',
                 showConfirmButton: false,
-                timer: 7000
+                timer: 8000
             })
         }
     </script>
