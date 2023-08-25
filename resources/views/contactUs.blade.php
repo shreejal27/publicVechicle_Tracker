@@ -46,6 +46,17 @@
             background-color: #ABC4AA;
         }
     </style>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        </script>
+    @endif
     <section class="title mt-4 mb-4">
         <h2 class="text-center">How Can We Help You?</h2>
     </section>
@@ -76,14 +87,14 @@
             </p>
         </div>
         <div class="form ml-3" style="width: 48%; border: 1px solid red; padding:1rem; float:left;">
-            <form action="">
+            <form action="{{ route('storeComplainFeedback') }}" method="POST">
                 @csrf
-                <input type="text" placeholder="Full Name" style="width: 48%" required>
-                <input type="email" placeholder="Email" style="width: 48%" required>
+                <input type="text" placeholder="Full Name" style="width: 48%" name="fullname" required>
+                <input type="email" placeholder="Email" style="width: 48%" name="email" required>
                 <br>
                 <br>
-                <input type="number" placeholder="Number" style="width: 48%;" required>
-                <select name="" id="" style="width: 48%; " required>
+                <input type="number" placeholder="Number" name="number" style="width: 48%;" required>
+                <select name="type" id="" style="width: 48%; " required>
                     <option value="">Subject Type</option>
                     <option value="complain">Complain</option>
                     <option value="feedback">Feedback</option>
@@ -92,10 +103,11 @@
                 </select>
                 <br>
                 <br>
-                <input type="text" placeholder="Subject" style="width: 100%;" required>
+                <input type="text" name="subject" placeholder="Subject" style="width: 100%;" required>
                 <br>
                 <br>
-                <textarea style="width: 100%; height: 15rem; background-color:#A9907E" required></textarea>
+                <textarea name="description" placeholder="Write your message here" rows="5"
+                    style="width: 100%; height: 15rem; background-color:#A9907E" required></textarea>
                 <br>
                 <br>
                 <input type="submit" value="Send">
