@@ -10,8 +10,11 @@ class ComplainFeedback extends Model
     use HasFactory;
 
     protected $fillable = [
-        'username',
+        'fullname',
+        'email',
+        'number',
         'type',
+        'subject',
         'description',
     ];
 }

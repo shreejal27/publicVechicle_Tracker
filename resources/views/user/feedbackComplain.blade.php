@@ -17,26 +17,37 @@
         <div class="form-container col-md-4 mb-3">
             <p class="title">We are here to assist you</p>
             <p class="subtitle">Please complete the form below</p>
-            <form class="form" id="userCredentialForm" action="{{ route('storeComplainFeedback') }}" method="POST">
+            <form class="form" id="userComplainFeedback" action="{{ route('storeComplainFeedback') }}" method="POST">
                 @csrf
                 <div class="input-group">
-                    <label>UserName:</label>
-                    <input type="text" name="username" required>
+                    <label>Full Name:</label>
+                    <input type="text" name="fullname" required>
                 </div>
                 <div class="input-group">
-                    <label>Select Issue:</label>
-                    <select name="formType" required>
+                    <label>Email:</label>
+                    <input type="text" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label>Number:</label>
+                    <input type="text" name="number" required>
+                </div>
+                <div class="input-group">
+                    <label> Type:</label>
+                    <select name="type" required>
                         <option value="complain">Complain</option>
                         <option value="feedback">Feedback</option>
                         <option value="query">Query</option>
                         <option value="request">Request</option>
                     </select>
-
+                    <div class="input-group">
+                        <label>Subject:</label>
+                        <input type="text" name="subject" required>
+                    </div>
                 </div>
                 <div class="input-group">
-                    <label>Message:</label>
+                    <label>Description:</label>
                 </div>
-                <textarea name="formDescription" placeholder="Write your message here" rows="5"></textarea>
+                <textarea name="description" placeholder="Write your message here" rows="5"></textarea>
 
                 <button class="sign mt-3" type="submit">Submit</button>
             </form>

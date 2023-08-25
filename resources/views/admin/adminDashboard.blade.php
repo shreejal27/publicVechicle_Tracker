@@ -142,6 +142,31 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <table class="table table-hover ">
+                    <thead>
+                        <th colspan="5"> Driver Online</th>
+                        <tr>
+                            <th>SN</th>
+                            <th>Name</th>
+                            <th>Vehicle</th>
+                            <th>Contact </th>
+                            <th>Vehicle No</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($driverDetails as $driverData)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $driverData['driverName'] }}</td>
+                                <td>{{ $driverData['vehicleType'] }}</td>
+                                <td>{{ $driverData['contactNumber'] }}</td>
+                                <td>{{ $driverData['vehicleNumber'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 @endsection
