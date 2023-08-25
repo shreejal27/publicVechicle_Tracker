@@ -1,4 +1,3 @@
-<script src="https://kit.fontawesome.com/74ddeb49ef.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 <style>
     .small-box {
@@ -30,6 +29,7 @@
     }
 </style>
 @extends('necessary.admin_template')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 @section('content')
     <section class="infoPills">
         <div class="row m-3">
@@ -115,32 +115,10 @@
             </div>
         </div>
     </section>
-    <section class="infoTables">
+    <section class="infoTablesAndCharts">
         <div class="row m-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <table class="table table-hover ">
-                    <thead>
-                        <th colspan="5"> Driver Online</th>
-                        <tr>
-                            <th>SN</th>
-                            <th>Name</th>
-                            <th>Vehicle</th>
-                            <th>Contact </th>
-                            <th>Vehicle No</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($driverDetails as $driverData)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $driverData['driverName'] }}</td>
-                                <td>{{ $driverData['vehicleType'] }}</td>
-                                <td>{{ $driverData['contactNumber'] }}</td>
-                                <td>{{ $driverData['vehicleNumber'] }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <table class="table table-hover ">
@@ -168,5 +146,56 @@
                 </table>
             </div>
         </div>
+        <script>
+            var xValues = @json($weekDays);
+            var yValues = @json($complaintCounts);
+            var dates = @json($weekDates);
+            var barColors = ["red", "green", "blue", "orange", "brown", "purple", "pink"];
+
+
+            var maxValue = Math.max(...yValues);
+
+            console.log("Maximum value:", maxValue);
+
+            new Chart("myChart", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                max: maxValue + 1
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: "Total Request in a week"
+                    },
+                    tooltips: {
+                        callbacks: {
+                            title: function(tooltipItem, data) {
+                                return dates[tooltipItem[0].index]; // Display the date
+                            },
+                            label: function(tooltipItem, data) {
+                                return "Count: " + tooltipItem.yLabel; // Display the count
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
     </section>
 @endsection

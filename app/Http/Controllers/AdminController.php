@@ -6,6 +6,7 @@ use App\Models\Driver;
 use App\Models\Stop;
 use App\Models\User;
 use App\Models\DriverLocation;
+use App\Models\ComplainFeedback;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -76,9 +77,19 @@ class AdminController extends Controller
             $i++;
         }
         
+        //chart
+        $weekDays = [];
+        $weekDates = [];
+        $complaintCounts = [];
 
+        for ($i = 6; $i >= 0; $i--) {
+            $date = now()->subDays($i)->format('Y-m-d');
+            $weekDays[] = date('l', strtotime($date));
+            $weekDates[] =now()->subDays($i)->format('d M Y'); 
+            $complaintCounts[] = ComplainFeedback::whereDate('created_at', $date)->count();
+        }
 
-       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails');
+       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates');
     }
 
 }
