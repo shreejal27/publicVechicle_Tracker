@@ -20,4 +20,9 @@ class ComplainFeedbackController extends Controller
  
        return redirect()->back()->with('success', 'Your request has been submitted successfully.');
     }
+
+    public function index(){
+        $complainFeedbacks = ComplainFeedback::orderBy('id', 'desc')->get();
+        return view('admin.viewFeedbackComplain', compact('complainFeedbacks'));
+    }
 }

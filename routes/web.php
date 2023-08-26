@@ -139,6 +139,8 @@ Route::get('/fareDelete/{id}', [FareController::class, 'delete'])->name('delete'
 
 Route::post('/fareUpdate/{id}', [FareController::class, 'update'])->name('update');
 
+//admin get complain feedback
+Route::get('/adminComplainFeedback', [ComplainFeedbackController::class, 'index'])->name('adminComplainFeedback');
 
 //admin view drivers report
 Route::get('/adminViewDriversReports', function () {

@@ -124,7 +124,7 @@
         <div class="row m-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="chart">
-                    <canvas id="myChart" style="width:100%;"></canvas>
+                    <canvas id="myChart" style="width:100%; cursor:pointer;"></canvas>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
