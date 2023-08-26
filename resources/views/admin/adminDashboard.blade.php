@@ -27,6 +27,11 @@
     .text {
         color: #F3DEBA;
     }
+
+    .chart {
+        background-color: #675D50;
+        color: #F3DEBA;
+    }
 </style>
 @extends('necessary.admin_template')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -118,7 +123,9 @@
     <section class="infoTablesAndCharts">
         <div class="row m-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                <div class="chart">
+                    <canvas id="myChart" style="width:100%;"></canvas>
+                </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <table class="table table-hover ">
@@ -150,7 +157,8 @@
             var xValues = @json($weekDays);
             var yValues = @json($complaintCounts);
             var dates = @json($weekDates);
-            var barColors = ["red", "green", "blue", "orange", "brown", "purple", "pink"];
+            // var barColors = ["red", "green", "blue", "orange", "brown", "purple", "pink"];
+            var barColor = "#F3DEBA";
 
 
             var maxValue = Math.max(...yValues);
@@ -162,7 +170,7 @@
                 data: {
                     labels: xValues,
                     datasets: [{
-                        backgroundColor: barColors,
+                        backgroundColor: barColor,
                         data: yValues
                     }]
                 },
@@ -173,7 +181,13 @@
                             ticks: {
                                 beginAtZero: true,
                                 stepSize: 1,
-                                max: maxValue + 1
+                                max: maxValue + 1,
+                                fontColor: "#F3DEBA"
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: "#F3DEBA"
                             }
                         }]
                     },
