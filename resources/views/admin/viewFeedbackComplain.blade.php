@@ -6,6 +6,28 @@
     table.dataTable {
         border-collapse: collapse !important;
     }
+
+    th {
+        text-align: center !important;
+    }
+
+    .page-item.active .page-link {
+        color: #F3DEBA !important;
+        background-color: #675D50 !important;
+        border-color: #F3DEBA !important;
+    }
+
+    .page-link {
+        color: #F3DEBA !important;
+        background-color: #675D50 !important;
+        border: 1px solid #F3DEBA !important;
+    }
+
+    .page-link:hover {
+        color: #F3DEBA !important;
+        background-color: #585045 !important;
+        border-color: #F3DEBA !important;
+    }
 </style>
 @extends('necessary.admin_template')
 
