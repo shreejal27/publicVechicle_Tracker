@@ -42,4 +42,9 @@ class DriverController extends Controller
         session()->forget('driver_id');
         return redirect()->route('login')->with('success', 'Driver Logout successful');
     }
+
+    public function adminViewDriver(){
+        $drivers = Driver::all();
+        return view('admin.viewDriversReports', compact('drivers'));
+    }
 }

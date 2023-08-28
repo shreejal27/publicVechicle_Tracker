@@ -143,9 +143,10 @@ Route::post('/fareUpdate/{id}', [FareController::class, 'update'])->name('update
 Route::get('/adminComplainFeedback', [ComplainFeedbackController::class, 'index'])->name('adminComplainFeedback');
 
 //admin view drivers report
-Route::get('/adminViewDriversReports', function () {
-    return view('admin.viewDriversReports');
-});
+// Route::get('/adminViewDriversReports', function () {
+//     return view('admin.viewDriversReports');
+// });
+Route::get('/adminViewDriversReports', [DriverController::class, 'adminViewDriver'])->name('adminViewDriver');
 
 //admin logout
 Route::get('/adminLogout',[AdminController::class, 'logout'])->name('logout');

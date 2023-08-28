@@ -3,6 +3,11 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
 
 <style>
+    .form-control-sm {
+        background-color: #A9907E !important;
+        color: #F3DEBA !important;
+    }
+
     table.dataTable {
         border-collapse: collapse !important;
     }
