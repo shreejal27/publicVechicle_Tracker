@@ -22,7 +22,8 @@ class ComplainFeedbackController extends Controller
     }
 
     public function index(){
-        $complainFeedbacks = ComplainFeedback::orderBy('id', 'desc')->get();
+        // $complainFeedbacks = ComplainFeedback::orderBy('id', 'desc')->get();
+        $complainFeedbacks = ComplainFeedback::all();
         return view('admin.viewFeedbackComplain', compact('complainFeedbacks'));
     }
 }

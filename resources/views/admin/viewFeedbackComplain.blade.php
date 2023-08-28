@@ -37,7 +37,7 @@
             <thead>
                 <th colspan="8"> All Requests</th>
                 <tr>
-                    <th>SN</th>
+                    {{-- <th>SN</th> --}}
                     <th>Date</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -50,7 +50,7 @@
             <tbody>
                 @foreach ($complainFeedbacks as $complainFeedback)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        {{-- <td>{{ $loop->iteration }}</td> --}}
                         <td>{{ \Carbon\Carbon::parse($complainFeedback['created_at'])->format('Y-m-d (l)') }}</td>
                         <td>{{ $complainFeedback['fullname'] }}</td>
                         <td>{{ $complainFeedback['email'] }}</td>
@@ -69,7 +69,11 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#complainFeedback').DataTable();
+            $('#complainFeedback').DataTable({
+                "order": [
+                    [0, "desc"]
+                ]
+            });
         });
     </script>
 @endsection
