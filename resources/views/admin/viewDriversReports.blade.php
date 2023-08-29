@@ -7,12 +7,12 @@
                 <th colspan="8"> All Requests</th>
                 <tr>
                     <th>SN</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
+                    <th>Name</th>
                     <th>Address </th>
                     <th>License Number</th>
                     <th>Vechicle</th>
                     <th>Number</th>
+                    <th>Status</th>
 
                 </tr>
             </thead>
@@ -20,13 +20,18 @@
                 @foreach ($drivers as $driver)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-
-                        <td>{{ $driver['firstname'] }}</td>
-                        <td>{{ $driver['lastname'] }}</td>
+                        <td>{{ $driver['firstname'] }} {{ $driver['lastname'] }}</td>
                         <td>{{ $driver['address'] }}</td>
                         <td>{{ $driver['license_number'] }}</td>
                         <td>{{ $driver['vehicle_type'] }}</td>
                         <td>{{ $driver['contact_number'] }}</td>
+                        <td>
+                            @if ($workingDriverId->contains($driver->id))
+                                <i class="fa-solid fa-toggle-on fa-lg"></i>
+                            @else
+                                <i class="fa-solid fa-toggle-off fa-lg"></i>
+                            @endif
+                        </td>
 
                     </tr>
                 @endforeach

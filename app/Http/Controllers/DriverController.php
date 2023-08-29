@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Driver;
+use App\Models\DriverLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +46,11 @@ class DriverController extends Controller
 
     public function adminViewDriver(){
         $drivers = Driver::all();
-        return view('admin.viewDriversReports', compact('drivers'));
+
+        $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
+
+        $workingDriverId = $driverLocations->pluck('driver_id');
+        
+        return view('admin.viewDriversReports', compact('drivers', 'workingDriverId'));
     }
 }
