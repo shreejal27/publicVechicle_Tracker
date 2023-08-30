@@ -161,15 +161,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($driverDetails as $driverData)
+                        @if (empty($driverDetails))
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $driverData['driverName'] }}</td>
-                                <td>{{ $driverData['vehicleType'] }}</td>
-                                <td>{{ $driverData['contactNumber'] }}</td>
-                                <td>{{ $driverData['vehicleNumber'] }}</td>
+                                <td colspan="5">No one is available at the moment</td>
                             </tr>
-                        @endforeach
+                        @else
+                            @foreach ($driverDetails as $driverData)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $driverData['driverName'] }}</td>
+                                    <td>{{ $driverData['vehicleType'] }}</td>
+                                    <td>{{ $driverData['contactNumber'] }}</td>
+                                    <td>{{ $driverData['vehicleNumber'] }}</td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
