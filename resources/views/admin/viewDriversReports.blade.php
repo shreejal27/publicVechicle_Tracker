@@ -4,7 +4,7 @@
     <section class="m-3 mt-4">
         <table class="table table-hover col-md-12 col-sm-12 col-lg-12 col-xl-12" id="">
             <thead>
-                <th colspan="8"> All Requests</th>
+                <th colspan="8"> All Drivers</th>
                 <tr>
                     <th>SN</th>
                     <th>Name</th>
@@ -25,7 +25,7 @@
                         <td>{{ $driver['license_number'] }}</td>
                         <td>{{ $driver['vehicle_type'] }}</td>
                         <td>{{ $driver['contact_number'] }}</td>
-                        <td>
+                        <td style="vertical-align: middle;">
                             @if ($workingDriverId->contains($driver->id))
                                 <i class="fa-solid fa-toggle-on fa-lg"></i>
                             @else

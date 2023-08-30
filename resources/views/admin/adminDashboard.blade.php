@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <table class="table table-hover">
+                <table class="table table-hover" style="width:100%; cursor:pointer;" onclick="redirectDriverPage()">
                     <thead>
                         <th colspan="5"> Driver Online</th>
                         <tr>
@@ -235,6 +235,10 @@
         <script>
             function redirectComplainFeedback() {
                 window.location.href = "{{ route('adminComplainFeedback') }}";
+            }
+
+            function redirectDriverPage() {
+                window.location.href = "{{ route('adminViewDriver') }}";
             }
         </script>
     </section>
