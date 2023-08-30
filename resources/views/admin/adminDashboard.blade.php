@@ -25,12 +25,17 @@
     }
 
     .text {
+        margin-top: 0.7rem !important;
         color: #F3DEBA;
     }
 
     .chart {
         background-color: #675D50;
         color: #F3DEBA;
+    }
+
+    table {
+        margin: 0;
     }
 </style>
 @extends('necessary.admin_template')
@@ -45,7 +50,7 @@
                             <div class="icon">
                                 <i class="fa-solid fa-user-tie fa-2x"></i>
                             </div>
-                            <div class="text mt-2">
+                            <div class="text ">
                                 <h4>Position:</h4>
                                 <p>Admin</p>
                             </div>
@@ -60,7 +65,7 @@
                             <div class="icon">
                                 <i class="fa-solid fa-users fa-2x"></i>
                             </div>
-                            <div class="text mt-2">
+                            <div class="text ">
                                 <h4>{{ $userCount }}</h4>
                                 <p> Users</p>
                             </div>
@@ -76,7 +81,7 @@
                             <div class="icon">
                                 <i class="fa-solid fa-users-gear fa-2x"></i>
                             </div>
-                            <div class="text mt-2">
+                            <div class="text ">
                                 <h4>{{ $driverCount }}</h4>
                                 <p> Drivers</p>
                             </div>
@@ -92,7 +97,7 @@
                             <div class="icon">
                                 <i class="fa-solid fa-route fa-2x"></i>
                             </div>
-                            <div class="text mt-2">
+                            <div class="text ">
                                 <h4>{{ $stopCount }}</h4>
                                 <p> Stops</p>
                             </div>
@@ -108,9 +113,24 @@
                     <div class="inner">
                         <div class="icon-and-text">
                             <div class="icon">
+                                <i class="fa-solid fa-calendar-days fa-2x"></i>
+                            </div>
+                            <div class="text ">
+                                <h4> Date: </h4>
+                                <p>{{ $dateToday }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="small-box">
+                    <div class="inner">
+                        <div class="icon-and-text">
+                            <div class="icon">
                                 <i class="fa-solid fa-toggle-on fa-2x"></i>
                             </div>
-                            <div class="text mt-2">
+                            <div class="text ">
                                 <h4>{{ $driverOnlineCount }}</h4>
                                 <p> Driver Online</p>
                             </div>
@@ -124,11 +144,12 @@
         <div class="row m-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="chart">
-                    <canvas id="myChart" style="width:100%; cursor:pointer;" onclick="redirectComplainFeedback()"></canvas>
+                    <canvas id="myChart" style="width:100%; cursor:pointer;"
+                        onclick="redirectComplainFeedback()"></canvas>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <table class="table table-hover ">
+                <table class="table table-hover">
                     <thead>
                         <th colspan="5"> Driver Online</th>
                         <tr>
@@ -212,7 +233,7 @@
             });
         </script>
         <script>
-            function redirectComplainFeedback(){
+            function redirectComplainFeedback() {
                 window.location.href = "{{ route('adminComplainFeedback') }}";
             }
         </script>

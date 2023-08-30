@@ -58,6 +58,9 @@ class AdminController extends Controller
        $driverCount = Driver::count();
        $stopCount = Stop::count();
 
+       //get date today with just initials of day name
+         $dateToday = date('D, d M Y');
+
        //get driver whose status is on
         $driverOnlineCount = DriverLocation::where('status', 'on')->count();
 
@@ -89,7 +92,7 @@ class AdminController extends Controller
             $complaintCounts[] = ComplainFeedback::whereDate('created_at', $date)->count();
         }
 
-       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates');
+       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates', 'dateToday');
     }
 
 }
