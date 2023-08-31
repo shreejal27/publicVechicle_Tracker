@@ -3,35 +3,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
 
 <style>
-    .form-control-sm {
-        background-color: #A9907E !important;
-        color: #F3DEBA !important;
-    }
-
     table.dataTable {
         border-collapse: collapse !important;
-    }
-
-    th {
-        text-align: center !important;
-    }
-
-    .page-item.active .page-link {
-        color: #F3DEBA !important;
-        background-color: #675D50 !important;
-        border-color: #F3DEBA !important;
-    }
-
-    .page-link {
-        color: #F3DEBA !important;
-        background-color: #675D50 !important;
-        border: 1px solid #F3DEBA !important;
-    }
-
-    .page-link:hover {
-        color: #F3DEBA !important;
-        background-color: #585045 !important;
-        border-color: #F3DEBA !important;
     }
 </style>
 @extends('necessary.admin_template')

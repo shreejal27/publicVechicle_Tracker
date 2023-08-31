@@ -1,4 +1,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+
 <style>
     .small-box {
         border-radius: 10px;
@@ -36,6 +39,10 @@
 
     table {
         margin: 0;
+    }
+
+    table.dataTable {
+        border-collapse: collapse !important;
     }
 </style>
 @extends('necessary.admin_template')
@@ -149,7 +156,8 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <table class="table table-hover" style="width:100%; cursor:pointer;" onclick="redirectDriverPage()">
+                <table class="table table-hover" id="driverOnline" style="width:100%; cursor:pointer;"
+                    onclick="redirectDriverPage()">
                     <thead>
                         <th colspan="5"> Driver Online</th>
                         <tr>
@@ -246,6 +254,19 @@
             function redirectDriverPage() {
                 window.location.href = "{{ route('adminViewDriver') }}";
             }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#driverOnline').DataTable({
+                    "order": [
+                        [0, "asc"]
+                    ]
+                });
+            });
         </script>
     </section>
 @endsection
