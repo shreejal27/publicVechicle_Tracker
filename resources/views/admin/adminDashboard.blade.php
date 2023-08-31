@@ -35,6 +35,7 @@
     .chart {
         background-color: #675D50;
         color: #F3DEBA;
+        padding: 0.7rem;
     }
 
     table {
@@ -217,12 +218,16 @@
                                 beginAtZero: true,
                                 stepSize: 1,
                                 max: maxValue + 1,
-                                fontColor: "#F3DEBA"
+                                fontFamily: "Josefin Sans, sans-serif",
+                                fontColor: "#F3DEBA",
+                                fontSize: 13
                             }
                         }],
                         xAxes: [{
                             ticks: {
-                                fontColor: "#F3DEBA"
+                                fontFamily: "Josefin Sans, sans-serif",
+                                fontColor: "#F3DEBA",
+                                fontSize: 13
                             }
                         }]
                     },
@@ -231,7 +236,10 @@
                     },
                     title: {
                         display: true,
-                        text: "Total Request in a week"
+                        text: "Total Request in a week",
+                        fontColor: "#F3DEBA",
+                        fontFamily: "Josefin Sans, sans-serif",
+                        fontSize: 15,
                     },
                     tooltips: {
                         callbacks: {
