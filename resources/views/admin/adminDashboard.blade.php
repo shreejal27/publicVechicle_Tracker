@@ -272,7 +272,9 @@
                 $('#driverOnline').DataTable({
                     "order": [
                         [0, "asc"]
-                    ]
+                    ],
+                    "lengthMenu": [3],
+                    "pageLength": 3
                 });
             });
         </script>

@@ -50,7 +50,9 @@
             $('#complainFeedback').DataTable({
                 "order": [
                     [0, "desc"]
-                ]
+                ],
+                "lengthMenu": [5, 10, 25, 50], // Customize the number of entries options
+                "pageLength": 10 // Default number of entries shown on page load
             });
         });
     </script>
