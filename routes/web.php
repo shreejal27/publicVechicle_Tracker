@@ -153,10 +153,11 @@ Route::get('/adminLogout',[AdminController::class, 'logout'])->name('logout');
 
 
 //user dashboard
-Route::get('/userDashboard', function () {
-    return view('user.userDashboard');
-})->name('userDashboard');
+// Route::get('/userDashboard', function () {
+//     return view('user.userDashboard');
+// })->name('userDashboard');
 
+Route::get('/userDashboard',[UserController::class, 'dashboard'])->name('userDashboard');
 
 //user profile
 Route::get('/userProfile', [UserController::class, 'profile'])->name('profile');

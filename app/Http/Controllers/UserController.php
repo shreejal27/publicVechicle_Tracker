@@ -33,6 +33,7 @@ class UserController extends Controller
     {
         $userId = session('user_id');
         $user = User::find($userId);
+
         return view('user.profile', compact('user'));
     }
 
@@ -53,5 +54,12 @@ class UserController extends Controller
         $user->password = $request->rpassword;
         $user->save();
         return redirect()->route('profile')->with('success', 'Credentials Updated');
+    }
+
+    public function dashboard(){
+        //get date today with just initials of day name
+        $dateToday = date('D, d M Y');
+
+        return view('user.userDashboard', compact('dateToday'));
     }
 }
