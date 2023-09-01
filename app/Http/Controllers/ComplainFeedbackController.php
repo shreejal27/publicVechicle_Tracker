@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use App\Models\ComplainFeedback;
 
@@ -25,5 +27,15 @@ class ComplainFeedbackController extends Controller
         // $complainFeedbacks = ComplainFeedback::orderBy('id', 'desc')->get();
         $complainFeedbacks = ComplainFeedback::all();
         return view('admin.viewFeedbackComplain', compact('complainFeedbacks'));
+    }
+
+    public function userComplainFeedbackIndex(){
+        $userId = session('user_id');
+        $user = User::find($userId);
+
+        $uName = $user->firstname . ' ' . $user->lastname;
+        $uEmail = $user->email;
+        $uNumber = $user->contact_number;
+        return view('user.feedbackComplain' , compact('uName', 'uEmail', 'uNumber'));
     }
 }

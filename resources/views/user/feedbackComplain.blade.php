@@ -19,18 +19,11 @@
             <p class="subtitle">Please complete the form below</p>
             <form class="form" id="userComplainFeedback" action="{{ route('storeComplainFeedback') }}" method="POST">
                 @csrf
-                <div class="input-group">
-                    <label>Full Name:</label>
-                    <input type="text" name="fullname" required>
-                </div>
-                <div class="input-group">
-                    <label>Email:</label>
-                    <input type="text" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label>Number:</label>
-                    <input type="text" name="number" required>
-                </div>
+
+                <input type="hidden" name="fullname" value="{{ $uName }}">
+                <input type="hidden" name="email" value="{{ $uEmail }}">
+                <input type="hidden" name="number" value="{{ $uNumber }}">
+
                 <div class="input-group">
                     <label> Type:</label>
                     <select name="type" required>

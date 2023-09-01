@@ -191,9 +191,10 @@ Route::get('/fareCalculator', [FareController::class, 'getFare']);
 Route::post('/calculateFare', [FareController::class, 'fareCalculator'])->name('calculateFare');
 
 //user feedbackComplain
-Route::get('/feedbackComplain', function () {
-    return view('user.feedbackComplain');
-});
+// Route::get('/feedbackComplain', function () {
+//     return view('user.feedbackComplain');
+// });
+Route::get('/feedbackComplain', [ComplainFeedbackController::class, 'userComplainFeedbackIndex'])->name('userComplainFeedbackIndex');
 
 //to store user feedbackComplain
 Route::post('/storeComplainFeedback', [ComplainFeedbackController::class, 'store'])->name('storeComplainFeedback');
