@@ -160,6 +160,20 @@
         select {
             background-color: #A9907E
         }
+
+        /* for password eye */
+
+        #password {
+            padding-right: 30px;
+        }
+
+        #toggle-password {
+            position: absolute;
+            top: 45%;
+            right: 1rem;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -200,6 +214,7 @@
                     <div class="input-group">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="">
+                        <i class="fa-solid fa-eye-slash fa-lg" id="toggle-password"></i>
                         <div class="forgot">
                             <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
                         </div>
@@ -249,6 +264,24 @@
             </div>
         </div>
     @endsection
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var passwordInput = document.getElementById('password');
+            var togglePassword = document.getElementById('toggle-password');
+
+            togglePassword.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    togglePassword.classList.remove('fa-eye-slash');
+                    togglePassword.classList.add('fa-eye');
+                } else {
+                    passwordInput.type = 'password';
+                    togglePassword.classList.remove('fa-eye');
+                    togglePassword.classList.add('fa-eye-slash');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
