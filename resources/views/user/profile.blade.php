@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('pillStyles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('passwordEye.css') }}">
 @extends('necessary.user_template')
 @section('content')
     <div>
@@ -86,16 +87,19 @@
                         </div>
                         <div class="input-group">
                             <label>Current Password</label>
-                            <input type="text" name="cpassword" id="Cpassword" value="{{ $user['password'] }}"required
+                            <input type="password" name="cpassword" id="Cpassword" value="{{ $user['password'] }}"required
                                 disabled>
+                            <i class="fa-solid fa-eye-slash fa-lg" id="Ctoggle-password"></i>
                         </div>
                         <div class="input-group">
                             <label>New Password</label>
-                            <input type="text" name="npassword" id="Npassword" required>
+                            <input type="password" name="npassword" id="Npassword" required>
+                            <i class="fa-solid fa-eye-slash fa-lg" id="Ntoggle-password"></i>
                         </div>
                         <div class="input-group">
                             <label>Rewrite New Password</label>
                             <input type="password" name="rpassword" id="Rpassword" required>
+                            <i class="fa-solid fa-eye-slash fa-lg" id="Rtoggle-password"></i>
                         </div>
                         <button class="sign mt-3" type="submit">Update</button>
                     </form>
@@ -104,6 +108,7 @@
 
         </div>
     </div>
+    <script src="passwordEye.js" type="text/javascript"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
