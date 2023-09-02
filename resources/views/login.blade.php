@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('passwordEye.css') }}">
     <style>
         .center-container {
             display: flex;
@@ -160,20 +161,6 @@
         select {
             background-color: #A9907E
         }
-
-        /* for password eye */
-
-        #password {
-            padding-right: 30px;
-        }
-
-        #toggle-password {
-            position: absolute;
-            top: 45%;
-            right: 1rem;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
     </style>
 </head>
 
@@ -263,25 +250,8 @@
                 </p>
             </div>
         </div>
+        <script src="passwordEye.js" type="text/javascript"></script>
     @endsection
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var passwordInput = document.getElementById('password');
-            var togglePassword = document.getElementById('toggle-password');
-
-            togglePassword.addEventListener('click', function() {
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    togglePassword.classList.remove('fa-eye-slash');
-                    togglePassword.classList.add('fa-eye');
-                } else {
-                    passwordInput.type = 'password';
-                    togglePassword.classList.remove('fa-eye');
-                    togglePassword.classList.add('fa-eye-slash');
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
