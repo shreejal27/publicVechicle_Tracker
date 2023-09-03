@@ -36,6 +36,10 @@ class ComplainFeedbackController extends Controller
         $uName = $user->firstname . ' ' . $user->lastname;
         $uEmail = $user->email;
         $uNumber = $user->contact_number;
-        return view('user.feedbackComplain' , compact('uName', 'uEmail', 'uNumber'));
+
+        //get all complain feedback of this user
+        $complainFeedbacksBySpecificUser = ComplainFeedback::where('email', $uEmail)->get();
+
+        return view('user.feedbackComplain' , compact('uName', 'uEmail', 'uNumber', 'complainFeedbacksBySpecificUser'));
     }
 }
