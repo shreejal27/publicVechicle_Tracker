@@ -203,9 +203,11 @@ Route::post('/storeComplainFeedback', [ComplainFeedbackController::class, 'store
 Route::get('/userLogout',[UserController::class, 'logout'])->name('logout');
 
 //driver dashboard
-Route::get('/driverDashboard', function () {
-    return view('driver.driverDashboard');
-})->name('driverDashboard');
+// Route::get('/driverDashboard', function () {
+//     return view('driver.driverDashboard');
+// })->name('driverDashboard');
+
+Route::get('/driverDashboard',[DriverController::class, 'dashboard'])->name('driverDashboard');
 
 //driver profile
 Route::get('/driverProfile', function () {

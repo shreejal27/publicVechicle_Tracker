@@ -53,4 +53,11 @@ class DriverController extends Controller
         
         return view('admin.viewDriversReports', compact('drivers', 'workingDriverId'));
     }
+
+    public function dashboard(){
+        //get date today with just initials of day name
+        $dateToday = date('D, d M Y');
+
+        return view('driver.driverDashboard', compact('dateToday'));
+    }
 }
