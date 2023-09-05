@@ -1,6 +1,23 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('formStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('pillStyles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('passwordEye.css') }}">
+<style>
+    .image-container {
+        text-align: center;
+    }
+
+    #profileImage {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 10rem;
+        margin: 0 auto;
+        margin-top: -2rem;
+        background-size: cover;
+        background-position: center;
+        /* background-position: 50% 50%; */
+        background-repeat: no-repeat;
+    }
+</style>
 @extends('necessary.user_template')
 @section('content')
     <div>
@@ -26,6 +43,10 @@
                     <p class="title">Profile</p>
                     <form class="form" action="#">
                         @csrf
+                        <div class="image-container">
+                            <img src="{{ asset('images/logo/trackerLogo.png') }}" alt="Profile Image" id="profileImage">
+                        </div>
+
                         <div class="input-group">
                             <label>First Name</label>
                             <input type="text" value="{{ $user['firstname'] }}" disabled>
@@ -87,8 +108,8 @@
                         </div>
                         <div class="input-group">
                             <label>Current Password</label>
-                            <input type="password" name="cpassword" id="Cpassword" value="{{ $user['password'] }}"required
-                                disabled>
+                            <input type="password" name="cpassword" id="Cpassword"
+                                value="{{ $user['password'] }}"required disabled>
                             <i class="fa-solid fa-eye-slash fa-lg" id="Ctoggle-password"></i>
                         </div>
                         <div class="input-group">
