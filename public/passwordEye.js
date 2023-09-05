@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var CpasswordInput = document.getElementById('Cpassword');
     var CtogglePassword = document.getElementById('Ctoggle-password');
     
+    if(CpasswordInput != null && CtogglePassword != null){
+
     CtogglePassword.addEventListener('click', function() {
         if (CpasswordInput.type === 'password') {
             CpasswordInput.type = 'text';
@@ -36,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
             CtogglePassword.classList.add('fa-eye-slash');
         }
     });
+
+    }
     
     var NpasswordInput = document.getElementById('Npassword');
     var NtogglePassword = document.getElementById('Ntoggle-password');
@@ -69,3 +73,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 });
+
+var driverPasswordInput = document.getElementById('driverPassword');
+var driverTogglePassword = document.getElementById('driverTogglePassword');
+
+if (driverPasswordInput != null && driverTogglePassword != null) {
+    driverTogglePassword.addEventListener('click', function () {
+        if (driverPasswordInput.type === 'password') {
+            driverPasswordInput.type = 'text';
+            driverTogglePassword.classList.remove('fa-eye-slash');
+            driverTogglePassword.classList.add('fa-eye');
+        } else {
+            driverPasswordInput.type = 'password';
+            driverTogglePassword.classList.remove('fa-eye');
+            driverTogglePassword.classList.add('fa-eye-slash');
+        }
+    });
+}
+
+var driverCPassword = document.getElementById('driverCPassword');
+var driverCtogglePassword = document.getElementById('driverCtogglePassword');
+
+if (driverCPassword != null && driverCtogglePassword != null) {
+    driverCtogglePassword.addEventListener('click', function () {
+        if (driverCPassword.type === 'password') {
+            driverCPassword.type = 'text';
+            driverCtogglePassword.classList.remove('fa-eye-slash');
+            driverCtogglePassword.classList.add('fa-eye');
+        } else {
+            driverCPassword.type = 'password';
+            driverCtogglePassword.classList.remove('fa-eye');
+            driverCtogglePassword.classList.add('fa-eye-slash');
+        }
+    });
+}

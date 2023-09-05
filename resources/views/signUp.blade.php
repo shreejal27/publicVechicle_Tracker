@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('passwordEye.css') }}">
     <style>
         .center-container {
             display: flex;
@@ -238,13 +239,15 @@
                             <span>UserName</span>
                         </label>
 
-                        <label>
-                            <input required id="password" type="text" class="input" name="password">
+                        <label class="password-container">
+                            <input required id="password" type="password" class="input" name="password">
                             <span>Password</span>
+                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="toggle-password"></i>
                         </label>
-                        <label>
-                            <input required id="cpassword" type="password" class="input" name="confirm_password">
+                        <label class="password-container">
+                            <input required id="Cpassword" type="password" class="input" name="confirm_password">
                             <span>Confirm password</span>
+                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="Ctoggle-password"></i>
                         </label>
                         <button class="submit" type="submit">Submit</button>
                         <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>
@@ -303,12 +306,14 @@
                         </label>
 
                         <label>
-                            <input required type="password" id="password" class="input" name="password">
+                            <input required type="password" id="driverPassword" class="input" name="password">
                             <span>Password</span>
+                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="driverTogglePassword"></i>
                         </label>
                         <label>
-                            <input required type="password" id="cpassword" class="input">
+                            <input required type="password" id="driverCPassword" class="input">
                             <span>Confirm password</span>
+                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="driverCtogglePassword"></i>
                         </label>
                         <button class="submit">Submit</button>
                         <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Signin</a> </p>
@@ -316,6 +321,7 @@
                 </div>
             </div>
         </div>
+        <script src="passwordEye.js" type="text/javascript"></script>
     @endsection
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
