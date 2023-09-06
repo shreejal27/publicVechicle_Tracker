@@ -33,7 +33,8 @@
                         <td>{{ $driver['license_number'] }}</td>
                         <td>{{ $driver['vehicle_type'] }}</td>
                         <td>{{ $driver['contact_number'] }}</td>
-                        <td style="vertical-align: middle;">
+                        <td data-status="{{ $workingDriverId->contains($driver->id) ? '0' : '1' }}"
+                            style="vertical-align: middle;">
                             @if ($workingDriverId->contains($driver->id))
                                 <i class="fa-solid fa-toggle-on fa-lg"></i>
                             @else
@@ -55,7 +56,12 @@
             $('#driverTable').DataTable({
                 "order": [
                     [0, "asc"]
-                ]
+                ],
+                "columnDefs": [{
+                    "orderable": true,
+                    "targets": [6],
+                    "type": "dom-status"
+                }]
             });
         });
     </script>
