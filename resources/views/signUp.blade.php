@@ -230,9 +230,24 @@
                         </label>
 
                         <label>
+                            <input required id="address" type="text" class="input" name="address">
+                            <span>Address</span>
+                        </label>
+
+                        <label>
                             <input required id="number" type="number" class="input" name="contact_number">
                             <span>Contact Number </span>
                         </label>
+
+                        <select name="occupation" class="mb-1" required>
+                            <option value="">--Select Your Occupation--</option>
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="employee">Employee</option>
+                            <option value="bussinessman">BussinessMan</option>
+                            <option value="housewife">Housewife</option>
+                            <option value="unemployed">Unemployed</option>
+                        </select>
 
                         <label>
                             <input required id="username" type="text" class="input" name="username">
@@ -313,7 +328,8 @@
                         <label>
                             <input required type="password" id="driverCPassword" class="input">
                             <span>Confirm password</span>
-                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="driverCtogglePassword"></i>
+                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;"
+                                id="driverCtogglePassword"></i>
                         </label>
                         <button class="submit">Submit</button>
                         <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Signin</a> </p>

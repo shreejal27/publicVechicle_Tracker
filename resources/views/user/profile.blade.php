@@ -39,7 +39,7 @@
     <div class="tab-content">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" data-path="profile">
             <div class="center-container">
-                <div class="form-container mt-5">
+                <div class="form-container mt-5 mb-5">
                     <p class="title">Profile</p>
                     <form class="form" action="#">
                         @csrf
@@ -60,8 +60,16 @@
                             <input type="text" value="{{ $user['email'] }}" disabled>
                         </div>
                         <div class="input-group">
+                            <label>Address</label>
+                            <input type="text" value="{{ $user['address'] }}" disabled>
+                        </div>
+                        <div class="input-group">
                             <label>Contact Number</label>
                             <input type="text" value="{{ $user['contact_number'] }}" disabled>
+                        </div>
+                        <div class="input-group">
+                            <label>Occupation</label>
+                            <input type="text" name="occupation" value="{{ $user['occupation'] }}" required>
                         </div>
                     </form>
                 </div>
@@ -69,7 +77,7 @@
         </div>
         <div class="tab-pane fade" id="updateProfile" role="tabpanel" data-path="updateProfile">
             <div class="center-container">
-                <div class="form-container mt-5">
+                <div class="form-container mt-5 mb-5">
                     <p class="title">Update Profile</p>
                     <form class="form" action="{{ route('updateUserProfile') }}" method="POST">
                         @csrf
@@ -86,8 +94,24 @@
                             <input type="text" name="email" value="{{ $user['email'] }}" required>
                         </div>
                         <div class="input-group">
+                            <label>Address</label>
+                            <input type="text" name="address" value="{{ $user['address'] }}" required>
+                        </div>
+                        <div class="input-group">
                             <label>Contact Number</label>
                             <input type="text" name="contact_number" value="{{ $user['contact_number'] }}" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Occupation</label>
+                            <select name="occupation" class="mb-1" required>
+                                <option value="">--Select Your Occupation--</option>
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
+                                <option value="employee">Employee</option>
+                                <option value="bussinessman">BussinessMan</option>
+                                <option value="housewife">Housewife</option>
+                                <option value="unemployed">Unemployed</option>
+                            </select>
                         </div>
                         <button class="sign mt-3">Update</button>
                     </form>
@@ -103,8 +127,8 @@
                         @csrf
                         <div class="input-group">
                             <label>Username</label>
-                            <input type="text" name="username" id="username" value="{{ $user['username'] }}" required
-                                disabled>
+                            <input type="text" name="username" id="username" value="{{ $user['username'] }}"
+                                required disabled>
                         </div>
                         <div class="input-group">
                             <label>Current Password</label>

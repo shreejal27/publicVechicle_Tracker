@@ -15,7 +15,9 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
+        $user->address = $request->address;
         $user->contact_number = $request->contact_number;
+        $user->occupation = $request->occupation;
         $user->username = $request->username;
         $user->password = $request->password;
         $user->save();
@@ -43,9 +45,11 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
+        $user->address = $request->address;
         $user->contact_number = $request->contact_number;
+        $user->occupation = $request->occupation;
         $user->save();
-        return redirect()->route('profile')->with('success', 'Profile Record Updated');
+        return redirect()->route('profile')->with('message', 'Your Profile Has Been Updated!');
     }
 
     public function updateUserCredentials(Request $request){
