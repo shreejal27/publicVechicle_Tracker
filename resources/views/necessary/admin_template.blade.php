@@ -40,6 +40,7 @@
                 <a href="/adminFarePrice">Fare Price</a><br><br>
                 <a href="/adminComplainFeedback"> FeedBack/Complain/Query </a><br><br>
                 <a href="/adminViewDriversReports"> Drivers (Status/Ratings) </a><br><br>
+                <a href="/adminViewUsers"> Users </a><br><br>
                 <a href="/adminLogout">Logout</a><br><br>
                 <br>
             </div>

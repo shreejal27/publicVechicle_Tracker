@@ -130,6 +130,11 @@ class FareController extends Controller
                         $price = $fare->price;
                         break;
                     }
+                    else {
+                        //what to do when distance is not set in database?
+                        $price = 0;
+                        break;
+                    }
                 }
                 // dd($distanceValue, $weight, $price);
                 $totalFare =  $weightPrice + $price;

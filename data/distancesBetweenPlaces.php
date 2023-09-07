@@ -13,5 +13,6 @@ return [
     'kalimati|balkhu' => 1.5,
     'kalimati|chabahil' => 4.3,
     
+    'china|chabahil' => 21,
     // Add more entries as per your dataset
 ];

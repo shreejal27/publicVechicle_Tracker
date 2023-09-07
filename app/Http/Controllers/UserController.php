@@ -62,4 +62,10 @@ class UserController extends Controller
 
         return view('user.userDashboard', compact('dateToday'));
     }
+
+    //get all user data for admin
+    public function adminViewUsers(){
+        $users = User::all();
+        return view('admin.viewUsers', compact('users'));
+    }
 }

@@ -80,9 +80,10 @@
 
                 // Display the SweetAlert dialog with the row data
                 Swal.fire({
-                    title: 'Information',
+                    // title: 'Information',
+                    icon: 'info',
                     html: content,
-                    
+                    confirmButtonText: 'Close',
                 });
             });
         });
