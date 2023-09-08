@@ -63,8 +63,14 @@ class UserController extends Controller
     public function dashboard(){
         //get date today with just initials of day name
         $dateToday = date('D, d M Y');
+        $userId = session('user_id');
+        $user = User::find($userId);
 
-        return view('user.userDashboard', compact('dateToday'));
+        //get user address 
+        $userAddress = $user->address;
+        $userOccupation = $user->occupation;
+        $userEmail = $user->email;
+        return view('user.userDashboard', compact('dateToday', 'userAddress', 'userOccupation', 'userEmail'));
     }
 
     //get all user data for admin

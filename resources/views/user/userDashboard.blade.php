@@ -64,6 +64,51 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="small-box">
+                        <div class="inner">
+                            <div class="icon-and-text">
+                                <div class="icon">
+                                    <i class="fa-solid fa-house fa-2x"></i>
+                                </div>
+                                <div class="text ">
+                                    <h4>Address:</h4>
+                                    <p>{{ $userAddress }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="small-box">
+                        <div class="inner">
+                            <div class="icon-and-text">
+                                <div class="icon">
+                                    <i class="fa-solid fa-briefcase fa-2x"></i>
+                                </div>
+                                <div class="text ">
+                                    <h4>Occupation:</h4>
+                                    <p>{{ $userOccupation }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="small-box">
+                        <div class="inner">
+                            <div class="icon-and-text">
+                                <div class="icon">
+                                    <i class="fa-solid fa-envelope fa-2x"></i>
+                                </div>
+                                <div class="text ">
+                                    <h4>Email:</h4>
+                                    <p>{{ $userEmail }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row m-3">
                 <div class="col-lg-3 col-md-6 col-sm-12">

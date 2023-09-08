@@ -69,7 +69,7 @@
                         </div>
                         <div class="input-group">
                             <label>Occupation</label>
-                            <input type="text" name="occupation" value="{{ $user['occupation'] }}" required>
+                            <input type="text" name="occupation" value="{{ $user['occupation'] }}" disabled>
                         </div>
                     </form>
                 </div>
