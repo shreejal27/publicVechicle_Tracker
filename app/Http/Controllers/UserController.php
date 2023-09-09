@@ -37,7 +37,6 @@ class UserController extends Controller
     {
         $userId = session('user_id');
         $user = User::find($userId);
-
         return view('user.profile', compact('user'));
     }
 

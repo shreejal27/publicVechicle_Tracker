@@ -7,11 +7,11 @@
     }
 
     #profileImage {
-        width: 10rem;
-        height: 10rem;
+        width: 8rem;
+        height: 8rem;
         border-radius: 10rem;
         margin: 0 auto;
-        margin-top: -2rem;
+        margin-top: -1rem;
         background-size: cover;
         background-position: center;
         /* background-position: 50% 50%; */
@@ -44,7 +44,8 @@
                     <form class="form" action="#">
                         @csrf
                         <div class="image-container">
-                            <img src="{{ asset('images/logo/trackerLogo.png') }}" alt="Profile Image" id="profileImage">
+                            <img src="{{ asset('images/users/' . $user['profileImage']) }}" alt="Profile Image"
+                                id="profileImage">
                         </div>
 
                         <div class="input-group">
@@ -81,6 +82,9 @@
                     <p class="title">Update Profile</p>
                     <form class="form" action="{{ route('updateUserProfile') }}" method="POST">
                         @csrf
+                        <div class="image-container">
+                            <img src="{{ asset('images/users/anonymous.jpg') }}" alt="Profile Image" id="profileImage">
+                        </div>
                         <div class="input-group">
                             <label>First Name</label>
                             <input type="text" name="firstname" value="{{ $user['firstname'] }}" required>
