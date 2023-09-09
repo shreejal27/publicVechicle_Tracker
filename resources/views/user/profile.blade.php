@@ -6,10 +6,11 @@
         text-align: center;
     }
 
-    #profileImage {
+    #profileImage,
+    #updateProfileImage {
         width: 8rem;
         height: 8rem;
-        border-radius: 10rem;
+        border-radius: 8rem;
         margin: 0 auto;
         margin-top: -1rem;
         background-size: cover;
@@ -80,10 +81,13 @@
             <div class="center-container">
                 <div class="form-container mt-5 mb-5">
                     <p class="title">Update Profile</p>
-                    <form class="form" action="{{ route('updateUserProfile') }}" method="POST">
+                    <form class="form" action="{{ route('updateUserProfile') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="image-container">
-                            <img src="{{ asset('images/users/anonymous.jpg') }}" alt="Profile Image" id="profileImage">
+                            <img src="{{ asset('images/users/' . $user['profileImage']) }}" alt="Profile Image"
+                                id="updateProfileImage" onclick="chooseFile()">
+                            <input type="file" style="display: none;" id="fileInput" accept="image/*"
+                                onchange="displaySelectedFile()" name="userImage">
                         </div>
                         <div class="input-group">
                             <label>First Name</label>
@@ -211,6 +215,24 @@
                     timer: 2500
                 })
                 return false;
+            }
+        }
+    </script>
+    <script>
+        function chooseFile() {
+            // Trigger the file input when the user clicks on the image
+            document.getElementById('fileInput').click();
+        }
+
+        function displaySelectedFile() {
+            // Get the selected file
+            const fileInput = document.getElementById('fileInput');
+            const selectedFile = fileInput.files[0];
+
+            if (selectedFile) {
+                // You can also update the image source if needed
+                const updateProfileImage = document.getElementById('updateProfileImage');
+                updateProfileImage.src = URL.createObjectURL(selectedFile);
             }
         }
     </script>

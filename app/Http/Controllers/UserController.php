@@ -49,6 +49,15 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->contact_number = $request->contact_number;
         $user->occupation = $request->occupation;
+         $uploadedFile = $request->userImage;
+
+        //  $filename = uniqid() . '_' . $uploadedFile->getClientOriginalName();
+         $filename = $uploadedFile->getClientOriginalName();
+         // Move the uploaded file to the desired directory (e.g., public/images/users/)
+         $uploadedFile->move('images/users/', $filename);
+         // Update the user's profileImage column with the original filename
+         $user->profileImage = $uploadedFile->getClientOriginalName();
+
         $user->save();
         return redirect()->route('profile')->with('message', 'Your Profile Has Been Updated!');
     }
