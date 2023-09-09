@@ -126,7 +126,36 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="small-box">
+                        <div class="inner">
+                            <div class="icon-and-text">
+                                <div class="icon">
+                                    <i class="fa-solid fa-toggle-on fa-2x"></i>
+                                </div>
+                                <div class="text ">
+                                    <h4>{{ $driverOnlineCount }}</h4>
+                                    <p> Drivers Online</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="small-box">
+                        <div class="inner">
+                            <div class="icon-and-text">
+                                <div class="icon">
+                                    <i class="fa-solid fa-route fa-2x"></i>
+                                </div>
+                                <div class="text ">
+                                    <h4>{{ $stopCount }}</h4>
+                                    <p> Stops</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </section>

@@ -12,12 +12,14 @@
     <section class="m-3 mt-4">
         <table class="table table-hover col-md-6 col-sm-6 col-lg-6 col-xl-6" id="userTable">
             <thead>
-                <th colspan="5"> All Users</th>
+                <th colspan="7"> All Users</th>
                 <tr>
                     <th>SN</th>
                     <th>Name</th>
                     <th>Email </th>
+                    <th>Address</th>
                     <th>Number</th>
+                    <th>Occupation</th>
                     <th>UserName</th>
 
                 </tr>
@@ -28,7 +30,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user['firstname'] }} {{ $user['lastname'] }}</td>
                         <td>{{ $user['email'] }}</td>
+                        <td>{{ $user['address'] }}</td>
                         <td>{{ $user['contact_number'] }}</td>
+                        <td>{{ $user['occupation'] }}</td>
                         <td>{{ $user['username'] }}</td>
                     </tr>
                 @endforeach

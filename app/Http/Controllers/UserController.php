@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\DriverLocation;
+use App\Models\Stop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,12 +72,18 @@ class UserController extends Controller
         $userAddress = $user->address;
         $userOccupation = $user->occupation;
         $userEmail = $user->email;
-        return view('user.userDashboard', compact('dateToday', 'userAddress', 'userOccupation', 'userEmail'));
+
+          //get online drivers count
+         $driverOnlineCount = DriverLocation::where('status', 'on')->count();
+
+         //get stop count
+            $stopCount = Stop::count();
+        return view('user.userDashboard', compact('dateToday', 'userAddress', 'userOccupation', 'userEmail','driverOnlineCount', 'stopCount'));
     }
 
     //get all user data for admin
     public function adminViewUsers(){
         $users = User::all();
         return view('admin.viewUsers', compact('users'));
-    }
+    }  
 }
