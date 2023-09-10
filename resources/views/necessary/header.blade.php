@@ -3,6 +3,10 @@
         margin-top: -15px;
         height: 5rem;
     }
+
+    #projectName {
+        text-decoration: none;
+    }
 </style>
 <header>
     <nav>
@@ -12,8 +16,10 @@
 
                 <img src="{{ asset('images/logo/trackerLogo.png') }}" alt="logo" class="logo">
             </div>
-            <div class="float-left mt-2">
-                <p style="font-size: 1.7rem; color: #F3DEBA;">Public Vehicle Tracker</p>
+            <div class="float-left mt-2">   
+                    <a id="projectName" href="/index">
+                        <p style="font-size: 1.7rem; color: #F3DEBA;">Public Vehicle Tracker</p>
+                    </a>
             </div>
         </div>
         <div class="right float-left  w-50 mt-2">
