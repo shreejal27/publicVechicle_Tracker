@@ -13,10 +13,11 @@
         border-radius: 8rem;
         margin: 0 auto;
         margin-top: -1rem;
-        background-size: cover;
-        background-position: center;
+        object-fit: cover;
+        /* background-size: cover;
+        background-position: center; */
         /* background-position: 50% 50%; */
-        background-repeat: no-repeat;
+        /* background-repeat: no-repeat; */
     }
 </style>
 @extends('necessary.user_template')

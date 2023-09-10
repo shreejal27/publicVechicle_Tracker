@@ -49,16 +49,31 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->contact_number = $request->contact_number;
         $user->occupation = $request->occupation;
-         $uploadedFile = $request->userImage;
 
-        //  $filename = uniqid() . '_' . $uploadedFile->getClientOriginalName();
-         $filename = $uploadedFile->getClientOriginalName();
-         // Move the uploaded file to the desired directory (e.g., public/images/users/)
-         $uploadedFile->move('images/users/', $filename);
-         // Update the user's profileImage column with the original filename
-         $user->profileImage = $uploadedFile->getClientOriginalName();
+        // Get the current user's existing profile picture filename
+        $previousProfileImage = $user->profileImage;
+
+        $uploadedFile = $request->file('userImage');
+
+        if ($uploadedFile) { 
+        $filename = uniqid() . '_' . $uploadedFile->getClientOriginalName();
+
+        // Move the uploaded file to the desired directory 
+        $uploadedFile->move('images/users/', $filename);
+
+        // Update the user's profileImage column with the original filename
+        $user->profileImage = $filename;
 
         $user->save();
+
+          // Delete the previous profile picture from storage
+          if ($previousProfileImage && $uploadedFile !== 'anonymous.jpg') {
+            $pathToDelete = public_path('images/users/' . $previousProfileImage);
+            if (file_exists($pathToDelete)) {
+                unlink($pathToDelete);
+            }
+        }
+    }
         return redirect()->route('profile')->with('message', 'Your Profile Has Been Updated!');
     }
 
