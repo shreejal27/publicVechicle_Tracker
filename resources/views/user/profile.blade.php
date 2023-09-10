@@ -14,10 +14,15 @@
         margin: 0 auto;
         margin-top: -1rem;
         object-fit: cover;
+        border: 2px solid #F3DEBA;
         /* background-size: cover;
         background-position: center; */
         /* background-position: 50% 50%; */
         /* background-repeat: no-repeat; */
+    }
+
+    #updateProfileImage:hover {
+        cursor: pointer;
     }
 </style>
 @extends('necessary.user_template')
@@ -82,7 +87,8 @@
             <div class="center-container">
                 <div class="form-container mt-5 mb-5">
                     <p class="title">Update Profile</p>
-                    <form class="form" action="{{ route('updateUserProfile') }}" method="POST" enctype="multipart/form-data">
+                    <form class="form" action="{{ route('updateUserProfile') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="image-container">
                             <img src="{{ asset('images/users/' . $user['profileImage']) }}" alt="Profile Image"
@@ -113,7 +119,7 @@
                         <div class="input-group">
                             <label>Occupation</label>
                             <select name="occupation" class="mb-1" required>
-                                <option value="">--Select Your Occupation--</option>
+                                <option value="{{ $user['occupation'] }}">{{ $user['occupation'] }}</option>
                                 <option value="student">Student</option>
                                 <option value="teacher">Teacher</option>
                                 <option value="employee">Employee</option>

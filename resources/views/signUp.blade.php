@@ -262,7 +262,7 @@
                         <label class="password-container">
                             <input required id="Cpassword" type="password" class="input" name="confirm_password">
                             <span>Confirm password</span>
-                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="Ctoggle-password"></i>
+                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="signUp-Ctoggle-password"></i>
                         </label>
                         <button class="submit" type="submit">Submit</button>
                         <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>

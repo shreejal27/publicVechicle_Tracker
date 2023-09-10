@@ -64,18 +64,18 @@ class UserController extends Controller
         // Update the user's profileImage column with the original filename
         $user->profileImage = $filename;
 
-        $user->save();
-
-          // Delete the previous profile picture from storage
-          if ($previousProfileImage && $uploadedFile !== 'anonymous.jpg') {
+        
+        // Delete the previous profile picture from storage
+        if ($previousProfileImage && $uploadedFile !== 'anonymous.jpg') {
             $pathToDelete = public_path('images/users/' . $previousProfileImage);
             if (file_exists($pathToDelete)) {
                 unlink($pathToDelete);
             }
         }
     }
-        return redirect()->route('profile')->with('message', 'Your Profile Has Been Updated!');
-    }
+    $user->save();
+    return redirect()->route('profile')->with('message', 'Your Profile Has Been Updated!');
+}
 
     public function updateUserCredentials(Request $request){
         $userId = session('user_id');

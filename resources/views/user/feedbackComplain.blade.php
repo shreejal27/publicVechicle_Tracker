@@ -79,15 +79,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($complainFeedbacksBySpecificUser as $complainFeedback)
-                            <tr>
+                        @if ($complainFeedbacksBySpecificUser->isEmpty())
+                            <td colspan="4">No forms have been submitted yet. </td>
+                        @else
+                            @foreach ($complainFeedbacksBySpecificUser as $complainFeedback)
+                                <tr>
 
-                                <td>{{ \Carbon\Carbon::parse($complainFeedback->created_at)->format('Y-m-d (l)') }}</td>
-                                <td>{{ $complainFeedback->type }}</td>
-                                <td>{{ $complainFeedback->subject }}</td>
-                                <td>{{ $complainFeedback->description }}</td>
-                            </tr>
-                        @endforeach
+                                    <td>{{ \Carbon\Carbon::parse($complainFeedback->created_at)->format('Y-m-d (l)') }}</td>
+                                    <td>{{ $complainFeedback->type }}</td>
+                                    <td>{{ $complainFeedback->subject }}</td>
+                                    <td>{{ $complainFeedback->description }}</td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </section>
