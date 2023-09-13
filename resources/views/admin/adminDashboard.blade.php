@@ -189,6 +189,19 @@
                 </table>
             </div>
         </div>
+        <section class="infoTablesAndCharts">
+            <div class="row m-3">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="chart">
+                        <canvas id="pieChart" style="width:50%;; cursor:pointer;"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                </div>
+            </div>
+        </section>
+
+        {{-- for bar graph --}}
         <script>
             var xValues = @json($weekDays);
             var yValues = @json($complaintCounts);
@@ -263,6 +276,38 @@
                 window.location.href = "{{ route('adminViewDriver') }}";
             }
         </script>
+        {{-- for pie chart --}}
+        <script>
+            var xValues = @json($occupationList);
+            var yValues = @json($occupationCount);
+            var barColors = [
+                "#b91d47",
+                "#00aba9",
+                "#2b5797",
+                "#e8c3b9",
+                "#1e7145"
+            ];
+
+            new Chart("pieChart", {
+
+                type: "doughnut",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "World Wide Wine Production 2018"
+                    }
+                }
+            });
+        </script>
+
+
 
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>

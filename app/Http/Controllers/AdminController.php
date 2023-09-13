@@ -80,7 +80,7 @@ class AdminController extends Controller
             $i++;
         }
         
-        //chart
+        //bar graph data
         $weekDays = [];
         $weekDates = [];
         $complaintCounts = [];
@@ -92,7 +92,20 @@ class AdminController extends Controller
             $complaintCounts[] = ComplainFeedback::whereDate('created_at', $date)->count();
         }
 
-       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates', 'dateToday');
+        //pie chart data
+
+        $topOccupations = User::groupBy('occupation')
+        ->selectRaw('occupation, COUNT(*) as count')
+        ->orderByDesc('count')
+        ->take(5)
+        ->get();
+    
+    foreach ($topOccupations as $occupation) {
+        $occupationList[] = $occupation->occupation;
+        $occupationCount[] = $occupation->count;
+    }
+
+       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates', 'dateToday', 'occupationList', 'occupationCount');
     }
 
 }

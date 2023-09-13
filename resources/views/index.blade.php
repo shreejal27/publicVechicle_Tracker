@@ -81,11 +81,12 @@
         width: 100%;
         height: 300px;
         filter: brightness(75%);
+        object-fit: cover;
     }
 
     .blogImages:hover {
         filter: brightness(100%);
-        transition: 0.5s ease;
+        transition: 3s ease;
     }
 </style>
 @section('content')
