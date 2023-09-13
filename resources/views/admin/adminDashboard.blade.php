@@ -193,7 +193,7 @@
             <div class="row m-3">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="chart">
-                        <canvas id="pieChart" style="width:50%;; cursor:pointer;"></canvas>
+                        <canvas id="pieChart" style="width:50%; height:500; cursor:pointer;"></canvas>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -275,21 +275,24 @@
             function redirectDriverPage() {
                 window.location.href = "{{ route('adminViewDriver') }}";
             }
+
+            // function redirectUsers() {
+            //     window.location.href = "{{ route('adminViewUsers') }}";
+            // }
         </script>
         {{-- for pie chart --}}
         <script>
             var xValues = @json($occupationList);
             var yValues = @json($occupationCount);
             var barColors = [
-                "#b91d47",
-                "#00aba9",
-                "#2b5797",
-                "#e8c3b9",
-                "#1e7145"
+                "#8D7B68",
+                "#C3B091",
+                "#C8B6A6",
+                "#A7727D",
+                "#E4E4D0",
             ];
 
             new Chart("pieChart", {
-
                 type: "doughnut",
                 data: {
                     labels: xValues,
@@ -301,9 +304,18 @@
                 options: {
                     title: {
                         display: true,
-                        text: "World Wide Wine Production 2018"
+                        text: "Top 5 Occupations of Users",
+                        fontColor: "#F3DEBA",
+                        fontSize: 15,
+                        fontFamily: "Josefin Sans, sans-serif"
+                    },
+                    legend: {
+                        labels: {
+                            fontColor: "#F3DEBA", // Change the font color of the labels here
+                            fontFamily: "Josefin Sans, sans-serif"
+                        }
                     }
-                }
+                },
             });
         </script>
 
