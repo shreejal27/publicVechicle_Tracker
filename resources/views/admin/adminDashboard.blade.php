@@ -45,6 +45,10 @@
     table.dataTable {
         border-collapse: collapse !important;
     }
+
+    rect {
+        /* fill: #675d50; */
+    }
 </style>
 @extends('necessary.admin_template')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -197,6 +201,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="chart">
+                        <canvas id="addressBarGraph" style="width:100%; cursor:pointer;"
+                            onclick="redirectComplainFeedback()"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
@@ -318,7 +326,68 @@
                 },
             });
         </script>
+        {{-- for horizontal chart --}}
+        <script>
+            var xValues = @json($addressList);
+            var yValues = @json($addressCount);
+            var barColor = "#F3DEBA";
 
+
+            var maxValue = Math.max(...yValues);
+
+            console.log("Maximum value:", maxValue);
+
+            new Chart("addressBarGraph", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColor,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 5,
+                                max: maxValue + 1,
+                                fontFamily: "Josefin Sans, sans-serif",
+                                fontColor: "#F3DEBA",
+                                fontSize: 13
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontFamily: "Josefin Sans, sans-serif",
+                                fontColor: "#F3DEBA",
+                                fontSize: 13
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: "Top address of Users",
+                        fontColor: "#F3DEBA",
+                        fontFamily: "Josefin Sans, sans-serif",
+                        fontSize: 15,
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return "Count: " + tooltipItem.yLabel; // Display the count
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+        {{-- end bar graph --}}
 
 
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

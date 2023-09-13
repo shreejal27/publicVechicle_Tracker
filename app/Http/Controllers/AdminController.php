@@ -105,7 +105,19 @@ class AdminController extends Controller
         $occupationCount[] = $occupation->count;
     }
 
-       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates', 'dateToday', 'occupationList', 'occupationCount');
+    //horizontal bar graph
+    $topAddress = User::groupBy('address')
+    ->selectRaw('address, COUNT(*) as count')
+    ->orderByDesc('count')
+    ->take(5)
+    ->get();
+
+foreach ($topAddress as $address) {
+    $addressList[] = $address->address;
+    $addressCount[] = $address->count;
+}
+
+       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates', 'dateToday', 'occupationList', 'occupationCount', 'addressList', 'addressCount');
     }
 
 }
