@@ -33,12 +33,12 @@
                     </h5>
                 </section>
                 <br>
-                <a href="/driverDashboard">Dashboard</a><br><br>
-                <a href="/driverProfile">Profile </a><br><br>
-                <a href="/driverLiveLocation">Share Live Location</a><br><br>
-                <a href="/driverFareCalculator">Fare Calculator</a><br><br>
-                <a href="#">FeedBack/Complain/Ratings</a><br><br>
-                <a href="/driverLogout">Logout</a><br><br>
+                <a href="/driverDashboard" class="sidebarLink">Dashboard</a><br><br>
+                <a href="/driverProfile" class="sidebarLink">Profile </a><br><br>
+                <a href="/driverLiveLocation" class="sidebarLink">Share Live Location</a><br><br>
+                <a href="/driverFareCalculator" class="sidebarLink">Fare Calculator</a><br><br>
+                <a href="#" class="sidebarLink">FeedBack/Complain/Ratings</a><br><br>
+                <a href="/driverLogout" class="sidebarLink">Logout</a><br><br>
                 <br>
             </div>
         </aside>
@@ -62,6 +62,7 @@
             greeting.textContent = "Good Evening!";
         }
     </script>
+    <script src="sidebarActive.js" type="text/javascript"></script>
 </body>
 
 </html>

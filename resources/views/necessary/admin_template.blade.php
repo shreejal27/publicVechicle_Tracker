@@ -33,15 +33,15 @@
                 </section>
 
                 <br>
-                <a href="/adminDashboard">Dashboard</a><br><br>
-                <a href="/adminActivePublicVehicle">Active Public Vehicle</a><br><br>
-                <a href="/adminVehicleRoute">Vehicle Route</a><br><br>
-                <a href="/adminBusStops">All Vehicle Stops / (Add)</a><br><br>
-                <a href="/adminFarePrice">Fare Price</a><br><br>
-                <a href="/adminComplainFeedback"> FeedBack/Complain/Query </a><br><br>
-                <a href="/adminViewDriversReports"> Drivers (Status/Ratings) </a><br><br>
-                <a href="/adminViewUsers"> Users </a><br><br>
-                <a href="/adminLogout">Logout</a><br><br>
+                <a href="/adminDashboard" class="sidebarLink">Dashboard</a><br><br>
+                <a href="/adminActivePublicVehicle" class="sidebarLink">Active Public Vehicle</a><br><br>
+                <a href="/adminVehicleRoute" class="sidebarLink">Vehicle Route</a><br><br>
+                <a href="/adminBusStops" class="sidebarLink">All Vehicle Stops / (Add)</a><br><br>
+                <a href="/adminFarePrice" class="sidebarLink">Fare Price</a><br><br>
+                <a href="/adminComplainFeedback" class="sidebarLink"> FeedBack/Complain/Query </a><br><br>
+                <a href="/adminViewDriversReports" class="sidebarLink"> Drivers (Status/Ratings) </a><br><br>
+                <a href="/adminViewUsers" class="sidebarLink"> Users </a><br><br>
+                <a href="/adminLogout" class="sidebarLink">Logout</a><br><br>
                 <br>
             </div>
         </aside>
@@ -87,6 +87,7 @@
             greeting.textContent = "Good Evening! ";
         }
     </script>
+    <script src="sidebarActive.js" type="text/javascript"></script>
 </body>
 
 </html>

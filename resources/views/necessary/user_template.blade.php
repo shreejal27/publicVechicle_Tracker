@@ -32,13 +32,13 @@
                     </h5>
                 </section>
                 <br>
-                <a href="/userDashboard">Dashboard</a><br><br>
-                <a href="/userProfile">Profile</a><br><br>
-                <a href="/userActivePublicVehicle">Track Public Vehicle </a><br><br>
-                <a href="/nearestBusStop">Nearest Bus Stop</a><br><br>
-                <a href="/fareCalculator">Fare Calculator</a><br><br>
-                <a href="/feedbackComplain">Feedback/Complain/Query</a><br><br>
-                <a href="/userLogout">Logout</a><br><br>
+                <a href="/userDashboard" class="sidebarLink">Dashboard</a><br><br>
+                <a href="/userProfile" class="sidebarLink">Profile</a><br><br>
+                <a href="/userActivePublicVehicle" class="sidebarLink">Track Public Vehicle </a><br><br>
+                <a href="/nearestBusStop" class="sidebarLink">Nearest Bus Stop</a><br><br>
+                <a href="/fareCalculator" class="sidebarLink">Fare Calculator</a><br><br>
+                <a href="/feedbackComplain" class="sidebarLink">Feedback/Complain/Query</a><br><br>
+                <a href="/userLogout" class="sidebarLink">Logout</a><br><br>
                 <br>
             </div>
         </aside>
@@ -84,6 +84,7 @@
             greeting.textContent = "Good Evening!";
         }
     </script>
+    <script src="sidebarActive.js" type="text/javascript"></script>
 </body>
 
 </html>

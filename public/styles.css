@@ -173,3 +173,9 @@ footer{
      /* .swal2-title {
       font-size: 1.3rem !important;
   } */
+
+  /* to make sidebar active  */
+     .sidebarLink.active {
+            color: #675D50;
+            font-weight: bold;
+        } 
