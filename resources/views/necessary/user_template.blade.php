@@ -32,13 +32,27 @@
                     </h5>
                 </section>
                 <br>
-                <a href="/userDashboard" class="sidebarLink">Dashboard</a><br><br>
-                <a href="/userProfile" class="sidebarLink">Profile</a><br><br>
-                <a href="/userActivePublicVehicle" class="sidebarLink">Track Public Vehicle </a><br><br>
-                <a href="/nearestBusStop" class="sidebarLink">Nearest Bus Stop</a><br><br>
-                <a href="/fareCalculator" class="sidebarLink">Fare Calculator</a><br><br>
-                <a href="/feedbackComplain" class="sidebarLink">Feedback/Complain/Query</a><br><br>
-                <a href="/userLogout" class="sidebarLink">Logout</a><br><br>
+                <a href="/userDashboard" class="sidebarLink">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    Dashboard</a><br><br>
+                <a href="/userProfile" class="sidebarLink">
+                    <i class="fa-solid fa-address-card"></i>
+                    Profile</a><br><br>
+                <a href="/userActivePublicVehicle" class="sidebarLink">
+                    <i class="fa-solid fa-bus"></i>
+                    Track Public Vehicle </a><br><br>
+                <a href="/nearestBusStop" class="sidebarLink">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Nearest Stop</a><br><br>
+                <a href="/fareCalculator" class="sidebarLink">
+                    <i class="fa-solid fa-calculator"></i>
+                    Fare Calculator</a><br><br>
+                <a href="/feedbackComplain" class="sidebarLink">
+                    <i class="fa-solid fa-message"></i>
+                    Submit Your Ticket</a><br><br>
+                <a href="/userLogout" class="sidebarLink">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout</a><br><br>
                 <br>
             </div>
         </aside>

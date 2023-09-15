@@ -147,7 +147,7 @@ footer{
   .sidebar {
     background-color: #A9907E;
     color: #F3DEBA;
-    flex-basis: 15%; /* Set the width of the sidebar */
+    flex-basis: 17%; /* Set the width of the sidebar */
   }
 
   .sidebar div a{
