@@ -33,12 +33,24 @@
                     </h5>
                 </section>
                 <br>
-                <a href="/driverDashboard" class="sidebarLink">Dashboard</a><br><br>
-                <a href="/driverProfile" class="sidebarLink">Profile </a><br><br>
-                <a href="/driverLiveLocation" class="sidebarLink">Share Live Location</a><br><br>
-                <a href="/driverFareCalculator" class="sidebarLink">Fare Calculator</a><br><br>
-                <a href="#" class="sidebarLink">FeedBack/Complain/Ratings</a><br><br>
-                <a href="/driverLogout" class="sidebarLink">Logout</a><br><br>
+                <a href="/driverDashboard" class="sidebarLink">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    Dashboard</a><br><br>
+                <a href="/driverProfile" class="sidebarLink">
+                    <i class="fa-solid fa-address-card"></i>
+                    Profile </a><br><br>
+                <a href="/driverLiveLocation" class="sidebarLink">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Share Live Location</a><br><br>
+                <a href="/driverFareCalculator" class="sidebarLink">
+                    <i class="fa-solid fa-calculator"></i>
+                    Fare Calculator</a><br><br>
+                <a href="#" class="sidebarLink">
+                    <i class="fa-solid fa-message"></i>
+                    Submit Your Ticket</a><br><br>
+                <a href="/driverLogout" class="sidebarLink">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout</a><br><br>
                 <br>
             </div>
         </aside>

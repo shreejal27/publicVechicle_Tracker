@@ -33,15 +33,33 @@
                 </section>
 
                 <br>
-                <a href="/adminDashboard" class="sidebarLink">Dashboard</a><br><br>
-                <a href="/adminActivePublicVehicle" class="sidebarLink">Active Public Vehicle</a><br><br>
-                <a href="/adminVehicleRoute" class="sidebarLink">Vehicle Route</a><br><br>
-                <a href="/adminBusStops" class="sidebarLink">All Vehicle Stops / (Add)</a><br><br>
-                <a href="/adminFarePrice" class="sidebarLink">Fare Price</a><br><br>
-                <a href="/adminComplainFeedback" class="sidebarLink"> FeedBack/Complain/Query </a><br><br>
-                <a href="/adminViewDriversReports" class="sidebarLink"> Drivers (Status/Ratings) </a><br><br>
-                <a href="/adminViewUsers" class="sidebarLink"> Users </a><br><br>
-                <a href="/adminLogout" class="sidebarLink">Logout</a><br><br>
+                <a href="/adminDashboard" class="sidebarLink">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    Dashboard</a><br><br>
+                <a href="/adminActivePublicVehicle" class="sidebarLink">
+                    <i class="fa-solid fa-bus"></i>
+                    Active Public Vehicle</a><br><br>
+                <a href="/adminVehicleRoute" class="sidebarLink">
+                    <i class="fa-solid fa-route"></i>
+                    Vehicle Route</a><br><br>
+                <a href="/adminBusStops" class="sidebarLink">
+                    <i class="fa-solid fa-location-dot"></i>
+                    All Stops</a><br><br>
+                <a href="/adminFarePrice" class="sidebarLink">
+                    <i class="fa-solid fa-calculator"></i>
+                    Fare Price</a><br><br>
+                <a href="/adminComplainFeedback" class="sidebarLink">
+                    <i class="fa-solid fa-message"></i>
+                    All Tickets</a><br><br>
+                <a href="/adminViewDriversReports" class="sidebarLink">
+                    <i class="fa-solid fa-users-gear"></i>
+                    Drivers //Ratings </a><br><br>
+                <a href="/adminViewUsers" class="sidebarLink">
+                    <i class="fa-solid fa-users"></i>
+                    Users </a><br><br>
+                <a href="/adminLogout" class="sidebarLink">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout</a><br><br>
                 <br>
             </div>
         </aside>

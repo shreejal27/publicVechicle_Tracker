@@ -151,14 +151,13 @@ footer{
   }
 
   .sidebar div a{
-  
     color: #F3DEBA;
     text-decoration: none; 
   }
   
   .sidebar div a:hover{
     /* color: #ABC4AA; */
-    color:black;
+    color:#675D50;
   }
   
   .content {
