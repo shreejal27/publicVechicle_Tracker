@@ -84,8 +84,14 @@
                 </div>
 
                 <div class="image-container mt-3 mr-3">
-                    <img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage"
-                        id="profileImage">
+                    <div class="profile-image" id="profileImageContainer">
+                        <img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage"
+                            id="profileImage">
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="#">Profile</a>
+                            <a href="#">Logout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             @yield('content')
@@ -117,6 +123,20 @@
     @include('necessary.footer')
     <script src="greetings.js" type="text/javascript"></script>
     <script src="sidebarActive.js" type="text/javascript"></script>
+    <script>
+        // Close the dropdown menu when clicking outside of it
+        window.addEventListener("click", function(event) {
+            if (!event.target.matches('.profile-image')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

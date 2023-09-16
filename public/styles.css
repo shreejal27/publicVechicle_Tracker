@@ -170,6 +170,34 @@ footer{
     align-items: center;
     
   }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #A9907E;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0; /* Align the dropdown to the right edge of the parent container */
+}
+
+/* Style the dropdown links */
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown content when the profile image is hovered */
+.profile-image:hover .dropdown-content {
+    display: block;
+}
   
   .content {
     background-color: blanchedalmond;
