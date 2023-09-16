@@ -16,7 +16,21 @@
 </head>
 
 <body>
+    <style>
+        .image-container {
+            text-align: center;
+        }
 
+        #profileImage {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 3rem;
+            margin: 0 auto;
+            margin-top: -1rem;
+            object-fit: cover;
+            border: 2px solid #F3DEBA;
+        }
+    </style>
     <div class="container col-md-12 col-sm-12 col-xs-12" style="padding:0">
         <aside class="sidebar">
             <div>
@@ -26,10 +40,10 @@
                     <h3>
                         <p class="font-weight-bold">Public Vehicle Tracker</p>
                     </h3>
-                    <h5>
+                    {{-- <h5>
                         <p id="greetings"> </p>
                         <p>{{ ucfirst(session('user_name')) }}</p>
-                    </h5>
+                    </h5> --}}
                 </section>
                 <br>
                 <a href="/userDashboard" class="sidebarLink">
@@ -57,8 +71,23 @@
             </div>
         </aside>
 
-
         <main>
+            <div class="row topBar">
+
+                {{-- <p class="mt-2 pl-3" style="color: #F3DEBA;">Good Evening! Asdf</p> --}}
+                <div>
+
+                    <h5 class="mt-2 ml-3">
+                        <span id="greetings"></span>
+                        <span> {{ ucfirst(session('user_name')) }}</span>
+                    </h5>
+                </div>
+
+                <div class="image-container mt-3 mr-3">
+                    <img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage"
+                        id="profileImage">
+                </div>
+            </div>
             @yield('content')
             @if (session('error'))
                 <script>
