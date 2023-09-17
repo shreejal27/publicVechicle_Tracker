@@ -21,7 +21,7 @@
             text-align: center;
         }
 
-        #profileImage {
+        #topBarImage {
             width: 3rem;
             height: 3rem;
             border-radius: 3rem;
@@ -86,7 +86,7 @@
                 <div class="image-container mt-3 mr-3">
                     <div class="profile-image" id="profileImageContainer">
                         <img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage"
-                            id="profileImage">
+                            id="topBarImage">
                         <div class="dropdown-content" id="dropdownContent">
                             <a href="#">Profile</a>
                             <a href="#">Logout</a>

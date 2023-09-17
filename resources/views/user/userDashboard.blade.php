@@ -43,6 +43,9 @@
     }
 </style>
 @extends('necessary.user_template')
+{{-- for bar graph --}}
+{{-- for bar graph --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 @section('content')
     <section>
         {{--  $user_id = session()->get('user_id');
@@ -159,5 +162,74 @@
 
             </div>
         </section>
+        <section class="infoTablesAndCharts">
+            <div class="row m-3">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="chart">
+                        <canvas id="vehicleOnline" style="width:100%; cursor:pointer;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{-- for bar graph --}}
+        <script>
+            var xValues = @json($vehicleTypes);
+            var yValues = @json($vehicleCounts);
+            var barColor = "#F3DEBA";
+
+            console.log("X Values:", xValues);
+            console.log("Y Values:", yValues);
+            var maxValue = Math.max(...yValues);
+            
+            new Chart("vehicleOnline", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColor,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 5,
+                                max: maxValue + 1,
+                                fontFamily: "Josefin Sans, sans-serif",
+                                fontColor: "#F3DEBA",
+                                fontSize: 13
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontFamily: "Josefin Sans, sans-serif",
+                                fontColor: "#F3DEBA",
+                                fontSize: 13
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: "Top address of Users",
+                        fontColor: "#F3DEBA",
+                        fontFamily: "Josefin Sans, sans-serif",
+                        fontSize: 15,
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return "Count: " + tooltipItem.yLabel; // Display the count
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
     </section>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Driver;
 use App\Models\DriverLocation;
 use App\Models\Stop;
 use Illuminate\Http\Request;
@@ -99,9 +100,32 @@ class UserController extends Controller
           //get online drivers count
          $driverOnlineCount = DriverLocation::where('status', 'on')->count();
 
+        //get all the details of driver from driver_id whose status is on 
+        $driverLocations = DriverLocation::where('status', 'on')->latest()->get();
+        $driverDetails = [];
+        $i=0;
+        foreach($driverLocations as $driverData){
+            //get driver name
+            $driver = Driver::where('id', $driverData->driver_id)->first();
+            $driverDetails[$i]['vehicleType'] = $driver->vehicle_type;
+            $i++;
+        }
+
+        $vehicleTypesArray = [];
+        foreach ($driverDetails as $driverDetail) {
+            if (isset($driverDetail['vehicleType'])) {
+                $vehicleTypesArray[] = $driverDetail['vehicleType'];
+            }
+        }
+
+        $distinctVehicleCounts = array_count_values($vehicleTypesArray);
+        $vehicleTypes = array_keys($distinctVehicleCounts);
+        $vehicleCounts = array_values($distinctVehicleCounts);
+
+
          //get stop count
-            $stopCount = Stop::count();
-        return view('user.userDashboard', compact('dateToday', 'userAddress', 'userOccupation', 'userEmail','driverOnlineCount', 'stopCount'));
+        $stopCount = Stop::count();
+        return view('user.userDashboard', compact('dateToday', 'userAddress', 'userOccupation', 'userEmail','driverOnlineCount', 'stopCount', 'vehicleTypes', 'vehicleCounts'));
     }
 
     //get all user data for admin
