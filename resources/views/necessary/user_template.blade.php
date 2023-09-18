@@ -49,9 +49,9 @@
                 <a href="/userDashboard" class="sidebarLink">
                     <i class="fa-solid fa-chalkboard-user"></i>
                     Dashboard</a><br><br>
-                <a href="/userProfile" class="sidebarLink">
+                {{-- <a href="/userProfile" class="sidebarLink">
                     <i class="fa-solid fa-address-card"></i>
-                    Profile</a><br><br>
+                    Profile</a><br><br> --}}
                 <a href="/userActivePublicVehicle" class="sidebarLink">
                     <i class="fa-solid fa-bus"></i>
                     Track Public Vehicle </a><br><br>
@@ -64,9 +64,9 @@
                 <a href="/feedbackComplain" class="sidebarLink">
                     <i class="fa-solid fa-message"></i>
                     Submit Your Ticket</a><br><br>
-                <a href="/userLogout" class="sidebarLink">
+                {{-- <a href="/userLogout" class="sidebarLink">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    Logout</a><br><br>
+                    Logout</a><br><br> --}}
                 <br>
             </div>
         </aside>
@@ -88,8 +88,8 @@
                         <img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage"
                             id="topBarImage">
                         <div class="dropdown-content" id="dropdownContent">
-                            <a href="#">Profile</a>
-                            <a href="#">Logout</a>
+                            <a href="/userProfile">  <i class="fa-solid fa-address-card"></i> Profile</a>
+                            <a href="/userLogout">  <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                         </div>
                     </div>
                 </div>
