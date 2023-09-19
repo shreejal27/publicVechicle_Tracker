@@ -64,7 +64,9 @@ class UserController extends Controller
 
         // Update the user's profileImage column with the original filename
         $user->profileImage = $filename;
-
+        
+        //update session value to show profile image on the topBar
+        session(['userProfile' => $filename]);
         
         // Delete the previous profile picture from storage
         if ($previousProfileImage && $uploadedFile !== 'anonymous.jpg') {

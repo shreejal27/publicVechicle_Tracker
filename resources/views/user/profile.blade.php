@@ -43,6 +43,7 @@
     </div>
 
 
+
     <div class="tab-content">
         <div class="tab-pane fade show active" id="profile" role="tabpanel" data-path="profile">
             <div class="center-container">
@@ -51,7 +52,7 @@
                     <form class="form" action="#">
                         @csrf
                         <div class="image-container">
-                            <img src="{{ asset('images/users/' . $user['profileImage']) }}" alt="Profile Image"
+                            <img src="{{ asset('images/users/' . ($user['profileImage'] ? $user['profileImage'] : 'anonymous.jpg')) }}" alt="Profile Image"
                                 id="profileImage">
                         </div>
 
@@ -91,7 +92,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="image-container">
-                            <img src="{{ asset('images/users/' . $user['profileImage']) }}" alt="Profile Image"
+                            <img src="{{ asset('images/users/' . ($user['profileImage'] ? $user['profileImage'] : 'anonymous.jpg')) }}" alt="Profile Image"
                                 id="updateProfileImage" onclick="chooseFile()">
                             <input type="file" style="display: none;" id="fileInput" accept="image/*"
                                 onchange="displaySelectedFile()" name="userImage">

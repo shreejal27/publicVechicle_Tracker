@@ -90,7 +90,7 @@
                         {{-- img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage" 
                             id="topBarImage"--}}
                             @php
-                             $userProfile = (session('userProfile'));
+                             $userProfile = session('userProfile')? (session('userProfile')) : 'anonymous.jpg';
                             @endphp
 
                         <img src="{{ asset('/images/users/' . $userProfile) }}" alt="ProfileImage" id="topBarImage">
