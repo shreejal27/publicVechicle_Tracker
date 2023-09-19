@@ -41,6 +41,10 @@ class LoginController extends Controller
                 session(['user_id' => $user->id]);
                     //store user name in session
                     session(['user_name' => $user->firstname]);
+                    
+                    //store the user image in session
+                    session(['userProfile' => $user->profileImage]);
+
                 return redirect()->route('userDashboard')->with('success', 'Login successful');
             } else {
                 // Authentication failed for user

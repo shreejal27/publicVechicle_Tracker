@@ -80,13 +80,20 @@
                     <h5 class="mt-2 ml-3">
                         <span id="greetings"></span>
                         <span> {{ ucfirst(session('user_name')) }}</span>
+                       
                     </h5>
                 </div>
 
                 <div class="image-container mt-3 mr-3">
                     <div class="profile-image" id="profileImageContainer">
-                        <img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage"
-                            id="topBarImage">
+                        {{-- static image --}}
+                        {{-- img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage" 
+                            id="topBarImage"--}}
+                            @php
+                             $userProfile = (session('userProfile'));
+                            @endphp
+
+                        <img src="{{ asset('/images/users/' . $userProfile) }}" alt="ProfileImage" id="topBarImage">
                         <div class="dropdown-content" id="dropdownContent">
                             <a href="/userProfile">  <i class="fa-solid fa-address-card"></i> Profile</a>
                             <a href="/userLogout">  <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
