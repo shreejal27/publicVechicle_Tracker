@@ -18,10 +18,16 @@
                         <label>Distance (in kms):</label>
                         <input type="text" name="distance" value="{{ $fare->distance }}" required>
                     </div>
+                    @error('distance')
+                    <p class="text-danger">**{{ $message }}</p>
+                    @enderror
                     <div class="input-group">
                         <label>Price:</label>
                         <input type="text" name="price" value="{{ $fare->price }}" required>
                     </div>
+                    @error('price')
+                    <p class="text-danger">**{{ $message }}</p>
+                    @enderror
                     <button class="sign mt-3" type="submit">Update</button>
                 </form>
             </div>

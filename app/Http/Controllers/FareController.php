@@ -12,13 +12,11 @@ class FareController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'distance' => 'required',
-            'price' => 'required',
+            'distance' => 'required|integer',
+            'price' => 'required|integer',
         ]);
-
-        $fare = Fare::create($data);
-
-        return redirect()->back()->with('message', 'Fare added successfully');
+            $fare = Fare::create($data);
+            return redirect()->back()->with('message', 'Fare added successfully');
     }
 
     public function index()
@@ -62,8 +60,8 @@ class FareController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'distance' => 'required',
-            'price' => 'required',
+            'distance' => 'required|integer',
+            'price' => 'required|integer',
         ]);
 
         $fare = Fare::findOrFail($id);

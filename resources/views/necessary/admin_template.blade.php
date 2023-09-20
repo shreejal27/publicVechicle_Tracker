@@ -67,15 +67,16 @@
 
         <main>
             @yield('content')
-            @if (session('error'))
+            @if ($errors->any())
                 <script>
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
-                        title: '{{ session('error') }}',
+                        title: 'Please resubmit the form with valid inputs',
                         showConfirmButton: false,
                         timer: 2500
                     })
+                    console.log("error found");
                 </script>
             @endif
             @if (session('message'))

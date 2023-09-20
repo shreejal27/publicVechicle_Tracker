@@ -30,12 +30,20 @@
                                 <label>Distance (in kms):</label>
                                 <input type="text" name="distance" required>
                             </div>
+                            @error('distance')
+                            <p class="text-danger">**{{ $message }}</p>
+                            @enderror
                             <div class="input-group">
                                 <label>Price:</label>
                                 <input type="text" name="price" required>
                             </div>
+                            @error('price')
+                            <p class="text-danger">**{{ $message }}</p>
+                            @enderror
                             <button class="sign mt-3" type="submit">Submit</button>
                         </form>
+                      
+                   
                     </div>
                 </div>
             </section>
