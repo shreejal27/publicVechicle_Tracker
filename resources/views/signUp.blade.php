@@ -274,7 +274,7 @@
                         <p class="message">Signup now </p>
                         <div class="flex">
                             <label>
-                                <input required id="firstname" type="text" class="input" name="firstname">
+                                <input required id="dfirstname" type="text" class="input" name="firstname">
                                 <span>Firstname</span>
                             </label>
                             @error('firstname')
@@ -282,7 +282,7 @@
                             @enderror
 
                             <label>
-                                <input required id="lastname" type="text" class="input" name="lastname">
+                                <input required id="dlastname" type="text" class="input" name="lastname">
                                 <span>Lastname</span>
                             </label>
                             @error('lastname')
@@ -292,7 +292,7 @@
 
 
                         <label>
-                            <input required type="number" id="number" class="input" name="contact_number">
+                            <input required type="number" id="dnumber" class="input" name="contact_number">
                             <span>Contact Number </span>
                         </label>
                         @error('contact_number')
@@ -300,7 +300,7 @@
                         @enderror
 
                         <label>
-                            <input required type="text" id="address" class="input" name="address">
+                            <input required type="text" id="daddress" class="input" name="address">
                             <span>Address </span>
                         </label>
                         @error('address')
@@ -334,7 +334,7 @@
                         @enderror
 
                         <label>
-                            <input required type="text" id="username" class="input" name="username">
+                            <input required type="text" id="dusername" class="input" name="username">
                             <span>UserName</span>
                         </label>
                         @error('username')
@@ -379,7 +379,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("userRegister").addEventListener("submit", function(event) {
 
-                if (!formCheck()) {
+                if (!userFormCheck()) {
                     event.preventDefault(); // Prevent form submission
                 }
             });
@@ -395,14 +395,13 @@
             });
         }
 
-        function formCheck() {
+        function userFormCheck() {
             var firstname = document.getElementById("firstname").value;
             var lastname = document.getElementById("lastname").value;
             var email = document.getElementById("email").value;
             var number = document.getElementById("number").value;
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-            var cpassword = document.getElementById("cpassword").value;
 
             if (firstname.length > 15) {
                 showErrorAlert("Please enter a valid first name (up to 15 characters).");
@@ -431,12 +430,6 @@
 
             if (username.length > 10) {
                 showErrorAlert("Please enter a valid username (up to 10 characters).");
-                return false;
-            }
-
-            if (password !== cpassword) {
-                showErrorAlert("Passwords do not match.");
-
                 return false;
             }
 
@@ -447,7 +440,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("driverRegister").addEventListener("submit", function(event) {
 
-                if (!formCheck()) {
+                if (!driverFormCheck()) {
                     event.preventDefault(); // Prevent form submission
                 }
             });
@@ -463,15 +456,15 @@
             });
         }
 
-        function formCheck() {
-            var firstname = document.getElementById("firstname").value;
-            var lastname = document.getElementById("lastname").value;
-            var address = document.getElementById("address").value;
+        function driverFormCheck() {
+            var firstname = document.getElementById("dfirstname").value;
+            var lastname = document.getElementById("dlastname").value;
+            var address = document.getElementById("daddress").value;
+            var number = document.getElementById("dnumber").value;
             var licensenumber = document.getElementById("lnumber").value;
             var licensenumber = document.getElementById("vnumber").value;
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            var cpassword = document.getElementById("cpassword").value;
+            var username = document.getElementById("dusername").value;
+            var password = document.getElementById("driverPassword").value;
 
             if (firstname.length > 15) {
                 showErrorAlert("Please enter a valid first name (up to 15 characters).");
@@ -488,11 +481,6 @@
                 return false;
             }
 
-            if (!email.includes("@") || !email.includes(".com")) {
-                showErrorAlert("Please enter a valid email address.");
-                return false;
-            }
-
             if (!number.startsWith("98") || number.length !== 10) {
                 showErrorAlert("Please enter a valid phone number (starting with 98 and 10 characters).");
                 return false;
@@ -500,12 +488,6 @@
 
             if (username.length > 10) {
                 showErrorAlert("Please enter a valid username (up to 10 characters).");
-                return false;
-            }
-
-            if (password !== cpassword) {
-                showErrorAlert("Passwords do not match.");
-
                 return false;
             }
 

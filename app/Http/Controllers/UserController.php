@@ -16,12 +16,17 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'firstname' => 'required|string',
             'lastname' => 'required|string',
-            'email' => 'required|email|unique:users,email', // Unique email
+            'email' => 'required|email|unique:users,email', 
             'address' => 'required|string',
-            'contact_number' => 'required|string|unique:users,contact_number|size:10', // Unique contact_number
+            'contact_number' => [
+                'required',
+                'string',
+                'unique:drivers,contact_number', // Assuming the drivers table is used for drivers
+                'regex:/^98\d{8}$/u',
+            ],
             'occupation' => 'required|string',
-            'username' => 'required|string|unique:users,username', // Unique username
-            'password' => 'required|string|min:8', // You can adjust the password validation rules as needed
+            'username' => 'required|string|unique:users,username', 
+            'password' => 'required|string|min:8', 
         ]);
     
         // Create a new user
