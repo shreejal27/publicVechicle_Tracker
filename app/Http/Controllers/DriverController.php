@@ -19,22 +19,30 @@ class DriverController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        // Validate the request data
+        $validatedData = $request->validate([
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'contact_number' => [
+                'required',
+                'string',
+                'unique:drivers,contact_number', // Assuming the drivers table is used for drivers
+                'regex:/^98\d{8}$/u', // Custom regex rule for numbers starting with "98" and having 10 digits
+            ],
+            'address' => 'required|string',
+            'license_number' => 'required|string|unique:drivers,license_number',
+            'vehicle_type' => 'required|string',
+            'vehicle_number' => 'required|string|unique:drivers,vehicle_number',
+            'username' => 'required|string|unique:drivers,username',
+            'password' => 'required|string|min:8',
+        ]);
+    
+        // Create a new driver
         $driver = new Driver;
-        $driver->firstname = $request->firstname;
-        $driver->lastname = $request->lastname;
-        $driver->contact_number = $request->contact_number;
-        $driver->address = $request->address;
-        $driver->license_number = $request->license_number;
-        $driver->vehicle_type = $request->vehicle_type;
-        $driver->vehicle_number = $request->vehicle_number;
-        $driver->username = $request->username;
-        $driver->password = $request->password;
+        $driver->fill($validatedData);
         $driver->save();
-
+    
         return redirect()->back()->with('success', 'Driver has been registered successfully');
-
-        // Redirect back or return a response as needed
     }
 
     public function logout()

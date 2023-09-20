@@ -14,6 +14,7 @@ class Driver extends Model
         'lastname',
         'address',
         'license_number',
+        'vehicle_type',
         'contact_number',
         'vehicle_number',
         'username',

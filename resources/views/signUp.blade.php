@@ -277,11 +277,17 @@
                                 <input required id="firstname" type="text" class="input" name="firstname">
                                 <span>Firstname</span>
                             </label>
+                            @error('firstname')
+                            <p class="text-danger">**{{ $message }}</p>
+                            @enderror
 
                             <label>
                                 <input required id="lastname" type="text" class="input" name="lastname">
                                 <span>Lastname</span>
                             </label>
+                            @error('lastname')
+                            <p class="text-danger">**{{ $message }}</p>
+                            @enderror
                         </div>
 
 
@@ -289,16 +295,25 @@
                             <input required type="number" id="number" class="input" name="contact_number">
                             <span>Contact Number </span>
                         </label>
+                        @error('contact_number')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
 
                         <label>
                             <input required type="text" id="address" class="input" name="address">
                             <span>Address </span>
                         </label>
+                        @error('address')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
 
                         <label>
                             <input required type="text" id="lnumber" class="input" name="license_number">
                             <span>License Number</span>
                         </label>
+                        @error('license_number')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
 
                         <select name="vehicle_type" class="mb-1" required>
                             <option value="">--Select Your Vehicle--</option>
@@ -306,22 +321,34 @@
                             <option value="micro">Micro</option>
                             <option value="tempo">Tempo</option>
                         </select>
+                        @error('vehicle_type')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
 
                         <label>
                             <input required type="text" id="vnumber" class="input" name="vehicle_number">
                             <span>Vechicle Number </span>
                         </label>
+                        @error('vehicle_number')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
 
                         <label>
                             <input required type="text" id="username" class="input" name="username">
                             <span>UserName</span>
                         </label>
+                        @error('username')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
 
                         <label>
                             <input required type="password" id="driverPassword" class="input" name="password">
                             <span>Password</span>
                             <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="driverTogglePassword"></i>
                         </label>
+                        @error('password')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
                         <button class="submit">Submit</button>
                         <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Signin</a> </p>
                     </form>
