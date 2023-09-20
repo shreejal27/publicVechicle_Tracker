@@ -13,16 +13,20 @@ class UserController extends Controller
 {
     public function store(Request $request)
     {
-        // dd($request);
+        $validatedData = $request->validate([
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'email' => 'required|email|unique:users,email', // Unique email
+            'address' => 'required|string',
+            'contact_number' => 'required|string|unique:users,contact_number|size:10', // Unique contact_number
+            'occupation' => 'required|string',
+            'username' => 'required|string|unique:users,username', // Unique username
+            'password' => 'required|string|min:8', // You can adjust the password validation rules as needed
+        ]);
+    
+        // Create a new user
         $user = new User;
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
-        $user->email = $request->email;
-        $user->address = $request->address;
-        $user->contact_number = $request->contact_number;
-        $user->occupation = $request->occupation;
-        $user->username = $request->username;
-        $user->password = $request->password;
+        $user->fill($validatedData); // Fill the user model with validated data
         $user->save();
         return redirect()->back()->with('success', 'User has been registered successfully');
     }

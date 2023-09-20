@@ -90,38 +90,3 @@ if (driverPasswordInput != null && driverTogglePassword != null) {
         }
     });
 }
-
-var driverCPassword = document.getElementById('driverCPassword');
-var driverCtogglePassword = document.getElementById('driverCtogglePassword');
-
-if (driverCPassword != null && driverCtogglePassword != null) {
-    driverCtogglePassword.addEventListener('click', function () {
-        if (driverCPassword.type === 'password') {
-            driverCPassword.type = 'text';
-            driverCtogglePassword.classList.remove('fa-eye-slash');
-            driverCtogglePassword.classList.add('fa-eye');
-        } else {
-            driverCPassword.type = 'password';
-            driverCtogglePassword.classList.remove('fa-eye');
-            driverCtogglePassword.classList.add('fa-eye-slash');
-        }
-    });
-}
-
-var signUpUserPassword = document.getElementById('Cpassword');
-var signUpUserTogglePassword = document.getElementById('signUp-Ctoggle-password');
-
-if (signUpUserPassword != null && signUpUserTogglePassword != null) {
-    signUpUserTogglePassword.addEventListener('click', function () {
-        if (signUpUserPassword.type === 'password') {
-            signUpUserPassword.type = 'text';
-            signUpUserTogglePassword.classList.remove('fa-eye-slash');
-            signUpUserTogglePassword.classList.add('fa-eye');
-        } else {
-            signUpUserPassword.type = 'password';
-            signUpUserTogglePassword.classList.remove('fa-eye');
-            signUpUserTogglePassword.classList.add('fa-eye-slash');
-        }
-    });
-}
-

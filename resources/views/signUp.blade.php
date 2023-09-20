@@ -188,23 +188,6 @@
             </li>
         </ul>
 
-        @if (session('error'))
-            <div class="alert alert-success">
-                {{ session('error') }}
-            </div>
-        @endif
-        @if (session('success'))
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '{{ session('success') }}',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
-            </script>
-        @endif
-
         <div class="tab-content">
             <div class="tab-pane fade show active" id="userSignUp" role="tabpanel" data-path="userSignUp">
                 <div class="center-container">
@@ -217,28 +200,40 @@
                                 <input required id="firstname" type="text" class="input" name="firstname">
                                 <span>Firstname</span>
                             </label>
+                            @error('firstname')
+                            <p class="text-danger">**{{ $message }}</p>
+                            @enderror
 
                             <label>
                                 <input required id="lastname" type="text" class="input" name="lastname">
                                 <span>Lastname</span>
                             </label>
+                            @error('lastname')
+                            <p class="text-danger">**{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <label>
                             <input required id="email" type="email" class="input" name="email">
                             <span>Email</span>
                         </label>
-
+                        @error('email')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
                         <label>
                             <input required id="address" type="text" class="input" name="address">
                             <span>Address</span>
                         </label>
-
+                        @error('address')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
                         <label>
                             <input required id="number" type="number" class="input" name="contact_number">
                             <span>Contact Number </span>
                         </label>
-
+                        @error('contact_number')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
                         <select name="occupation" class="mb-1" required>
                             <option value="">--Select Your Occupation--</option>
                             <option value="student">Student</option>
@@ -248,22 +243,24 @@
                             <option value="housewife">Housewife</option>
                             <option value="unemployed">Unemployed</option>
                         </select>
-
+                        @error('occupation')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
                         <label>
                             <input required id="username" type="text" class="input" name="username">
                             <span>UserName</span>
                         </label>
-
+                        @error('username')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
                         <label class="password-container">
                             <input required id="password" type="password" class="input" name="password">
                             <span>Password</span>
                             <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="toggle-password"></i>
                         </label>
-                        <label class="password-container">
-                            <input required id="Cpassword" type="password" class="input" name="confirm_password">
-                            <span>Confirm password</span>
-                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="signUp-Ctoggle-password"></i>
-                        </label>
+                        @error('password')
+                        <p class="text-danger">**{{ $message }}</p>
+                        @enderror
                         <button class="submit" type="submit">Submit</button>
                         <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Login</a> </p>
                     </form>
@@ -324,12 +321,6 @@
                             <input required type="password" id="driverPassword" class="input" name="password">
                             <span>Password</span>
                             <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;" id="driverTogglePassword"></i>
-                        </label>
-                        <label>
-                            <input required type="password" id="driverCPassword" class="input">
-                            <span>Confirm password</span>
-                            <i class="fa-solid fa-eye-slash fa-lg" style="color: #f3deba;"
-                                id="driverCtogglePassword"></i>
                         </label>
                         <button class="submit">Submit</button>
                         <p class="signin">Already have an acount ? <a href="{{ url('/login') }}">Signin</a> </p>
