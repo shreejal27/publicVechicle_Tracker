@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Driver;
 
 use Illuminate\Http\Request;
 use App\Models\ComplainFeedback;
@@ -41,5 +42,19 @@ class ComplainFeedbackController extends Controller
         $complainFeedbacksBySpecificUser = ComplainFeedback::where('email', $uEmail)->get();
 
         return view('user.feedbackComplain' , compact('uName', 'uEmail', 'uNumber', 'complainFeedbacksBySpecificUser'));
+    }
+
+    public function driverComplainFeedbackIndex(){
+        $driverId = session('driver_id');
+        $driver = Driver::find($driverId);
+
+        $dName = $driver->firstname . ' ' . $driver->lastname;
+        $dEmail = "driver";
+        $dNumber = $driver->contact_number;
+
+        //get all complain feedback of this user
+        $complainFeedbacksBySpecificDriver = ComplainFeedback::where('number', $dNumber)->get();
+
+        return view('driver.driverFeedbackComplain' , compact('dName', 'dEmail', 'dNumber', 'complainFeedbacksBySpecificDriver'));
     }
 }

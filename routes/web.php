@@ -233,5 +233,8 @@ Route::post('/storeDriverLocation', [DriverLocationController::class, 'store'])-
 //get driver location into user
 Route::get('/getDriverLocation', 'DriverLocationController@getDriverLocation');
 
+//get driver feedbackcomplain
+Route::get('/driverFeedbackComplain', [ComplainFeedbackController::class, 'driverComplainFeedbackIndex'])->name('driverComplainFeedbackIndex');
+
 //driver logout
 Route::get('/driverLogout', [DriverController::class, 'logout'])->name('logout');
