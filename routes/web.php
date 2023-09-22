@@ -95,6 +95,9 @@ Route::get('/adminDashboard', [AdminController::class, 'adminDashboard'])->name(
 //     return view('admin.adminVehicleRoute');
 // });
 
+//admin profile
+Route::get('/adminProfile', [UserController::class, 'profile'])->name('profile');
+
 //admin active public vehicle working
 Route::get('/adminActivePublicVehicle', [DriverLocationController::class, 'getDriverLocationAdmin'])->name('getDriverLocationAdmin');
 

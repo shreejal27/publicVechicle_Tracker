@@ -25,11 +25,11 @@
                     <h3>
                         <p class="font-weight-bold">Public Vehicle Tracker </p>
                     </h3>
-                    <h5>
+                    {{-- <h5>
 
                         <p id="greetings"> </p>
                         <p>{{ ucfirst(session('adminName')) }}</p>
-                    </h5>
+                    </h5> --}}
                 </section>
 
                 <br>
@@ -57,15 +57,41 @@
                 <a href="/adminViewUsers" class="sidebarLink">
                     <i class="fa-solid fa-users"></i>
                     Users </a><br><br>
-                <a href="/adminLogout" class="sidebarLink">
+                {{-- <a href="/adminLogout" class="sidebarLink">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     Logout</a><br><br>
-                <br>
+                <br> --}}
             </div>
         </aside>
 
 
         <main>
+            <div class="row topBar">
+
+                {{-- <p class="mt-2 pl-3" style="color: #F3DEBA;">Good Evening! Asdf</p> --}}
+                <div>
+
+                    <h5 class="mt-2 ml-3">
+                        <span id="greetings"></span>
+                        <span> {{ ucfirst(session('adminName')) }}</span>
+                       
+                    </h5>
+                </div>
+
+                <div class="image-container mt-3 mr-3">
+                    <div class="profile-image" id="profileImageContainer">
+                            @php
+                             $adminProfile = session('adminProfile')? (session('adminProfile')) : 'anonymous.jpg';
+                            @endphp
+
+                        <img src="{{ asset('/images/admin/' . $adminProfile) }}" alt="ProfileImage" id="topBarImage">
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="/adminProfile">  <i class="fa-solid fa-address-card"></i> Profile</a>
+                            <a href="/adminLogout">  <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @yield('content')
             @if ($errors->any())
                 <script>

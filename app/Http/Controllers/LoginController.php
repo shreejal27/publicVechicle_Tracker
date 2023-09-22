@@ -27,6 +27,10 @@ class LoginController extends Controller
                 session(['admin_id' => $admin->id]);
                     //store admin name in session
                     session(['adminName' => $admin->username]);
+
+                      //store the user image in session
+                      session(['adminProfile' => $admin->profileImage]);
+
                     $adminController = app()->make(AdminController::class);
                     return $adminController->adminDashboard();
             } else {
