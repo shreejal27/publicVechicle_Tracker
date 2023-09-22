@@ -120,4 +120,61 @@ foreach ($topAddress as $address) {
        return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates', 'dateToday', 'occupationList', 'occupationCount', 'addressList', 'addressCount');
     }
 
+    //this is for admin profile
+    public function adminProfile()
+    {
+        $adminId = session('admin_id');
+        $admin = Admin::find($adminId);
+        return view('admin.adminProfile', compact('admin'));
+    }
+
+    public function adminUpdate(Request $request){
+        $adminId = session('admin_id');
+        $admin = Admin::find($adminId);
+        $admin->firstname = $request->firstname;
+        $admin->lastname = $request->lastname;
+        $admin->email = $request->email;
+        $admin->address = $request->address;
+        $admin->contact_number = $request->contact_number;
+
+        // Get the current user's existing profile picture filename
+        $previousProfileImage = $admin->profileImage;
+
+        $uploadedFile = $request->file('userImage');
+
+        if ($uploadedFile) { 
+        $filename = uniqid() . '_' . $uploadedFile->getClientOriginalName();
+
+        // Move the uploaded file to the desired directory 
+        $uploadedFile->move('images/admin/', $filename);
+
+        // Update the user's profileImage column with the original filename
+        $admin->profileImage = $filename;
+        
+        //update session value to show profile image on the topBar
+        session(['adminProfile' => $filename]);
+        
+        // Delete the previous profile picture from storage
+        if ($previousProfileImage && $uploadedFile !== 'anonymous.jpg') {
+            $pathToDelete = public_path('images/admin/' . $previousProfileImage);
+            if (file_exists($pathToDelete)) {
+                unlink($pathToDelete);
+            }
+        }
+    }
+    $admin->save();
+    return redirect()->route('adminProfile')->with('message', 'Your Profile Has Been Updated!');
+}
+
+    public function updateAdminCredentials(Request $request){
+        $adminId = session('admin_id');
+        $admin = Admin::find($adminId);
+        $admin->password = $request->rpassword;
+        $admin->save();
+        return redirect()->route('adminProfile')->with('message', 'Credentials Updated');
+    }
+
+
+
+
 }

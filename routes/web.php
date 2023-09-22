@@ -96,7 +96,13 @@ Route::get('/adminDashboard', [AdminController::class, 'adminDashboard'])->name(
 // });
 
 //admin profile
-Route::get('/adminProfile', [UserController::class, 'profile'])->name('profile');
+Route::get('/adminProfile', [AdminController::class, 'adminProfile'])->name('adminProfile');
+
+//admin profile update
+Route::post('/updateAdminProfile', [AdminController::class, 'adminUpdate'])->name('updateAdminProfile');
+
+//admin credentials update
+Route::post('/updateAdminCredentials', [AdminController::class, 'updateAdminCredentials'])->name('updateAdminCredentials');
 
 //admin active public vehicle working
 Route::get('/adminActivePublicVehicle', [DriverLocationController::class, 'getDriverLocationAdmin'])->name('getDriverLocationAdmin');

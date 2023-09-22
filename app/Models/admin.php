@@ -11,7 +11,16 @@ class admin extends Model
 
     protected $table = 'admin';
     protected $fillable = [
+        'firstname',
+        'lastname',
+        'email',
+        'address',
+        'contact_number',
         'username',
         'password',
+        'profileImage',
     ];
+
+    //to disable the timestamps on the database table
+    public $timestamps = false;
 }
