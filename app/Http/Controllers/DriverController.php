@@ -68,4 +68,12 @@ class DriverController extends Controller
 
         return view('driver.driverDashboard', compact('dateToday'));
     }
+
+        //this is for driver profile
+        public function driverProfile()
+        {
+            $driverId = session('driver_id');
+            $driver = Driver::find($driverId);
+            return view('driver.driverProfile', compact('driver'));
+        }
 }

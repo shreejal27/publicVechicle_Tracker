@@ -221,9 +221,18 @@ Route::get('/userLogout',[UserController::class, 'logout'])->name('logout');
 Route::get('/driverDashboard',[DriverController::class, 'dashboard'])->name('driverDashboard');
 
 //driver profile
-Route::get('/driverProfile', function () {
-    return view('driver.driverProfile');
-});
+// Route::get('/driverProfile', function () {
+//     return view('driver.driverProfile');
+// });
+
+//driver profile
+Route::get('/driverProfile', [DriverController::class, 'driverProfile'])->name('driverProfile');
+
+//driver profile update
+Route::post('/updateDriverProfile', [DriverController::class, 'DriverUpdate'])->name('updateDriverProfile');
+
+//driver credentials update
+Route::post('/updateDriverCredentials', [DriverController::class, 'updateDriverCredentials'])->name('updateDriverCredentials');
 
 //driver live location
 Route::get('/driverLiveLocation', function () {
