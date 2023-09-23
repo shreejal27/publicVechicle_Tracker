@@ -76,4 +76,54 @@ class DriverController extends Controller
             $driver = Driver::find($driverId);
             return view('driver.driverProfile', compact('driver'));
         }
+
+        public function driverUpdate(Request $request){
+            $driverId = session('driver_id');
+            $driver = Driver::find($driverId);
+            $driver->firstname = $request->firstname;
+            $driver->lastname = $request->lastname;
+            $driver->address = $request->address;
+            $driver->license_number = $request->licenseNumber;
+            $driver->vehicle_type = $request->vehicleType;
+            $driver->contact_number = $request->contactNumber;
+            $driver->vehicle_number = $request->vehicleNumber;
+    
+            // Get the current user's existing profile picture filename
+            $previousProfileImage = $driver->profileImage;
+    
+            $uploadedFile = $request->file('driverImage');
+    
+            if ($uploadedFile) { 
+            $filename = uniqid() . '_' . $uploadedFile->getClientOriginalName();
+    
+            // Move the uploaded file to the desired directory 
+            $uploadedFile->move('images/drivers/', $filename);
+    
+            // Update the user's profileImage column with the original filename
+            $driver->profileImage = $filename;
+            
+            //update session value to show profile image on the topBar
+            session(['driverProfile' => $filename]);
+            
+            // Delete the previous profile picture from storage
+            if ($previousProfileImage && $uploadedFile !== 'anonymous.jpg') {
+                $pathToDelete = public_path('images/drivers/' . $previousProfileImage);
+                if (file_exists($pathToDelete)) {
+                    unlink($pathToDelete);
+                }
+            }
+        }
+        $driver->save();
+        return redirect()->route('driverProfile')->with('message', 'Your Profile Has Been Updated!');
+    }
+    
+        public function updatedriverCredentials(Request $request){
+            $driverId = session('driver_id');
+            $driver = driver::find($driverId);
+            $driver->password = $request->rpassword;
+            $driver->save();
+            return redirect()->route('driverProfile')->with('message', 'Credentials Updated');
+        }
+    
+    
 }

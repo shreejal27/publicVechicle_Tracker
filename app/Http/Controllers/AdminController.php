@@ -140,7 +140,7 @@ foreach ($topAddress as $address) {
         // Get the current user's existing profile picture filename
         $previousProfileImage = $admin->profileImage;
 
-        $uploadedFile = $request->file('userImage');
+        $uploadedFile = $request->file('adminImage');
 
         if ($uploadedFile) { 
         $filename = uniqid() . '_' . $uploadedFile->getClientOriginalName();

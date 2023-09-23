@@ -99,37 +99,37 @@
                             <img src="{{ asset('images/drivers/' . ($driver['profileImage'] ? $driver['profileImage'] : 'anonymous.jpg')) }}" alt="Profile Image"
                                 id="updateProfileImage" onclick="chooseFile()">
                             <input type="file" style="display: none;" id="fileInput" accept="image/*"
-                                onchange="displaySelectedFile()" name="userImage">
+                                onchange="displaySelectedFile()" name="driverImage">
                         </div>
                         <div class="input-group">
                             <label>First Name</label>
-                            <input type="text" value="{{ $driver['firstname'] }}" disabled>
+                            <input type="text" name="firstname" value="{{ $driver['firstname'] }}" >
                         </div>
                         <div class="input-group">
                             <label>Last Name </label>
-                            <input type="text" value="{{ $driver['lastname'] }}" disabled>
+                            <input type="text" name="lastname" value="{{ $driver['lastname'] }}" >
                         </div>
                         <div class="input-group">
                             <label>Address</label>
-                            <input type="text" value="{{ $driver['address'] }}" disabled>
+                            <input type="text" name="address" value="{{ $driver['address'] }}" >
                         </div>
                         <div class="input-group">
                             <label>License Number</label>
-                            <input type="text" value="{{ $driver['license_number'] }}" disabled>
+                            <input type="text" name="licenseNumber" value="{{ $driver['license_number'] }}" >
                         </div>
                         <div class="input-group">
                             <label>Contact Number</label>
-                            <input type="text" value="{{ $driver['contact_number'] }}" disabled>
+                            <input type="text" name="contactNumber" value="{{ $driver['contact_number'] }}" >
                         </div>
                         <div class="input-group">
                             <label>Vehicle</label>
-                            <input type="text" value="{{ $driver['vehicle_type'] }}" disabled>
+                            <input type="text" name="vehicleType" value="{{ $driver['vehicle_type'] }}" >
                         </div>
                         <div class="input-group">
                             <label>Vehicle Number</label>
-                            <input type="text" value="{{ $driver['vehicle_number'] }}" disabled>
+                            <input type="text" name="vehicleNumber" value="{{ $driver['vehicle_number'] }}" >
                         </div>
-                        <button class="sign mt-3">Update</button>
+                        <button class="sign mt-3" type="submit">Update</button>
                     </form>
                 </div>
             </div>

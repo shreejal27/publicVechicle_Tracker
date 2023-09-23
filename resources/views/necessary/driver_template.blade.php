@@ -58,6 +58,29 @@
 
         <main class="">
             @yield('content')
+            @if ($errors->any())
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Please resubmit the form with valid inputs',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+                console.log("error found");
+            </script>
+        @endif
+        @if (session('message'))
+            <script>
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '{{ session('message') }}',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            </script>
+        @endif
         </main>
     </div>
 

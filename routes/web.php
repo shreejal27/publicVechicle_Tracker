@@ -229,7 +229,7 @@ Route::get('/driverDashboard',[DriverController::class, 'dashboard'])->name('dri
 Route::get('/driverProfile', [DriverController::class, 'driverProfile'])->name('driverProfile');
 
 //driver profile update
-Route::post('/updateDriverProfile', [DriverController::class, 'DriverUpdate'])->name('updateDriverProfile');
+Route::post('/updateDriverProfile', [DriverController::class, 'driverUpdate'])->name('updateDriverProfile');
 
 //driver credentials update
 Route::post('/updateDriverCredentials', [DriverController::class, 'updateDriverCredentials'])->name('updateDriverCredentials');

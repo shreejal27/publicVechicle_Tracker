@@ -91,7 +91,7 @@
                             <img src="{{ asset('images/admin/' . ($admin['profileImage'] ? $admin['profileImage'] : 'anonymous.jpg')) }}" alt="Profile Image"
                                 id="updateProfileImage" onclick="chooseFile()">
                             <input type="file" style="display: none;" id="fileInput" accept="image/*"
-                                onchange="displaySelectedFile()" name="userImage">
+                                onchange="displaySelectedFile()" name="adminImage">
                         </div>
                         <div class="input-group">
                             <label>First Name</label>
