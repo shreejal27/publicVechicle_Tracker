@@ -27,18 +27,18 @@
                     <h3>
                         <p class="font-weight-bold">Public Vehicle Tracker</p>
                     </h3>
-                    <h5>
+                    {{-- <h5>
                         <p id="greetings"> </p>
                         <p>{{ ucfirst(session('driverName')) }} </p>
-                    </h5>
+                    </h5> --}}
                 </section>
                 <br>
                 <a href="/driverDashboard" class="sidebarLink">
                     <i class="fa-solid fa-chalkboard-user"></i>
                     Dashboard</a><br><br>
-                <a href="/driverProfile" class="sidebarLink">
+                {{-- <a href="/driverProfile" class="sidebarLink">
                     <i class="fa-solid fa-address-card"></i>
-                    Profile </a><br><br>
+                    Profile </a><br><br> --}}
                 <a href="/driverLiveLocation" class="sidebarLink">
                     <i class="fa-solid fa-location-dot"></i>
                     Share Live Location</a><br><br>
@@ -48,15 +48,41 @@
                 <a href="/driverFeedbackComplain" class="sidebarLink">
                     <i class="fa-solid fa-message"></i>
                     Submit Your Ticket</a><br><br>
-                <a href="/driverLogout" class="sidebarLink">
+                {{-- <a href="/driverLogout" class="sidebarLink">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    Logout</a><br><br>
+                    Logout</a><br><br> --}}
                 <br>
             </div>
         </aside>
 
 
-        <main class="">
+        <main>
+            <div class="row topBar">
+
+                {{-- <p class="mt-2 pl-3" style="color: #F3DEBA;">Good Evening! Asdf</p> --}}
+                <div>
+
+                    <h5 class="mt-2 ml-3">
+                        <span id="greetings"></span>
+                        <span> {{ ucfirst(session('driverName')) }}</span>
+                       
+                    </h5>
+                </div>
+
+                <div class="image-container mt-3 mr-3">
+                    <div class="profile-image" id="profileImageContainer">
+                            @php
+                             $driverProfile = session('driverProfile')? (session('driverProfile')) : 'anonymous.jpg';
+                            @endphp
+
+                        <img src="{{ asset('/images/drivers/' . $driverProfile) }}" alt="ProfileImage" id="topBarImage">
+                        <div class="dropdown-content" id="dropdownContent">
+                            <a href="/driverProfile">  <i class="fa-solid fa-address-card"></i> Profile</a>
+                            <a href="/driverLogout">  <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @yield('content')
             @if ($errors->any())
             <script>
