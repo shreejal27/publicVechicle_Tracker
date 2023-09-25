@@ -64,6 +64,10 @@ class LoginController extends Controller
                 session(['vehicleType' => $driver->vehicle_type]);
                 //store driver name in session
                 session(['driverName' => $driver->username]);
+
+                  //store the driver image in session
+                  session(['driverProfile' => $driver->profileImage]);
+                  
                 return redirect()->route('driverDashboard')->with('success', 'Login successful');
             } else {
                 // Authentication failed for driver
