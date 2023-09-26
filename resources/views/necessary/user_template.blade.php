@@ -30,10 +30,39 @@
             object-fit: cover;
             border: 2px solid #F3DEBA;
         }
+
+        .sidebar {
+            /* Your sidebar styles here */
+            width: 250px !important;
+            /* Adjust the width as needed */
+            transition: width 0.3s ease;
+        }
+
+        .sidebar.collapsed {
+            width: 50px !important;
+            /* Adjust the collapsed width as needed */
+        }
+
+        .toggle-sidebar {
+            cursor: pointer;
+        }
+
+        .toggle-sidebar i {
+            /* Styles for the arrow icon */
+
+            /* Adjust the size as needed */
+            /* Add styles for arrow icon appearance */
+        }
     </style>
     <div class="container col-md-12 col-sm-12 col-xs-12" style="padding:0">
-        <aside class="sidebar">
-            <div>
+        <aside class="sidebar" id="sidebar">
+            <div class="toggle-sidebar">
+                <section style="display: block;">
+                    <div class="float-right" style="width: 100%">
+                        <i class="fa-solid fa-arrow-left float-right mb-4" style="cursor: pointer"
+                            onclick="toggleSidebar()"></i>
+                    </div>
+                </section>
                 <section class="text-center">
                     <img src="{{ asset('images/logo/trackerLogo.png') }}" alt="logo" class="logo" width="80px"
                         style="margin-top: -20px;">
@@ -80,7 +109,7 @@
                     <h5 class="mt-2 ml-3">
                         <span id="greetings"></span>
                         <span> {{ ucfirst(session('user_name')) }}</span>
-                       
+
                     </h5>
                 </div>
 
@@ -88,15 +117,15 @@
                     <div class="profile-image" id="profileImageContainer">
                         {{-- static image --}}
                         {{-- img src="{{ asset('/images/users/64fc20ab66beb_shree.jpg') }}" alt="ProfileImage" 
-                            id="topBarImage"--}}
-                            @php
-                             $userProfile = session('userProfile')? (session('userProfile')) : 'anonymous.jpg';
-                            @endphp
+                            id="topBarImage" --}}
+                        @php
+                            $userProfile = session('userProfile') ? session('userProfile') : 'anonymous.jpg';
+                        @endphp
 
                         <img src="{{ asset('/images/users/' . $userProfile) }}" alt="ProfileImage" id="topBarImage">
                         <div class="dropdown-content" id="dropdownContent">
-                            <a href="/userProfile">  <i class="fa-solid fa-address-card"></i> Profile</a>
-                            <a href="/userLogout">  <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                            <a href="/userProfile"> <i class="fa-solid fa-address-card"></i> Profile</a>
+                            <a href="/userLogout"> <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -143,6 +172,12 @@
                 }
             }
         });
+    </script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("collapsed");
+        }
     </script>
 </body>
 
