@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Driver;
 use App\Models\DriverLocation;
+use App\Models\Stop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,7 +67,12 @@ class DriverController extends Controller
         //get date today with just initials of day name
         $dateToday = date('D, d M Y');
 
-        return view('driver.driverDashboard', compact('dateToday'));
+        $driverVehicleType = session('vehicleType');
+
+        $driverVehicleStops = Stop::where('vehicle_type', $driverVehicleType)->count();
+
+
+        return view('driver.driverDashboard', compact('dateToday', 'driverVehicleType', 'driverVehicleStops'));
     }
 
         //this is for driver profile

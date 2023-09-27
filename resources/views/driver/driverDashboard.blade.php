@@ -147,8 +147,8 @@
                                     <i class="fa-solid fa-route fa-2x"></i>
                                 </div>
                                 <div class="text ">
-                                    <h4>10</h4>
-                                    <p> Stops</p>
+                                    <h4>{{ $driverVehicleStops }}</h4>
+                                    <p>{{ $driverVehicleType }} Stops</p>
                                 </div>
                             </div>
                         </div>
