@@ -18,11 +18,6 @@
     <div class="container col-md-12 col-sm-12 col-xs-12" style="padding:0">
         <main>
             @yield('content')
-            @if (session('error'))
-            <div class="alert alert-success">
-                {{ session('error') }}
-            </div>
-        @endif
         @if (session('success'))
             <script>
                 Swal.fire({

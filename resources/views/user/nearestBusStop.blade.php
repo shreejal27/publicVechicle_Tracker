@@ -162,18 +162,20 @@
                 var lat2 = coords2.lat;
                 var lon2 = coords2.lng;
 
-                var R = 6371e3; // Earth's radius in meters
-                var φ1 = toRad(lat1);
-                var φ2 = toRad(lat2);
-                var Δφ = toRad(lat2 - lat1);
-                var Δλ = toRad(lon2 - lon1);
+                var earthRadius = 6371e3; // Earth's radius in meters
+                var lat1Rad = toRad(lat1);
+                var lat2Rad = toRad(lat2);
+                var deltaLatRad = toRad(lat2 - lat1);
+                var deltaLonRad = toRad(lon2 - lon1);
 
-                var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-                    Math.cos(φ1) * Math.cos(φ2) *
-                    Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+                var a = Math.sin(deltaLatRad / 2) * Math.sin(deltaLatRad / 2) +
+                    Math.cos(lat1Rad) * Math.cos(lat2Rad) *
+                    Math.sin(deltaLonRad / 2) * Math.sin(deltaLonRad / 2);
+
                 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-                var distance = R * c;
+                var distance = earthRadius * c;
+
                 return distance;
             }
         </script>
