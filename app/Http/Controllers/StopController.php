@@ -72,8 +72,8 @@ class StopController extends Controller
         return redirect()->route('stopMarkerAdmin')->with('message', 'Stop Details not found.');
     }
 
-    public function findRoute(Request $request)
-{
-    // Implement the Dijkstra algorithm here
-}
+    public function getStopLocationAjax(){
+        $stopLocations = Stop::all();
+        return response()->json($stopLocations);
+    }
 }

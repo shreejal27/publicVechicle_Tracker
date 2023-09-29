@@ -8,13 +8,39 @@
         }
     </style>
     <section>
-        <h1>Bus Stop Finder</h1>
+        <h1>Shortest Stop Finder</h1>
+        <div>
+            <label>Filter by Vehicle Type:</label> <br>
+            <div class="row mb-2">
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="busCheckbox" value="bus" checked>
+                        <label class="custom-control-label" for="busCheckbox">Bus</label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="microCheckbox" value="micro" checked>
+                        <label class="custom-control-label" for="microCheckbox">Micro</label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="tempoCheckbox" value="tempo" checked>
+                        <label class="custom-control-label" for="tempoCheckbox">Tempo</label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div id="map"></div>
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
         </script>
+        {{-- for checkbox function --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script>
             var map = L.map('map').setView([0, 0], 13);
 
@@ -51,86 +77,113 @@
                     // Update the map view to the user's location
                     map.setView([latitude, longitude], 13);
 
-                    // Define the coordinates for the other places
-                    var places = [];
-                    @foreach ($stops as $stop)
-                        var place = {
-                            name: '{{ $stop->info }}',
-                            latitude: {{ $stop->latitude }},
-                            longitude: {{ $stop->longitude }}
-                        };
-
-                        places.push(place);
-
-                        // Set the icon URL based on the vehicle type
-                        var iconUrl = '';
-                        @if ($stop->vehicle_type == 'bus')
-                            iconUrl = '{{ asset('images/markerIcons/B.png') }}';
-                        @elseif ($stop->vehicle_type == 'micro')
-                            iconUrl = '{{ asset('images/markerIcons/M.png') }}';
-                        @elseif ($stop->vehicle_type == 'tempo')
-                            iconUrl = '{{ asset('images/markerIcons/T.png') }}';
-                        @endif
-
-                        var placeIcon = L.icon({
-                            iconUrl: iconUrl,
-                            iconSize: [32, 32],
-                            iconAnchor: [16, 32],
-                            popupAnchor: [0, -32]
-                        });
-
-                        var marker = L.marker([place.latitude, place.longitude], {
-                            icon: placeIcon
-                        }).addTo(map);
-
-                        marker.bindPopup('{{ $stop->info }}');
-
-                        placeMarkers.push(marker);
-                    @endforeach
-
-                    // Find the nearest place marker to the user's location
-                    var nearestMarker = findNearestMarker(userMarker, placeMarkers);
-
-                    // Create a custom icon for the shortest path
-                    var pathIcon = L.icon({
-                        iconUrl: '',
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 32],
-                        popupAnchor: [0, -32]
+                    // Add event listeners to the vehicle type checkboxes
+                    $('#busCheckbox').change(function() {
+                        updateStopLocation();
+                        console.log("bus");
+                    });
+                    $('#microCheckbox').change(function() {
+                        updateStopLocation();
+                        console.log("micro");
+                    });
+                    $('#tempoCheckbox').change(function() {
+                        updateStopLocation();
+                        console.log("tempo");
                     });
 
-                    // Calculate the route using Leaflet Routing Machine
-                    L.Routing.control({
-                        waypoints: [
-                            L.latLng(latitude, longitude),
-                            nearestMarker.getLatLng()
-                        ],
-                        routeWhileDragging: false,
-                        lineOptions: {
-                            styles: [{
-                                color: 'blue',
-                                opacity: 0.5,
-                                weight: 3,
-                                className: 'leaflet-custom-icon'
-                            }]
-                        },
-                        createMarker: function(i, waypoint, n) {
-                            if (i === 0) {
-                                // Use the custom user icon for the starting marker
-                                return L.marker(waypoint.latLng, {
-                                    icon: userIcon
-                                });
-                            } else if (i === n - 1) {
-                                // Use the custom icon for the ending marker
-                                return L.marker(waypoint.latLng, {
-                                    icon: pathIcon
-                                });
-                            } else {
-                                // Use the default marker for intermediate waypoints
-                                return L.marker(waypoint.latLng);
+                    function updateStopLocation() {
+                        $.ajax({
+                            url: "/userStopAjax",
+                            method: "GET",
+                            dataType: "json",
+                            success: function(response) {
+                                // Clear existing markers from the map
+                                console.log("Response Data:", response);
                             }
-                        }
-                    }).addTo(map);
+                        });
+                    }
+
+
+                    // Define the coordinates for the other places
+                    // var places = [];
+                    // @foreach ($stops as $stop)
+                    //     var place = {
+                    //         name: '{{ $stop->info }}',
+                    //         latitude: {{ $stop->latitude }},
+                    //         longitude: {{ $stop->longitude }}
+                    //     };
+
+                    //     places.push(place);
+
+                    // Set the icon URL based on the vehicle type
+                    // var iconUrl = '';
+                    // @if ($stop->vehicle_type == 'bus')
+                    //     iconUrl = '{{ asset('images/markerIcons/B.png') }}';
+                    // @elseif ($stop->vehicle_type == 'micro')
+                    //     iconUrl = '{{ asset('images/markerIcons/M.png') }}';
+                    // @elseif ($stop->vehicle_type == 'tempo')
+                    //     iconUrl = '{{ asset('images/markerIcons/T.png') }}';
+                    // @endif
+
+                    //     var placeIcon = L.icon({
+                    //         iconUrl: iconUrl,
+                    //         iconSize: [32, 32],
+                    //         iconAnchor: [16, 32],
+                    //         popupAnchor: [0, -32]
+                    //     });
+
+                    //     var marker = L.marker([place.latitude, place.longitude], {
+                    //         icon: placeIcon
+                    //     }).addTo(map);
+
+                    //     marker.bindPopup('{{ $stop->info }}');
+
+                    //     placeMarkers.push(marker);
+                    // @endforeach
+
+                    // Find the nearest place marker to the user's location
+                    // var nearestMarker = findNearestMarker(userMarker, placeMarkers);
+
+                    // Create a custom icon for the shortest path
+                    // var pathIcon = L.icon({
+                    //     iconUrl: '',
+                    //     iconSize: [32, 32],
+                    //     iconAnchor: [16, 32],
+                    //     popupAnchor: [0, -32]
+                    // });
+
+                    // Calculate the route using Leaflet Routing Machine
+                    // L.Routing.control({
+                    //     waypoints: [
+                    //         L.latLng(latitude, longitude),
+                    //         nearestMarker.getLatLng()
+                    //     ],
+                    //     routeWhileDragging: false,
+                    //     lineOptions: {
+                    //         styles: [{
+                    //             color: 'blue',
+                    //             opacity: 0.5,
+                    //             weight: 3,
+                    //             className: 'leaflet-custom-icon'
+                    //         }]
+                    //     },
+                    //     createMarker: function(i, waypoint, n) {
+                    //         if (i === 0) {
+                                // Use the custom user icon for the starting marker
+                            //     return L.marker(waypoint.latLng, {
+                            //         icon: userIcon
+                            //     });
+                            // } else if (i === n - 1) {
+                                // Use the custom icon for the ending marker
+                            //     return L.marker(waypoint.latLng, {
+                            //         icon: pathIcon
+                            //     });
+                            // } else {
+                                // Use the default marker for intermediate waypoints
+            //                     return L.marker(waypoint.latLng);
+            //                 }
+            //             }
+            //         }).addTo(map);
                 });
             }
 
