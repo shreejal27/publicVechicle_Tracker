@@ -130,7 +130,9 @@
                     </div>
                 </div>
             </div>
-            @yield('content')
+            <div class="m-3">
+                @yield('content')
+            </div>
             @if (session('error'))
                 <script>
                     Swal.fire({

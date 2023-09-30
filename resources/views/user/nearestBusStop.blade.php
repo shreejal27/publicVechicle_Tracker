@@ -1,16 +1,53 @@
 @extends('necessary.user_template')
 @section('content')
-    <h1>This is to track the live public vehicle</h1>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         #map {
             height: 600px;
         }
+
+        .custom-control-input:checked+.custom-control-label::before {
+            background-color: #A9907E;
+        }
+
+        .custom-control-label::before {
+            background-color: #675D50;
+        }
+
+        .custom-control-input:focus:not(:checked)+.custom-control-label::before {
+            box-shadow: none;
+        }
+
+        .color {
+            color: #675D50;
+        }
     </style>
     <section>
-        <h1>Bus Stop Finder</h1>
-
-        <div id="map"></div>
+        <h1 class="color">Nearest Stop Finder</h1>
+        <div>
+            <h5 class="color">Filter by Type:</h5>
+            <div class="row">
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="busCheckbox" value="bus" checked>
+                        <label class="custom-control-label" for="busCheckbox">Bus</label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="microCheckbox" value="micro" checked>
+                        <label class="custom-control-label" for="microCheckbox">Micro</label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="tempoCheckbox" value="tempo" checked>
+                        <label class="custom-control-label" for="tempoCheckbox">Tempo</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="map" class="mt-3"></div>
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
@@ -133,6 +170,7 @@
                     }).addTo(map);
                 });
             }
+
 
             //  find the nearest marker using shortest path algorithm
             function findNearestMarker(userMarker, placeMarkers) {

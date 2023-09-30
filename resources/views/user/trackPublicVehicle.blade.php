@@ -1,9 +1,6 @@
 @extends('necessary.user_template')
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-
-
-
     <style>
         #map {
             height: 600px;
@@ -12,7 +9,6 @@
             background-color: #A9907E;
 
         }
-        
         .custom-control-label::before {
             background-color: #675D50;
 
@@ -20,14 +16,17 @@
 
         .custom-control-input:focus:not(:checked)+.custom-control-label::before {
             box-shadow: none;
+        }
 
+        .color {
+            color: #675D50;
         }
     </style>
     <section>
-        <h2>This is to track active vehicles on route</h2>
+        <h4 class="color">Track All the Active Registered Public Vehicle</h4>
         <div>
-            <label>Filter by Vehicle Type:</label> <br>
-            <div class="row mb-2">
+            <h5 class="color">Filter by Type:</h5>
+            <div class="row">
                 <div class="col-md-1">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="busCheckbox" value="bus" checked>
@@ -48,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div id="map"></div>
+        <div id="map" class="mt-3"></div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>

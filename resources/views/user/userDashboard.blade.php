@@ -51,7 +51,7 @@
         {{--  $user_id = session()->get('user_id');
          echo $user_id; --}}
         <section class="infoPills">
-            <div class="row m-3">
+            <div class="row mt-3">
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="small-box">
                         <div class="inner">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row m-3">
+            <div class="row mt-3">
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="small-box">
                         <div class="inner">
@@ -163,7 +163,7 @@
             </div>
         </section>
         <section class="infoTablesAndCharts">
-            <div class="row m-3">
+            <div class="row mt-3">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="chart">
                         <canvas id="vehicleOnline" style="width:100%; cursor:pointer;"></canvas>

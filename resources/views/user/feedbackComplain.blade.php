@@ -16,7 +16,7 @@
     @endif
 
     <div>
-        <ul class="nav nav-pills mt-2 ml-2">
+        <ul class="nav nav-pills">
             <li class="nav-item" data-path="form">
                 <a class="nav-link active" data-toggle="tab" href="#form" aria-selected="true">Form</a>
             </li>

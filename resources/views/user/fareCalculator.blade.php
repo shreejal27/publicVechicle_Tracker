@@ -6,7 +6,7 @@
 @section('content')
 
     <div>
-        <ul class="nav nav-pills mt-2 ml-2">
+        <ul class="nav nav-pills">
             <li class="nav-item" data-path="fareCalculator">
                 <a class="nav-link active" data-toggle="tab" href="#fareCalculator" aria-selected="true">Fare Calculator</a>
             </li>
