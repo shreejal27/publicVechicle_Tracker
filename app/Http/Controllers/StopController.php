@@ -72,8 +72,8 @@ class StopController extends Controller
         return redirect()->route('stopMarkerAdmin')->with('message', 'Stop Details not found.');
     }
 
-    public function getStopLocationAjax(){
-        $stopLocations = Stop::all();
-        return response()->json($stopLocations);
-    }
+    // public function getStopLocationAjax(){
+    //     $stopLocations = Stop::all();
+    //     return response()->json($stopLocations);
+    // }
 }
