@@ -36,6 +36,16 @@
         background-color: #675D50;
         color: #F3DEBA;
         padding: 0.7rem;
+        max-height: 500px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    #pieChart {
+        max-width: 70% !important;
     }
 
     table {
@@ -54,7 +64,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 @section('content')
     <section class="infoPills">
-        <div class="row m-3">
+        <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="small-box">
                     <div class="inner">
@@ -119,7 +129,7 @@
             </div>
 
         </div>
-        <div class="row m-3">
+        <div class="row mt-3">
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="small-box">
                     <div class="inner">
@@ -153,11 +163,10 @@
         </div>
     </section>
     <section class="infoTablesAndCharts">
-        <div class="row m-3">
+        <div class="row mt-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="chart">
-                    <canvas id="myChart" style="width:100%; cursor:pointer;"
-                        onclick="redirectComplainFeedback()"></canvas>
+                    <canvas id="myChart" style=" cursor:pointer;" onclick="redirectComplainFeedback()"></canvas>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -194,215 +203,215 @@
             </div>
         </div>
     </section>
-        <section class="infoTablesAndCharts">
-            <div class="row m-3">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="chart">
-                        <canvas id="pieChart" style="width:50%; height:500; cursor:pointer;"></canvas>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="chart">
-                        <canvas id="addressBarGraph" style="width:100%; cursor:pointer;"
-                            onclick="redirectComplainFeedback()"></canvas>
-                    </div>
+    <section class="infoTablesAndCharts">
+        <div class="row mt-3">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="chart">
+                    <canvas id="pieChart" style=" cursor:pointer;"></canvas>
                 </div>
             </div>
-        </section>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="chart">
+                    <canvas id="addressBarGraph" style="width:100%; cursor:pointer;"
+                        onclick="redirectComplainFeedback()"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        {{-- for bar graph --}}
-        <script>
-            var xValues = @json($weekDays);
-            var yValues = @json($complaintCounts);
-            var dates = @json($weekDates);
-            // var barColors = ["red", "green", "blue", "orange", "brown", "purple", "pink"];
-            var barColor = "#F3DEBA";
+    {{-- for bar graph --}}
+    <script>
+        var xValues = @json($weekDays);
+        var yValues = @json($complaintCounts);
+        var dates = @json($weekDates);
+        // var barColors = ["red", "green", "blue", "orange", "brown", "purple", "pink"];
+        var barColor = "#F3DEBA";
 
 
-            var maxValue = Math.max(...yValues);
+        var maxValue = Math.max(...yValues);
 
-            console.log("Maximum value:", maxValue);
+        console.log("Maximum value:", maxValue);
 
-            new Chart("myChart", {
-                type: "bar",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                        backgroundColor: barColor,
-                        data: yValues
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColor,
+                    data: yValues
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            max: maxValue + 1,
+                            fontFamily: "Josefin Sans, sans-serif",
+                            fontColor: "#F3DEBA",
+                            fontSize: 13
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontFamily: "Josefin Sans, sans-serif",
+                            fontColor: "#F3DEBA",
+                            fontSize: 13
+                        }
                     }]
                 },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            display: true,
-                            ticks: {
-                                beginAtZero: true,
-                                stepSize: 1,
-                                max: maxValue + 1,
-                                fontFamily: "Josefin Sans, sans-serif",
-                                fontColor: "#F3DEBA",
-                                fontSize: 13
-                            }
-                        }],
-                        xAxes: [{
-                            ticks: {
-                                fontFamily: "Josefin Sans, sans-serif",
-                                fontColor: "#F3DEBA",
-                                fontSize: 13
-                            }
-                        }]
-                    },
-                    legend: {
-                        display: false
-                    },
-                    title: {
-                        display: true,
-                        text: "Total Request in a week",
-                        fontColor: "#F3DEBA",
-                        fontFamily: "Josefin Sans, sans-serif",
-                        fontSize: 15,
-                    },
-                    tooltips: {
-                        callbacks: {
-                            title: function(tooltipItem, data) {
-                                return dates[tooltipItem[0].index]; // Display the date
-                            },
-                            label: function(tooltipItem, data) {
-                                return "Count: " + tooltipItem.yLabel; // Display the count
-                            }
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "Total Request in a week",
+                    fontColor: "#F3DEBA",
+                    fontFamily: "Josefin Sans, sans-serif",
+                    fontSize: 15,
+                },
+                tooltips: {
+                    callbacks: {
+                        title: function(tooltipItem, data) {
+                            return dates[tooltipItem[0].index]; // Display the date
+                        },
+                        label: function(tooltipItem, data) {
+                            return "Count: " + tooltipItem.yLabel; // Display the count
                         }
                     }
                 }
-            });
-        </script>
-        <script>
-            function redirectComplainFeedback() {
-                window.location.href = "{{ route('adminComplainFeedback') }}";
             }
+        });
+    </script>
+    <script>
+        function redirectComplainFeedback() {
+            window.location.href = "{{ route('adminComplainFeedback') }}";
+        }
 
-            function redirectDriverPage() {
-                window.location.href = "{{ route('adminViewDriver') }}";
-            }
+        function redirectDriverPage() {
+            window.location.href = "{{ route('adminViewDriver') }}";
+        }
 
-            // function redirectUsers() {
-            //     window.location.href = "{{ route('adminViewUsers') }}";
-            // }
-        </script>
-        {{-- for pie chart --}}
-        <script>
-            var xValues = @json($occupationList);
-            var yValues = @json($occupationCount);
-            var barColors = [
-                "#8D7B68",
-                "#C3B091",
-                "#C8B6A6",
-                "#A7727D",
-                "#E4E4D0",
-            ];
+        // function redirectUsers() {
+        //     window.location.href = "{{ route('adminViewUsers') }}";
+        // }
+    </script>
+    {{-- for pie chart --}}
+    <script>
+        var xValues = @json($occupationList);
+        var yValues = @json($occupationCount);
+        var barColors = [
+            "#8D7B68",
+            "#C3B091",
+            "#C8B6A6",
+            "#A7727D",
+            "#E4E4D0",
+        ];
 
-            new Chart("pieChart", {
-                type: "doughnut",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                        backgroundColor: barColors,
-                        data: yValues
-                    }]
+        new Chart("pieChart", {
+            type: "doughnut",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Top 5 Occupations of Users",
+                    fontColor: "#F3DEBA",
+                    fontSize: 15,
+                    fontFamily: "Josefin Sans, sans-serif"
                 },
-                options: {
-                    title: {
-                        display: true,
-                        text: "Top 5 Occupations of Users",
-                        fontColor: "#F3DEBA",
-                        fontSize: 15,
+                legend: {
+                    labels: {
+                        fontColor: "#F3DEBA", // Change the font color of the labels here
                         fontFamily: "Josefin Sans, sans-serif"
-                    },
-                    legend: {
-                        labels: {
-                            fontColor: "#F3DEBA", // Change the font color of the labels here
-                            fontFamily: "Josefin Sans, sans-serif"
-                        }
                     }
-                },
-            });
-        </script>
-        {{-- for horizontal chart --}}
-        <script>
-            var xValues = @json($addressList);
-            var yValues = @json($addressCount);
-            var barColor = "#F3DEBA";
+                }
+            },
+        });
+    </script>
+    {{-- for horizontal chart --}}
+    <script>
+        var xValues = @json($addressList);
+        var yValues = @json($addressCount);
+        var barColor = "#F3DEBA";
 
 
-            var maxValue = Math.max(...yValues);
+        var maxValue = Math.max(...yValues);
 
-            console.log("Maximum value:", maxValue);
+        console.log("Maximum value:", maxValue);
 
-            new Chart("addressBarGraph", {
-                type: "bar",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                        backgroundColor: barColor,
-                        data: yValues
+        new Chart("addressBarGraph", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColor,
+                    data: yValues
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 5,
+                            max: maxValue + 1,
+                            fontFamily: "Josefin Sans, sans-serif",
+                            fontColor: "#F3DEBA",
+                            fontSize: 13
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontFamily: "Josefin Sans, sans-serif",
+                            fontColor: "#F3DEBA",
+                            fontSize: 13
+                        }
                     }]
                 },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            display: true,
-                            ticks: {
-                                beginAtZero: true,
-                                stepSize: 5,
-                                max: maxValue + 1,
-                                fontFamily: "Josefin Sans, sans-serif",
-                                fontColor: "#F3DEBA",
-                                fontSize: 13
-                            }
-                        }],
-                        xAxes: [{
-                            ticks: {
-                                fontFamily: "Josefin Sans, sans-serif",
-                                fontColor: "#F3DEBA",
-                                fontSize: 13
-                            }
-                        }]
-                    },
-                    legend: {
-                        display: false
-                    },
-                    title: {
-                        display: true,
-                        text: "Top address of Users",
-                        fontColor: "#F3DEBA",
-                        fontFamily: "Josefin Sans, sans-serif",
-                        fontSize: 15,
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function(tooltipItem, data) {
-                                return "Count: " + tooltipItem.yLabel; // Display the count
-                            }
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "Top address of Users",
+                    fontColor: "#F3DEBA",
+                    fontFamily: "Josefin Sans, sans-serif",
+                    fontSize: 15,
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return "Count: " + tooltipItem.yLabel; // Display the count
                         }
                     }
                 }
-            });
-        </script>
-        {{-- end bar graph --}}
+            }
+        });
+    </script>
+    {{-- end bar graph --}}
 
 
-        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#driverOnline').DataTable({
-                    "order": [
-                        [0, "asc"]
-                    ],
-                    "lengthMenu": [3],
-                    "pageLength": 3
-                });
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#driverOnline').DataTable({
+                "order": [
+                    [0, "asc"]
+                ],
+                "lengthMenu": [3],
+                "pageLength": 3
             });
-        </script>
+        });
+    </script>
 @endsection

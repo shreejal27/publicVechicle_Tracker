@@ -5,7 +5,7 @@
 @extends('necessary.admin_template')
 @section('content')
     <div>
-        <ul class="nav nav-pills mt-2 ml-2">
+        <ul class="nav nav-pills">
             <li class="nav-item" data-path="fareList">
                 <a class="nav-link active" data-toggle="tab" href="#fareList" aria-selected="true">Vehicle Route
                     List</a>
@@ -51,7 +51,7 @@
     </div>
     <div class="tab-content">
         <div class="tab-pane fade show active" id="fareList" role="tabpanel" data-path="fareList">
-            <section class="m-3 mt-4">
+            <section class="mt-4">
                 <table class="table table-hover col-md-6 col-sm-6 col-lg-6 col-xl-6">
                     <thead>
                         <th colspan="4"> Fare List</th>

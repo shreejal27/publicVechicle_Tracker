@@ -23,10 +23,10 @@
         }
     </style>
     <section>
-        <h1>All the active public vehicle are seen in the map</h1>
+        <h1 class="color">All the active public vehicle are seen in the map</h1>
         <div>
-            <label>Filter by Vehicle Type:</label> <br>
-            <div class="row mb-2">
+            <h5 class="color">Filter by Vehicle Type:</h5> 
+            <div class="row">
                 <div class="col-md-1">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="busCheckbox" value="bus" checked>
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div id="map"></div>
+        <div id="map" class="mt-3"></div>
 
     </section>
 

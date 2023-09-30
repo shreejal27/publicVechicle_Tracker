@@ -71,7 +71,7 @@
 </style>
 @extends('necessary.admin_template')
 @section('content')
-    <section class="m-3 mt-4">
+    <section class="mt-4">
         {{-- <table class="table table-hover col-md-12 col-sm-12 col-lg-12 col-xl-12" id="driverTable">
             <thead>
                 <th colspan="8"> All Drivers</th>

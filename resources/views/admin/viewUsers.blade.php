@@ -9,7 +9,7 @@
 </style>
 @extends('necessary.admin_template')
 @section('content')
-    <section class="m-3 mt-4">
+    <section class="mt-4">
         <table class="table table-hover col-md-6 col-sm-6 col-lg-6 col-xl-6" id="userTable">
             <thead>
                 <th colspan="7"> All Users</th>

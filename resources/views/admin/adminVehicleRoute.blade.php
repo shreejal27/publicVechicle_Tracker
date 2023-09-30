@@ -4,7 +4,7 @@
 @extends('necessary.admin_template')
 @section('content')
     <div>
-        <ul class="nav nav-pills mt-2 ml-2">
+        <ul class="nav nav-pills">
             <li class="nav-item" data-path="vehicleRouteList">
                 <a class="nav-link active" data-toggle="tab" href="#vehicleRouteList" aria-selected="true">Vehicle Route
                     List</a>

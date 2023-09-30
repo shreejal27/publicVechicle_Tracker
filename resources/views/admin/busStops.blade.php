@@ -60,7 +60,7 @@
     </div>
     <div class="tab-content">
         <div class="tab-pane fade show active" id="stopList" role="tabpanel" data-path="stopList">
-            <section class="m-3 mt-4">
+            <section class="mt-3">
                 <table class="table table-hover col-md-9 col-sm-9 col-lg-9 col-xl-9">
                     <thead>
                         <th colspan="6"> Stop List</th>
@@ -97,7 +97,7 @@
     </div>
 
     <section>
-        <h1>Nearest Bus Stop</h1>
+        <h3 class="color">Nearest Bus Stop</h3>
 
         <div id="map"></div>
 

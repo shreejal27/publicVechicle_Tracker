@@ -3,7 +3,7 @@
 @section('content')
     <section>
         <div class="center-container mt-5">
-            <div class="form-container col-md-3 mb-3">
+            <div class="form-container col-md-4 mb-3">
                 <p class="title">Edit Stop Details</p>
                 <form class="form" action="{{ route('stopUpdate', $stop->id) }}" method="POST">
                     @csrf
@@ -29,7 +29,6 @@
                         </select>
                     </div>
                     <button class="sign mt-3" type="submit">Update</button>
-
                 </form>
             </div>
         </div>

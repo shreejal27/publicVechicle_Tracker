@@ -92,7 +92,9 @@
                     </div>
                 </div>
             </div>
-            @yield('content')
+            <div class="m-3">
+                @yield('content')
+            </div>
             @if ($errors->any())
                 <script>
                     Swal.fire({

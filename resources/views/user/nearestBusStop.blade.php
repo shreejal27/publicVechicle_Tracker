@@ -17,10 +17,6 @@
         .custom-control-input:focus:not(:checked)+.custom-control-label::before {
             box-shadow: none;
         }
-
-        .color {
-            color: #675D50;
-        }
     </style>
     <section>
         <h1 class="color">Nearest Stop Finder</h1>
