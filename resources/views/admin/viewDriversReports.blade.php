@@ -42,7 +42,7 @@
 
 
     .driverProfile {
-        height: 250px;
+        height: 300px;
         background-color: #675D50;
         color: #F3DEBA;
         text-align: center;
@@ -67,6 +67,10 @@
         margin-bottom: 1rem;
         object-fit: cover;
         border: 2px solid #F3DEBA;
+    }
+
+    .statusSymbol {
+        height: 10px !important;
     }
 </style>
 @extends('necessary.admin_template')
@@ -113,16 +117,33 @@
             <input type="text" id="profileSearch" placeholder="Search">
         </div>
         <div class="box ">
-            <div class="grid-container">
+            <div class="grid-container " id="driverDetails">
                 @foreach ($drivers as $driver)
-                    <div class="driverProfile ">
+                    <div class="driverProfile" id="driverProfile">
+                        <div data-status="{{ $workingDriverId->contains($driver->id) ? '0' : '1' }}"
+                            class="statusSymbol mt-2 mr-2" data-license="{{ $driver['license_number'] }}"
+                            data-contact="{{ $driver['vehicle_type'] }}" data-vehicle="{{ $driver['contact_number'] }}">
+                            @if ($workingDriverId->contains($driver->id))
+                                <i class="fa-solid fa-toggle-on fa-lg float-right"></i>
+                            @else
+                                <i class="fa-solid fa-toggle-off fa-lg float-right"></i>
+                            @endif
+                        </div>
                         <div class="image-container">
                             <img src="{{ asset('images/drivers/' . ($driver['profileImage'] ? $driver['profileImage'] : 'anonymous.jpg')) }}"
                                 alt="Profile Image" id="profileImage">
                         </div>
                         <h4>{{ $driver['firstname'] }} {{ $driver['lastname'] }}</h4>
                         <h5>{{ $driver['vehicle_type'] }}</h5>
-                        <h6><i class="fa-solid fa-location-dot"></i> {{ $driver['address'] }}</h6>
+                        <h6 class="mb-3"><i class="fa-solid fa-location-dot"></i> {{ $driver['address'] }}</h6>
+
+                        <p>
+                            <a href="/fareEdit/"> <i class="fa-solid fa-info fa-lg mr-2" style="color: #f3deba;"></i></a>
+                            <a href="/fareEdit/"><i class="fa fa-solid fa-pen-to-square fa-lg ml-2 mr-2"
+                                    style="color: #f3deba;"></i></a>
+                            <a href="" data-route="/fareDelete/" onclick="return confirmDelete(event)"><i
+                                    class="fa-solid fa-trash fa-lg ml-2" style="color: #f3deba;"></i></a>
+                        </p>
                     </div>
                 @endforeach
             </div>
@@ -134,17 +155,46 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#driverTable').DataTable({
-                "order": [
-                    [0, "asc"]
-                ],
-                "columnDefs": [{
-                    "orderable": true,
-                    "targets": [6],
-                    "type": "dom-status"
-                }]
+            //was for the table
+            // $('#driverTable').DataTable({
+            //     "order": [
+            //         [0, "asc"]
+            //     ],
+            //     "columnDefs": [{
+            //         "orderable": true,
+            //         "targets": [6],
+            //         "type": "dom-status"
+            //     }]
+            // });
+            //for click listener on divs
+            $('#driverDetails').on('click', 'driverProfile', function() {
+                var driverData = $(this).data(); // to get data of specific row
+                var licenseNumber = $(this).data('license');
+                var contactNumber = $(this).data('contact');
+                var vehicleNumber = $(this).data('vehicle');
+
+                // SweetAlert dialog
+                var content = '<div style="text-align: left; font-size: 1rem;">' +
+                    '<br><strong>License Number:</strong> ' + licenseNumber + '<br><br>' +
+                    '<strong>Contact Number:</strong> ' + contactNumber + '<br><br>' +
+                    '<strong>Vehicle Number:</strong> ' + vehicleNumber +
+                    '</div>';
+                '</div>';
+
+                // Display the SweetAlert dialog with the row data
+                Swal.fire({
+                    // title: 'Information',
+                    icon: 'info',
+                    html: content,
+                    confirmButtonText: 'Close',
+                });
             });
         });
+
+        function confirmDelete(event) {
+            // Add your delete confirmation logic here
+            return confirm("Are you sure you want to delete this item?");
+        }
     </script>
 
     <script>
