@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
     /* table.dataTable {
@@ -119,10 +120,12 @@
         <div class="box ">
             <div class="grid-container " id="driverDetails">
                 @foreach ($drivers as $driver)
-                    <div class="driverProfile" id="driverProfile">
+                    <div class="driverProfile" id="driverProfile" data-license="{{ $driver['license_number'] }}"
+                        data-contact="{{ $driver['contact_number'] }}" data-vehicle="{{ $driver['vehicle_number'] }}"
+                        data-firstname="{{ $driver['firstname'] }}" data-lastname="{{ $driver['lastname'] }}"
+                        data-vehicletype="{{ $driver['vehicle_type'] }}" data-status="{{ $workingDriverId->contains($driver->id) ? 'online' : 'offline' }}"      data-address="{{ $driver['address'] }}" >
                         <div data-status="{{ $workingDriverId->contains($driver->id) ? '0' : '1' }}"
-                            class="statusSymbol mt-2 mr-2" data-license="{{ $driver['license_number'] }}"
-                            data-contact="{{ $driver['vehicle_type'] }}" data-vehicle="{{ $driver['contact_number'] }}">
+                            class="statusSymbol mt-2 mr-2">
                             @if ($workingDriverId->contains($driver->id))
                                 <i class="fa-solid fa-toggle-on fa-lg float-right"></i>
                             @else
@@ -138,7 +141,7 @@
                         <h6 class="mb-3"><i class="fa-solid fa-location-dot"></i> {{ $driver['address'] }}</h6>
 
                         <p>
-                            <a href="/fareEdit/"> <i class="fa-solid fa-info fa-lg mr-2" style="color: #f3deba;"></i></a>
+                            <a href=""> <i class="fa-solid fa-info fa-lg mr-2 info-link" style="color: #f3deba;"></i></a>
                             <a href="/fareEdit/"><i class="fa fa-solid fa-pen-to-square fa-lg ml-2 mr-2"
                                     style="color: #f3deba;"></i></a>
                             <a href="" data-route="/fareDelete/" onclick="return confirmDelete(event)"><i
@@ -167,17 +170,29 @@
             //     }]
             // });
             //for click listener on divs
-            $('#driverDetails').on('click', 'driverProfile', function() {
-                var driverData = $(this).data(); // to get data of specific row
-                var licenseNumber = $(this).data('license');
-                var contactNumber = $(this).data('contact');
-                var vehicleNumber = $(this).data('vehicle');
+            $('#driverDetails').on('click', '.info-link', function(e) {
+                e.preventDefault(); // Prevent the default link behavior
+                var driverData = $(this).closest('.driverProfile').data(); // Get data of the closest driverProfile div
+                var licenseNumber = driverData.license;
+                var contactNumber = driverData.contact;
+                var vehicleNumber = driverData.vehicle;
+                var firstName = driverData.firstname;
+                var lastName = driverData.lastname;
+                var vehicleType = driverData.vehicletype;
+                var status = driverData.status;
+                var address = driverData.address;
+
 
                 // SweetAlert dialog
                 var content = '<div style="text-align: left; font-size: 1rem;">' +
-                    '<br><strong>License Number:</strong> ' + licenseNumber + '<br><br>' +
+                    '<br><strong>Name:</strong> ' + firstName + ' ' + lastName +
+                    '<br><br>' +
+                    '<strong>Vehicle Type:</strong> ' + vehicleType + '<br><br>' +
+                    '<strong>License Number:</strong> ' + licenseNumber + '<br><br>' +
                     '<strong>Contact Number:</strong> ' + contactNumber + '<br><br>' +
-                    '<strong>Vehicle Number:</strong> ' + vehicleNumber +
+                    '<strong>Vehicle Number:</strong> ' + vehicleNumber + '<br><br>' +
+                    '<strong>Address:</strong> ' + address + '<br><br>' +
+                    '<strong>Status:</strong> ' + status +
                     '</div>';
                 '</div>';
 
