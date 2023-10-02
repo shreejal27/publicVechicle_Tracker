@@ -130,6 +130,58 @@ class DriverController extends Controller
             $driver->save();
             return redirect()->route('driverProfile')->with('message', 'Credentials Updated');
         }
+
+        public function adminEditDriver($id){
+            $driver = Driver::where('id', $id)->first();
+            return view('/admin/viewDriversEdit', compact('driver'));
+
+        }
+
+        public function adminDeleteDriver($id){
+            $driver = Driver::find($id);
+            if ($driver) {
+                $driver->delete();
+                return redirect()->route('adminViewDriver')->with('message', 'Driver deleted successfully.');
+            }
+            return redirect()->route('adminViewDriver')->with('message', 'Driver not found.');
+        }
+
+        public function adminUpdateDriver(Request $request, $id){
+    
+            $driver = Driver::findOrFail($id);
+            $driver->firstname = $request->firstname;
+            $driver->lastname = $request->lastname;
+            $driver->address = $request->address;
+            $driver->license_number = $request->licenseNumber;
+            $driver->vehicle_type = $request->vehicleType;
+            $driver->contact_number = $request->contactNumber;
+            $driver->vehicle_number = $request->vehicleNumber;
+    
+            // Get the current user's existing profile picture filename
+            $previousProfileImage = $driver->profileImage;
+    
+            $uploadedFile = $request->file('driverImage');
+    
+            if ($uploadedFile) { 
+            $filename = uniqid() . '_' . $uploadedFile->getClientOriginalName();
+    
+            // Move the uploaded file to the desired directory 
+            $uploadedFile->move('images/drivers/', $filename);
+    
+            // Update the user's profileImage column with the original filename
+            $driver->profileImage = $filename;
+            
+            // Delete the previous profile picture from storage
+            if ($previousProfileImage && $uploadedFile !== 'anonymous.jpg') {
+                $pathToDelete = public_path('images/drivers/' . $previousProfileImage);
+                if (file_exists($pathToDelete)) {
+                    unlink($pathToDelete);
+                }
+            }
+        }
+        $driver->save();
+        return redirect()->route('adminViewDriver')->with('message', 'Driver Profile Has Been Updated!');
+        }
     
     
 }

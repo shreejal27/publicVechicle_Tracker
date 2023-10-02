@@ -157,6 +157,12 @@ Route::get('/adminComplainFeedback', [ComplainFeedbackController::class, 'index'
 // });
 Route::get('/adminViewDriversReports', [DriverController::class, 'adminViewDriver'])->name('adminViewDriver');
 
+Route::get('/driverEdit/{id}', [DriverController::class, 'adminEditDriver'])->name('adminEditDriver');
+
+Route::get('/driverDelete/{id}', [DriverController::class, 'adminDeleteDriver'])->name('adminDeleteDriver');
+
+Route::post('/driverUpdate/{id}', [DriverController::class, 'adminUpdateDriver'])->name('adminUpdateDriver');
+
 Route::get('/adminViewUsers', [UserController::class, 'adminViewUsers'])->name('adminViewUsers');
 
 //admin logout

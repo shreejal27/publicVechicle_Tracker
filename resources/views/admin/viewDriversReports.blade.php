@@ -142,9 +142,9 @@
 
                         <p>
                             <a href=""> <i class="fa-solid fa-info fa-lg mr-2 info-link" style="color: #f3deba;"></i></a>
-                            <a href="/fareEdit/"><i class="fa fa-solid fa-pen-to-square fa-lg ml-2 mr-2"
+                            <a href="/driverEdit/{{ $driver->id }}"><i class="fa fa-solid fa-pen-to-square fa-lg ml-2 mr-2"
                                     style="color: #f3deba;"></i></a>
-                            <a href="" data-route="/fareDelete/" onclick="return confirmDelete(event)"><i
+                            <a href="" data-route="/driverDelete/{{ $driver->id }}" onclick="return confirmDelete(event)"><i
                                     class="fa-solid fa-trash fa-lg ml-2" style="color: #f3deba;"></i></a>
                         </p>
                     </div>
@@ -207,8 +207,23 @@
         });
 
         function confirmDelete(event) {
-            // Add your delete confirmation logic here
-            return confirm("Are you sure you want to delete this item?");
+            event.preventDefault(); // Prevent the default link behavior
+            const route = event.currentTarget.getAttribute('data-route');
+            Swal.fire({
+                position: 'top-end',
+                title: 'Are you sure you want to delete?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = route;
+                }
+            });
+
+            return false;
         }
     </script>
 
