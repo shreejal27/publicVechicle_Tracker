@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('tableStyles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('pillStyles.css') }}">
 @extends('necessary.user_template')
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
@@ -19,199 +21,261 @@
         }
     </style>
     <section>
-        <h1 class="color">Nearest Stop Finder</h1>
         <div>
-            <h5 class="color">Filter by Type:</h5>
-            <div class="row">
-                <div class="col-md-1">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="busCheckbox" value="bus" checked>
-                        <label class="custom-control-label" for="busCheckbox">Bus</label>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="microCheckbox" value="micro" checked>
-                        <label class="custom-control-label" for="microCheckbox">Micro</label>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="tempoCheckbox" value="tempo" checked>
-                        <label class="custom-control-label" for="tempoCheckbox">Tempo</label>
-                    </div>
-                </div>
-            </div>
+            <ul class="nav nav-pills">
+                <li class="nav-item" data-path="nearestStop">
+                    <a class="nav-link active" data-toggle="tab" href="#nearestStop" aria-selected="true">Nearest
+                        Stop</a>
+                </li>
+                <li class="nav-item" data-path="vehicleRouteTable">
+                    <a class="nav-link " data-toggle="tab" href="#vehicleRouteTable" aria-selected="false">Vehicle Route</a>
+                </li>
+            </ul>
         </div>
-        <div id="map" class="mt-3"></div>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="nearestStop" role="tabpanel" data-path="nearestStop">
+                <section class="mt-4"> 
+                    <div>
+                        <h5 class="color">Filter by Type:</h5>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="busCheckbox" value="bus"
+                                        checked>
+                                    <label class="custom-control-label" for="busCheckbox">Bus</label>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="microCheckbox" value="micro"
+                                        checked>
+                                    <label class="custom-control-label" for="microCheckbox">Micro</label>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="tempoCheckbox" value="tempo"
+                                        checked>
+                                    <label class="custom-control-label" for="tempoCheckbox">Tempo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map" class="mt-3"></div>
 
-        <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
-        </script>
-        <script>
-            var map = L.map('map').setView([0, 0], 13);
+                    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js">
+                    </script>
+                    <script>
+                        var map = L.map('map').setView([0, 0], 13);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
-
-            var userMarker, placeMarkers = [];
-
-            // Get the user's current location
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-
-                    //bernhardt college coordinates
-                    // var latitude = 27.7018580;
-                    // var longitude = 85.2830400;
-
-
-                    // Create a custom icon for the user's location
-                    var userIcon = L.icon({
-                        iconUrl: '/images/markerIcons/userMarker.png',
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 32],
-                        popupAnchor: [0, -32]
-                    });
-
-                    // Create a marker for the user's location with the custom icon
-                    userMarker = L.marker([latitude, longitude], {
-                        icon: userIcon
-                    }).addTo(map);
-
-                    // Update the map view to the user's location
-                    map.setView([latitude, longitude], 13);
-
-                    // Define the coordinates for the other places
-                    var places = [];
-                    @foreach ($stops as $stop)
-                        var place = {
-                            name: '{{ $stop->info }}',
-                            latitude: {{ $stop->latitude }},
-                            longitude: {{ $stop->longitude }}
-                        };
-
-                        places.push(place);
-
-                        // Set the icon URL based on the vehicle type
-                        var iconUrl = '';
-                        @if ($stop->vehicle_type == 'bus')
-                            iconUrl = '{{ asset('images/markerIcons/B.png') }}';
-                        @elseif ($stop->vehicle_type == 'micro')
-                            iconUrl = '{{ asset('images/markerIcons/M.png') }}';
-                        @elseif ($stop->vehicle_type == 'tempo')
-                            iconUrl = '{{ asset('images/markerIcons/T.png') }}';
-                        @endif
-
-                        var placeIcon = L.icon({
-                            iconUrl: iconUrl,
-                            iconSize: [32, 32],
-                            iconAnchor: [16, 32],
-                            popupAnchor: [0, -32]
-                        });
-
-                        var marker = L.marker([place.latitude, place.longitude], {
-                            icon: placeIcon
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; OpenStreetMap contributors'
                         }).addTo(map);
 
-                        marker.bindPopup('{{ $stop->info }}');
+                        var userMarker, placeMarkers = [];
 
-                        placeMarkers.push(marker);
-                    @endforeach
+                        // Get the user's current location
+                        if ("geolocation" in navigator) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                var latitude = position.coords.latitude;
+                                var longitude = position.coords.longitude;
 
-                    // Find the nearest place marker to the user's location
-                    var nearestMarker = findNearestMarker(userMarker, placeMarkers);
+                                //bernhardt college coordinates
+                                // var latitude = 27.7018580;
+                                // var longitude = 85.2830400;
 
-                    // Create a custom icon for the shortest path
-                    var pathIcon = L.icon({
-                        iconUrl: '',
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 32],
-                        popupAnchor: [0, -32]
-                    });
 
-                    // Calculate the route using Leaflet Routing Machine
-                    L.Routing.control({
-                        waypoints: [
-                            L.latLng(latitude, longitude),
-                            nearestMarker.getLatLng()
-                        ],
-                        routeWhileDragging: false,
-                        lineOptions: {
-                            styles: [{
-                                color: 'blue',
-                                opacity: 0.5,
-                                weight: 3,
-                                className: 'leaflet-custom-icon'
-                            }]
-                        },
-                        createMarker: function(i, waypoint, n) {
-                            if (i === 0) {
-                                // Use the custom user icon for the starting marker
-                                return L.marker(waypoint.latLng, {
+                                // Create a custom icon for the user's location
+                                var userIcon = L.icon({
+                                    iconUrl: '/images/markerIcons/userMarker.png',
+                                    iconSize: [32, 32],
+                                    iconAnchor: [16, 32],
+                                    popupAnchor: [0, -32]
+                                });
+
+                                // Create a marker for the user's location with the custom icon
+                                userMarker = L.marker([latitude, longitude], {
                                     icon: userIcon
+                                }).addTo(map);
+
+                                // Update the map view to the user's location
+                                map.setView([latitude, longitude], 13);
+
+                                // Define the coordinates for the other places
+                                var places = [];
+                                @foreach ($stops as $stop)
+                                    var place = {
+                                        name: '{{ $stop->info }}',
+                                        latitude: {{ $stop->latitude }},
+                                        longitude: {{ $stop->longitude }}
+                                    };
+
+                                    places.push(place);
+
+                                    // Set the icon URL based on the vehicle type
+                                    var iconUrl = '';
+                                    @if ($stop->vehicle_type == 'bus')
+                                        iconUrl = '{{ asset('images/markerIcons/B.png') }}';
+                                    @elseif ($stop->vehicle_type == 'micro')
+                                        iconUrl = '{{ asset('images/markerIcons/M.png') }}';
+                                    @elseif ($stop->vehicle_type == 'tempo')
+                                        iconUrl = '{{ asset('images/markerIcons/T.png') }}';
+                                    @endif
+
+                                    var placeIcon = L.icon({
+                                        iconUrl: iconUrl,
+                                        iconSize: [32, 32],
+                                        iconAnchor: [16, 32],
+                                        popupAnchor: [0, -32]
+                                    });
+
+                                    var marker = L.marker([place.latitude, place.longitude], {
+                                        icon: placeIcon
+                                    }).addTo(map);
+
+                                    marker.bindPopup('{{ $stop->info }}');
+
+                                    placeMarkers.push(marker);
+                                @endforeach
+
+                                // Find the nearest place marker to the user's location
+                                var nearestMarker = findNearestMarker(userMarker, placeMarkers);
+
+                                // Create a custom icon for the shortest path
+                                var pathIcon = L.icon({
+                                    iconUrl: '',
+                                    iconSize: [32, 32],
+                                    iconAnchor: [16, 32],
+                                    popupAnchor: [0, -32]
                                 });
-                            } else if (i === n - 1) {
-                                // Use the custom icon for the ending marker
-                                return L.marker(waypoint.latLng, {
-                                    icon: pathIcon
-                                });
-                            } else {
-                                // Use the default marker for intermediate waypoints
-                                return L.marker(waypoint.latLng);
-                            }
+
+                                // Calculate the route using Leaflet Routing Machine
+                                L.Routing.control({
+                                    waypoints: [
+                                        L.latLng(latitude, longitude),
+                                        nearestMarker.getLatLng()
+                                    ],
+                                    routeWhileDragging: false,
+                                    lineOptions: {
+                                        styles: [{
+                                            color: 'blue',
+                                            opacity: 0.5,
+                                            weight: 3,
+                                            className: 'leaflet-custom-icon'
+                                        }]
+                                    },
+                                    createMarker: function(i, waypoint, n) {
+                                        if (i === 0) {
+                                            // Use the custom user icon for the starting marker
+                                            return L.marker(waypoint.latLng, {
+                                                icon: userIcon
+                                            });
+                                        } else if (i === n - 1) {
+                                            // Use the custom icon for the ending marker
+                                            return L.marker(waypoint.latLng, {
+                                                icon: pathIcon
+                                            });
+                                        } else {
+                                            // Use the default marker for intermediate waypoints
+                                            return L.marker(waypoint.latLng);
+                                        }
+                                    }
+                                }).addTo(map);
+                            });
                         }
-                    }).addTo(map);
-                });
-            }
 
 
-            //  find the nearest marker using shortest path algorithm
-            function findNearestMarker(userMarker, placeMarkers) {
-                var shortestDistance = Infinity;
-                var nearestMarker = null;
+                        //  find the nearest marker using shortest path algorithm
+                        function findNearestMarker(userMarker, placeMarkers) {
+                            var shortestDistance = Infinity;
+                            var nearestMarker = null;
 
-                for (var i = 0; i < placeMarkers.length; i++) {
-                    var marker = placeMarkers[i];
-                    var distance = haversineDistance(userMarker.getLatLng(), marker.getLatLng());
+                            for (var i = 0; i < placeMarkers.length; i++) {
+                                var marker = placeMarkers[i];
+                                var distance = haversineDistance(userMarker.getLatLng(), marker.getLatLng());
 
-                    if (distance < shortestDistance) {
-                        shortestDistance = distance;
-                        nearestMarker = marker;
-                    }
-                }
-                return nearestMarker;
-            }
+                                if (distance < shortestDistance) {
+                                    shortestDistance = distance;
+                                    nearestMarker = marker;
+                                }
+                            }
+                            return nearestMarker;
+                        }
 
-            // Haversine formula to calculate the distance between two points (latitude and longitude) in meters
-            function haversineDistance(coords1, coords2) {
-                function toRad(x) {
-                    return x * Math.PI / 180;
-                }
+                        // Haversine formula to calculate the distance between two points (latitude and longitude) in meters
+                        function haversineDistance(coords1, coords2) {
+                            function toRad(x) {
+                                return x * Math.PI / 180;
+                            }
 
-                var lat1 = coords1.lat;
-                var lon1 = coords1.lng;
-                var lat2 = coords2.lat;
-                var lon2 = coords2.lng;
+                            var lat1 = coords1.lat;
+                            var lon1 = coords1.lng;
+                            var lat2 = coords2.lat;
+                            var lon2 = coords2.lng;
 
-                var earthRadius = 6371e3; // Earth's radius in meters
-                var lat1Rad = toRad(lat1);
-                var lat2Rad = toRad(lat2);
-                var deltaLatRad = toRad(lat2 - lat1);
-                var deltaLonRad = toRad(lon2 - lon1);
+                            var earthRadius = 6371e3; // Earth's radius in meters
+                            var lat1Rad = toRad(lat1);
+                            var lat2Rad = toRad(lat2);
+                            var deltaLatRad = toRad(lat2 - lat1);
+                            var deltaLonRad = toRad(lon2 - lon1);
 
-                var a = Math.sin(deltaLatRad / 2) * Math.sin(deltaLatRad / 2) +
-                    Math.cos(lat1Rad) * Math.cos(lat2Rad) *
-                    Math.sin(deltaLonRad / 2) * Math.sin(deltaLonRad / 2);
+                            var a = Math.sin(deltaLatRad / 2) * Math.sin(deltaLatRad / 2) +
+                                Math.cos(lat1Rad) * Math.cos(lat2Rad) *
+                                Math.sin(deltaLonRad / 2) * Math.sin(deltaLonRad / 2);
 
-                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-                var distance = earthRadius * c;
+                            var distance = earthRadius * c;
 
-                return distance;
-            }
-        </script>
+                            return distance;
+                        }
+                    </script>
+                </section>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="vehicleRouteTable" role="tabpanel" data-path="vehicleRouteTable">
+                <section>
+                    <table class="table table-hover col-md-9 col-sm-9 col-lg-9 col-xl-9">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="3">Vechicle Routes</th>
+                            </tr>
+                            <tr>
+                                <th>SN</th>
+                                <th>Vehicle Name</th>
+                                <th> outes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($vehicleRoutes as $vehicleRoute)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $vehicleRoute->vehicle_name }}</td>
+                                    <td>{{ $vehicleRoute->vehicle_routes }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                    <script>
+                        $(document).ready(function() {
+                            // Show the active tab content on page load
+                            $('.nav-pills .active a').tab('show');
+                
+                            // Update the active tab content when a new tab is clicked
+                            $('.nav-pills a').on('click', function(event) {
+                                event.preventDefault();
+                                var path = $(this).data('path');
+                                $('.tab-content .tab-pane').removeClass('show active');
+                                $('.tab-content').find('[data-path="' + path + '"]').addClass('show active');
+                            });
+                        });
+                    </script>
+                </section>
+            </div>
+        </div>
     </section>
 @endsection

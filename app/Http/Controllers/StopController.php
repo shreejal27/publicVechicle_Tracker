@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stop;
+use App\Models\VehicleRoute;
 use Illuminate\Http\Request;
 
 class StopController extends Controller
@@ -17,8 +18,8 @@ class StopController extends Controller
     public function stopMarkerUser()
     {
         $stops = Stop::all();
-        return view('/user/nearestBusStop', compact('stops'));
-        // You can return the stops to a view or perform any other logic
+        $vehicleRoutes = VehicleRoute::all();
+        return view('/user/nearestBusStop', compact('stops', 'vehicleRoutes'));//sending stop markers and vehicleroutes infor to user interface
     }
 
     public function create()
