@@ -140,6 +140,10 @@ class DriverController extends Controller
         public function adminDeleteDriver($id){
             $driver = Driver::find($id);
             if ($driver) {
+                $driverLocation = DriverLocation::where('driver_id', $id);
+                if($driverLocation){
+                    $driverLocation->delete();
+                }
                 $driver->delete();
                 return redirect()->route('adminViewDriver')->with('message', 'Driver deleted successfully.');
             }
