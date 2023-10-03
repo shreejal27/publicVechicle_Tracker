@@ -216,7 +216,7 @@
                     },
                     title: {
                         display: true,
-                        text: "Top address of Users",
+                        text: "Registered Online Public Vehicles Now",
                         fontColor: "#F3DEBA",
                         fontFamily: "Josefin Sans, sans-serif",
                         fontSize: 15,

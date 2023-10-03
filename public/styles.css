@@ -72,6 +72,7 @@ footer{
     background-color: #675D50;
     height: 70px;
     padding: 10px;
+    box-shadow: 0px 5px 10px #A9907E;
   }
   /* header {
     position: fixed;
@@ -141,7 +142,6 @@ footer{
   .container {
     display: flex;
     height: auto; /* Set the container height to 100% viewport height */
-    border: 1px solid black;
   }
   
   .sidebar {
@@ -169,6 +169,7 @@ footer{
     justify-content: space-between; /* Aligns items to the start and end of the container */
     align-items: center;
     color: #F3DEBA;
+    box-shadow: 0px 5px 10px #A9907E;
   }
   /* image hover dropdown on topbar */
   .dropdown-content {
