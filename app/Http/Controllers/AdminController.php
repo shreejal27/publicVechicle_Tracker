@@ -99,25 +99,35 @@ class AdminController extends Controller
         ->orderByDesc('count')
         ->take(5)
         ->get();
-    
-    foreach ($topOccupations as $occupation) {
-        $occupationList[] = $occupation->occupation;
-        $occupationCount[] = $occupation->count;
-    }
+        
+        foreach ($topOccupations as $occupation) {
+            $occupationList[] = $occupation->occupation;
+            $occupationCount[] = $occupation->count;
+        }
 
-    //horizontal bar graph
-    $topAddress = User::groupBy('address')
-    ->selectRaw('address, COUNT(*) as count')
-    ->orderByDesc('count')
-    ->take(5)
-    ->get();
+        //horizontal bar graph
+        $topAddress = User::groupBy('address')
+        ->selectRaw('address, COUNT(*) as count')
+        ->orderByDesc('count')
+        ->take(5)
+        ->get();
 
-foreach ($topAddress as $address) {
-    $addressList[] = $address->address;
-    $addressCount[] = $address->count;
-}
+        foreach ($topAddress as $address) {
+            $addressList[] = $address->address;
+            $addressCount[] = $address->count;
+        }
+        
+        //get total number of drivers for each vehicle type
+        $allVehicleDrivers = Driver::groupBy('vehicle_type')
+        ->selectRaw('vehicle_type, COUNT(*) as count')
+        ->get();
 
-       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates', 'dateToday', 'occupationList', 'occupationCount', 'addressList', 'addressCount');
+        foreach ($allVehicleDrivers as $driverData) {
+            $vehicleList[] = $driverData->vehicle_type;
+            $vehicleCount[] = $driverData->count;
+        }
+
+       return compact('userCount', 'driverCount', 'stopCount', 'driverOnlineCount', 'driverDetails', 'weekDays', 'complaintCounts', 'weekDates', 'dateToday', 'occupationList', 'occupationCount', 'addressList', 'addressCount', 'vehicleList', 'vehicleCount');
     }
 
     //this is for admin profile

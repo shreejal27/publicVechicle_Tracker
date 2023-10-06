@@ -59,9 +59,16 @@
     rect {
         /* fill: #675d50; */
     }
+
+    /* for google chart */
+    #mChart text {
+        fill: #F3DEBA;
+    }
 </style>
 @extends('necessary.admin_template')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+{{-- for google chart --}}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @section('content')
     <section class="infoPills">
         <div class="row">
@@ -206,9 +213,9 @@
     <section class="infoTablesAndCharts">
         <div class="row mt-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="chart">
-                    <canvas id="pieChart" style=" cursor:pointer;"></canvas>
-                </div>
+                {{-- <div class="chart"> --}}
+                <div id="mChart" style="width:100%;"></div>
+                {{-- </div> --}}
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="chart">
@@ -218,6 +225,17 @@
             </div>
         </div>
     </section>
+    <section class="infoTablesAndCharts">
+        <div class="row mt-3">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="chart">
+                    <canvas id="pieChart" style=" cursor:pointer;"></canvas>
+                </div>
+            </div>
+          
+        </div>
+    </section>
+
 
     {{-- for bar graph --}}
     <script>
@@ -345,8 +363,6 @@
 
         var maxValue = Math.max(...yValues);
 
-        console.log("Maximum value:", maxValue);
-
         new Chart("addressBarGraph", {
             type: "bar",
             data: {
@@ -398,6 +414,63 @@
         });
     </script>
     {{-- end bar graph --}}
+
+    {{-- for google chart --}}
+    <script>
+        const vehicleList = @json($vehicleList);
+        const vehicleCount = @json($vehicleCount);
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            const data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vehicle');
+            data.addColumn('number', 'Count');
+
+            // Add data rows from the PHP arrays
+            for (let i = 0; i < vehicleList.length; i++) {
+                data.addRow([vehicleList[i], vehicleCount[i]]);
+            }
+
+            // Find the maximum value in the data
+            const maxValue = Math.max(...vehicleCount);
+
+            const options = {
+                title: 'Drivers Count As Per Vehicles',
+                backgroundColor: {
+                    fill: '#675D50'
+                }, // Change background color
+                titleTextStyle: {
+                    // color: 'green', // Change title text color //changed with css
+                    fontSize: 14, // Change title font size
+                    fontName: "Josefin Sans, sans-serif",
+                },
+                colors: ['#F3DEBA'], // Change bar colors
+                height: 350, // Change the height of the chart (in pixels)
+                hAxis: {
+                    ticks: generateTickValues(maxValue),
+                    // viewWindow: {
+                    //     max: maxValue + 1, // Set the maximum value for the y-axis
+                    // },
+                },
+            };
+
+            const chart = new google.visualization.BarChart(document.getElementById('mChart'));
+            chart.draw(data, options);
+        }
+        function generateTickValues(maxValue) {
+        const tickValues = [];
+        for (let i = 0; i <= maxValue; i++) {
+            tickValues.push(i);
+        }
+        tickValues.push(maxValue + 1);
+        return tickValues;
+    }
+    </script>
+
+
 
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
