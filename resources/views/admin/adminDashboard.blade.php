@@ -56,20 +56,20 @@
         border-collapse: collapse !important;
     }
 
-    rect {
-        /* fill: #675d50; */
-    }
-
     /* for google chart */
     #mChart text {
         fill: #F3DEBA;
     }
 </style>
+
 @extends('necessary.admin_template')
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-{{-- for google chart --}}
+
+{{-- for google chart //driver counts as per vehicle type bargraph --}}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @section('content')
+
     <section class="infoPills">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -169,6 +169,8 @@
             </div>
         </div>
     </section>
+
+    {{-- for tickets graph and drivers online table --}}
     <section class="infoTablesAndCharts">
         <div class="row mt-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -180,7 +182,7 @@
                 <table class="table table-hover" id="driverOnline" style="width:100%; cursor:pointer;"
                     onclick="redirectDriverPage()">
                     <thead>
-                        <th colspan="5"> Driver Online</th>
+                        <th colspan="5"> Drivers Online</th>
                         <tr>
                             <th>SN</th>
                             <th>Name</th>
@@ -210,34 +212,35 @@
             </div>
         </div>
     </section>
+
+    {{-- for drivers->vehicle type and user->address bar graph --}}
     <section class="infoTablesAndCharts">
         <div class="row mt-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 {{-- <div class="chart"> --}}
-                <div id="mChart" style="width:100%;"></div>
+                <div id="mChart" style="width:100%; cursor:pointer;" onclick="redirectDriverPage()"></div>
                 {{-- </div> --}}
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="chart">
-                    <canvas id="addressBarGraph" style="width:100%; cursor:pointer;"
-                        onclick="redirectComplainFeedback()"></canvas>
+                    <canvas id="addressBarGraph" style="cursor:pointer;" onclick="redirectUsers()"></canvas>
                 </div>
             </div>
         </div>
     </section>
+
+    {{-- piechart --}}
     <section class="infoTablesAndCharts">
         <div class="row mt-3">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="chart">
-                    <canvas id="pieChart" style=" cursor:pointer;"></canvas>
+                    <canvas id="pieChart" style="cursor:pointer;"></canvas>
                 </div>
             </div>
-          
         </div>
     </section>
 
-
-    {{-- for bar graph --}}
+    {{-- for  tickets bar graph --}}
     <script>
         var xValues = @json($weekDays);
         var yValues = @json($complaintCounts);
@@ -285,7 +288,7 @@
                 },
                 title: {
                     display: true,
-                    text: "Total Request in a week",
+                    text: "Total Tickets Raised In A Week",
                     fontColor: "#F3DEBA",
                     fontFamily: "Josefin Sans, sans-serif",
                     fontSize: 15,
@@ -303,6 +306,9 @@
             }
         });
     </script>
+    {{-- end graph --}}
+
+    {{-- redirection function when clicked on charts --}}
     <script>
         function redirectComplainFeedback() {
             window.location.href = "{{ route('adminComplainFeedback') }}";
@@ -312,11 +318,12 @@
             window.location.href = "{{ route('adminViewDriver') }}";
         }
 
-        // function redirectUsers() {
-        //     window.location.href = "{{ route('adminViewUsers') }}";
-        // }
+        function redirectUsers() {
+            window.location.href = "{{ route('adminViewUsers') }}";
+        }
     </script>
-    {{-- for pie chart --}}
+
+    {{-- for user occupation pie chart --}}
     <script>
         var xValues = @json($occupationList);
         var yValues = @json($occupationCount);
@@ -340,7 +347,7 @@
             options: {
                 title: {
                     display: true,
-                    text: "Top 5 Occupations of Users",
+                    text: "Top 5 Users Occupation",
                     fontColor: "#F3DEBA",
                     fontSize: 15,
                     fontFamily: "Josefin Sans, sans-serif"
@@ -354,7 +361,9 @@
             },
         });
     </script>
-    {{-- for horizontal chart --}}
+    {{-- end graph --}}
+
+    {{-- for user and address bar graph --}}
     <script>
         var xValues = @json($addressList);
         var yValues = @json($addressCount);
@@ -378,7 +387,7 @@
                         display: true,
                         ticks: {
                             beginAtZero: true,
-                            stepSize: 5,
+                            stepSize: 1,
                             max: maxValue + 1,
                             fontFamily: "Josefin Sans, sans-serif",
                             fontColor: "#F3DEBA",
@@ -398,7 +407,7 @@
                 },
                 title: {
                     display: true,
-                    text: "Top address of Users",
+                    text: "Top 5 User Addresses",
                     fontColor: "#F3DEBA",
                     fontFamily: "Josefin Sans, sans-serif",
                     fontSize: 15,
@@ -413,9 +422,9 @@
             }
         });
     </script>
-    {{-- end bar graph --}}
+    {{-- end graph --}}
 
-    {{-- for google chart --}}
+    {{-- for drivers and vehicle type bar graph --}}
     <script>
         const vehicleList = @json($vehicleList);
         const vehicleCount = @json($vehicleCount);
@@ -438,7 +447,7 @@
             const maxValue = Math.max(...vehicleCount);
 
             const options = {
-                title: 'Drivers Count As Per Vehicles',
+                title: 'All Drivers Count As Per Vehicles Types',
                 backgroundColor: {
                     fill: '#675D50'
                 }, // Change background color
@@ -460,18 +469,17 @@
             const chart = new google.visualization.BarChart(document.getElementById('mChart'));
             chart.draw(data, options);
         }
+
         function generateTickValues(maxValue) {
-        const tickValues = [];
-        for (let i = 0; i <= maxValue; i++) {
-            tickValues.push(i);
+            const tickValues = [];
+            for (let i = 0; i <= maxValue; i++) {
+                tickValues.push(i);
+            }
+            tickValues.push(maxValue + 1);
+            return tickValues;
         }
-        tickValues.push(maxValue + 1);
-        return tickValues;
-    }
     </script>
-
-
-
+    {{-- end graph --}}
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -487,4 +495,5 @@
             });
         });
     </script>
+    
 @endsection
