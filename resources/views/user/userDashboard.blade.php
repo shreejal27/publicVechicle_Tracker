@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="text ">
                                     <h4>{{ $stopCount }}</h4>
-                                    <p> Stops</p>
+                                    <p>Total Stops</p>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +180,7 @@
             console.log("X Values:", xValues);
             console.log("Y Values:", yValues);
             var maxValue = Math.max(...yValues);
-            
+
             new Chart("vehicleOnline", {
                 type: "bar",
                 data: {

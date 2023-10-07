@@ -34,7 +34,7 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="nearestStop" role="tabpanel" data-path="nearestStop">
-                <section class="mt-4"> 
+                <section class="mt-4">
                     <div>
                         <h5 class="color">Filter by Type:</h5>
                         <div class="row">
@@ -245,7 +245,7 @@
                             <tr>
                                 <th>SN</th>
                                 <th>Vehicle Name</th>
-                                <th> outes</th>
+                                <th> Routes</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -264,7 +264,7 @@
                         $(document).ready(function() {
                             // Show the active tab content on page load
                             $('.nav-pills .active a').tab('show');
-                
+
                             // Update the active tab content when a new tab is clicked
                             $('.nav-pills a').on('click', function(event) {
                                 event.preventDefault();
