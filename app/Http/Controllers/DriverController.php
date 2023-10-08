@@ -71,8 +71,19 @@ class DriverController extends Controller
 
         $driverVehicleStops = Stop::where('vehicle_type', $driverVehicleType)->count();
 
+        $driverId = session('driver_id');
+        $driver = Driver::find($driverId);
 
-        return view('driver.driverDashboard', compact('dateToday', 'driverVehicleType', 'driverVehicleStops'));
+        //get user address 
+        $driverAddress = $driver->address;
+        $driverVehicle = $driver->vehicle_type;
+        $driverNumber = $driver->contact_number;
+
+         //get driver whose status is on
+         $driverOnlineCount = DriverLocation::where('status', 'on')->count();
+
+
+        return view('driver.driverDashboard', compact('dateToday', 'driverVehicleType', 'driverVehicleStops', 'driverAddress', 'driverVehicle', 'driverNumber', 'driverOnlineCount'));
     }
 
         //this is for driver profile

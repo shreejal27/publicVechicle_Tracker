@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="text ">
                                     <h4>Address:</h4>
-                                    <p>Driver Address</p>
+                                    <p>{{$driverAddress}}</p>
                                 </div>
                             </div>
                         </div>
@@ -82,11 +82,11 @@
                         <div class="inner">
                             <div class="icon-and-text">
                                 <div class="icon">
-                                    <i class="fa-solid fa-briefcase fa-2x"></i>
+                                    <i class="fa-solid fa-gears fa-2x"></i>
                                 </div>
                                 <div class="text ">
-                                    <h4>Occupation:</h4>
-                                    <p>Driver</p>
+                                    <h4>Vehicle Type:</h4>
+                                    <p>{{$driverVehicle}}</p>
                                 </div>
                             </div>
                         </div>
@@ -97,11 +97,11 @@
                         <div class="inner">
                             <div class="icon-and-text">
                                 <div class="icon">
-                                    <i class="fa-solid fa-envelope fa-2x"></i>
+                                    <i class="fa-solid fa-phone fa-2x"></i>
                                 </div>
                                 <div class="text ">
-                                    <h4>Email:</h4>
-                                    <p>driver@gmail.com</p>
+                                    <h4>Number:</h4>
+                                    <p>{{$driverNumber}}</p>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                                     <i class="fa-solid fa-toggle-on fa-2x"></i>
                                 </div>
                                 <div class="text ">
-                                    <h4>99</h4>
+                                    <h4>{{$driverOnlineCount}}</h4>
                                     <p> Drivers Online</p>
                                 </div>
                             </div>

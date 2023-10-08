@@ -53,7 +53,7 @@
                     All Tickets</a><br><br>
                 <a href="/adminViewDriversReports" class="sidebarLink">
                     <i class="fa-solid fa-users-gear"></i>
-                    Drivers //Ratings </a><br><br>
+                    Drivers </a><br><br>
                 <a href="/adminViewUsers" class="sidebarLink">
                     <i class="fa-solid fa-users"></i>
                     Users </a><br><br>
@@ -74,20 +74,20 @@
                     <h5 class="mt-2 ml-3">
                         <span id="greetings"></span>
                         <span> {{ ucfirst(session('adminName')) }}</span>
-                       
+
                     </h5>
                 </div>
 
                 <div class="image-container mt-3 mr-3">
                     <div class="profile-image" id="profileImageContainer">
-                            @php
-                             $adminProfile = session('adminProfile')? (session('adminProfile')) : 'anonymous.jpg';
-                            @endphp
+                        @php
+                            $adminProfile = session('adminProfile') ? session('adminProfile') : 'anonymous.jpg';
+                        @endphp
 
                         <img src="{{ asset('/images/admin/' . $adminProfile) }}" alt="ProfileImage" id="topBarImage">
                         <div class="dropdown-content" id="dropdownContent">
-                            <a href="/adminProfile">  <i class="fa-solid fa-address-card"></i> Profile</a>
-                            <a href="/adminLogout">  <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                            <a href="/adminProfile"> <i class="fa-solid fa-address-card"></i> Profile</a>
+                            <a href="/adminLogout"> <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                         </div>
                     </div>
                 </div>

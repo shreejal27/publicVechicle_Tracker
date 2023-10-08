@@ -1,23 +1,22 @@
 @extends('necessary.driver_template')
 @section('content')
-    <h1>This is to share your live location</h1>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         #map {
             height: 600px;
         }
     </style>
-    <section>
+    <section class="m-3">
         <?php
         $driver_id = session()->get('driver_id');
         $vehicleType = session()->get('vehicleType');
         
-        echo $driver_id;
+        // echo $driver_id;
         
         ?>
-        <h1>Live Location Finder</h1>
-        <button onclick="toggleDriverLocation()" id="showLocationBtn"> Show My Location</button>
-        <div id="map"></div>
+        <h1>Live Location </h1>
+        <button onclick="toggleDriverLocation()" id="showLocationBtn"> Share Live Location</button>
+        <div id="map" class="mt-3"></div>
 
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
