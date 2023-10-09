@@ -6,6 +6,24 @@
     table.dataTable {
         border-collapse: collapse !important;
     }
+
+    td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .image-container {
+        text-align: center;
+    }
+
+    #profileImage {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 8rem;
+        margin: 0 auto;
+        object-fit: cover;
+        border: 2px solid #F3DEBA;
+    }
 </style>
 @extends('necessary.admin_template')
 @section('content')
@@ -15,12 +33,13 @@
                 <th colspan="7"> All Users</th>
                 <tr>
                     <th>SN</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Email </th>
                     <th>Address</th>
                     <th>Number</th>
                     <th>Occupation</th>
-                    <th>UserName</th>
+                    {{-- <th>UserName</th> --}}
 
                 </tr>
             </thead>
@@ -28,12 +47,18 @@
                 @foreach ($users as $user)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $user['firstname'] }} {{ $user['lastname'] }}</td>
+                        <td>
+                            <div class="image-container">
+                                <img src="{{ asset('images/users/' . ($user['profileImage'] ? $user['profileImage'] : 'anonymous.jpg')) }}"
+                                    alt="Profile Image" id="profileImage">
+                            </div>
+                        </td>
+                        <td>{{ $user['firstname'] }} {{ $user['lastname'] }} <br> <br> @ {{ $user['username'] }}</td>
                         <td>{{ $user['email'] }}</td>
                         <td>{{ $user['address'] }}</td>
                         <td>{{ $user['contact_number'] }}</td>
                         <td>{{ $user['occupation'] }}</td>
-                        <td>{{ $user['username'] }}</td>
+                        {{-- <td>{{ $user['username'] }}</td> --}}
                     </tr>
                 @endforeach
 
