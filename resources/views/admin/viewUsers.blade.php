@@ -8,8 +8,8 @@
     }
 
     td {
-        text-align: center;
-        vertical-align: middle;
+        text-align: center !important;
+        vertical-align: middle !important;
     }
 
     .image-container {
@@ -23,6 +23,7 @@
         margin: 0 auto;
         object-fit: cover;
         border: 2px solid #F3DEBA;
+        padding-top: -25px !important;
     }
 </style>
 @extends('necessary.admin_template')
@@ -33,7 +34,6 @@
                 <th colspan="7"> All Users</th>
                 <tr>
                     <th>SN</th>
-                    <th>Image</th>
                     <th>Name</th>
                     <th>Email </th>
                     <th>Address</th>
@@ -48,12 +48,14 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <div class="image-container">
+                            <div class="image-container float-left">
                                 <img src="{{ asset('images/users/' . ($user['profileImage'] ? $user['profileImage'] : 'anonymous.jpg')) }}"
                                     alt="Profile Image" id="profileImage">
                             </div>
+                            <div class="float-left ml-3">
+                                {{ $user['firstname'] }} {{ $user['lastname'] }} <br> @ {{ $user['username'] }}
+                            </div>
                         </td>
-                        <td>{{ $user['firstname'] }} {{ $user['lastname'] }} <br> <br> @ {{ $user['username'] }}</td>
                         <td>{{ $user['email'] }}</td>
                         <td>{{ $user['address'] }}</td>
                         <td>{{ $user['contact_number'] }}</td>
