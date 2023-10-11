@@ -48,11 +48,11 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <div class="image-container float-left">
+                            <div class="image-container float-left ml-3">
                                 <img src="{{ asset('images/users/' . ($user['profileImage'] ? $user['profileImage'] : 'anonymous.jpg')) }}"
                                     alt="Profile Image" id="profileImage">
                             </div>
-                            <div class="float-left ml-3">
+                            <div class="float-left mt-3 ml-3">
                                 {{ $user['firstname'] }} {{ $user['lastname'] }} <br> @ {{ $user['username'] }}
                             </div>
                         </td>

@@ -7,12 +7,10 @@
     <div>
         <ul class="nav nav-pills">
             <li class="nav-item" data-path="fareList">
-                <a class="nav-link active" data-toggle="tab" href="#fareList" aria-selected="true">Vehicle Route
-                    List</a>
+                <a class="nav-link active" data-toggle="tab" href="#fareList" aria-selected="true">Fares</a>
             </li>
             <li class="nav-item" data-path="fareForm">
-                <a class="nav-link " data-toggle="tab" href="#fareForm" aria-selected="false">Add Vehicle
-                    Route</a>
+                <a class="nav-link " data-toggle="tab" href="#fareForm" aria-selected="false">Add Fare</a>
             </li>
 
         </ul>
@@ -31,19 +29,19 @@
                                 <input type="text" name="distance" required>
                             </div>
                             @error('distance')
-                            <p class="text-danger">**{{ $message }}</p>
+                                <p class="text-danger">**{{ $message }}</p>
                             @enderror
                             <div class="input-group">
                                 <label>Price:</label>
                                 <input type="text" name="price" required>
                             </div>
                             @error('price')
-                            <p class="text-danger">**{{ $message }}</p>
+                                <p class="text-danger">**{{ $message }}</p>
                             @enderror
                             <button class="sign mt-3" type="submit">Submit</button>
                         </form>
-                      
-                   
+
+
                     </div>
                 </div>
             </section>

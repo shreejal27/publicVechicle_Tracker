@@ -18,10 +18,10 @@
     <div>
         <ul class="nav nav-pills">
             <li class="nav-item" data-path="form">
-                <a class="nav-link active" data-toggle="tab" href="#form" aria-selected="true">Form</a>
+                <a class="nav-link active" data-toggle="tab" href="#form" aria-selected="true">Ticket</a>
             </li>
             <li class="nav-item" data-path="sentForms">
-                <a class="nav-link " data-toggle="tab" href="#sentForm" aria-selected="false">Sent Forms</a>
+                <a class="nav-link " data-toggle="tab" href="#sentForm" aria-selected="false">Sent Tickets</a>
             </li>
         </ul>
     </div>
@@ -85,7 +85,8 @@
                             @foreach ($complainFeedbacksBySpecificUser as $complainFeedback)
                                 <tr>
 
-                                    <td>{{ \Carbon\Carbon::parse($complainFeedback->created_at)->format('Y-m-d (l)') }}</td>
+                                    <td style="white-space: nowrap;">
+                                        {{ \Carbon\Carbon::parse($complainFeedback->created_at)->format('Y-m-d (l)') }}</td>
                                     <td>{{ $complainFeedback->type }}</td>
                                     <td>{{ $complainFeedback->subject }}</td>
                                     <td>{{ $complainFeedback->description }}</td>
